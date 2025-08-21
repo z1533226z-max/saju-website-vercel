@@ -2,25 +2,37 @@
 Health check endpoint for Vercel deployment
 """
 from datetime import datetime
+from http.server import BaseHTTPRequestHandler
+import json
 
-def handler(req, res):
-    """Handle request for health check"""
+class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        """Handle GET request for health check"""
+        # Set response headers
+        self.send_response(200)
+        self.send_header('Content-Type', 'application/json')
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET, OPTIONS')
+        self.end_headers()
+        
+        # Response data
+        response = {
+            'status': 'healthy',
+            'timestamp': datetime.now().isoformat(),
+            'service': 'saju-backend-vercel',
+            'version': '2.0.0',
+            'environment': 'vercel'
+        }
+        
+        # Send response
+        self.wfile.write(json.dumps(response, ensure_ascii=False).encode('utf-8'))
+        return
     
-    # Handle CORS
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS')
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
-    
-    if req.method == 'OPTIONS':
-        return res.status(200).send('')
-    
-    # Response data
-    response = {
-        'status': 'healthy',
-        'timestamp': datetime.now().isoformat(),
-        'service': 'saju-backend-vercel',
-        'version': '2.0.0',
-        'environment': 'vercel'
-    }
-    
-    return res.status(200).json(response)
+    def do_OPTIONS(self):
+        """Handle OPTIONS request for CORS preflight"""
+        self.send_response(200)
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+        self.end_headers()
+        return
