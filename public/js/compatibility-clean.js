@@ -52,7 +52,7 @@
         
         // 5. API 호출
         try {
-            const response = await fetch('http://localhost:5000/api/saju/compatibility', {
+            const response = await fetch('/api/saju/compatibility', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

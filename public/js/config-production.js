@@ -2,9 +2,7 @@
 // 프로덕션 환경에서는 상대 경로 사용 (같은 도메인)
 const API_CONFIG = {
     // 개발 환경과 프로덕션 환경 자동 감지
-    BASE_URL: window.location.hostname === 'localhost' 
-        ? 'http://localhost:5000'  // 개발 환경
-        : '',  // 프로덕션 환경 (같은 도메인)
+    BASE_URL: '',  // 항상 상대 경로 사용 (Vercel Functions는 /api로 자동 매핑)
     
     // API 엔드포인트
     ENDPOINTS: {

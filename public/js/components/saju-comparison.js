@@ -343,7 +343,7 @@ class SajuComparison {
                 isLunar: isLunar
             };
             
-            const response = await fetch('http://localhost:5000/api/saju/calculate', {
+            const response = await fetch('/api/saju/calculate', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -818,7 +818,7 @@ class SajuComparison {
         
         // Use backend API for accurate compatibility calculation
         try {
-            const response = await fetch('http://localhost:5000/api/saju/compatibility', {
+            const response = await fetch('/api/saju/compatibility', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

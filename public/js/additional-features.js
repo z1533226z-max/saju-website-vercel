@@ -98,9 +98,9 @@
         console.log('📤 궁합 계산 요청 데이터:', JSON.stringify(requestData, null, 2));
         
         try {
-            console.log('🌐 API 호출 시작: http://localhost:5000/api/saju/compatibility');
+            console.log('🌐 API 호출 시작: /api/saju/compatibility');
             
-            const response = await fetch('http://localhost:5000/api/saju/compatibility', {
+            const response = await fetch('/api/saju/compatibility', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -148,7 +148,7 @@ window.sajuForm = function() {
                 };
                 
                 // API 호출
-                const response = await fetch('http://localhost:5000/api/saju/calculate', {
+                const response = await fetch('/api/saju/calculate', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
