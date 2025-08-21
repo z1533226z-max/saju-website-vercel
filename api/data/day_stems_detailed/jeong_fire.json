@@ -1,0 +1,275 @@
+{
+  "name": "정화 (丁火)",
+  "element": "화 (火)",
+  "polarity": "음 (陰)",
+  
+  "basic": {
+    "nature": "촛불, 등불, 작은 불",
+    "characteristics": [
+      "섬세하고 예민한 감성",
+      "따뜻하고 온화한 성품",
+      "직관력과 통찰력",
+      "헌신적이고 희생적",
+      "내성적이지만 열정적"
+    ],
+    "strengths": [
+      "뛰어난 직관과 통찰력",
+      "섬세한 감수성",
+      "헌신과 봉사 정신",
+      "집중력과 끈기",
+      "영적 감각"
+    ],
+    "weaknesses": [
+      "지나친 예민함",
+      "감정 기복",
+      "자기희생 과도",
+      "의심과 불안",
+      "체력 부족"
+    ]
+  },
+  
+  "personality_detailed": {
+    "core_traits": {
+      "intuition": "뛰어난 직관력으로 사물의 본질을 꿰뚫어 보며, 미묘한 변화를 감지합니다.",
+      "warmth": "따뜻한 마음으로 타인을 보살피고 위로하는 능력이 있습니다.",
+      "dedication": "한 가지 일에 몰두하면 끝까지 완수하는 집중력과 헌신을 보입니다.",
+      "sensitivity": "섬세한 감수성으로 예술과 문화를 깊이 이해하고 감상합니다.",
+      "spirituality": "물질보다 정신적 가치를 중시하며 영적 성장을 추구합니다."
+    },
+    "emotional_patterns": {
+      "expression": "조용하고 은은하게 감정을 표현하며 내면의 열정을 간직합니다.",
+      "stress_response": "스트레스를 내면화하여 신체 증상으로 나타나기 쉽습니다.",
+      "joy_triggers": "깊은 이해와 공감, 영적 성취에서 기쁨을 느낍니다.",
+      "anger_triggers": "불의를 보거나 진실이 왜곡될 때 분노합니다.",
+      "coping_mechanisms": "독서, 명상, 예술 활동을 통해 마음의 평화를 찾습니다."
+    },
+    "behavioral_tendencies": {
+      "decision_making": "직관과 감정을 중시하는 결정 스타일",
+      "communication": "조용하지만 깊이 있는 대화 선호",
+      "conflict_resolution": "회피하거나 희생을 통한 해결",
+      "work_style": "꼼꼼하고 완벽주의적인 업무 처리",
+      "social_interaction": "소수의 깊은 관계를 선호하는 내향성"
+    },
+    "growth_areas": {
+      "assertiveness": "자기 주장과 경계 설정 능력 개발",
+      "resilience": "정서적 회복탄력성 강화",
+      "practicality": "현실적 사고와 실용성 개발",
+      "self_care": "자기 돌봄과 에너지 관리",
+      "confidence": "자신감과 자기 신뢰 구축"
+    }
+  },
+  
+  "ten_gods_interpretation": {
+    "비견_겁재": {
+      "positive": "동료들과 깊은 정서적 유대를 형성하며 서로를 지지합니다.",
+      "negative": "경쟁 상황에서 자신감이 부족하고 쉽게 포기할 수 있습니다.",
+      "advice": "자신의 독특한 가치를 인정하고 건강한 경쟁심을 기르세요."
+    },
+    "식신_상관": {
+      "positive": "예술적 감성과 창의력이 뛰어나 문화예술 분야에서 두각을 나타냅니다.",
+      "negative": "감정적 표현이 과도하여 오해를 받거나 상처를 줄 수 있습니다.",
+      "advice": "감정을 예술로 승화시키고 균형 잡힌 표현을 연습하세요."
+    },
+    "정재_편재": {
+      "positive": "꾸준한 노력과 절약으로 안정적인 재산을 형성합니다.",
+      "negative": "재물에 대한 욕심이 부족하여 경제적 기회를 놓칠 수 있습니다.",
+      "advice": "적극적인 재테크와 자기 가치를 인정받는 법을 배우세요."
+    },
+    "정관_편관": {
+      "positive": "조직에서 신뢰받는 실무자로 인정받습니다.",
+      "negative": "권위에 대한 부담으로 승진이나 리더십을 회피할 수 있습니다.",
+      "advice": "자신의 능력을 믿고 필요시 리더십을 발휘하세요."
+    },
+    "정인_편인": {
+      "positive": "깊이 있는 학문 연구와 영적 탐구에서 성과를 냅니다.",
+      "negative": "현실과 동떨어진 이상주의에 빠질 수 있습니다.",
+      "advice": "이론과 실천의 균형을 맞추고 현실 감각을 기르세요."
+    }
+  },
+  
+  "career_detailed": {
+    "suitable_fields": [
+      "예술 및 문화: 작가, 시인, 화가, 음악가",
+      "심리 및 상담: 심리상담사, 정신과 의사, 치료사",
+      "교육: 교사, 교수, 교육 연구자",
+      "의료 및 간호: 간호사, 한의사, 대체의학",
+      "종교 및 영성: 종교인, 명상 지도자, 요가 강사",
+      "연구 및 분석: 연구원, 분석가, 통계학자",
+      "사회복지: 사회복지사, NGO 활동가"
+    ],
+    "work_environment": {
+      "ideal": "조용하고 집중할 수 있는 안정적인 환경",
+      "challenging": "시끄럽고 경쟁이 치열한 환경",
+      "team_dynamics": "소규모 팀에서 전문가로 활동",
+      "growth_path": "전문성을 인정받아 점진적으로 성장"
+    },
+    "entrepreneurship": {
+      "potential": "중간 - 전문성은 있으나 사업 추진력 부족",
+      "suitable_business": "전문 서비스, 온라인 교육, 힐링 센터",
+      "challenges": "마케팅과 영업 능력 부족",
+      "success_factors": "전문성, 진정성, 틈새시장"
+    },
+    "career_development": {
+      "early_career": "전문 지식과 기술 습득에 집중",
+      "mid_career": "전문가로서 인정받고 영향력 확대",
+      "late_career": "멘토링과 후학 양성에 기여",
+      "retirement": "연구와 집필 활동 지속"
+    }
+  },
+  
+  "love_marriage": {
+    "romantic_style": {
+      "approach": "신중하고 조심스러운 접근, 깊은 정서적 교감 추구",
+      "expression": "은은하고 헌신적인 사랑 표현",
+      "commitment": "한 사람에게 모든 것을 바치는 일편단심",
+      "expectations": "정신적 교감과 이해를 최우선으로 여김"
+    },
+    "ideal_partner": {
+      "personality": "안정적이고 포용력 있으며 정서적으로 성숙한 사람",
+      "values": "정신적 가치를 중시하고 내면의 깊이가 있는 사람",
+      "compatibility": "갑목, 기토, 신금과 궁합이 좋음",
+      "challenges": "계수와는 충돌 가능성"
+    },
+    "marriage_life": {
+      "strengths": "헌신적이고 희생적인 배우자",
+      "challenges": "과도한 희생, 자기 주장 부족",
+      "family_dynamics": "조용하고 화목한 가정 추구",
+      "conflict_areas": "감정 표현 부족으로 인한 오해"
+    },
+    "relationship_advice": {
+      "communication": "자신의 필요와 감정을 명확히 표현하세요",
+      "boundaries": "건강한 경계를 설정하고 자신도 돌보세요",
+      "appreciation": "상대방의 노력을 인정하고 감사를 표현하세요",
+      "balance": "주는 것과 받는 것의 균형을 맞추세요"
+    }
+  },
+  
+  "wealth_detailed": {
+    "financial_traits": {
+      "earning_ability": "전문성을 통한 안정적 수입",
+      "spending_habits": "절약적이고 실용적인 소비",
+      "saving_tendency": "꾸준한 저축과 안전한 투자",
+      "investment_style": "보수적이고 장기적인 투자"
+    },
+    "wealth_accumulation": {
+      "methods": [
+        "전문 지식과 기술을 통한 수입",
+        "장기적이고 안정적인 투자",
+        "부동산이나 예술품 투자",
+        "저축과 복리 효과"
+      ],
+      "timing": "중년 이후 안정적 자산 형성",
+      "challenges": "적극적 투자 기회 포착 부족"
+    },
+    "financial_luck": {
+      "good_periods": "여름과 가을, 오미신 월",
+      "challenging_periods": "겨울, 자축 월",
+      "lucky_directions": "남쪽, 서남쪽",
+      "lucky_numbers": "2, 5, 7"
+    },
+    "money_management": {
+      "strengths": "계획적 소비, 충동구매 없음",
+      "weaknesses": "투자 기회 소극적, 수익률 낮음",
+      "advice": "전문가 조언을 받아 적극적 자산 운용"
+    }
+  },
+  
+  "health_detailed": {
+    "physical_constitution": {
+      "strong_areas": "심장, 소장, 혈액순환",
+      "weak_areas": "신경계, 소화기, 호흡기",
+      "common_issues": [
+        "신경성 위장 장애",
+        "불면증, 신경쇠약",
+        "우울증, 불안장애",
+        "만성피로증후군"
+      ]
+    },
+    "mental_health": {
+      "stress_factors": "과도한 책임감, 완벽주의, 타인 걱정",
+      "emotional_issues": "우울, 불안, 자존감 저하",
+      "coping_strategies": [
+        "정기적인 상담과 심리치료",
+        "명상과 요가",
+        "예술치료와 음악치료",
+        "자연 속 휴식"
+      ]
+    },
+    "lifestyle_recommendations": {
+      "exercise": "요가, 태극권, 걷기 등 가벼운 운동",
+      "diet": [
+        "따뜻하고 소화가 잘 되는 음식",
+        "규칙적인 식사 시간",
+        "카페인과 알코올 절제",
+        "충분한 수분 섭취"
+      ],
+      "sleep": "일정한 수면 패턴, 수면 환경 개선",
+      "stress_management": "일기 쓰기, 명상, 취미 활동"
+    },
+    "preventive_care": {
+      "regular_checkups": "정신건강 검진, 호르몬 검사, 수면 검사",
+      "early_warning_signs": "만성 피로, 소화 불량, 불안감",
+      "holistic_approach": "심신 통합적 건강 관리"
+    }
+  },
+  
+  "social_relations": {
+    "friendship_patterns": {
+      "quality": "소수의 깊고 의미 있는 우정",
+      "loyalty": "변함없는 충성과 헌신",
+      "selection": "정신적 교감이 가능한 사람들",
+      "maintenance": "꾸준한 관심과 배려"
+    },
+    "professional_relationships": {
+      "expertise": "전문 분야에서 신뢰받는 조언자",
+      "collaboration": "조용히 기여하는 팀 플레이어",
+      "mentoring": "후배들에게 지혜를 전수",
+      "reputation": "성실하고 신뢰할 수 있는 전문가"
+    },
+    "family_dynamics": {
+      "parental_role": "자상하고 희생적인 부모",
+      "sibling_relations": "조용히 돌보는 역할",
+      "extended_family": "가족의 정신적 지주",
+      "emotional_support": "가족의 상담자이자 위로자"
+    },
+    "community_involvement": {
+      "service": "조용한 봉사와 기여",
+      "spiritual_guidance": "정신적 멘토 역할",
+      "cultural_preservation": "문화와 전통 보존",
+      "healing": "공동체의 치유자 역할"
+    }
+  },
+  
+  "spiritual_growth": {
+    "life_purpose": {
+      "mission": "내면의 빛으로 타인을 따뜻하게 비추고 치유하기",
+      "values": "진실, 헌신, 영성, 치유, 지혜",
+      "legacy": "정신적 가르침과 영적 성장의 길 제시"
+    },
+    "personal_development": {
+      "inner_light": "내면의 빛을 발견하고 키우기",
+      "self_worth": "자신의 가치를 인정하고 사랑하기",
+      "balance": "주는 것과 받는 것의 균형",
+      "authenticity": "진정한 자아를 표현하기"
+    },
+    "spiritual_practices": {
+      "meditation": "깊은 명상과 관조",
+      "prayer": "기도와 영적 수행",
+      "service": "봉사를 통한 영적 성장",
+      "study": "영적 가르침과 철학 공부"
+    },
+    "life_lessons": {
+      "self_care": "자신을 돌보는 것도 중요함을 배우기",
+      "boundaries": "건강한 경계 설정하기",
+      "receiving": "받는 것도 주는 것만큼 신성함을 알기",
+      "strength": "부드러움 속의 강인함 발견하기",
+      "joy": "일상에서 기쁨 찾기"
+    },
+    "karmic_path": {
+      "past_influences": "과거의 희생과 봉사에서 얻은 지혜",
+      "present_challenges": "자기 희생과 자기 사랑의 균형",
+      "future_potential": "영적 스승이자 치유자로 성장",
+      "soul_evolution": "개인의 빛을 통한 타인의 어둠 밝히기"
+    }
+  }
+}

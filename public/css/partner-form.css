@@ -1,0 +1,86 @@
+/* ===================================
+   상대방 정보 입력 폼 스타일링
+   =================================== */
+
+/* 출생시간 선택 */
+#partner-time {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background: white;
+    cursor: pointer;
+}
+
+#partner-time:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* 시간 모름 옵션 스타일 */
+#partner-time option[value="unknown"] {
+    font-style: italic;
+    color: #6b7280;
+}
+
+/* 음력/양력 선택 */
+#partner-calendar {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background: white;
+    cursor: pointer;
+}
+
+#partner-calendar:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* 폼 그룹 스타일 */
+.compatibility-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.compatibility-form .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.9rem;
+}
+
+/* 시간 모름 안내 메시지 */
+.time-unknown-info {
+    display: none;
+    padding: 0.75rem;
+    background: #fef3c7;
+    border: 1px solid #fbbf24;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #92400e;
+}
+
+.time-unknown-info.show {
+    display: block;
+}
+
+.time-unknown-info::before {
+    content: 'ℹ️ ';
+    margin-right: 0.25rem;
+}
+
+/* 십이지시 표시 개선 */
+#partner-time option {
+    padding: 0.5rem;
+}
+
+#partner-time option:not([value=""]):not([value="unknown"]) {
+    font-weight: 500;
+}

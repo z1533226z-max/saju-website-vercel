@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레이아웃 테스트 - 사주팔자</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/widescreen.css">
+    <link rel="stylesheet" href="css/enhanced-features.css">
+    <link rel="stylesheet" href="css/fullscreen-fix.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+    <div x-data="{
+        showResults: true,
+        saju: {
+            year: { heavenly: '경', earthly: '오' },
+            month: { heavenly: '신', earthly: '사' },
+            day: { heavenly: '무', earthly: '진' },
+            hour: { heavenly: '기', earthly: '미' }
+        },
+        heavenlyStemKorean: {
+            '갑': '양목', '을': '음목',
+            '병': '양화', '정': '음화', 
+            '무': '양토', '기': '음토',
+            '경': '양금', '신': '음금',
+            '임': '양수', '계': '음수'
+        },
+        earthlyBranchKorean: {
+            '자': '쥐', '축': '소', '인': '호랑이', '묘': '토끼',
+            '진': '용', '사': '뱀', '오': '말', '미': '양',
+            '신': '원숭이', '유': '닭', '술': '개', '해': '돼지'
+        },
+        getKoreanStem(stem) {
+            return this.heavenlyStemKorean[stem] || stem;
+        },
+        getKoreanBranch(branch) {
+            return this.earthlyBranchKorean[branch] || branch;
+        },
+        interpretation: {
+            summary: '당신은 경오년, 신사월, 무진일, 기미시에 태어났습니다.',
+            personality: '활발하고 진취적인 성격으로 리더십이 강합니다.',
+            career: '경영, 관리직에 적합하며 창업에도 유리합니다.',
+            health: '소화기와 심장 건강에 주의가 필요합니다.',
+            relationships: '사회적 관계가 넓고 인맥이 풍부합니다.'
+        }
+    }">
+        <div class="section-container">
+            <h2 class="section-title">테스트: 사주명식 한글 표시</h2>
+            
+            <!-- 사주 테이블 테스트 -->
+            <div class="saju-table">
+                <div class="pillar year-pillar">
+                    <div class="pillar-title">년주</div>
+                    <div class="heavenly-stem" x-text="saju.year.heavenly"></div>
+                    <div class="stem-korean" x-text="getKoreanStem(saju.year.heavenly)"></div>
+                    <div class="earthly-branch" x-text="saju.year.earthly"></div>
+                    <div class="branch-korean" x-text="getKoreanBranch(saju.year.earthly)"></div>
+                </div>
+                <div class="pillar month-pillar">
+                    <div class="pillar-title">월주</div>
+                    <div class="heavenly-stem" x-text="saju.month.heavenly"></div>
+                    <div class="stem-korean" x-text="getKoreanStem(saju.month.heavenly)"></div>
+                    <div class="earthly-branch" x-text="saju.month.earthly"></div>
+                    <div class="branch-korean" x-text="getKoreanBranch(saju.month.earthly)"></div>
+                </div>
+                <div class="pillar day-pillar">
+                    <div class="pillar-title">일주</div>
+                    <div class="heavenly-stem" x-text="saju.day.heavenly"></div>
+                    <div class="stem-korean" x-text="getKoreanStem(saju.day.heavenly)"></div>
+                    <div class="earthly-branch" x-text="saju.day.earthly"></div>
+                    <div class="branch-korean" x-text="getKoreanBranch(saju.day.earthly)"></div>
+                </div>
+                <div class="pillar hour-pillar">
+                    <div class="pillar-title">시주</div>
+                    <div class="heavenly-stem" x-text="saju.hour.heavenly"></div>
+                    <div class="stem-korean" x-text="getKoreanStem(saju.hour.heavenly)"></div>
+                    <div class="earthly-branch" x-text="saju.hour.earthly"></div>
+                    <div class="branch-korean" x-text="getKoreanBranch(saju.hour.earthly)"></div>
+                </div>
+            </div>
+            
+            <h2 class="section-title" style="margin-top: 3rem;">테스트: 해석 카드 레이아웃</h2>
+            
+            <!-- 해석 카드 그리드 테스트 -->
+            <div class="interpretation">
+                <div class="interpretation-card">
+                    <h3>종합 해석</h3>
+                    <p x-text="interpretation.summary"></p>
+                    <p>이 카드는 전체화면에서도 적절한 크기를 유지해야 합니다.</p>
+                </div>
+                
+                <div class="interpretation-card">
+                    <h3>성격 분석</h3>
+                    <p x-text="interpretation.personality"></p>
+                    <p>화면 크기에 따라 2열, 3열, 4열로 자동 조정됩니다.</p>
+                </div>
+                
+                <div class="interpretation-card">
+                    <h3>직업 적성</h3>
+                    <p x-text="interpretation.career"></p>
+                    <p>카드의 세로 길이가 과도하게 늘어나지 않습니다.</p>
+                </div>
+                
+                <div class="interpretation-card">
+                    <h3>건강 운세</h3>
+                    <p x-text="interpretation.health"></p>
+                    <p>최소 높이가 설정되어 일관된 레이아웃을 유지합니다.</p>
+                </div>
+                
+                <div class="interpretation-card">
+                    <h3>인간 관계</h3>
+                    <p x-text="interpretation.relationships"></p>
+                    <p>호버 효과와 애니메이션이 부드럽게 작동합니다.</p>
+                </div>
+                
+                <div class="interpretation-card">
+                    <h3>추가 테스트 카드</h3>
+                    <p>이 카드는 레이아웃 테스트를 위해 추가되었습니다.</p>
+                    <p>다양한 화면 크기에서 그리드가 올바르게 작동하는지 확인합니다.</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; padding: 2rem; background: #f5f5f5; border-radius: 8px;">
+                <h3>레이아웃 테스트 안내</h3>
+                <ul style="line-height: 2;">
+                    <li>✅ 사주명식 한자 아래 한글 해석 표시 확인</li>
+                    <li>✅ 전체화면(F11)에서 카드 레이아웃 확인</li>
+                    <li>✅ 브라우저 창 크기 조절하며 반응형 테스트</li>
+                    <li>✅ 1920px 이상에서 3열 그리드 확인</li>
+                    <li>✅ 2560px 이상에서 4열 그리드 확인</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

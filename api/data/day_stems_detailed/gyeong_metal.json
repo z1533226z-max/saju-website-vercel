@@ -1,0 +1,275 @@
+{
+  "name": "경금 (庚金)",
+  "element": "금 (金)",
+  "polarity": "양 (陽)",
+  
+  "basic": {
+    "nature": "강철, 도끼, 큰 금속",
+    "characteristics": [
+      "강직하고 결단력 있음",
+      "정의감이 강함",
+      "리더십과 추진력",
+      "용감하고 대담함",
+      "원칙주의적 성향"
+    ],
+    "strengths": [
+      "강한 결단력과 추진력",
+      "뛰어난 리더십",
+      "정의감과 용기",
+      "명확한 판단력",
+      "개혁과 혁신 능력"
+    ],
+    "weaknesses": [
+      "지나친 강직함",
+      "타협 능력 부족",
+      "공격적 성향",
+      "감정 표현 부족",
+      "독선적 태도"
+    ]
+  },
+  
+  "personality_detailed": {
+    "core_traits": {
+      "strength": "강철같은 의지와 불굴의 정신으로 어떤 어려움도 극복합니다.",
+      "justice": "정의와 공정을 생명처럼 여기며 불의를 참지 못합니다.",
+      "leadership": "타고난 리더로서 조직을 이끌고 변화를 주도합니다.",
+      "decisiveness": "빠르고 명확한 결단력으로 중요한 결정을 내립니다.",
+      "courage": "위험을 두려워하지 않고 정면으로 맞서는 용기가 있습니다."
+    },
+    "emotional_patterns": {
+      "expression": "감정을 잘 드러내지 않으며 이성적으로 처리합니다.",
+      "stress_response": "스트레스를 행동으로 전환하거나 공격적으로 반응합니다.",
+      "joy_triggers": "목표 달성, 정의 실현, 승리할 때 기쁨을 느낍니다.",
+      "anger_triggers": "불의, 비겁함, 거짓을 볼 때 분노합니다.",
+      "coping_mechanisms": "운동, 격투기, 극한 스포츠를 통해 스트레스를 해소합니다."
+    },
+    "behavioral_tendencies": {
+      "decision_making": "빠르고 단호한 결정",
+      "communication": "직설적이고 명확한 소통",
+      "conflict_resolution": "정면 돌파와 원칙적 해결",
+      "work_style": "효율적이고 결과 중심적",
+      "social_interaction": "선택적이고 목적 지향적 관계"
+    },
+    "growth_areas": {
+      "flexibility": "상황에 따른 유연한 대처",
+      "empathy": "타인의 감정 이해와 공감",
+      "patience": "인내심과 기다림의 미덕",
+      "diplomacy": "외교적 소통 능력",
+      "emotional_intelligence": "감정 인식과 표현"
+    }
+  },
+  
+  "ten_gods_interpretation": {
+    "비견_겁재": {
+      "positive": "동지애와 의리로 강한 유대를 형성하며 함께 목표를 달성합니다.",
+      "negative": "과도한 경쟁과 대립으로 갈등이 심화될 수 있습니다.",
+      "advice": "협력의 가치를 인정하고 상생의 길을 찾으세요."
+    },
+    "식신_상관": {
+      "positive": "창의적인 문제 해결과 혁신적인 아이디어를 제시합니다.",
+      "negative": "비판적 성향이 강해 인간관계가 어려워질 수 있습니다.",
+      "advice": "건설적인 비판과 격려의 균형을 맞추세요."
+    },
+    "정재_편재": {
+      "positive": "과감한 투자와 사업 수완으로 큰 부를 축적할 수 있습니다.",
+      "negative": "무모한 도전과 투기로 손실을 볼 위험이 있습니다.",
+      "advice": "계산된 위험과 안정적 투자를 병행하세요."
+    },
+    "정관_편관": {
+      "positive": "강력한 리더십으로 조직을 이끌고 개혁을 주도합니다.",
+      "negative": "권위에 대한 도전이나 독단적 행동으로 문제가 생길 수 있습니다.",
+      "advice": "권한과 책임의 균형을 맞추고 소통하는 리더가 되세요."
+    },
+    "정인_편인": {
+      "positive": "실용적인 지식과 전략적 사고로 문제를 해결합니다.",
+      "negative": "이론보다 실전을 중시하여 기초가 부실할 수 있습니다.",
+      "advice": "이론과 실전의 균형을 맞추고 지속적으로 학습하세요."
+    }
+  },
+  
+  "career_detailed": {
+    "suitable_fields": [
+      "군인 및 경찰: 장교, 경찰관, 특수부대",
+      "법조계: 검사, 형사변호사, 법무관",
+      "경영 및 관리: CEO, 구조조정 전문가, 위기관리",
+      "금융: 투자은행, 펀드매니저, M&A 전문가",
+      "스포츠: 운동선수, 격투기 선수, 코치",
+      "의료: 외과의사, 응급의학, 법의학",
+      "언론: 탐사보도 기자, 시사평론가"
+    ],
+    "work_environment": {
+      "ideal": "도전적이고 성과 중심적인 환경",
+      "challenging": "관료적이고 변화가 없는 환경",
+      "team_dynamics": "강력한 리더나 독립적 수행자",
+      "growth_path": "빠른 승진과 성과 인정"
+    },
+    "entrepreneurship": {
+      "potential": "매우 높음 - 추진력과 결단력이 탁월",
+      "suitable_business": "제조업, 건설업, 보안업, 컨설팅",
+      "challenges": "인간관계 관리, 유연성 부족",
+      "success_factors": "명확한 비전, 강력한 실행력, 혁신"
+    },
+    "career_development": {
+      "early_career": "빠른 성과와 인정",
+      "mid_career": "리더십 포지션 확보",
+      "late_career": "조직 개혁과 변화 주도",
+      "retirement": "컨설팅이나 멘토링"
+    }
+  },
+  
+  "love_marriage": {
+    "romantic_style": {
+      "approach": "직접적이고 적극적인 구애",
+      "expression": "행동으로 보여주는 사랑",
+      "commitment": "책임감 있는 헌신",
+      "expectations": "충성과 신뢰를 중시"
+    },
+    "ideal_partner": {
+      "personality": "부드럽지만 강인한 내면을 가진 사람",
+      "values": "정직과 신뢰를 중시하는 사람",
+      "compatibility": "을목, 정화, 임수와 궁합이 좋음",
+      "challenges": "갑목과는 충돌 가능성"
+    },
+    "marriage_life": {
+      "strengths": "책임감 있는 가장, 가족 보호",
+      "challenges": "감정 표현 부족, 권위적 태도",
+      "family_dynamics": "엄격하지만 든든한 가정",
+      "conflict_areas": "소통 부족과 고집"
+    },
+    "relationship_advice": {
+      "expression": "사랑을 말로도 표현하는 연습을 하세요",
+      "flexibility": "상대방의 의견을 경청하고 수용하세요",
+      "tenderness": "부드러운 면을 보여주세요",
+      "quality_time": "가족과 함께하는 시간을 늘리세요"
+    }
+  },
+  
+  "wealth_detailed": {
+    "financial_traits": {
+      "earning_ability": "높은 수익 창출 능력",
+      "spending_habits": "목적 지향적 소비",
+      "saving_tendency": "투자 중심의 자산 운용",
+      "investment_style": "공격적이고 전략적"
+    },
+    "wealth_accumulation": {
+      "methods": [
+        "사업과 창업",
+        "주식과 선물 투자",
+        "부동산 개발",
+        "M&A와 구조조정"
+      ],
+      "timing": "젊은 시절부터 큰 기회",
+      "challenges": "과도한 위험 감수"
+    },
+    "financial_luck": {
+      "good_periods": "가을, 신유술 월",
+      "challenging_periods": "봄, 인묘 월",
+      "lucky_directions": "서쪽, 북서쪽",
+      "lucky_numbers": "4, 7, 9"
+    },
+    "money_management": {
+      "strengths": "전략적 투자, 빠른 결정",
+      "weaknesses": "위험 관리 소홀",
+      "advice": "포트폴리오 다각화와 위험 관리"
+    }
+  },
+  
+  "health_detailed": {
+    "physical_constitution": {
+      "strong_areas": "폐, 대장, 근육",
+      "weak_areas": "간, 스트레스성 질환",
+      "common_issues": [
+        "호흡기 질환",
+        "고혈압",
+        "스트레스성 위장장애",
+        "근육 부상"
+      ]
+    },
+    "mental_health": {
+      "stress_factors": "과도한 책임, 경쟁 압박",
+      "emotional_issues": "분노 조절, 번아웃",
+      "coping_strategies": [
+        "격렬한 운동",
+        "무술이나 격투기",
+        "등산과 극한 스포츠",
+        "명상과 호흡법"
+      ]
+    },
+    "lifestyle_recommendations": {
+      "exercise": "웨이트, 격투기, 익스트림 스포츠",
+      "diet": [
+        "고단백 식단",
+        "충분한 수분 섭취",
+        "알코올과 자극적 음식 절제",
+        "규칙적인 식사"
+      ],
+      "sleep": "충분한 수면 확보",
+      "stress_management": "정기적인 휴식과 이완"
+    },
+    "preventive_care": {
+      "regular_checkups": "심혈관 검사, 폐 기능 검사",
+      "early_warning_signs": "가슴 통증, 호흡 곤란",
+      "holistic_approach": "강인함과 유연함의 균형"
+    }
+  },
+  
+  "social_relations": {
+    "friendship_patterns": {
+      "quality": "의리와 충성을 중시하는 우정",
+      "loyalty": "목숨을 걸 수 있는 의리",
+      "selection": "능력과 신뢰를 기준으로 선택",
+      "maintenance": "행동으로 보여주는 우정"
+    },
+    "professional_relationships": {
+      "leadership": "카리스마 있는 리더",
+      "influence": "강력한 영향력 행사",
+      "networking": "전략적 인맥 구축",
+      "reputation": "능력 있고 신뢰할 수 있는 사람"
+    },
+    "family_dynamics": {
+      "parental_role": "엄격하지만 든든한 부모",
+      "sibling_relations": "보호자이자 리더",
+      "extended_family": "가문의 기둥",
+      "protection": "가족을 지키는 수호자"
+    },
+    "community_involvement": {
+      "leadership": "지역사회 리더",
+      "reform": "개혁과 변화 주도",
+      "protection": "약자 보호와 정의 실현",
+      "influence": "강력한 영향력 행사"
+    }
+  },
+  
+  "spiritual_growth": {
+    "life_purpose": {
+      "mission": "정의와 진실을 수호하며 세상을 변화시키기",
+      "values": "정의, 용기, 진실, 명예, 충성",
+      "legacy": "정의로운 변화와 개혁의 유산"
+    },
+    "personal_development": {
+      "inner_strength": "내면의 강인함을 지혜롭게 사용",
+      "compassion": "강함 속에 자비심 기르기",
+      "balance": "힘과 부드러움의 균형",
+      "wisdom": "경험을 통한 지혜 축적"
+    },
+    "spiritual_practices": {
+      "martial_arts": "무술을 통한 심신 수련",
+      "meditation": "동적 명상과 호흡법",
+      "service": "정의 실현을 통한 봉사",
+      "discipline": "자기 수련과 절제"
+    },
+    "life_lessons": {
+      "flexibility": "유연함도 강함의 일부",
+      "compassion": "진정한 강함은 자비에서 나옴",
+      "patience": "때를 기다리는 지혜",
+      "humility": "겸손 속의 진정한 위대함",
+      "love": "사랑도 힘의 한 형태"
+    },
+    "karmic_path": {
+      "past_influences": "과거의 전투와 투쟁 경험",
+      "present_challenges": "힘의 올바른 사용법 배우기",
+      "future_potential": "정의로운 수호자이자 개혁가",
+      "soul_evolution": "힘을 통한 세상의 긍정적 변화"
+    }
+  }
+}

@@ -1,0 +1,275 @@
+{
+  "name": "갑목 (甲木)",
+  "element": "목 (木)",
+  "polarity": "양 (陽)",
+  
+  "basic": {
+    "nature": "큰 나무, 대목",
+    "characteristics": [
+      "정직하고 곧은 성품",
+      "리더십과 추진력",
+      "원칙주의적 성향",
+      "성장과 발전 지향",
+      "독립적이고 자주적"
+    ],
+    "strengths": [
+      "강한 의지력과 결단력",
+      "탁월한 리더십",
+      "높은 도덕성과 정의감",
+      "창의적 사고력",
+      "장기적 비전"
+    ],
+    "weaknesses": [
+      "융통성 부족",
+      "고집이 세고 완고함",
+      "타인의 의견을 듣지 않으려 함",
+      "지나친 원칙주의",
+      "변화에 대한 저항"
+    ]
+  },
+  
+  "personality_detailed": {
+    "core_traits": {
+      "leadership": "천부적인 리더로서 조직을 이끄는 능력이 탁월하며, 대의명분을 중시하고 정의로운 일에 앞장섭니다.",
+      "integrity": "정직과 성실을 생명처럼 여기며, 한번 약속한 것은 반드시 지키려 노력합니다.",
+      "independence": "독립심이 강하여 스스로 길을 개척하며, 타인에게 의존하지 않으려 합니다.",
+      "vision": "미래를 내다보는 통찰력이 있으며, 장기적인 계획을 세우고 실천합니다.",
+      "persistence": "목표를 정하면 끝까지 밀고 나가는 추진력이 있습니다."
+    },
+    "emotional_patterns": {
+      "expression": "감정 표현이 직설적이고 솔직하며, 거짓말을 하지 못합니다.",
+      "stress_response": "스트레스를 받으면 더욱 고집스러워지고 융통성이 없어집니다.",
+      "joy_triggers": "정의가 실현되고 목표를 달성할 때 큰 기쁨을 느낍니다.",
+      "anger_triggers": "불의를 보거나 원칙이 무시될 때 분노합니다.",
+      "coping_mechanisms": "자연 속에서 휴식을 취하거나 운동을 통해 스트레스를 해소합니다."
+    },
+    "behavioral_tendencies": {
+      "decision_making": "신중하지만 한번 결정하면 밀고 나가는 스타일",
+      "communication": "직설적이고 명확한 의사소통을 선호",
+      "conflict_resolution": "원칙에 따른 해결을 추구하며 타협을 어려워함",
+      "work_style": "체계적이고 계획적으로 일을 처리",
+      "social_interaction": "선택적 사교를 하며 깊은 관계를 선호"
+    },
+    "growth_areas": {
+      "flexibility": "상황에 따른 유연한 대처 능력 개발이 필요",
+      "empathy": "타인의 입장을 이해하고 공감하는 능력 향상",
+      "patience": "인내심을 기르고 성급한 판단을 자제",
+      "adaptability": "변화하는 환경에 적응하는 능력 개발",
+      "delegation": "모든 것을 혼자 하려 하지 말고 위임하는 법 학습"
+    }
+  },
+  
+  "ten_gods_interpretation": {
+    "비견_겁재": {
+      "positive": "동료애가 강하고 협력적인 관계를 맺으며, 공동의 목표를 위해 함께 노력합니다.",
+      "negative": "경쟁심이 과도하면 갈등이 생기고, 고집으로 인한 충돌이 발생할 수 있습니다.",
+      "advice": "적절한 경쟁과 협력의 균형을 맞추고, 상대방의 장점을 인정하는 자세가 필요합니다."
+    },
+    "식신_상관": {
+      "positive": "창의적인 아이디어와 표현력이 풍부하며, 예술적 재능을 발휘할 수 있습니다.",
+      "negative": "과도한 표현욕구로 인해 타인과 충돌하거나 오해를 받을 수 있습니다.",
+      "advice": "자신의 재능을 건설적인 방향으로 활용하고, 겸손한 자세를 유지하세요."
+    },
+    "정재_편재": {
+      "positive": "재물 운용 능력이 뛰어나고, 사업 수완이 있어 경제적 성공을 이룰 수 있습니다.",
+      "negative": "지나친 물질 추구로 인간관계가 소홀해지거나 가치관이 흔들릴 수 있습니다.",
+      "advice": "물질과 정신의 균형을 맞추고, 나눔과 베풂의 미덕을 실천하세요."
+    },
+    "정관_편관": {
+      "positive": "사회적 지위와 명예를 얻을 수 있으며, 리더십을 발휘할 기회가 많습니다.",
+      "negative": "권위에 대한 도전이나 반항으로 어려움을 겪을 수 있습니다.",
+      "advice": "적절한 권위 존중과 자기주장의 균형을 찾고, 책임감 있는 리더가 되세요."
+    },
+    "정인_편인": {
+      "positive": "학문적 성취와 정신적 성장을 이루며, 지혜로운 조언자가 될 수 있습니다.",
+      "negative": "지나친 이론 추구로 현실과 동떨어지거나 실천력이 부족할 수 있습니다.",
+      "advice": "이론과 실천의 조화를 이루고, 지식을 현실에 적용하는 능력을 기르세요."
+    }
+  },
+  
+  "career_detailed": {
+    "suitable_fields": [
+      "경영 및 관리직: CEO, 임원, 부서장 등 조직을 이끄는 위치",
+      "정치 및 행정: 정치인, 고위 공무원, 외교관",
+      "법조계: 판사, 검사, 변호사 등 정의 구현 직업",
+      "교육계: 교수, 교장, 교육 행정가",
+      "건축 및 건설: 건축가, 건설회사 경영, 도시계획가",
+      "환경 및 산림: 환경운동가, 산림청, 조경설계사",
+      "창업 및 사업: 독립적인 사업가, 스타트업 창업자"
+    ],
+    "work_environment": {
+      "ideal": "자율성이 보장되고 리더십을 발휘할 수 있는 환경",
+      "challenging": "지나치게 규제가 많고 창의성이 제한되는 환경",
+      "team_dynamics": "팀을 이끄는 역할에서 최고의 성과를 발휘",
+      "growth_path": "꾸준한 성장과 승진 기회가 있는 조직 선호"
+    },
+    "entrepreneurship": {
+      "potential": "매우 높음 - 독립심과 추진력이 창업에 유리",
+      "suitable_business": "제조업, 건설업, 교육 서비스, 컨설팅",
+      "challenges": "초기 자금 확보, 유연한 경영 전략 수립",
+      "success_factors": "명확한 비전, 윤리적 경영, 장기적 관점"
+    },
+    "career_development": {
+      "early_career": "기초를 다지고 전문성을 쌓는 시기",
+      "mid_career": "리더십을 발휘하고 조직에서 중추적 역할",
+      "late_career": "멘토 역할과 후진 양성에 집중",
+      "retirement": "사회 공헌 활동이나 교육 활동 지속"
+    }
+  },
+  
+  "love_marriage": {
+    "romantic_style": {
+      "approach": "진지하고 신중한 접근, 결혼을 전제로 한 만남 선호",
+      "expression": "직접적이고 솔직한 감정 표현",
+      "commitment": "한번 마음을 정하면 변하지 않는 일편단심",
+      "expectations": "상대방에게도 같은 수준의 성실함과 충실함 기대"
+    },
+    "ideal_partner": {
+      "personality": "온화하고 포용력 있으며 갑목의 강직함을 이해하는 사람",
+      "values": "정직, 성실, 가족 중시 등 전통적 가치관 공유",
+      "compatibility": "을목, 계수, 정화와 궁합이 좋음",
+      "challenges": "경금, 신금과는 충돌 가능성"
+    },
+    "marriage_life": {
+      "strengths": "책임감 있는 가장, 가족을 위한 헌신",
+      "challenges": "지나친 가부장적 태도, 융통성 부족",
+      "family_dynamics": "전통적인 가족 구조 선호, 자녀 교육 중시",
+      "conflict_areas": "고집과 원칙주의로 인한 갈등"
+    },
+    "relationship_advice": {
+      "communication": "상대방의 의견을 경청하고 타협점을 찾으려 노력하세요",
+      "flexibility": "때로는 원칙을 양보하고 융통성을 발휘하세요",
+      "emotional_support": "상대방의 감정적 필요를 이해하고 공감하세요",
+      "quality_time": "일과 가정의 균형을 맞추고 가족과의 시간을 중시하세요"
+    }
+  },
+  
+  "wealth_detailed": {
+    "financial_traits": {
+      "earning_ability": "꾸준하고 안정적인 수입 창출 능력",
+      "spending_habits": "계획적이고 실용적인 소비 패턴",
+      "saving_tendency": "미래를 위한 저축과 투자 중시",
+      "investment_style": "장기적이고 안정적인 투자 선호"
+    },
+    "wealth_accumulation": {
+      "methods": [
+        "정직한 노동과 전문성을 통한 수입",
+        "부동산 등 실물 자산 투자",
+        "장기적인 사업 운영",
+        "안정적인 금융 상품"
+      ],
+      "timing": "중년 이후 안정적인 부의 축적",
+      "challenges": "초기 자본 부족, 보수적인 투자 성향"
+    },
+    "financial_luck": {
+      "good_periods": "목 운이 강한 봄철, 인묘진 월",
+      "challenging_periods": "금 운이 강한 가을철, 신유술 월",
+      "lucky_directions": "동쪽, 동남쪽",
+      "lucky_numbers": "3, 8"
+    },
+    "money_management": {
+      "strengths": "체계적인 재무 관리, 충동구매 자제",
+      "weaknesses": "새로운 투자 기회에 소극적",
+      "advice": "적절한 위험 감수와 다양한 포트폴리오 구성"
+    }
+  },
+  
+  "health_detailed": {
+    "physical_constitution": {
+      "strong_areas": "간, 담낭, 근육, 신경계",
+      "weak_areas": "위장, 폐, 순환계",
+      "common_issues": [
+        "간 기능 저하, 담석증",
+        "근육 경직, 어깨 결림",
+        "스트레스성 위장 장애",
+        "고혈압, 심혈관 질환"
+      ]
+    },
+    "mental_health": {
+      "stress_factors": "과도한 책임감, 완벽주의, 통제 욕구",
+      "emotional_issues": "분노 조절, 우울감, 고립감",
+      "coping_strategies": [
+        "규칙적인 운동과 야외 활동",
+        "명상과 요가를 통한 마음 다스리기",
+        "취미 생활과 예술 활동",
+        "신뢰할 수 있는 사람과의 대화"
+      ]
+    },
+    "lifestyle_recommendations": {
+      "exercise": "등산, 조깅, 수영 등 유산소 운동",
+      "diet": [
+        "신선한 채소와 과일 섭취",
+        "간 건강을 위한 녹색 채소",
+        "과도한 음주와 기름진 음식 자제",
+        "규칙적인 식사 시간 유지"
+      ],
+      "sleep": "일정한 수면 패턴 유지, 7-8시간 충분한 수면",
+      "stress_management": "일과 휴식의 균형, 정기적인 휴가"
+    },
+    "preventive_care": {
+      "regular_checkups": "간 기능 검사, 심혈관 검진",
+      "early_warning_signs": "만성 피로, 소화 불량, 두통",
+      "holistic_approach": "신체와 정신의 조화로운 관리"
+    }
+  },
+  
+  "social_relations": {
+    "friendship_patterns": {
+      "quality_over_quantity": "많은 친구보다 깊은 우정을 중시",
+      "loyalty": "친구에 대한 의리와 충성심이 강함",
+      "selection": "가치관과 원칙이 맞는 사람과 친구 관계 형성",
+      "maintenance": "오래된 친구 관계를 소중히 여기고 유지"
+    },
+    "professional_relationships": {
+      "leadership": "자연스럽게 리더 역할을 맡게 됨",
+      "mentoring": "후배나 부하직원을 이끌고 가르치는 것을 좋아함",
+      "networking": "필요에 의한 네트워킹보다 진정성 있는 관계 추구",
+      "reputation": "정직과 신뢰로 쌓은 좋은 평판"
+    },
+    "family_dynamics": {
+      "parental_role": "엄격하지만 사랑이 깊은 부모",
+      "sibling_relations": "형제자매 중 책임감 있는 역할",
+      "extended_family": "가문과 전통을 중시하는 태도",
+      "generational_bridge": "세대 간 가치관 전달자 역할"
+    },
+    "community_involvement": {
+      "civic_duty": "사회적 책임감과 공익 활동 참여",
+      "leadership_roles": "지역 사회에서 리더십 발휘",
+      "volunteer_work": "정의롭고 의미 있는 일에 자원봉사",
+      "influence": "주변 사람들에게 긍정적인 영향력 행사"
+    }
+  },
+  
+  "spiritual_growth": {
+    "life_purpose": {
+      "mission": "정의와 진실을 추구하며 세상을 더 나은 곳으로 만들기",
+      "values": "정직, 성실, 책임, 정의, 성장",
+      "legacy": "후대에 좋은 본보기와 가르침을 남기기"
+    },
+    "personal_development": {
+      "self_awareness": "자신의 강점과 약점을 인식하고 균형 찾기",
+      "emotional_intelligence": "감정 조절 능력과 공감 능력 개발",
+      "wisdom_cultivation": "경험을 통한 지혜 축적과 통찰력 개발",
+      "mindfulness": "현재에 집중하고 마음의 평화 찾기"
+    },
+    "spiritual_practices": {
+      "meditation": "자연 속에서의 명상과 사색",
+      "philosophy": "동양 철학과 윤리학 공부",
+      "nature_connection": "숲과 나무와의 교감을 통한 치유",
+      "service": "타인을 돕는 봉사 활동을 통한 영적 성장"
+    },
+    "life_lessons": {
+      "flexibility": "강직함 속에서도 유연함을 배우기",
+      "humility": "겸손과 배움의 자세 유지하기",
+      "acceptance": "통제할 수 없는 것을 받아들이기",
+      "compassion": "타인에 대한 이해와 자비심 기르기",
+      "balance": "일과 삶, 이상과 현실의 균형 맞추기"
+    },
+    "karmic_path": {
+      "past_influences": "과거의 경험이 현재의 원칙과 가치관 형성",
+      "present_challenges": "고집과 융통성 부족 극복하기",
+      "future_potential": "지혜로운 지도자이자 멘토로 성장",
+      "soul_evolution": "개인의 성장을 통한 집단의 발전 기여"
+    }
+  }
+}

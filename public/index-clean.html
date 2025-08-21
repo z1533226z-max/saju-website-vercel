@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="무료 사주팔자 운세 - 생년월일시로 보는 정확한 사주 풀이">
+    <meta name="keywords" content="사주, 사주팔자, 운세, 사주풀이, 무료사주, 오늘의운세">
+    <title>사주명리 - 당신의 운명을 읽다</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/enhanced-features.css">
+    
+    <!-- Alpine.js for reactivity -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Chart.js for elements chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header and content sections remain the same -->
+    <!-- ... (copying the rest of the HTML structure) ... -->
+    
+    <!-- JavaScript at the bottom -->
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/saju-form-enhanced.js"></script>
+    <script src="js/main.js"></script>
+    <script src="check-scripts.js"></script>
+    
+    <script>
+        // Only helper functions, no sajuForm definition here
+        
+        // Scroll to input section
+        function scrollToInput() {
+            document.getElementById('input-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Share functions
+        function shareKakao() {
+            if (window.Kakao) {
+                Kakao.Share.sendDefault({
+                    objectType: 'feed',
+                    content: {
+                        title: '사주명리 - 당신의 운명을 읽다',
+                        description: '생년월일시로 보는 정확한 사주 풀이',
+                        imageUrl: window.location.origin + '/assets/images/og-image.jpg',
+                        link: {
+                            mobileWebUrl: window.location.href,
+                            webUrl: window.location.href,
+                        },
+                    },
+                });
+            }
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href);
+            alert('링크가 복사되었습니다!');
+        }
+        
+        // Initialize components after DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, sajuForm should be available from external file');
+            
+            // Check if sajuForm is available
+            if (typeof sajuForm === 'undefined') {
+                console.error('sajuForm is not defined! Check if saju-form-enhanced.js is loaded correctly');
+            } else {
+                console.log('sajuForm is available and ready');
+            }
+        });
+    </script>
+</body>
+</html>

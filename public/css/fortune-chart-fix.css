@@ -1,0 +1,131 @@
+/* ===================================
+   연도별 운세 차트 스타일 개선
+   =================================== */
+
+/* 차트 컨테이너 */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    padding: 1rem;
+    background: linear-gradient(180deg, 
+        rgba(99, 102, 241, 0.03) 0%, 
+        rgba(139, 92, 246, 0.03) 100%);
+    border-radius: 12px;
+    margin: 1rem 0;
+}
+
+/* 운세 요약 정보 */
+.fortune-summary {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 8px;
+}
+
+.fortune-year-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.stat-item {
+    padding: 1rem;
+    border-radius: 8px;
+    background: white;
+    border: 1px solid #e5e7eb;
+}
+
+.stat-item.best-year {
+    border-left: 4px solid #10b981;
+    background: linear-gradient(90deg, 
+        rgba(16, 185, 129, 0.05) 0%, 
+        transparent 100%);
+}
+
+.stat-item.caution-year {
+    border-left: 4px solid #f59e0b;
+    background: linear-gradient(90deg, 
+        rgba(245, 158, 11, 0.05) 0%, 
+        transparent 100%);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+/* 차트 높이 반응형 조정 */
+@media (max-width: 768px) {
+    .chart-container {
+        height: 300px;
+        padding: 0.5rem;
+    }
+    
+    .fortune-year-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .chart-container {
+        height: 450px;
+    }
+}
+
+/* 차트 로딩 애니메이션 */
+#fortune-chart {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 운세 섹션 전체 스타일 */
+#fortune-timeline-section {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+#fortune-timeline-section h3 {
+    margin-bottom: 1.5rem;
+    color: #1f2937;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#fortune-timeline-section h3::before {
+    content: '📊';
+    font-size: 1.3rem;
+}
+
+/* 툴팁 커스터마이징 */
+.chartjs-tooltip {
+    background: rgba(0, 0, 0, 0.9) !important;
+    border-radius: 8px !important;
+    padding: 12px !important;
+}

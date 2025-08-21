@@ -1,0 +1,275 @@
+{
+  "name": "계수 (癸水)",
+  "element": "수 (水)",
+  "polarity": "음 (陰)",
+  
+  "basic": {
+    "nature": "이슬, 비, 안개, 작은 물",
+    "characteristics": [
+      "섬세하고 감성적",
+      "직관력이 뛰어남",
+      "온화하고 부드러움",
+      "신비롭고 영적",
+      "인내심이 강함"
+    ],
+    "strengths": [
+      "뛰어난 직관과 영감",
+      "섬세한 감수성",
+      "깊은 공감 능력",
+      "적응력과 침투력",
+      "치유와 정화 능력"
+    ],
+    "weaknesses": [
+      "지나친 수동성",
+      "감정에 휩쓸림",
+      "현실감각 부족",
+      "우유부단함",
+      "의존적 성향"
+    ]
+  },
+  
+  "personality_detailed": {
+    "core_traits": {
+      "intuition": "물방울이 돌을 뚫듯 직관으로 진실을 꿰뚫어보는 능력이 있습니다.",
+      "gentleness": "이슬처럼 부드럽고 온화하며 모든 것을 포용하는 마음을 지녔습니다.",
+      "spirituality": "깊은 영성과 신비로운 감각으로 보이지 않는 세계를 인식합니다.",
+      "empathy": "타인의 감정을 깊이 공감하고 이해하는 능력이 탁월합니다.",
+      "persistence": "조용하지만 끈질기게 목표를 향해 나아가는 인내심이 있습니다."
+    },
+    "emotional_patterns": {
+      "expression": "조용하고 은은하게 감정을 표현하며 깊이 간직합니다.",
+      "stress_response": "감정을 내면화하여 우울이나 불안으로 나타납니다.",
+      "joy_triggers": "영적 성취, 깊은 교감, 자연과의 합일에서 기쁨을 느낍니다.",
+      "anger_triggers": "거칠고 폭력적인 것, 영성을 무시하는 태도에 분노합니다.",
+      "coping_mechanisms": "명상, 자연과의 교감, 예술 활동을 통해 치유합니다."
+    },
+    "behavioral_tendencies": {
+      "decision_making": "직관과 감정에 의존하는 결정",
+      "communication": "은유적이고 간접적인 소통",
+      "conflict_resolution": "회피하거나 수용을 통한 해결",
+      "work_style": "조용하고 꾸준한 업무 처리",
+      "social_interaction": "관찰자적 입장, 깊은 1:1 관계 선호"
+    },
+    "growth_areas": {
+      "assertiveness": "자기 주장과 의견 표현",
+      "practicality": "현실적 사고와 실용성",
+      "boundaries": "건강한 경계 설정",
+      "independence": "독립성과 자립심",
+      "grounding": "현실과의 균형"
+    }
+  },
+  
+  "ten_gods_interpretation": {
+    "비견_겁재": {
+      "positive": "깊은 정서적 유대와 영적 교감을 통해 동료들과 연결됩니다.",
+      "negative": "경쟁을 회피하고 자신을 과소평가할 수 있습니다.",
+      "advice": "자신의 독특한 재능을 인정하고 자신감을 가지세요."
+    },
+    "식신_상관": {
+      "positive": "예술적 영감과 창의성이 뛰어나 예술 분야에서 독특한 작품을 만듭니다.",
+      "negative": "현실과 동떨어진 창작으로 대중성이 부족할 수 있습니다.",
+      "advice": "영감과 현실의 균형을 맞추고 소통 가능한 표현을 찾으세요."
+    },
+    "정재_편재": {
+      "positive": "직관적인 투자와 영적 가치 창출로 독특한 부를 만듭니다.",
+      "negative": "물질에 대한 관심 부족으로 경제적 어려움을 겪을 수 있습니다.",
+      "advice": "현실적인 재무 관리와 영적 가치의 균형을 맞추세요."
+    },
+    "정관_편관": {
+      "positive": "부드러운 카리스마와 영적 리더십으로 사람들을 이끕니다.",
+      "negative": "권위와 책임을 부담스러워하여 기회를 놓칠 수 있습니다.",
+      "advice": "자신의 영향력을 인정하고 부드러운 리더십을 발휘하세요."
+    },
+    "정인_편인": {
+      "positive": "깊은 지혜와 영적 통찰로 진리를 탐구하고 전달합니다.",
+      "negative": "현실과 동떨어진 이론에 빠져 실용성이 떨어질 수 있습니다.",
+      "advice": "영적 지혜를 현실에 적용하는 방법을 찾으세요."
+    }
+  },
+  
+  "career_detailed": {
+    "suitable_fields": [
+      "치유 및 상담: 심리치료사, 힐러, 상담사",
+      "예술: 시인, 작가, 음악가, 화가",
+      "영성: 종교인, 명상 지도자, 영적 상담가",
+      "의료: 한의사, 간호사, 대체의학",
+      "교육: 유아교육, 특수교육, 예술교육",
+      "환경: 환경운동가, 생태학자, 자연보호",
+      "사회복지: 호스피스, NGO, 봉사활동"
+    ],
+    "work_environment": {
+      "ideal": "조용하고 평화로운 환경",
+      "challenging": "경쟁적이고 물질적인 환경",
+      "team_dynamics": "조용한 지원자이자 영감 제공자",
+      "growth_path": "내적 성장과 영적 발전"
+    },
+    "entrepreneurship": {
+      "potential": "낮음 - 사업보다는 봉사와 예술 선호",
+      "suitable_business": "힐링센터, 명상원, 예술공방",
+      "challenges": "현실감각 부족, 경영능력 부족",
+      "success_factors": "진정성, 영적 가치, 치유력"
+    },
+    "career_development": {
+      "early_career": "내적 탐구와 재능 발견",
+      "mid_career": "전문 분야에서 조용한 영향력",
+      "late_career": "영적 스승이나 멘토",
+      "retirement": "계속되는 영적 봉사"
+    }
+  },
+  
+  "love_marriage": {
+    "romantic_style": {
+      "approach": "신비롭고 영적인 접근",
+      "expression": "은은하고 헌신적인 사랑",
+      "commitment": "영혼의 동반자 추구",
+      "expectations": "깊은 영적 교감"
+    },
+    "ideal_partner": {
+      "personality": "영적이고 이해심 깊으며 보호해주는 사람",
+      "values": "영성과 내면의 성장을 중시하는 사람",
+      "compatibility": "갑목, 병화, 신금과 궁합이 좋음",
+      "challenges": "기토와는 충돌 가능성"
+    },
+    "marriage_life": {
+      "strengths": "헌신적이고 직관적인 배우자",
+      "challenges": "현실감각 부족, 의존성",
+      "family_dynamics": "영적이고 조화로운 가정",
+      "conflict_areas": "의사소통 부족과 감정 억압"
+    },
+    "relationship_advice": {
+      "communication": "감정과 필요를 명확히 표현하세요",
+      "independence": "건강한 독립성을 유지하세요",
+      "grounding": "현실적인 문제도 함께 다루세요",
+      "boundaries": "자신을 잃지 않는 사랑을 하세요"
+    }
+  },
+  
+  "wealth_detailed": {
+    "financial_traits": {
+      "earning_ability": "불규칙하지만 영적 가치 창출",
+      "spending_habits": "물질에 무관심한 소비",
+      "saving_tendency": "저축에 관심 없음",
+      "investment_style": "직관적이고 영적 가치 중심"
+    },
+    "wealth_accumulation": {
+      "methods": [
+        "예술 작품과 창작물",
+        "치유와 상담 서비스",
+        "영적 가르침과 교육",
+        "기부와 후원"
+      ],
+      "timing": "물질보다 영적 풍요 추구",
+      "challenges": "현실적 재무관리 부족"
+    },
+    "financial_luck": {
+      "good_periods": "겨울, 자축 월",
+      "challenging_periods": "여름, 미신 월",
+      "lucky_directions": "북쪽, 동북쪽",
+      "lucky_numbers": "1, 3, 9"
+    },
+    "money_management": {
+      "strengths": "욕심 없음, 나눔의 정신",
+      "weaknesses": "재무 계획 부재, 현실감각 부족",
+      "advice": "기본적인 재무 안정성 확보"
+    }
+  },
+  
+  "health_detailed": {
+    "physical_constitution": {
+      "strong_areas": "신장, 방광, 내분비계",
+      "weak_areas": "면역계, 정신건강, 순환계",
+      "common_issues": [
+        "우울증, 불안장애",
+        "만성피로증후군",
+        "호르몬 불균형",
+        "신장 관련 질환"
+      ]
+    },
+    "mental_health": {
+      "stress_factors": "감정 과부하, 타인의 에너지, 현실 압박",
+      "emotional_issues": "우울, 불안, 현실도피",
+      "coping_strategies": [
+        "명상과 요가",
+        "자연 치유",
+        "예술 치료",
+        "영적 수행"
+      ]
+    },
+    "lifestyle_recommendations": {
+      "exercise": "요가, 태극권, 수중 운동",
+      "diet": [
+        "깨끗하고 순수한 음식",
+        "충분한 수분 섭취",
+        "가벼운 채식 위주",
+        "정제된 음식 피하기"
+      ],
+      "sleep": "충분한 수면과 꿈 일기",
+      "stress_management": "명상과 영적 수행"
+    },
+    "preventive_care": {
+      "regular_checkups": "정신건강 상담, 호르몬 검사",
+      "early_warning_signs": "우울감, 현실도피, 에너지 고갈",
+      "holistic_approach": "영적, 정신적, 육체적 균형"
+    }
+  },
+  
+  "social_relations": {
+    "friendship_patterns": {
+      "quality": "소수의 영적 친구",
+      "loyalty": "깊고 영원한 우정",
+      "selection": "영적 교감이 가능한 사람",
+      "maintenance": "조용하지만 지속적인 관심"
+    },
+    "professional_relationships": {
+      "contribution": "영감과 치유 제공",
+      "collaboration": "조용한 지원자",
+      "influence": "부드럽고 간접적인 영향",
+      "reputation": "신비롭고 영적인 사람"
+    },
+    "family_dynamics": {
+      "parental_role": "직관적이고 이해심 깊은 부모",
+      "sibling_relations": "정서적 지원자",
+      "extended_family": "가족의 영적 안내자",
+      "healing": "가족 치유의 역할"
+    },
+    "community_involvement": {
+      "service": "조용한 봉사와 치유",
+      "spirituality": "영적 가르침 전파",
+      "environment": "자연과 환경 보호",
+      "compassion": "약자를 위한 자비로운 활동"
+    }
+  },
+  
+  "spiritual_growth": {
+    "life_purpose": {
+      "mission": "영적 치유와 정화를 통해 세상을 맑게 하기",
+      "values": "영성, 치유, 자비, 순수, 직관",
+      "legacy": "영적 지혜와 치유의 에너지"
+    },
+    "personal_development": {
+      "awakening": "영적 각성과 깨달음",
+      "healing": "자신과 타인의 치유",
+      "intuition": "직관력 개발과 신뢰",
+      "grounding": "영성과 현실의 통합"
+    },
+    "spiritual_practices": {
+      "meditation": "깊은 명상과 관조",
+      "healing": "에너지 치유와 정화",
+      "nature": "자연과의 교감",
+      "service": "무조건적 봉사"
+    },
+    "life_lessons": {
+      "boundaries": "영적 경계 설정하기",
+      "grounding": "현실에 발 딛기",
+      "self_care": "자신도 치유가 필요함을 인정",
+      "strength": "부드러움 속의 강인함",
+      "integration": "영성과 일상의 통합"
+    },
+    "karmic_path": {
+      "past_influences": "과거생의 영적 수행 경험",
+      "present_challenges": "현실과 영성의 균형",
+      "future_potential": "영적 스승이자 치유자",
+      "soul_evolution": "개인의 정화를 통한 집단 치유"
+    }
+  }
+}

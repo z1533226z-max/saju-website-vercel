@@ -1,0 +1,275 @@
+{
+  "name": "기토 (己土)",
+  "element": "토 (土)",
+  "polarity": "음 (陰)",
+  
+  "basic": {
+    "nature": "논, 밭, 정원의 흙",
+    "characteristics": [
+      "부드럽고 온화한 성품",
+      "세심하고 꼼꼼함",
+      "봉사정신이 강함",
+      "겸손하고 내성적",
+      "실용적이고 근면함"
+    ],
+    "strengths": [
+      "뛰어난 봉사정신",
+      "세심한 배려심",
+      "실용적 사고",
+      "겸손과 성실함",
+      "적응력과 유연성"
+    ],
+    "weaknesses": [
+      "우유부단함",
+      "자기주장 부족",
+      "지나친 걱정",
+      "소극적 태도",
+      "자신감 부족"
+    ]
+  },
+  
+  "personality_detailed": {
+    "core_traits": {
+      "nurturing": "비옥한 땅처럼 모든 것을 키우고 돌보는 양육의 본능을 지녔습니다.",
+      "humility": "겸손하고 자신을 낮추며 타인을 섬기는 마음을 가졌습니다.",
+      "practicality": "실용적이고 현실적인 사고로 일상의 문제를 해결합니다.",
+      "patience": "인내심이 강하고 꾸준히 노력하는 성실함이 있습니다.",
+      "adaptability": "상황에 따라 유연하게 적응하며 조화를 이룹니다."
+    },
+    "emotional_patterns": {
+      "expression": "조용하고 은근하게 감정을 표현하며 내면에 간직합니다.",
+      "stress_response": "스트레스를 혼자 삭이며 신체 증상으로 나타나기 쉽습니다.",
+      "joy_triggers": "타인을 돕고 기여할 때, 조화로운 환경에서 기쁨을 느낍니다.",
+      "anger_triggers": "불공정함이나 무시당할 때 조용히 분노합니다.",
+      "coping_mechanisms": "자연과의 교감, 정원 가꾸기, 요리 등을 통해 마음을 다스립니다."
+    },
+    "behavioral_tendencies": {
+      "decision_making": "여러 의견을 종합하여 신중하게 결정",
+      "communication": "부드럽고 조심스러운 의사소통",
+      "conflict_resolution": "타협과 양보를 통한 평화적 해결",
+      "work_style": "꼼꼼하고 체계적인 업무 처리",
+      "social_interaction": "조용히 관찰하며 필요시 도움 제공"
+    },
+    "growth_areas": {
+      "assertiveness": "자기 의견을 명확히 표현하는 능력",
+      "confidence": "자신감과 자존감 향상",
+      "boundaries": "건강한 경계 설정",
+      "leadership": "필요시 리더십 발휘",
+      "self_care": "자기 돌봄의 중요성 인식"
+    }
+  },
+  
+  "ten_gods_interpretation": {
+    "비견_겁재": {
+      "positive": "동료들과 조화롭게 협력하며 팀의 윤활유 역할을 합니다.",
+      "negative": "경쟁 상황에서 자신을 제대로 어필하지 못할 수 있습니다.",
+      "advice": "자신의 가치를 인정하고 적극적으로 표현하세요."
+    },
+    "식신_상관": {
+      "positive": "실용적인 창의성과 섬세한 감각으로 일상을 아름답게 만듭니다.",
+      "negative": "자기표현이 부족하여 재능을 충분히 발휘하지 못할 수 있습니다.",
+      "advice": "자신의 재능을 자신 있게 표현하는 연습을 하세요."
+    },
+    "정재_편재": {
+      "positive": "꾸준한 노력과 절약으로 안정적인 재산을 형성합니다.",
+      "negative": "소극적인 재테크로 기회를 놓칠 수 있습니다.",
+      "advice": "적극적인 재무 계획과 투자 교육을 받으세요."
+    },
+    "정관_편관": {
+      "positive": "성실한 실무자로 조직에서 신뢰받습니다.",
+      "negative": "리더십 기회를 스스로 포기할 수 있습니다.",
+      "advice": "자신의 능력을 믿고 도전하는 용기를 가지세요."
+    },
+    "정인_편인": {
+      "positive": "실용적인 지식과 경험을 꾸준히 축적합니다.",
+      "negative": "자신의 지식을 과소평가할 수 있습니다.",
+      "advice": "배운 것을 자신 있게 활용하고 공유하세요."
+    }
+  },
+  
+  "career_detailed": {
+    "suitable_fields": [
+      "서비스업: 호텔, 요식업, 고객 서비스",
+      "의료 및 복지: 간호사, 영양사, 사회복지사",
+      "교육: 유아교육, 초등교육, 특수교육",
+      "농업 및 원예: 농업, 원예, 조경",
+      "행정 및 사무: 비서, 행정직, 회계",
+      "예술 및 공예: 도예, 공예, 요리",
+      "상담 및 치료: 상담사, 치료사"
+    ],
+    "work_environment": {
+      "ideal": "협력적이고 안정적인 환경",
+      "challenging": "경쟁이 치열하고 압박이 심한 환경",
+      "team_dynamics": "조화로운 팀 플레이어",
+      "growth_path": "전문성으로 인정받는 경로"
+    },
+    "entrepreneurship": {
+      "potential": "중간 - 아이디어는 있으나 추진력 부족",
+      "suitable_business": "소규모 서비스업, 공방, 카페",
+      "challenges": "마케팅과 자기 PR 부족",
+      "success_factors": "틈새시장, 품질, 고객 관계"
+    },
+    "career_development": {
+      "early_career": "실무 경험과 전문성 축적",
+      "mid_career": "전문가로서 인정받기",
+      "late_career": "멘토링과 교육 활동",
+      "retirement": "봉사와 취미 활동"
+    }
+  },
+  
+  "love_marriage": {
+    "romantic_style": {
+      "approach": "조심스럽고 신중한 접근",
+      "expression": "섬세한 배려와 봉사로 표현",
+      "commitment": "헌신적이고 충실한 사랑",
+      "expectations": "안정적이고 따뜻한 관계"
+    },
+    "ideal_partner": {
+      "personality": "든든하고 포용력 있는 사람",
+      "values": "가족과 안정을 중시하는 사람",
+      "compatibility": "병화, 정화, 경금과 궁합이 좋음",
+      "challenges": "계수와는 충돌 가능성"
+    },
+    "marriage_life": {
+      "strengths": "헌신적이고 가정적인 배우자",
+      "challenges": "자기 주장 부족, 희생 과도",
+      "family_dynamics": "화목한 가정 분위기 조성",
+      "conflict_areas": "의사표현 부족으로 인한 오해"
+    },
+    "relationship_advice": {
+      "communication": "자신의 필요와 감정을 표현하세요",
+      "boundaries": "건강한 경계를 설정하세요",
+      "self_worth": "자신도 사랑받을 자격이 있음을 인정하세요",
+      "balance": "주고받는 것의 균형을 맞추세요"
+    }
+  },
+  
+  "wealth_detailed": {
+    "financial_traits": {
+      "earning_ability": "꾸준하고 성실한 수입",
+      "spending_habits": "절약적이고 실용적",
+      "saving_tendency": "안정적인 저축 습관",
+      "investment_style": "보수적이고 안전한 투자"
+    },
+    "wealth_accumulation": {
+      "methods": [
+        "꾸준한 저축과 적금",
+        "안전한 금융 상품",
+        "부동산 투자",
+        "실용적인 사업"
+      ],
+      "timing": "중년 이후 안정적 자산",
+      "challenges": "적극적 투자 부족"
+    },
+    "financial_luck": {
+      "good_periods": "환절기, 축미 월",
+      "challenging_periods": "봄, 묘진 월",
+      "lucky_directions": "남서, 북동",
+      "lucky_numbers": "2, 5, 8"
+    },
+    "money_management": {
+      "strengths": "계획적 소비, 낭비 없음",
+      "weaknesses": "투자 기회 소극적",
+      "advice": "재테크 교육과 전문가 상담"
+    }
+  },
+  
+  "health_detailed": {
+    "physical_constitution": {
+      "strong_areas": "비장, 위장, 췌장",
+      "weak_areas": "소화기, 내분비계, 신경계",
+      "common_issues": [
+        "소화불량, 위염",
+        "당뇨병 위험",
+        "신경성 장애",
+        "호르몬 불균형"
+      ]
+    },
+    "mental_health": {
+      "stress_factors": "과도한 걱정, 타인 돌봄, 완벽주의",
+      "emotional_issues": "불안, 우울, 자존감 저하",
+      "coping_strategies": [
+        "정원 가꾸기",
+        "요리와 베이킹",
+        "요가와 명상",
+        "자연 속 휴식"
+      ]
+    },
+    "lifestyle_recommendations": {
+      "exercise": "요가, 태극권, 걷기",
+      "diet": [
+        "규칙적인 식사",
+        "소화가 잘 되는 음식",
+        "따뜻한 음식",
+        "스트레스 관리"
+      ],
+      "sleep": "충분한 수면과 휴식",
+      "stress_management": "취미 활동과 휴식"
+    },
+    "preventive_care": {
+      "regular_checkups": "소화기 검사, 당뇨 검사",
+      "early_warning_signs": "만성 피로, 소화불량",
+      "holistic_approach": "심신 균형 유지"
+    }
+  },
+  
+  "social_relations": {
+    "friendship_patterns": {
+      "quality": "진실하고 깊은 우정",
+      "loyalty": "변함없는 충성심",
+      "selection": "신중한 친구 선택",
+      "maintenance": "꾸준한 관심과 배려"
+    },
+    "professional_relationships": {
+      "teamwork": "훌륭한 팀 플레이어",
+      "support": "동료들의 든든한 지원자",
+      "reliability": "믿을 수 있는 실무자",
+      "reputation": "성실하고 친절한 사람"
+    },
+    "family_dynamics": {
+      "parental_role": "자상하고 헌신적인 부모",
+      "sibling_relations": "가족의 중재자",
+      "extended_family": "가족 화합의 중심",
+      "caregiving": "가족 돌봄의 핵심"
+    },
+    "community_involvement": {
+      "service": "조용한 봉사와 기여",
+      "support": "이웃 돕기와 나눔",
+      "participation": "지역 행사 참여",
+      "contribution": "실질적인 도움 제공"
+    }
+  },
+  
+  "spiritual_growth": {
+    "life_purpose": {
+      "mission": "봉사와 양육을 통해 세상을 더 나은 곳으로",
+      "values": "봉사, 겸손, 조화, 성실, 배려",
+      "legacy": "사랑과 봉사의 정신 전달"
+    },
+    "personal_development": {
+      "self_worth": "자신의 가치 인정하기",
+      "balance": "주고받는 것의 균형",
+      "empowerment": "내면의 힘 발견하기",
+      "authenticity": "진정한 자아 표현"
+    },
+    "spiritual_practices": {
+      "meditation": "대지와 연결되는 명상",
+      "service": "봉사를 통한 영적 성장",
+      "gratitude": "감사 일기와 실천",
+      "nurturing": "자연과 생명 돌보기"
+    },
+    "life_lessons": {
+      "self_love": "자신을 사랑하는 법 배우기",
+      "boundaries": "건강한 경계 설정하기",
+      "receiving": "받는 것도 주는 것만큼 중요",
+      "strength": "부드러움 속의 강인함",
+      "voice": "자신의 목소리 찾기"
+    },
+    "karmic_path": {
+      "past_influences": "과거의 희생과 봉사 경험",
+      "present_challenges": "자기 가치 인정과 표현",
+      "future_potential": "지혜로운 양육자이자 치유자",
+      "soul_evolution": "봉사를 통한 영적 성장"
+    }
+  }
+}

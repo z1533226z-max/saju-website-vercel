@@ -1,0 +1,240 @@
+{
+  "heavenly_stems": [
+    {
+      "id": 1,
+      "name_ko": "갑",
+      "name_hanja": "甲",
+      "name_en": "gap",
+      "element": "목",
+      "element_hanja": "木",
+      "element_en": "wood",
+      "yin_yang": "양",
+      "yin_yang_hanja": "陽",
+      "yin_yang_en": "yang",
+      "color": "#2E7D32",
+      "season": "봄",
+      "direction": "동",
+      "direction_hanja": "東",
+      "attributes": {
+        "nature": "성장, 발전, 시작",
+        "personality": "리더십, 진취적, 적극적",
+        "body_part": "간, 담",
+        "taste": "신맛",
+        "number": 3
+      }
+    },
+    {
+      "id": 2,
+      "name_ko": "을",
+      "name_hanja": "乙",
+      "name_en": "eul",
+      "element": "목",
+      "element_hanja": "木",
+      "element_en": "wood",
+      "yin_yang": "음",
+      "yin_yang_hanja": "陰",
+      "yin_yang_en": "yin",
+      "color": "#66BB6A",
+      "season": "봄",
+      "direction": "동",
+      "direction_hanja": "東",
+      "attributes": {
+        "nature": "유연함, 부드러움, 협조",
+        "personality": "온화함, 적응력, 인내심",
+        "body_part": "간, 담",
+        "taste": "신맛",
+        "number": 8
+      }
+    },
+    {
+      "id": 3,
+      "name_ko": "병",
+      "name_hanja": "丙",
+      "name_en": "byeong",
+      "element": "화",
+      "element_hanja": "火",
+      "element_en": "fire",
+      "yin_yang": "양",
+      "yin_yang_hanja": "陽",
+      "yin_yang_en": "yang",
+      "color": "#D32F2F",
+      "season": "여름",
+      "direction": "남",
+      "direction_hanja": "南",
+      "attributes": {
+        "nature": "열정, 밝음, 확산",
+        "personality": "활발함, 낙천적, 표현력",
+        "body_part": "심장, 소장",
+        "taste": "쓴맛",
+        "number": 2
+      }
+    },
+    {
+      "id": 4,
+      "name_ko": "정",
+      "name_hanja": "丁",
+      "name_en": "jeong",
+      "element": "화",
+      "element_hanja": "火",
+      "element_en": "fire",
+      "yin_yang": "음",
+      "yin_yang_hanja": "陰",
+      "yin_yang_en": "yin",
+      "color": "#EF5350",
+      "season": "여름",
+      "direction": "남",
+      "direction_hanja": "南",
+      "attributes": {
+        "nature": "온기, 섬세함, 문명",
+        "personality": "세심함, 예술적, 감성적",
+        "body_part": "심장, 소장",
+        "taste": "쓴맛",
+        "number": 7
+      }
+    },
+    {
+      "id": 5,
+      "name_ko": "무",
+      "name_hanja": "戊",
+      "name_en": "mu",
+      "element": "토",
+      "element_hanja": "土",
+      "element_en": "earth",
+      "yin_yang": "양",
+      "yin_yang_hanja": "陽",
+      "yin_yang_en": "yang",
+      "color": "#8D6E63",
+      "season": "환절기",
+      "direction": "중앙",
+      "direction_hanja": "中央",
+      "attributes": {
+        "nature": "안정, 신뢰, 중용",
+        "personality": "성실함, 책임감, 포용력",
+        "body_part": "비장, 위",
+        "taste": "단맛",
+        "number": 5
+      }
+    },
+    {
+      "id": 6,
+      "name_ko": "기",
+      "name_hanja": "己",
+      "name_en": "gi",
+      "element": "토",
+      "element_hanja": "土",
+      "element_en": "earth",
+      "yin_yang": "음",
+      "yin_yang_hanja": "陰",
+      "yin_yang_en": "yin",
+      "color": "#A1887F",
+      "season": "환절기",
+      "direction": "중앙",
+      "direction_hanja": "中央",
+      "attributes": {
+        "nature": "양육, 보살핌, 조화",
+        "personality": "배려심, 실용적, 겸손함",
+        "body_part": "비장, 위",
+        "taste": "단맛",
+        "number": 10
+      }
+    },
+    {
+      "id": 7,
+      "name_ko": "경",
+      "name_hanja": "庚",
+      "name_en": "gyeong",
+      "element": "금",
+      "element_hanja": "金",
+      "element_en": "metal",
+      "yin_yang": "양",
+      "yin_yang_hanja": "陽",
+      "yin_yang_en": "yang",
+      "color": "#757575",
+      "season": "가을",
+      "direction": "서",
+      "direction_hanja": "西",
+      "attributes": {
+        "nature": "결단력, 정의, 변혁",
+        "personality": "강직함, 원칙적, 추진력",
+        "body_part": "폐, 대장",
+        "taste": "매운맛",
+        "number": 4
+      }
+    },
+    {
+      "id": 8,
+      "name_ko": "신",
+      "name_hanja": "辛",
+      "name_en": "sin",
+      "element": "금",
+      "element_hanja": "金",
+      "element_en": "metal",
+      "yin_yang": "음",
+      "yin_yang_hanja": "陰",
+      "yin_yang_en": "yin",
+      "color": "#9E9E9E",
+      "season": "가을",
+      "direction": "서",
+      "direction_hanja": "西",
+      "attributes": {
+        "nature": "정밀함, 예리함, 개혁",
+        "personality": "섬세함, 완벽주의, 분석적",
+        "body_part": "폐, 대장",
+        "taste": "매운맛",
+        "number": 9
+      }
+    },
+    {
+      "id": 9,
+      "name_ko": "임",
+      "name_hanja": "壬",
+      "name_en": "im",
+      "element": "수",
+      "element_hanja": "水",
+      "element_en": "water",
+      "yin_yang": "양",
+      "yin_yang_hanja": "陽",
+      "yin_yang_en": "yang",
+      "color": "#1565C0",
+      "season": "겨울",
+      "direction": "북",
+      "direction_hanja": "北",
+      "attributes": {
+        "nature": "지혜, 흐름, 관통",
+        "personality": "지적, 유동적, 통찰력",
+        "body_part": "신장, 방광",
+        "taste": "짠맛",
+        "number": 1
+      }
+    },
+    {
+      "id": 10,
+      "name_ko": "계",
+      "name_hanja": "癸",
+      "name_en": "gye",
+      "element": "수",
+      "element_hanja": "水",
+      "element_en": "water",
+      "yin_yang": "음",
+      "yin_yang_hanja": "陰",
+      "yin_yang_en": "yin",
+      "color": "#42A5F5",
+      "season": "겨울",
+      "direction": "북",
+      "direction_hanja": "北",
+      "attributes": {
+        "nature": "정화, 순환, 생명력",
+        "personality": "직관적, 감수성, 창의적",
+        "body_part": "신장, 방광",
+        "taste": "짠맛",
+        "number": 6
+      }
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "last_updated": "2024-01-01",
+    "description": "천간(天干) 데이터 - 10개의 하늘 기운을 나타내는 기본 요소",
+    "usage": "사주팔자 계산 시 년, 월, 일, 시의 천간을 결정하는데 사용"
+  }
+}

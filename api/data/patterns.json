@@ -1,0 +1,1378 @@
+{
+  "patterns": {
+    "정격": {
+      "name": "정격 (正格)",
+      "description": "Regular patterns with balanced energy flow",
+      "types": {
+        "정관격": {
+          "name": "정관격 (正官格)",
+          "category": "정격",
+          "formation_conditions": {
+            "primary": "정관이 월지에 통근하고 일간과 균형을 이룸",
+            "requirements": [
+              "월지에 정관이 있거나 월간에 정관이 있음",
+              "정관이 일간을 적절히 제어",
+              "재성이 관성을 생조함",
+              "인성이 일간을 보호"
+            ],
+            "avoid": [
+              "상관이 정관을 극하는 경우",
+              "비겁이 너무 강한 경우",
+              "칠살(편관)과 혼재"
+            ]
+          },
+          "personality_traits": {
+            "positive": [
+              "정직하고 신뢰할 수 있음",
+              "책임감이 강함",
+              "리더십과 권위를 지님",
+              "원칙과 규칙을 중시",
+              "품위와 명예를 중요시함"
+            ],
+            "negative": [
+              "융통성이 부족할 수 있음",
+              "지나치게 보수적",
+              "권위주의적 성향",
+              "변화를 두려워함"
+            ],
+            "core_values": ["정의", "명예", "책임", "질서", "신뢰"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "공무원",
+              "법조인 (판사, 검사, 변호사)",
+              "교육자 (교수, 교사)",
+              "행정 관리직",
+              "정치인",
+              "외교관",
+              "대기업 임원"
+            ],
+            "work_style": "체계적이고 조직적인 환경에서 능력 발휘",
+            "lifestyle": {
+              "daily_routine": "규칙적이고 계획적인 생활",
+              "social_life": "공적인 관계 중시, 네트워킹 활발",
+              "hobbies": "독서, 골프, 클래식 음악 감상",
+              "living_environment": "전통적이고 격식 있는 공간 선호"
+            },
+            "success_factors": [
+              "꾸준한 경력 개발",
+              "신뢰 관계 구축",
+              "원칙 준수"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["정관", "정인", "정재"],
+            "harmful_gods": ["상관", "겁재", "편인"],
+            "element_preference": {
+              "strong_daymaster": "관성과 재성을 용신으로",
+              "weak_daymaster": "인성과 비겁을 용신으로"
+            },
+            "balance_point": "일간과 정관의 균형이 중요",
+            "remedies": [
+              "정관을 돕는 재성 강화",
+              "과도한 비겁 제어",
+              "상관 억제"
+            ]
+          }
+        },
+        "편관격": {
+          "name": "편관격 (偏官格)",
+          "category": "정격",
+          "formation_conditions": {
+            "primary": "편관(칠살)이 월지에 통근하고 제화됨",
+            "requirements": [
+              "편관이 월지 또는 월간에 위치",
+              "식신이나 인성으로 제화",
+              "일간이 편관을 감당할 수 있을 정도로 강함"
+            ],
+            "avoid": [
+              "정관과 혼재 (관살혼잡)",
+              "제화되지 않은 편관",
+              "일간이 너무 약한 경우"
+            ]
+          },
+          "personality_traits": {
+            "positive": [
+              "강한 추진력과 결단력",
+              "도전정신이 뛰어남",
+              "위기관리 능력",
+              "카리스마와 리더십",
+              "혁신적 사고"
+            ],
+            "negative": [
+              "공격적 성향",
+              "인내심 부족",
+              "독선적일 수 있음",
+              "충동적 결정"
+            ],
+            "core_values": ["도전", "혁신", "권력", "성취", "독립"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "군인, 경찰",
+              "외과의사, 응급의학 전문의",
+              "검사, 형사 변호사",
+              "벤처 CEO",
+              "스포츠 선수",
+              "탐험가",
+              "위기관리 전문가"
+            ],
+            "work_style": "도전적이고 경쟁적인 환경에서 탁월",
+            "lifestyle": {
+              "daily_routine": "활동적이고 도전적인 일정",
+              "social_life": "경쟁적 관계, 강한 유대감",
+              "hobbies": "격투기, 익스트림 스포츠, 사격",
+              "living_environment": "실용적이고 기능적인 공간"
+            },
+            "success_factors": [
+              "적절한 도전 목표",
+              "에너지 관리",
+              "팀워크 개발"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["식신", "정인", "편재"],
+            "harmful_gods": ["정관", "상관", "비견"],
+            "element_preference": {
+              "strong_daymaster": "식신으로 편관 제화",
+              "weak_daymaster": "인성으로 보호 및 제화"
+            },
+            "balance_point": "편관의 제화가 핵심",
+            "remedies": [
+              "식신 강화로 편관 제어",
+              "인성으로 일간 보호",
+              "관살혼잡 방지"
+            ]
+          }
+        },
+        "정재격": {
+          "name": "정재격 (正財格)",
+          "category": "정격",
+          "formation_conditions": {
+            "primary": "정재가 월지에 통근하고 일간이 재를 담을 수 있음",
+            "requirements": [
+              "정재가 월지 또는 월간에 위치",
+              "일간이 적당히 강함",
+              "비겁이 정재를 탈취하지 않음"
+            ],
+            "avoid": [
+              "비겁이 과다한 경우",
+              "일간이 너무 약한 경우",
+              "인성이 재성을 극하는 경우"
+            ]
+          },
+          "personality_traits": {
+            "positive": [
+              "성실하고 근면함",
+              "경제관념이 발달",
+              "계획적이고 실용적",
+              "가족을 중시",
+              "신뢰할 수 있음"
+            ],
+            "negative": [
+              "지나치게 보수적",
+              "인색할 수 있음",
+              "모험심 부족",
+              "물질만능주의"
+            ],
+            "core_values": ["안정", "성실", "가족", "저축", "신용"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "은행원, 회계사",
+              "재무 관리자",
+              "부동산 중개인",
+              "안정적인 자영업",
+              "공인중개사",
+              "세무사",
+              "재무설계사"
+            ],
+            "work_style": "안정적이고 체계적인 업무 환경 선호",
+            "lifestyle": {
+              "daily_routine": "규칙적이고 계획적인 생활",
+              "social_life": "가족 중심, 소수의 친밀한 관계",
+              "hobbies": "저축, 투자, 부동산, 골동품 수집",
+              "living_environment": "안정적이고 실용적인 주거 공간"
+            },
+            "success_factors": [
+              "꾸준한 저축과 투자",
+              "신용 관리",
+              "가족 화목"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["정재", "식신", "정관"],
+            "harmful_gods": ["비견", "겁재", "편인"],
+            "element_preference": {
+              "strong_daymaster": "재성과 관성 선호",
+              "weak_daymaster": "비겁으로 일간 보강 필요"
+            },
+            "balance_point": "일간과 재성의 균형",
+            "remedies": [
+              "식신으로 재성 생조",
+              "비겁 과다 억제",
+              "관성으로 비겁 제어"
+            ]
+          }
+        },
+        "편재격": {
+          "name": "편재격 (偏財格)",
+          "category": "정격",
+          "formation_conditions": {
+            "primary": "편재가 월지에 통근하고 활발하게 작용",
+            "requirements": [
+              "편재가 월지 또는 월간에 위치",
+              "일간이 강하여 편재를 감당",
+              "식상이 편재를 생조"
+            ],
+            "avoid": [
+              "겁재가 편재를 탈취",
+              "일간이 너무 약함",
+              "인성 과다"
+            ]
+          },
+          "personality_traits": {
+            "positive": [
+              "사업 수완이 뛰어남",
+              "융통성과 적응력",
+              "사교적이고 활발",
+              "기회 포착 능력",
+              "다재다능함"
+            ],
+            "negative": [
+              "산만할 수 있음",
+              "일관성 부족",
+              "투기적 성향",
+              "변덕스러움"
+            ],
+            "core_values": ["자유", "기회", "변화", "사교", "모험"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "사업가, 창업가",
+              "무역업, 유통업",
+              "영업 전문가",
+              "투자자, 펀드매니저",
+              "프리랜서",
+              "엔터테인먼트업",
+              "마케팅 전문가"
+            ],
+            "work_style": "자유롭고 변화가 많은 환경에서 성과",
+            "lifestyle": {
+              "daily_routine": "유연하고 변화가 많은 일정",
+              "social_life": "폭넓은 인맥, 활발한 사교",
+              "hobbies": "여행, 투자, 네트워킹, 신규 사업",
+              "living_environment": "변화 가능한 유연한 공간"
+            },
+            "success_factors": [
+              "인맥 관리",
+              "기회 포착",
+              "리스크 관리"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["편재", "식신", "편관"],
+            "harmful_gods": ["겁재", "정인", "비견"],
+            "element_preference": {
+              "strong_daymaster": "재성과 식상 활용",
+              "weak_daymaster": "비겁으로 보강 후 재성 활용"
+            },
+            "balance_point": "편재의 유통과 활용",
+            "remedies": [
+              "식상으로 재원 창출",
+              "겁재 억제",
+              "관성으로 통제"
+            ]
+          }
+        },
+        "정인격": {
+          "name": "정인격 (正印格)",
+          "category": "정격",
+          "formation_conditions": {
+            "primary": "정인이 월지에 통근하고 일간을 생조",
+            "requirements": [
+              "정인이 월지 또는 월간에 위치",
+              "일간이 정인의 생을 받아들일 수 있음",
+              "재성이 정인을 파극하지 않음"
+            ],
+            "avoid": [
+              "재성 과다로 인극",
+              "인성 과다로 일간 매몰",
+              "식상과의 충돌"
+            ]
+          },
+          "personality_traits": {
+            "positive": [
+              "학구적이고 지적",
+              "인자하고 온화",
+              "예의 바름",
+              "전통과 문화 중시",
+              "교육열이 높음"
+            ],
+            "negative": [
+              "현실감 부족",
+              "의존적 성향",
+              "우유부단함",
+              "이상주의"
+            ],
+            "core_values": ["지식", "교육", "전통", "도덕", "문화"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "교수, 연구원",
+              "작가, 시인",
+              "종교인, 철학자",
+              "교육자, 상담사",
+              "도서관 사서",
+              "문화재 전문가",
+              "큐레이터"
+            ],
+            "work_style": "학술적이고 문화적인 환경에서 능력 발휘",
+            "lifestyle": {
+              "daily_routine": "독서와 사색 중심의 생활",
+              "social_life": "지적 교류, 문화 활동",
+              "hobbies": "독서, 글쓰기, 명상, 문화유적 답사",
+              "living_environment": "조용하고 학구적인 분위기"
+            },
+            "success_factors": [
+              "지속적인 학습",
+              "정신적 수양",
+              "문화적 소양"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["정인", "비견", "편관"],
+            "harmful_gods": ["정재", "편재", "식신"],
+            "element_preference": {
+              "strong_daymaster": "식상으로 표현",
+              "weak_daymaster": "인성으로 보호"
+            },
+            "balance_point": "인성의 적절한 작용",
+            "remedies": [
+              "관성으로 인성 생조",
+              "재성 과다 억제",
+              "적절한 표현 통로"
+            ]
+          }
+        },
+        "편인격": {
+          "name": "편인격 (偏印格)",
+          "category": "정격",
+          "formation_conditions": {
+            "primary": "편인이 월지에 통근하고 특수한 재능 부여",
+            "requirements": [
+              "편인이 월지 또는 월간에 위치",
+              "일간과 편인의 관계가 적절",
+              "식신을 극하지 않음 (도식 방지)"
+            ],
+            "avoid": [
+              "식신과의 충돌 (도식)",
+              "편인 과다",
+              "재성의 과도한 극"
+            ]
+          },
+          "personality_traits": {
+            "positive": [
+              "독창적이고 창의적",
+              "직관력이 뛰어남",
+              "예술적 감각",
+              "특수한 재능",
+              "신비로운 매력"
+            ],
+            "negative": [
+              "고집이 셈",
+              "비현실적",
+              "고독함",
+              "변덕스러움"
+            ],
+            "core_values": ["독창성", "직관", "예술", "자유", "신비"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "예술가, 디자이너",
+              "발명가, 연구원",
+              "점술가, 역술인",
+              "심리상담사",
+              "프로그래머",
+              "작곡가",
+              "특수 기술자"
+            ],
+            "work_style": "독립적이고 창의적인 환경 필요",
+            "lifestyle": {
+              "daily_routine": "불규칙하지만 집중적",
+              "social_life": "소수의 깊은 관계",
+              "hobbies": "예술 창작, 명상, 신비학, 독특한 취미",
+              "living_environment": "개성 있고 독특한 공간"
+            },
+            "success_factors": [
+              "독창성 개발",
+              "전문성 심화",
+              "현실 감각 유지"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["편인", "편관", "겁재"],
+            "harmful_gods": ["식신", "편재", "정재"],
+            "element_preference": {
+              "strong_daymaster": "재성으로 편인 제어",
+              "weak_daymaster": "편인으로 보호"
+            },
+            "balance_point": "편인과 식신의 균형",
+            "remedies": [
+              "도식 방지",
+              "창의성 발현 통로",
+              "현실과의 조화"
+            ]
+          }
+        },
+        "식신격": {
+          "name": "식신격 (食神格)",
+          "category": "정격",
+          "formation_conditions": {
+            "primary": "식신이 월지에 통근하고 일간을 표현",
+            "requirements": [
+              "식신이 월지 또는 월간에 위치",
+              "일간이 강하여 식신 생출 가능",
+              "편인의 극이 없음"
+            ],
+            "avoid": [
+              "편인의 도식",
+              "일간이 너무 약함",
+              "식신 과다"
+            ]
+          },
+          "personality_traits": {
+            "positive": [
+              "낙천적이고 긍정적",
+              "표현력이 풍부",
+              "예술적 재능",
+              "유머 감각",
+              "베푸는 성격"
+            ],
+            "negative": [
+              "나태할 수 있음",
+              "책임감 부족",
+              "낭비벽",
+              "자기 과시"
+            ],
+            "core_values": ["즐거움", "표현", "창작", "나눔", "여유"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "요리사, 셰프",
+              "연예인, 방송인",
+              "작가, 시나리오 작가",
+              "교사, 강사",
+              "디자이너",
+              "여행 가이드",
+              "푸드 크리틱"
+            ],
+            "work_style": "창의적이고 즐거운 분위기에서 성과",
+            "lifestyle": {
+              "daily_routine": "여유롭고 즐거운 생활",
+              "social_life": "활발한 교류, 즐거운 모임",
+              "hobbies": "요리, 예술, 여행, 공연 관람",
+              "living_environment": "편안하고 아늑한 공간"
+            },
+            "success_factors": [
+              "재능 개발",
+              "꾸준한 창작",
+              "건강 관리"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["식신", "정재", "정인"],
+            "harmful_gods": ["편인", "편관", "겁재"],
+            "element_preference": {
+              "strong_daymaster": "식신으로 표현, 재성 생성",
+              "weak_daymaster": "비겁으로 보강 후 식신 활용"
+            },
+            "balance_point": "식신의 적절한 표현",
+            "remedies": [
+              "편인 도식 방지",
+              "창작 활동 지속",
+              "재성으로 전환"
+            ]
+          }
+        },
+        "상관격": {
+          "name": "상관격 (傷官格)",
+          "category": "정격",
+          "formation_conditions": {
+            "primary": "상관이 월지에 통근하고 재능을 발현",
+            "requirements": [
+              "상관이 월지 또는 월간에 위치",
+              "일간이 강하여 상관 감당",
+              "재성이나 인성으로 조절"
+            ],
+            "avoid": [
+              "정관과의 충돌",
+              "상관 과다",
+              "조절 장치 부재"
+            ]
+          },
+          "personality_traits": {
+            "positive": [
+              "천재적 재능",
+              "비판적 사고",
+              "개혁 정신",
+              "독창성",
+              "완벽주의"
+            ],
+            "negative": [
+              "반항적",
+              "비판적",
+              "오만함",
+              "대인관계 어려움"
+            ],
+            "core_values": ["재능", "독창성", "완벽", "개혁", "자유"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "예술가, 음악가",
+              "비평가, 평론가",
+              "혁신가, 개혁가",
+              "변호사",
+              "의사, 특히 전문의",
+              "발명가",
+              "프리랜서 전문가"
+            ],
+            "work_style": "독립적이고 창의적인 환경 필수",
+            "lifestyle": {
+              "daily_routine": "자유롭고 독립적",
+              "social_life": "선택적 관계, 소수 정예",
+              "hobbies": "예술 창작, 비평, 전문 분야 연구",
+              "living_environment": "개성 있고 독립적인 공간"
+            },
+            "success_factors": [
+              "재능 극대화",
+              "겸손함 유지",
+              "협력 능력"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["상관", "편재", "편인"],
+            "harmful_gods": ["정관", "정인", "비견"],
+            "element_preference": {
+              "strong_daymaster": "상관으로 표현, 재성 창출",
+              "weak_daymaster": "인성으로 보호 필요"
+            },
+            "balance_point": "상관의 조절과 활용",
+            "remedies": [
+              "재성으로 상관 유통",
+              "정관과의 충돌 방지",
+              "창의적 표현 통로"
+            ]
+          }
+        }
+      }
+    },
+    "변격": {
+      "name": "변격 (變格)",
+      "description": "Irregular patterns with extreme energy concentration",
+      "types": {
+        "종격": {
+          "name": "종격 (從格)",
+          "category": "변격",
+          "formation_conditions": {
+            "primary": "일간이 극도로 약하여 강한 오행을 따름",
+            "requirements": [
+              "일간이 무근이거나 극도로 약함",
+              "비겁과 인성이 거의 없음",
+              "재관이나 식상이 매우 강함"
+            ],
+            "subtypes": [
+              "종재격: 재성을 따름",
+              "종살격: 관살을 따름",
+              "종아격: 식상을 따름"
+            ]
+          },
+          "personality_traits": {
+            "positive": [
+              "유연하고 적응력 뛰어남",
+              "협조적이고 순응적",
+              "처세술이 좋음",
+              "상황 판단력",
+              "포용력"
+            ],
+            "negative": [
+              "주체성 부족",
+              "의존적",
+              "줏대 없음",
+              "자기 주장 약함"
+            ],
+            "core_values": ["적응", "협력", "조화", "유연성", "순응"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "외교관",
+              "협상 전문가",
+              "중재자",
+              "컨설턴트",
+              "비서, 보좌관",
+              "서비스업",
+              "배우 (다양한 역할)"
+            ],
+            "work_style": "협력적이고 보조적인 역할에서 성과",
+            "lifestyle": {
+              "daily_routine": "환경에 따라 유동적",
+              "social_life": "다양한 관계, 적응력",
+              "hobbies": "다양한 분야 섭렵",
+              "living_environment": "변화에 적응 가능한 환경"
+            },
+            "success_factors": [
+              "좋은 환경 선택",
+              "올바른 멘토",
+              "협력 관계"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["따르는 오행 (재, 관, 식상)"],
+            "harmful_gods": ["비겁", "인성"],
+            "element_preference": {
+              "principle": "저항하지 말고 순응",
+              "strategy": "강한 오행을 더욱 강화"
+            },
+            "balance_point": "완전한 순응",
+            "remedies": [
+              "강한 오행 지원",
+              "비겁, 인성 회피",
+              "환경 선택 중요"
+            ]
+          }
+        },
+        "전왕격": {
+          "name": "전왕격 (專旺格)",
+          "category": "변격",
+          "formation_conditions": {
+            "primary": "일간이 극도로 강하여 자기 오행만 왕성",
+            "requirements": [
+              "일간이 당령하고 통근",
+              "비겁과 인성이 매우 강함",
+              "재관이 없거나 극도로 약함"
+            ],
+            "characteristics": [
+              "월령을 얻음",
+              "사주 전체가 비겁과 인성",
+              "극하는 오행이 없음"
+            ]
+          },
+          "personality_traits": {
+            "positive": [
+              "강한 자아와 자신감",
+              "독립심과 자립심",
+              "추진력과 결단력",
+              "리더십",
+              "개척 정신"
+            ],
+            "negative": [
+              "독선적",
+              "협력 부족",
+              "고집불통",
+              "타협 불가"
+            ],
+            "core_values": ["독립", "자아", "힘", "주도", "개척"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "CEO, 창업가",
+              "독립 사업가",
+              "정치인",
+              "혁명가",
+              "개척자",
+              "독립 예술가",
+              "1인 기업"
+            ],
+            "work_style": "완전히 독립적인 환경에서 최고 성과",
+            "lifestyle": {
+              "daily_routine": "자기 주도적 일정",
+              "social_life": "독립적 관계",
+              "hobbies": "개인 운동, 독립적 활동",
+              "living_environment": "독립된 개인 공간"
+            },
+            "success_factors": [
+              "독립 영역 확보",
+              "자기 확신",
+              "비전 실현"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["비겁", "인성"],
+            "harmful_gods": ["재성", "관성"],
+            "element_preference": {
+              "principle": "자기 오행 극대화",
+              "strategy": "비겁과 인성 강화"
+            },
+            "balance_point": "완전한 독립",
+            "remedies": [
+              "자기 오행 강화",
+              "극하는 오행 회피",
+              "독립적 환경"
+            ]
+          }
+        },
+        "일행득기격": {
+          "name": "일행득기격 (一行得氣格)",
+          "category": "변격",
+          "formation_conditions": {
+            "primary": "한 가지 오행이 사주를 지배",
+            "requirements": [
+              "한 오행이 70% 이상",
+              "다른 오행이 극도로 약함",
+              "순수한 기운 유지"
+            ],
+            "types": [
+              "곡직격 (목)",
+              "염상격 (화)",
+              "가색격 (토)",
+              "종혁격 (금)",
+              "윤하격 (수)"
+            ]
+          },
+          "personality_traits": {
+            "positive": [
+              "전문성",
+              "집중력",
+              "깊이",
+              "순수함",
+              "독보적 재능"
+            ],
+            "negative": [
+              "편협함",
+              "융통성 부족",
+              "극단적",
+              "사회성 부족"
+            ],
+            "core_values": ["전문성", "깊이", "집중", "순수", "극치"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "최고 전문가",
+              "장인",
+              "연구원",
+              "특수 기술자",
+              "예술 거장",
+              "학자",
+              "명인"
+            ],
+            "work_style": "한 분야 최고 수준 추구",
+            "lifestyle": {
+              "daily_routine": "일관되고 집중적",
+              "social_life": "같은 분야 전문가들",
+              "hobbies": "전문 분야 심화",
+              "living_environment": "작업에 최적화된 공간"
+            },
+            "success_factors": [
+              "전문성 극대화",
+              "꾸준한 심화",
+              "독보적 위치"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["주도 오행"],
+            "harmful_gods": ["극하는 오행"],
+            "element_preference": {
+              "principle": "순수성 유지",
+              "strategy": "단일 오행 강화"
+            },
+            "balance_point": "완벽한 전문성",
+            "remedies": [
+              "주도 오행 순수성",
+              "타 오행 배제",
+              "전문 분야 집중"
+            ]
+          }
+        },
+        "양인격": {
+          "name": "양인격 (陽刃格)",
+          "category": "변격",
+          "formation_conditions": {
+            "primary": "양인이 월지에 있고 강하게 작용",
+            "requirements": [
+              "일간의 양인이 월지에 위치",
+              "일간이 매우 강함",
+              "제어 장치가 약함"
+            ],
+            "yang_blade_positions": {
+              "갑": "묘",
+              "병무": "오",
+              "경": "유",
+              "임": "자"
+            }
+          },
+          "personality_traits": {
+            "positive": [
+              "강인한 의지",
+              "불굴의 정신",
+              "돌파력",
+              "용기",
+              "결단력"
+            ],
+            "negative": [
+              "폭력적",
+              "극단적",
+              "충동적",
+              "파괴적"
+            ],
+            "core_values": ["의지", "투쟁", "극복", "돌파", "용기"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "군인 (특수부대)",
+              "격투기 선수",
+              "외과의사",
+              "혁명가",
+              "전쟁 기자",
+              "구조대원",
+              "스턴트맨"
+            ],
+            "work_style": "극한 상황에서 능력 발휘",
+            "lifestyle": {
+              "daily_routine": "강도 높은 훈련",
+              "social_life": "강한 유대감",
+              "hobbies": "격투기, 익스트림 스포츠",
+              "living_environment": "단순하고 실용적"
+            },
+            "success_factors": [
+              "에너지 조절",
+              "목표 집중",
+              "자제력"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["식신 (제어)", "정관 (통제)"],
+            "harmful_gods": ["비겁", "인성"],
+            "element_preference": {
+              "principle": "양인 제어",
+              "strategy": "식신이나 관성으로 조절"
+            },
+            "balance_point": "통제된 힘",
+            "remedies": [
+              "식신으로 제어",
+              "명확한 목표",
+              "에너지 승화"
+            ]
+          }
+        },
+        "건록격": {
+          "name": "건록격 (建祿格)",
+          "category": "변격",
+          "formation_conditions": {
+            "primary": "일간이 월지에서 건록을 얻음",
+            "requirements": [
+              "일간의 록이 월지에 위치",
+              "일간이 강함",
+              "자수성가 기질"
+            ],
+            "lu_positions": {
+              "갑": "인",
+              "을": "묘",
+              "병무": "사",
+              "정기": "오",
+              "경": "신",
+              "신": "유",
+              "임": "해",
+              "계": "자"
+            }
+          },
+          "personality_traits": {
+            "positive": [
+              "자립심",
+              "실력주의",
+              "독립성",
+              "노력형",
+              "실무 능력"
+            ],
+            "negative": [
+              "고독함",
+              "협력 부족",
+              "완고함",
+              "융통성 부족"
+            ],
+            "core_values": ["자립", "실력", "독립", "노력", "성취"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "창업가",
+              "자영업자",
+              "프리랜서",
+              "전문직",
+              "기술자",
+              "독립 컨설턴트",
+              "1인 기업가"
+            ],
+            "work_style": "독립적이고 자율적인 환경",
+            "lifestyle": {
+              "daily_routine": "자기 관리 철저",
+              "social_life": "실무적 관계",
+              "hobbies": "자기 계발, 기술 습득",
+              "living_environment": "독립적 공간"
+            },
+            "success_factors": [
+              "실력 향상",
+              "독립 기반",
+              "꾸준한 노력"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["식상", "재성"],
+            "harmful_gods": ["인성 과다", "관성 과다"],
+            "element_preference": {
+              "principle": "자립 능력 강화",
+              "strategy": "식상과 재성 활용"
+            },
+            "balance_point": "독립과 협력",
+            "remedies": [
+              "실무 능력 개발",
+              "네트워크 구축",
+              "전문성 확보"
+            ]
+          }
+        },
+        "월겁격": {
+          "name": "월겁격 (月劫格)",
+          "category": "변격",
+          "formation_conditions": {
+            "primary": "겁재가 월지에 있어 경쟁심 강화",
+            "requirements": [
+              "겁재가 월지에 위치",
+              "비겁이 강함",
+              "경쟁적 환경"
+            ],
+            "characteristics": [
+              "형제·동료와 경쟁",
+              "재물 쟁탈",
+              "강한 경쟁심"
+            ]
+          },
+          "personality_traits": {
+            "positive": [
+              "경쟁력",
+              "도전 정신",
+              "동료애",
+              "추진력",
+              "활동성"
+            ],
+            "negative": [
+              "과도한 경쟁",
+              "시기심",
+              "배신 가능",
+              "불안정"
+            ],
+            "core_values": ["경쟁", "도전", "승리", "동료", "활동"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "운동선수",
+              "영업 전문가",
+              "경쟁 입찰",
+              "스포츠 에이전트",
+              "팀 스포츠",
+              "영업 팀장",
+              "경매사"
+            ],
+            "work_style": "경쟁적 환경에서 최고 성과",
+            "lifestyle": {
+              "daily_routine": "경쟁적 활동",
+              "social_life": "팀 활동, 경쟁",
+              "hobbies": "스포츠, 게임, 경쟁",
+              "living_environment": "활동적 공간"
+            },
+            "success_factors": [
+              "건전한 경쟁",
+              "팀워크",
+              "승부욕 조절"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["식상", "관성"],
+            "harmful_gods": ["비겁 과다", "인성"],
+            "element_preference": {
+              "principle": "경쟁력 조절",
+              "strategy": "식상과 관성으로 제어"
+            },
+            "balance_point": "경쟁과 협력",
+            "remedies": [
+              "팀워크 강화",
+              "목표 명확화",
+              "에너지 관리"
+            ]
+          }
+        }
+      }
+    },
+    "특수격": {
+      "name": "특수격 (特殊格)",
+      "description": "Special patterns with unique element combinations",
+      "types": {
+        "화기토양격": {
+          "name": "화기토양격 (火氣土養格)",
+          "category": "특수격",
+          "formation_conditions": {
+            "primary": "화와 토가 조화롭게 결합",
+            "requirements": [
+              "화와 토가 균형있게 분포",
+              "화생토의 순환",
+              "수목의 방해가 없음"
+            ],
+            "ideal_ratio": "화:토 = 4:6 또는 5:5"
+          },
+          "personality_traits": {
+            "positive": [
+              "따뜻하고 포용력 있음",
+              "안정적이면서 열정적",
+              "창조적이면서 실용적",
+              "리더십과 신뢰",
+              "카리스마와 온화함"
+            ],
+            "negative": [
+              "우유부단",
+              "과도한 배려",
+              "자기 희생",
+              "감정 기복"
+            ],
+            "core_values": ["온정", "포용", "창조", "안정", "조화"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "교육자 (교장, 학장)",
+              "경영자",
+              "상담사",
+              "사회사업가",
+              "요리사",
+              "인사 담당자",
+              "목회자"
+            ],
+            "work_style": "사람을 키우고 조직을 안정시키는 역할",
+            "lifestyle": {
+              "daily_routine": "규칙적이면서 유연",
+              "social_life": "폭넓고 따뜻한 관계",
+              "hobbies": "요리, 원예, 봉사활동",
+              "living_environment": "따뜻하고 안정적인 공간"
+            },
+            "success_factors": [
+              "인덕 쌓기",
+              "균형 유지",
+              "지속성"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["화", "토", "목"],
+            "harmful_gods": ["수", "금 과다"],
+            "element_preference": {
+              "principle": "화토 조화",
+              "strategy": "화와 토의 균형 유지"
+            },
+            "balance_point": "온기와 안정",
+            "remedies": [
+              "화와 토 조화",
+              "목으로 화 지원",
+              "수 과다 주의"
+            ]
+          }
+        },
+        "곡직격": {
+          "name": "곡직격 (曲直格)",
+          "category": "특수격",
+          "formation_conditions": {
+            "primary": "목이 왕성하여 곧게 성장",
+            "requirements": [
+              "목이 사주의 70% 이상",
+              "인묘진 또는 해묘미 삼합",
+              "금의 극이 없음"
+            ],
+            "best_months": "봄(인묘진월) 출생"
+          },
+          "personality_traits": {
+            "positive": [
+              "정직하고 곧음",
+              "성장 지향적",
+              "창의적",
+              "생명력 충만",
+              "교육적"
+            ],
+            "negative": [
+              "융통성 부족",
+              "고집",
+              "조급함",
+              "직선적"
+            ],
+            "core_values": ["성장", "정직", "창의", "생명", "발전"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "교육자",
+              "의사",
+              "환경운동가",
+              "디자이너",
+              "작가",
+              "농업 전문가",
+              "생명공학자"
+            ],
+            "work_style": "성장과 발전을 추구하는 분야",
+            "lifestyle": {
+              "daily_routine": "아침형 인간",
+              "social_life": "교육적 관계",
+              "hobbies": "원예, 등산, 독서",
+              "living_environment": "자연 친화적 공간"
+            },
+            "success_factors": [
+              "지속 성장",
+              "창의력 개발",
+              "인내심"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["목", "수"],
+            "harmful_gods": ["금", "화 과다"],
+            "element_preference": {
+              "principle": "목의 순수성",
+              "strategy": "목 에너지 극대화"
+            },
+            "balance_point": "순수한 성장력",
+            "remedies": [
+              "목 에너지 강화",
+              "수로 목 생조",
+              "금 회피"
+            ]
+          }
+        },
+        "염상격": {
+          "name": "염상격 (炎上格)",
+          "category": "특수격",
+          "formation_conditions": {
+            "primary": "화가 왕성하여 타오름",
+            "requirements": [
+              "화가 사주의 70% 이상",
+              "사오미 또는 인오술 삼합",
+              "수의 극이 없음"
+            ],
+            "best_months": "여름(사오미월) 출생"
+          },
+          "personality_traits": {
+            "positive": [
+              "열정적",
+              "화려함",
+              "표현력",
+              "카리스마",
+              "창조성"
+            ],
+            "negative": [
+              "허영심",
+              "과시욕",
+              "번아웃",
+              "충동적"
+            ],
+            "core_values": ["열정", "창조", "표현", "빛", "에너지"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "연예인",
+              "정치인",
+              "CEO",
+              "마케터",
+              "예술가",
+              "방송인",
+              "이벤트 기획자"
+            ],
+            "work_style": "주목받고 빛나는 위치",
+            "lifestyle": {
+              "daily_routine": "활동적이고 화려함",
+              "social_life": "사교적, 파티",
+              "hobbies": "공연, 예술, 사교활동",
+              "living_environment": "화려하고 밝은 공간"
+            },
+            "success_factors": [
+              "열정 유지",
+              "체력 관리",
+              "겸손함"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["화", "목"],
+            "harmful_gods": ["수", "토 과다"],
+            "element_preference": {
+              "principle": "화의 순수성",
+              "strategy": "화 에너지 극대화"
+            },
+            "balance_point": "타오르는 열정",
+            "remedies": [
+              "화 에너지 강화",
+              "목으로 화 지원",
+              "수 회피"
+            ]
+          }
+        },
+        "종혁격": {
+          "name": "종혁격 (從革格)",
+          "category": "특수격",
+          "formation_conditions": {
+            "primary": "금이 왕성하여 개혁",
+            "requirements": [
+              "금이 사주의 70% 이상",
+              "신유술 또는 사유축 삼합",
+              "화의 극이 없음"
+            ],
+            "best_months": "가을(신유술월) 출생"
+          },
+          "personality_traits": {
+            "positive": [
+              "개혁적",
+              "결단력",
+              "정의감",
+              "리더십",
+              "원칙주의"
+            ],
+            "negative": [
+              "융통성 부족",
+              "극단적",
+              "독선적",
+              "차가움"
+            ],
+            "core_values": ["정의", "개혁", "원칙", "결단", "변화"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "법조인",
+              "개혁가",
+              "정치인",
+              "군 장성",
+              "외과의사",
+              "감사관",
+              "혁신가"
+            ],
+            "work_style": "개혁과 변화를 주도하는 위치",
+            "lifestyle": {
+              "daily_routine": "규칙적이고 엄격",
+              "social_life": "원칙적 관계",
+              "hobbies": "무술, 사격, 검도",
+              "living_environment": "정돈되고 현대적"
+            },
+            "success_factors": [
+              "정의 실현",
+              "유연성 개발",
+              "인간미"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["금", "토"],
+            "harmful_gods": ["화", "목 과다"],
+            "element_preference": {
+              "principle": "금의 순수성",
+              "strategy": "금 에너지 극대화"
+            },
+            "balance_point": "날카로운 개혁력",
+            "remedies": [
+              "금 에너지 강화",
+              "토로 금 생조",
+              "화 회피"
+            ]
+          }
+        },
+        "윤하격": {
+          "name": "윤하격 (潤下格)",
+          "category": "특수격",
+          "formation_conditions": {
+            "primary": "수가 왕성하여 흐름",
+            "requirements": [
+              "수가 사주의 70% 이상",
+              "해자축 또는 신자진 삼합",
+              "토의 극이 없음"
+            ],
+            "best_months": "겨울(해자축월) 출생"
+          },
+          "personality_traits": {
+            "positive": [
+              "지혜로움",
+              "유연함",
+              "통찰력",
+              "적응력",
+              "신비로움"
+            ],
+            "negative": [
+              "우유부단",
+              "일관성 부족",
+              "산만함",
+              "불안정"
+            ],
+            "core_values": ["지혜", "유연", "통찰", "변화", "흐름"]
+          },
+          "career_lifestyle": {
+            "suitable_careers": [
+              "철학자",
+              "심리학자",
+              "작가",
+              "외교관",
+              "컨설턴트",
+              "무역상",
+              "해운업"
+            ],
+            "work_style": "유연하고 변화가 많은 환경",
+            "lifestyle": {
+              "daily_routine": "유동적이고 자유로움",
+              "social_life": "깊이 있는 관계",
+              "hobbies": "독서, 명상, 여행",
+              "living_environment": "물가나 유동적 공간"
+            },
+            "success_factors": [
+              "지혜 개발",
+              "직관 활용",
+              "안정성 확보"
+            ]
+          },
+          "yongshin_characteristics": {
+            "useful_gods": ["수", "금"],
+            "harmful_gods": ["토", "화 과다"],
+            "element_preference": {
+              "principle": "수의 순수성",
+              "strategy": "수 에너지 극대화"
+            },
+            "balance_point": "자유로운 흐름",
+            "remedies": [
+              "수 에너지 강화",
+              "금으로 수 생조",
+              "토 회피"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "pattern_analysis_guide": {
+    "identification_process": [
+      "월지 확인 - 격국의 기본 결정",
+      "십신 분포 분석 - 주도적 십신 파악",
+      "오행 균형 검토 - 특수격 여부 판단",
+      "일간 강약 - 변격 가능성 검토",
+      "종합 판단 - 최종 격국 결정"
+    ],
+    "priority_order": [
+      "특수격 (오행 극단적 편중)",
+      "변격 (일간 극강 또는 극약)",
+      "정격 (일반적인 경우)"
+    ],
+    "common_mistakes": [
+      "월지만으로 격국 판단",
+      "일간 강약 무시",
+      "십신 분포 미고려",
+      "계절 영향 간과",
+      "대운 변화 무시"
+    ]
+  },
+  "yongshin_by_pattern": {
+    "general_principles": {
+      "정격": "균형과 조화를 추구, 부족한 오행 보충",
+      "변격": "극단을 더욱 극단으로, 순응 또는 독립",
+      "특수격": "순수성 유지, 주도 오행 강화"
+    },
+    "specific_guidelines": {
+      "관격": "일간 강하면 관성 용신, 약하면 인성 용신",
+      "재격": "일간 강하면 재성 용신, 약하면 비겁 용신",
+      "인격": "일간 강하면 식상 용신, 약하면 관성 용신",
+      "식상격": "일간 강하면 식상 용신, 약하면 인성 용신",
+      "종격": "따르는 오행을 용신으로",
+      "전왕격": "비겁과 인성을 용신으로",
+      "특수격": "주도 오행을 용신으로"
+    }
+  }
+}

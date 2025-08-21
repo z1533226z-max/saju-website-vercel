@@ -1,0 +1,275 @@
+{
+  "name": "무토 (戊土)",
+  "element": "토 (土)",
+  "polarity": "양 (陽)",
+  
+  "basic": {
+    "nature": "산, 큰 땅, 대지",
+    "characteristics": [
+      "듬직하고 신뢰감 있음",
+      "포용력과 관대함",
+      "안정적이고 보수적",
+      "책임감이 강함",
+      "현실적이고 실용적"
+    ],
+    "strengths": [
+      "강한 책임감과 신뢰성",
+      "뛰어난 포용력",
+      "안정성과 지구력",
+      "현실적 판단력",
+      "조직 관리 능력"
+    ],
+    "weaknesses": [
+      "고집스러움",
+      "변화에 대한 저항",
+      "우둔해 보일 수 있음",
+      "융통성 부족",
+      "지나친 보수성"
+    ]
+  },
+  
+  "personality_detailed": {
+    "core_traits": {
+      "stability": "산처럼 흔들리지 않는 안정감으로 주변에 든든한 버팀목이 됩니다.",
+      "reliability": "약속과 책임을 중시하며 믿고 맡길 수 있는 사람입니다.",
+      "generosity": "넓은 포용력으로 모든 것을 품고 보살피는 대지의 성품을 지녔습니다.",
+      "practicality": "현실적이고 실용적인 사고로 문제를 해결합니다.",
+      "endurance": "강한 인내심과 지구력으로 장기적인 목표를 달성합니다."
+    },
+    "emotional_patterns": {
+      "expression": "감정 표현이 느리고 절제되어 있으며 깊이 간직합니다.",
+      "stress_response": "스트레스를 묵묵히 견디며 내면화하는 경향이 있습니다.",
+      "joy_triggers": "안정과 성취, 가족의 행복에서 기쁨을 느낍니다.",
+      "anger_triggers": "신뢰가 깨지거나 무시당할 때 분노합니다.",
+      "coping_mechanisms": "자연과의 교감, 정원 가꾸기, 산책을 통해 마음을 다스립니다."
+    },
+    "behavioral_tendencies": {
+      "decision_making": "신중하고 보수적인 결정, 충분한 검토 후 실행",
+      "communication": "간결하고 실용적인 의사소통",
+      "conflict_resolution": "시간을 두고 천천히 해결하는 방식",
+      "work_style": "체계적이고 꾸준한 업무 처리",
+      "social_interaction": "신중한 관계 형성, 오래된 관계 중시"
+    },
+    "growth_areas": {
+      "flexibility": "변화에 대한 적응력 향상",
+      "innovation": "창의적 사고와 혁신 수용",
+      "expression": "감정 표현 능력 개발",
+      "speed": "의사결정 속도 향상",
+      "openness": "새로운 아이디어에 대한 개방성"
+    }
+  },
+  
+  "ten_gods_interpretation": {
+    "비견_겁재": {
+      "positive": "동료들과 안정적인 협력 관계를 구축하며 신뢰를 쌓습니다.",
+      "negative": "고집으로 인한 갈등이 발생하고 타협이 어려울 수 있습니다.",
+      "advice": "상대방의 의견을 경청하고 유연한 사고를 기르세요."
+    },
+    "식신_상관": {
+      "positive": "실용적인 창의성과 현실적인 아이디어를 제시합니다.",
+      "negative": "표현력 부족으로 재능을 제대로 발휘하지 못할 수 있습니다.",
+      "advice": "자신의 아이디어를 적극적으로 표현하는 연습을 하세요."
+    },
+    "정재_편재": {
+      "positive": "안정적인 재산 형성과 꾸준한 부의 축적이 가능합니다.",
+      "negative": "보수적인 투자로 큰 수익 기회를 놓칠 수 있습니다.",
+      "advice": "계산된 위험을 감수하고 다양한 투자 포트폴리오를 구성하세요."
+    },
+    "정관_편관": {
+      "positive": "조직에서 중추적 역할을 맡아 안정적으로 운영합니다.",
+      "negative": "권위주의적 태도로 부하직원과 갈등이 생길 수 있습니다.",
+      "advice": "소통과 공감의 리더십을 개발하세요."
+    },
+    "정인_편인": {
+      "positive": "실용적인 지식과 경험을 축적하여 전문가가 됩니다.",
+      "negative": "이론보다 경험에 치우쳐 새로운 학습을 소홀히 할 수 있습니다.",
+      "advice": "지속적인 학습과 자기계발을 통해 지식을 업데이트하세요."
+    }
+  },
+  
+  "career_detailed": {
+    "suitable_fields": [
+      "부동산 및 건설: 부동산 개발, 건설회사 경영, 건축",
+      "금융 및 투자: 은행원, 자산관리사, 펀드매니저",
+      "행정 및 관리: 공무원, 행정관리자, 총무",
+      "농업 및 환경: 농업경영, 환경관리, 조경",
+      "교육: 실용 학문 교수, 직업교육 강사",
+      "제조업: 생산관리, 품질관리, 공장경영",
+      "물류 및 유통: 물류관리, 창고경영, 유통업"
+    ],
+    "work_environment": {
+      "ideal": "안정적이고 체계적인 조직 환경",
+      "challenging": "빠른 변화와 혁신이 요구되는 환경",
+      "team_dynamics": "든든한 중심축 역할, 조직 안정화",
+      "growth_path": "꾸준한 경력 쌓기를 통한 점진적 승진"
+    },
+    "entrepreneurship": {
+      "potential": "중상 - 안정적 사업 운영 능력",
+      "suitable_business": "부동산, 제조업, 유통업, 프랜차이즈",
+      "challenges": "혁신 부족, 보수적 경영",
+      "success_factors": "신뢰 구축, 장기적 관점, 안정적 운영"
+    },
+    "career_development": {
+      "early_career": "기초를 탄탄히 다지는 시기",
+      "mid_career": "중간관리자로서 조직 안정화 기여",
+      "late_career": "최고경영자나 고문 역할",
+      "retirement": "컨설팅이나 멘토링 활동"
+    }
+  },
+  
+  "love_marriage": {
+    "romantic_style": {
+      "approach": "신중하고 진지한 접근, 결혼을 전제로 한 만남",
+      "expression": "과묵하지만 행동으로 보여주는 사랑",
+      "commitment": "한번 마음을 정하면 변하지 않는 일편단심",
+      "expectations": "안정적이고 실용적인 관계"
+    },
+    "ideal_partner": {
+      "personality": "온화하고 가정적이며 안정을 추구하는 사람",
+      "values": "가족 중심적이고 전통적 가치관을 공유하는 사람",
+      "compatibility": "정화, 기토, 신금과 궁합이 좋음",
+      "challenges": "임수와는 충돌 가능성"
+    },
+    "marriage_life": {
+      "strengths": "책임감 있는 가장, 안정적인 가정 운영",
+      "challenges": "로맨스 부족, 감정 표현 부재",
+      "family_dynamics": "전통적이고 보수적인 가족 구조",
+      "conflict_areas": "변화 거부와 고집"
+    },
+    "relationship_advice": {
+      "expression": "말과 행동으로 사랑을 표현하는 연습을 하세요",
+      "flexibility": "배우자의 의견을 수용하고 변화를 받아들이세요",
+      "romance": "일상에서 작은 로맨스를 만들어가세요",
+      "communication": "감정을 솔직하게 나누는 시간을 가지세요"
+    }
+  },
+  
+  "wealth_detailed": {
+    "financial_traits": {
+      "earning_ability": "꾸준하고 안정적인 수입 창출",
+      "spending_habits": "계획적이고 실용적인 소비",
+      "saving_tendency": "높은 저축률과 자산 축적",
+      "investment_style": "안전하고 보수적인 투자"
+    },
+    "wealth_accumulation": {
+      "methods": [
+        "부동산 투자와 임대 수익",
+        "장기 저축과 연금",
+        "안정적인 배당주 투자",
+        "사업을 통한 꾸준한 수익"
+      ],
+      "timing": "중년 이후 substantial한 자산 형성",
+      "challenges": "혁신적 투자 기회 놓침"
+    },
+    "financial_luck": {
+      "good_periods": "환절기, 진술축미 월",
+      "challenging_periods": "봄, 인묘 월",
+      "lucky_directions": "중앙, 북동, 남서",
+      "lucky_numbers": "5, 8, 10"
+    },
+    "money_management": {
+      "strengths": "체계적 재무 관리, 장기 계획",
+      "weaknesses": "수익률 낮음, 기회 포착 늦음",
+      "advice": "전문가 조언을 받아 투자 다각화"
+    }
+  },
+  
+  "health_detailed": {
+    "physical_constitution": {
+      "strong_areas": "비장, 위장, 근육",
+      "weak_areas": "소화기, 관절, 피부",
+      "common_issues": [
+        "위장 장애, 소화불량",
+        "관절염, 류마티스",
+        "비만, 당뇨병",
+        "피부 트러블"
+      ]
+    },
+    "mental_health": {
+      "stress_factors": "책임감 과중, 변화 압박, 경제적 부담",
+      "emotional_issues": "우울감, 무기력, 고립감",
+      "coping_strategies": [
+        "규칙적인 운동과 산책",
+        "정원 가꾸기나 원예",
+        "안정적인 루틴 유지",
+        "가족과의 시간"
+      ]
+    },
+    "lifestyle_recommendations": {
+      "exercise": "걷기, 등산, 요가 등 꾸준한 운동",
+      "diet": [
+        "규칙적인 식사 시간",
+        "소화가 잘 되는 음식",
+        "과식 주의",
+        "충분한 섬유질 섭취"
+      ],
+      "sleep": "일정한 수면 패턴 유지",
+      "stress_management": "자연과의 교감, 명상"
+    },
+    "preventive_care": {
+      "regular_checkups": "소화기 검사, 당뇨 검사, 관절 검진",
+      "early_warning_signs": "소화불량, 관절 통증, 피로감",
+      "holistic_approach": "신체와 정신의 균형 유지"
+    }
+  },
+  
+  "social_relations": {
+    "friendship_patterns": {
+      "quality": "소수의 오래된 친구들과 깊은 우정",
+      "loyalty": "변함없는 충성과 신뢰",
+      "selection": "신중한 친구 선택",
+      "maintenance": "꾸준한 관심과 도움"
+    },
+    "professional_relationships": {
+      "reliability": "믿고 맡길 수 있는 동료",
+      "support": "조직의 든든한 기둥 역할",
+      "networking": "좁지만 깊은 인맥",
+      "reputation": "신뢰할 수 있는 사람"
+    },
+    "family_dynamics": {
+      "parental_role": "엄격하지만 사랑이 깊은 부모",
+      "sibling_relations": "가족의 중심 역할",
+      "extended_family": "가문의 전통 수호자",
+      "responsibility": "가족 부양의 책임감"
+    },
+    "community_involvement": {
+      "contribution": "지역 사회 발전에 기여",
+      "leadership": "신뢰받는 지역 리더",
+      "service": "묵묵한 봉사와 헌신",
+      "tradition": "전통과 문화 보존"
+    }
+  },
+  
+  "spiritual_growth": {
+    "life_purpose": {
+      "mission": "안정과 포용으로 세상의 든든한 기반이 되기",
+      "values": "신뢰, 책임, 안정, 포용, 성실",
+      "legacy": "후대를 위한 튼튼한 기반 구축"
+    },
+    "personal_development": {
+      "grounding": "대지의 에너지와 연결되기",
+      "patience": "인내심과 지구력 개발",
+      "wisdom": "경험을 통한 지혜 축적",
+      "nurturing": "양육과 보살핌의 능력"
+    },
+    "spiritual_practices": {
+      "meditation": "대지와 연결되는 명상",
+      "gardening": "흙과 함께하는 영적 수행",
+      "service": "실질적인 봉사 활동",
+      "gratitude": "일상의 감사 실천"
+    },
+    "life_lessons": {
+      "change": "변화도 자연의 일부임을 받아들이기",
+      "flexibility": "유연함 속에서 더 큰 강함 발견",
+      "expression": "감정 표현의 중요성 배우기",
+      "balance": "안정과 성장의 균형",
+      "trust": "과정을 신뢰하기"
+    },
+    "karmic_path": {
+      "past_influences": "과거의 안정 추구가 현재의 보수성 형성",
+      "present_challenges": "변화 수용과 혁신 필요성",
+      "future_potential": "지혜로운 조언자이자 안정의 수호자",
+      "soul_evolution": "물질과 정신의 균형 달성"
+    }
+  }
+}

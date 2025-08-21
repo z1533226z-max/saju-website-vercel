@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/**/*.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/health",
+      "dest": "/api/health.py"
+    },
+    {
+      "src": "/api/saju/calculate",
+      "dest": "/api/saju/calculate.py"
+    },
+    {
+      "src": "/api/saju/compatibility",
+      "dest": "/api/saju/compatibility.py"
+    },
+    {
+      "src": "/api/saju/info/(.*)",
+      "dest": "/api/saju/info.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
+    }
+  ],
+  "functions": {
+    "api/**/*.py": {
+      "maxDuration": 10
+    }
+  }
+}

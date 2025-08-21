@@ -1,0 +1,758 @@
+/**
+ * Main Styles for Saju Website
+ * ��� ��t� Tx ��|
+ */
+
+/* ===================================
+   Base Styles
+   =================================== */
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+}
+
+.container {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.section-container {
+  max-width: var(--container-lg);
+  margin: 0 auto;
+  padding: var(--section-padding-y) var(--section-padding-x);
+}
+
+/* ===================================
+   Typography
+   =================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-4xl); }
+h3 { font-size: var(--text-3xl); }
+h4 { font-size: var(--text-2xl); }
+h5 { font-size: var(--text-xl); }
+h6 { font-size: var(--text-lg); }
+
+p {
+  margin-bottom: var(--spacing-md);
+  line-height: var(--line-height-relaxed);
+}
+
+/* ===================================
+   Header Section
+   =================================== */
+
+#site-header {
+  background: var(--color-bg-tertiary);
+  border-bottom: 1px solid var(--color-border-light);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-50);
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  max-width: var(--container-xl);
+  margin: 0 auto;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+/* Optimized Mini Logo Compass */
+.logo-compass {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  animation: rotate-slow 120s linear infinite;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Logo Outer Ring */
+.logo-luopan-outer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 0.5px solid #8B6914;
+  border-radius: 50%;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      #D4AF37 0px,
+      #C9A026 0.5px,
+      #D4AF37 1px
+    ),
+    conic-gradient(
+      from 0deg,
+      #C9A026 0deg,
+      #D4AF37 90deg,
+      #F4E4BC 180deg,
+      #D4AF37 270deg,
+      #C9A026 360deg
+    );
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Logo Middle Ring */
+.logo-luopan-middle {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  top: 15%;
+  left: 15%;
+  border: 0.5px solid #8B6914;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 50% 50%, 
+      #F4E4BC 0%, 
+      #D4AF37 50%, 
+      #B8860B 100%);
+  box-shadow: 
+    inset 0 0.5px 0 rgba(255, 248, 220, 0.4),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* Logo Inner Ring */
+.logo-luopan-inner {
+  position: absolute;
+  width: 45%;
+  height: 45%;
+  top: 27.5%;
+  left: 27.5%;
+  border: 0.5px solid #8B6914;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 50% 50%, 
+      #F8D985 0%, 
+      #D4AF37 50%, 
+      #B8860B 100%);
+}
+
+/* Logo Taiji Center */
+.logo-compass-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  z-index: 3;
+}
+
+.logo-compass-needle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate-taiji 4s linear infinite;
+}
+
+.logo-needle-pointer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(90deg, 
+    #0a0a0a 50%,
+    #fefefe 50%);
+  border: 0.5px solid #B8860B;
+  box-shadow: 0 0 4px rgba(255, 215, 0, 0.2);
+}
+
+/* Logo Yin Half */
+.logo-needle-pointer::before {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background: #0a0a0a;
+  border-radius: 50%;
+  top: 0;
+  left: 25%;
+}
+
+/* Logo Yang Half */
+.logo-needle-pointer::after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background: #fefefe;
+  border-radius: 50%;
+  bottom: 0;
+  left: 25%;
+}
+
+/* Logo Yin dot */
+.logo-center-dot {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #fefefe;
+  border-radius: 50%;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+/* Logo Yang dot */
+.logo-center-dot::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #0a0a0a;
+  border-radius: 50%;
+  top: 4px;
+  left: 0;
+}
+
+/* Logo Mountains Text */
+.logo-mountain {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  text-align: center;
+  line-height: 8px;
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 5px;
+  font-weight: 700;
+  color: #1a0e05;
+  text-shadow: 0 0.5px 0 rgba(255, 248, 220, 0.4);
+}
+
+/* Logo Trigrams */
+.logo-trigram {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  font-size: 7px;
+  text-align: center;
+  line-height: 10px;
+  font-weight: 900;
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
+  color: #0a0503;
+  text-shadow: 0 0.5px 0 rgba(255, 248, 220, 0.5);
+}
+
+.site-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--color-text-primary);
+}
+
+.main-nav {
+  display: flex;
+  gap: var(--spacing-xl);
+}
+
+.main-nav a {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  transition: color var(--duration-normal) var(--ease-in-out);
+  position: relative;
+}
+
+.main-nav a:hover {
+  color: var(--color-accent);
+}
+
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width var(--duration-normal) var(--ease-in-out);
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+}
+
+/* ===================================
+   Hero Section
+   =================================== */
+
+#hero-section {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.ink-wash-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(107, 140, 174, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(200, 168, 130, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(123, 158, 137, 0.1) 0%, transparent 50%);
+  animation: floatPattern 20s ease-in-out infinite;
+}
+
+@keyframes floatPattern {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-20px, -20px) scale(1.05); }
+  66% { transform: translate(20px, -10px) scale(0.95); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: var(--spacing-2xl);
+}
+
+.hero-title {
+  margin-bottom: var(--spacing-xl);
+}
+
+.brush-stroke {
+  display: block;
+  font-size: var(--text-5xl);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--spacing-md);
+  background: linear-gradient(135deg, var(--color-wood) 0%, var(--color-fire) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  display: block;
+  font-size: var(--text-xl);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-normal);
+}
+
+.hero-decoration {
+  margin: var(--spacing-2xl) 0;
+}
+
+/* Optimized Luopan Compass */
+.bagua-compass {
+  width: 320px;
+  height: 320px;
+  margin: 0 auto;
+  position: relative;
+  animation: rotate-slow 90s linear infinite;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+  will-change: transform;
+  transform: translateZ(0); /* GPU acceleration */
+}
+
+/* Optimized Outer Ring */
+.luopan-outer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #8B6914;
+  border-radius: 50%;
+  background: 
+    linear-gradient(135deg, 
+      #D4AF37 0%, 
+      #F4E4BC 25%,
+      #C9A026 50%, 
+      #F4E4BC 75%,
+      #D4AF37 100%);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Simple shine effect */
+.luopan-outer::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 45%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 55%
+  );
+  animation: subtle-shine 12s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* 24 Mountains - Razor Sharp Engraving */
+.mountains-24 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.mountain {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  line-height: 18px;
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #1a0e05;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Optimized Middle Ring */
+.luopan-middle {
+  position: absolute;
+  width: 72%;
+  height: 72%;
+  top: 14%;
+  left: 14%;
+  border: 1px solid #8B6914;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, 
+    #F4E4BC 0%, 
+    #D4AF37 40%, 
+    #B8860B 100%);
+  box-shadow: 
+    0 1px 4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 248, 220, 0.5);
+}
+
+.trigram-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.trigram {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 28px;
+  font-weight: 900;
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
+  color: #0a0503;
+  /* Ultra sharp engraving */
+  text-shadow: 
+    0 0.5px 0 rgba(255, 248, 220, 0.7),
+    0 -0.5px 0 rgba(0, 0, 0, 0.8),
+    0.5px 0 0 rgba(255, 248, 220, 0.4),
+    -0.5px 0 0 rgba(0, 0, 0, 0.6),
+    0 0 1px rgba(0, 0, 0, 0.9),
+    inset 0 1px 2px rgba(0, 0, 0, 0.3);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Optimized Inner Ring */
+.luopan-inner {
+  position: absolute;
+  width: 46%;
+  height: 46%;
+  top: 27%;
+  left: 27%;
+  border: 1px solid #8B6914;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, 
+    #F8D985 0%, 
+    #D4AF37 50%, 
+    #B8860B 100%);
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 248, 220, 0.6);
+}
+
+.branches-12 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.branch {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+  font-weight: 800;
+  font-family: 'Nanum Myeongjo', serif;
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
+  color: #0a0503;
+  /* Precision engraving */
+  text-shadow: 
+    0 0.5px 0 rgba(255, 248, 220, 0.8),
+    0 -0.5px 0 rgba(0, 0, 0, 0.9),
+    0 0 0.5px rgba(0, 0, 0, 1);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Central Taiji - Obsidian & Mother of Pearl */
+.compass-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 76px;
+  height: 76px;
+  z-index: 3;
+  filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.3));
+}
+
+/* Taiji Container with Mystical Glow */
+.compass-needle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+  animation: rotate-taiji 4s linear infinite;
+  will-change: transform;
+}
+
+/* Removed motion blur layers for performance */
+
+/* Main Taiji - Luxury Materials */
+.needle-pointer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(90deg, 
+    #0a0a0a 50%,  /* Polished obsidian */
+    #fefefe 50%); /* Mother of pearl */
+  border: 1px solid #B8860B;
+  box-shadow: 
+    /* Soft inner glow */
+    0 0 20px rgba(255, 215, 0, 0.2),
+    /* Depth */
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.2);
+}
+
+/* Yin (Obsidian) Half */
+.needle-pointer::before {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background: 
+    radial-gradient(circle at 50% 50%, 
+      #1a1a1a 0%, 
+      #0a0a0a 50%, 
+      #000000 100%);
+  border-radius: 50%;
+  top: 0;
+  left: 25%;
+  border: none;
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.1),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Yang (Mother of Pearl) Half */
+.needle-pointer::after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background: 
+    radial-gradient(circle at 30% 30%, 
+      rgba(255, 251, 247, 1) 0%,
+      rgba(248, 245, 242, 1) 30%,
+      rgba(255, 253, 250, 1) 60%,
+      rgba(245, 242, 238, 1) 100%),
+    linear-gradient(135deg,
+      rgba(255, 255, 255, 0.9),
+      rgba(252, 251, 250, 0.7));
+  border-radius: 50%;
+  bottom: 0;
+  left: 25%;
+  border: none;
+  box-shadow: 
+    inset 0 1px 3px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Yin dot (Pearl white in obsidian) */
+.center-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: 
+    radial-gradient(circle at 40% 40%,
+      #ffffff 0%,
+      #fdfcfb 50%,
+      #f5f2ee 100%);
+  border-radius: 50%;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 0 8px rgba(255, 255, 255, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+/* Yang dot (Obsidian in pearl) */
+.center-dot::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: 
+    radial-gradient(circle at 60% 60%,
+      #0a0a0a 0%,
+      #050505 50%,
+      #000000 100%);
+  border-radius: 50%;
+  top: 28px;
+  left: 0;
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Decorative Circles */
+.decorative-circles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: none; /* Remove distracting rotating circles */
+}
+
+/* Animations */
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-counter {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Subtle polish sweep */
+@keyframes subtle-shine {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+/* Taiji rotation with mystical effect */
+@keyframes rotate-taiji {
+  from { 
+    transform: rotate(0deg);
+    filter: brightness(1) contrast(1);
+  }
+  25% {
+    filter: brightness(1.1) contrast(1.05);
+  }
+  50% {
+    filter: brightness(1.2) contrast(1.1);
+  }
+  75% {
+    filter: brightness(1.1) contrast(1.05);
+  }
+  to { 
+    transform: rotate(360deg);
+    filter: brightness(1) contrast(1);
+  }
+}
+
+/* Removed unused animations for performance */
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--button-padding-y) var(--button-padding-x);
+  background: var(--color-accent);
+  color: var(--color-text-inverse);
+  border-radius: var(--button-radius);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  transition: all var(--duration-normal) var(--ease-in-out);
+  box-shadow: var(--shadow-md);
+}
+
+.cta-button:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.arrow-icon {
+  width: 20px;
+  height: 20px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}

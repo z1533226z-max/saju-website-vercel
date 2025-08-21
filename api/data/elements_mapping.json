@@ -1,0 +1,136 @@
+{
+  "relations": {
+    "generating": {
+      "wood": "fire",
+      "fire": "earth",
+      "earth": "metal",
+      "metal": "water",
+      "water": "wood"
+    },
+    "overcoming": {
+      "wood": "earth",
+      "earth": "water",
+      "water": "fire",
+      "fire": "metal",
+      "metal": "wood"
+    }
+  },
+  "colors": {
+    "wood": ["green", "blue"],
+    "fire": ["red", "purple"],
+    "earth": ["yellow", "brown"],
+    "metal": ["white", "gray"],
+    "water": ["black", "dark blue"]
+  },
+  "characteristics": {
+    "wood": "growth, development, flexibility",
+    "fire": "passion, vitality, expansion",
+    "earth": "stability, balance, inclusiveness",
+    "metal": "justice, determination, convergence",
+    "water": "wisdom, fluidity, adaptation"
+  },
+  "seasons": {
+    "wood": "spring",
+    "fire": "summer",
+    "earth": "late_summer",
+    "metal": "autumn",
+    "water": "winter"
+  },
+  "directions": {
+    "wood": "east",
+    "fire": "south",
+    "earth": "center",
+    "metal": "west",
+    "water": "north"
+  },
+  "organs": {
+    "wood": {
+      "yin": "liver",
+      "yang": "gallbladder"
+    },
+    "fire": {
+      "yin": "heart",
+      "yang": "small_intestine"
+    },
+    "earth": {
+      "yin": "spleen",
+      "yang": "stomach"
+    },
+    "metal": {
+      "yin": "lungs",
+      "yang": "large_intestine"
+    },
+    "water": {
+      "yin": "kidneys",
+      "yang": "bladder"
+    }
+  },
+  "emotions": {
+    "wood": "anger",
+    "fire": "joy",
+    "earth": "worry",
+    "metal": "sadness",
+    "water": "fear"
+  },
+  "virtues": {
+    "wood": "benevolence",
+    "fire": "propriety",
+    "earth": "trust",
+    "metal": "righteousness",
+    "water": "wisdom"
+  },
+  "balance_scores": {
+    "ideal_percentage": 20,
+    "acceptable_range": {
+      "min": 15,
+      "max": 25
+    },
+    "imbalance_thresholds": {
+      "minor": 5,
+      "moderate": 10,
+      "severe": 15
+    }
+  },
+  "compatibility": {
+    "harmonious": [
+      ["wood", "fire"],
+      ["fire", "earth"],
+      ["earth", "metal"],
+      ["metal", "water"],
+      ["water", "wood"]
+    ],
+    "conflicting": [
+      ["wood", "earth"],
+      ["earth", "water"],
+      ["water", "fire"],
+      ["fire", "metal"],
+      ["metal", "wood"]
+    ]
+  },
+  "heavenly_stems": {
+    "갑": "wood",
+    "을": "wood",
+    "병": "fire",
+    "정": "fire",
+    "무": "earth",
+    "기": "earth",
+    "경": "metal",
+    "신": "metal",
+    "임": "water",
+    "계": "water"
+  },
+  "earthly_branches": {
+    "자": "water",
+    "축": "earth",
+    "인": "wood",
+    "묘": "wood",
+    "진": "earth",
+    "사": "fire",
+    "오": "fire",
+    "미": "earth",
+    "신": "metal",
+    "유": "metal",
+    "술": "earth",
+    "해": "water"
+  }
+}

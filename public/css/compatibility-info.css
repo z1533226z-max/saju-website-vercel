@@ -1,0 +1,297 @@
+/* 궁합 정보 섹션 스타일 */
+.compatibility-info-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.compatibility-info-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.info-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-card .icon {
+    font-size: 2rem;
+}
+
+.info-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info-card li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-card li:last-child {
+    border-bottom: none;
+}
+
+/* 궁합 확인 폼 */
+.compatibility-form-section {
+    padding: 4rem 2rem;
+    background: #f8f9fa;
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.person-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.person-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.person-card.completed {
+    background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+    border: 2px solid #4caf50;
+}
+
+/* 사주 계산하러 가기 버튼 */
+.go-to-calc {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.go-to-calc:hover {
+    transform: translateY(-2px);
+}
+
+/* 상대방 정보 폼 */
+.compatibility-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .compatibility-form {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 경고 메시지 스타일 */
+.person-card .error-message {
+    color: #ef4444;
+    background: #fee;
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* 본인 정보 완료 체크 아이콘 */
+.person-card.has-data h4::after {
+    content: '✅';
+    font-size: 1rem;
+    margin-left: auto;
+}
+
+/* 궁합 상세 설명 스타일 */
+.compatibility-advice-detailed {
+    margin-top: 20px;
+}
+
+.compatibility-advice-detailed .advice-item {
+    background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+    padding: 15px 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border-left: 4px solid;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    line-height: 1.8;
+    font-size: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.compatibility-advice-detailed .advice-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* 테마별 스타일 (클래스 기반) */
+.advice-item.theme-perfect {
+    border-left-color: #ff4458;
+    background: linear-gradient(135deg, #ffe5e8 0%, #fff 100%);
+}
+
+.advice-item.theme-excellent {
+    border-left-color: #ff69b4;
+    background: linear-gradient(135deg, #ffe8f3 0%, #fff 100%);
+}
+
+.advice-item.theme-great {
+    border-left-color: #ff1493;
+    background: linear-gradient(135deg, #ffe0ec 0%, #fff 100%);
+}
+
+.advice-item.theme-good {
+    border-left-color: #c71585;
+    background: linear-gradient(135deg, #f8e0f0 0%, #fff 100%);
+}
+
+.advice-item.theme-challenge {
+    border-left-color: #8b4513;
+    background: linear-gradient(135deg, #f5e6d3 0%, #fff 100%);
+}
+
+.advice-item.theme-star {
+    border-left-color: #ffd700;
+    background: linear-gradient(135deg, #fffacd 0%, #fff 100%);
+}
+
+.advice-item.theme-sparkle {
+    border-left-color: #ffa500;
+    background: linear-gradient(135deg, #fff5e6 0%, #fff 100%);
+}
+
+.advice-item.theme-energy {
+    border-left-color: #ff8c00;
+    background: linear-gradient(135deg, #fff0e0 0%, #fff 100%);
+}
+
+.advice-item.theme-mental {
+    border-left-color: #9370db;
+    background: linear-gradient(135deg, #f0e6ff 0%, #fff 100%);
+}
+
+.advice-item.theme-thought {
+    border-left-color: #6495ed;
+    background: linear-gradient(135deg, #e6f0ff 0%, #fff 100%);
+}
+
+.advice-item.theme-thinking {
+    border-left-color: #4682b4;
+    background: linear-gradient(135deg, #e0ebf5 0%, #fff 100%);
+}
+
+.advice-item.theme-wealth {
+    border-left-color: #228b22;
+    background: linear-gradient(135deg, #e6f5e6 0%, #fff 100%);
+}
+
+.advice-item.theme-home {
+    border-left-color: #8b4513;
+    background: linear-gradient(135deg, #f5ebe0 0%, #fff 100%);
+}
+
+.advice-item.theme-moon {
+    border-left-color: #191970;
+    background: linear-gradient(135deg, #e0e0f5 0%, #fff 100%);
+}
+
+.advice-item.theme-sun {
+    border-left-color: #ff8c00;
+    background: linear-gradient(135deg, #fff5e0 0%, #fff 100%);
+}
+
+.advice-item.theme-rainbow {
+    border-left-color: #ff69b4;
+    background: linear-gradient(135deg, #ffe8f3 0%, #fff5e0 50%, #e8f5ff 100%);
+}
+
+.advice-item.theme-couple {
+    border-left-color: #ff1493;
+    background: linear-gradient(135deg, #ffe0ec 0%, #fff 100%);
+}
+
+.advice-item.theme-halfmoon {
+    border-left-color: #4169e1;
+    background: linear-gradient(135deg, #e6e8ff 0%, #fff 100%);
+}
+
+.advice-item.theme-tip {
+    border-left-color: #ffa500;
+    background: linear-gradient(135deg, #fff8e0 0%, #fff 100%);
+}
+
+/* 기본 테마 */
+.advice-item.theme-default {
+    border-left-color: #667eea;
+    background: linear-gradient(135deg, #f0f2ff 0%, #fff 100%);
+}
+
+/* 궁합 메시지 컨테이너 스타일 개선 */
+#compatibility-message {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .compatibility-advice-detailed .advice-item {
+        padding: 12px 15px;
+        font-size: 14px;
+        margin: 8px 0;
+    }
+}
+
+/* 애니메이션 효과 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,164 @@
+/* ===================================
+   십성 관계 분석 카드 스타일 - 차분한 버전
+   =================================== */
+
+/* 십성 그리드 컨테이너 */
+.ten-gods-grid {
+    display: grid !important;
+    gap: 1.5rem !important;
+    margin-top: 1.5rem !important;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+}
+
+/* 십성 개별 카드 스타일 - 차분한 디자인 */
+.ten-god-item {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 12px !important;
+    padding: 1.5rem !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* 상단 색상 액센트 바 */
+.ten-god-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+}
+
+/* 호버 효과 - 부드럽게 */
+.ten-god-item:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+    border-color: #d1d5db !important;
+}
+
+/* 십성 이름 스타일 */
+.ten-god-item h4 {
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.5rem !important;
+    border-bottom: 1px solid #f3f4f6 !important;
+    color: #1f2937 !important;
+}
+
+/* 십성 설명 텍스트 */
+.ten-god-item p {
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+    margin: 0.5rem 0 !important;
+    color: #4b5563 !important;
+}
+
+.ten-god-item .positive {
+    margin-bottom: 0.8rem !important;
+    padding-left: 1.5rem !important;
+    position: relative !important;
+    color: #059669 !important;
+}
+
+.ten-god-item .positive::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+}
+
+.ten-god-item .negative {
+    margin-bottom: 0.8rem !important;
+    padding-left: 1.5rem !important;
+    position: relative !important;
+    color: #dc2626 !important;
+}
+
+.ten-god-item .negative::before {
+    content: '⚠';
+    position: absolute;
+    left: 0;
+    color: #f59e0b;
+}
+
+.ten-god-item .advice {
+    font-style: normal !important;
+    background: #f9fafb !important;
+    padding: 0.75rem !important;
+    border-radius: 6px !important;
+    margin-top: 0.8rem !important;
+    color: #374151 !important;
+    border-left: 3px solid #6366f1 !important;
+}
+
+/* 각 십성별 상단 색상 바 (차분한 색상) */
+.ten-god-item:nth-child(1)::before { background: linear-gradient(90deg, #6366f1, #8b5cf6); }
+.ten-god-item:nth-child(2)::before { background: linear-gradient(90deg, #ec4899, #f43f5e); }
+.ten-god-item:nth-child(3)::before { background: linear-gradient(90deg, #3b82f6, #06b6d4); }
+.ten-god-item:nth-child(4)::before { background: linear-gradient(90deg, #10b981, #14b8a6); }
+.ten-god-item:nth-child(5)::before { background: linear-gradient(90deg, #f59e0b, #f97316); }
+.ten-god-item:nth-child(6)::before { background: linear-gradient(90deg, #8b5cf6, #a855f7); }
+.ten-god-item:nth-child(7)::before { background: linear-gradient(90deg, #06b6d4, #0ea5e9); }
+.ten-god-item:nth-child(8)::before { background: linear-gradient(90deg, #84cc16, #22c55e); }
+.ten-god-item:nth-child(9)::before { background: linear-gradient(90deg, #f97316, #ea580c); }
+.ten-god-item:nth-child(10)::before { background: linear-gradient(90deg, #0ea5e9, #3b82f6); }
+
+/* 반응형 디자인 */
+@media (min-width: 768px) {
+    .ten-gods-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .ten-gods-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+@media (min-width: 1440px) {
+    .ten-gods-grid {
+        grid-template-columns: repeat(5, 1fr) !important;
+    }
+    
+    .ten-god-item {
+        padding: 1.25rem !important;
+    }
+}
+
+/* 다크모드 지원 (옵션) */
+@media (prefers-color-scheme: dark) {
+    .ten-god-item {
+        background: #1f2937 !important;
+        border-color: #374151 !important;
+    }
+    
+    .ten-god-item h4 {
+        color: #f9fafb !important;
+        border-bottom-color: #374151 !important;
+    }
+    
+    .ten-god-item p {
+        color: #d1d5db !important;
+    }
+    
+    .ten-god-item .positive {
+        color: #34d399 !important;
+    }
+    
+    .ten-god-item .negative {
+        color: #f87171 !important;
+    }
+    
+    .ten-god-item .advice {
+        background: #111827 !important;
+        color: #e5e7eb !important;
+        border-left-color: #8b5cf6 !important;
+    }
+}

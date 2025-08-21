@@ -1,0 +1,558 @@
+/**
+ * Saju Comparison Styles
+ */
+
+/* Floating Comparison Button */
+.btn-comparison.floating-btn {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #F59E0B, #EF4444);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.btn-comparison.floating-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+}
+
+/* Comparison Container */
+.comparison-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.comparison-container.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.comparison-container > div {
+    background: white;
+    height: 100vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Comparison Header */
+.comparison-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #F59E0B, #EF4444);
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.comparison-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.comparison-controls button {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.comparison-controls button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Profiles Grid */
+.profiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Profile Card */
+.profile-card {
+    background: white;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card.calculated {
+    border-color: #10B981;
+    background: linear-gradient(to bottom, #F0FDF4, white);
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.profile-name {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.btn-remove-profile {
+    background: #EF4444;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.btn-remove-profile:hover {
+    background: #DC2626;
+}
+
+/* Profile Input */
+.profile-input .input-group {
+    margin-bottom: 1rem;
+}
+
+.profile-input label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #374151;
+    font-size: 0.9rem;
+}
+
+.date-inputs {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.date-inputs select {
+    flex: 1;
+}
+
+.profile-input select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 6px;
+    background: white;
+}
+
+.gender-inputs {
+    display: flex;
+    gap: 1rem;
+}
+
+.gender-inputs label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.btn-calculate-profile {
+    width: 100%;
+    padding: 0.75rem;
+    background: #3B82F6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-calculate-profile:hover {
+    background: #2563EB;
+}
+
+/* Profile Result */
+.profile-result {
+    padding: 1rem;
+    background: #F9FAFB;
+    border-radius: 8px;
+}
+
+.result-summary .birth-info {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: #6B7280;
+}
+
+.pillars-display {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+
+.pillar {
+    text-align: center;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #E5E7EB;
+}
+
+.pillar-title {
+    font-size: 0.75rem;
+    color: #6B7280;
+    margin-bottom: 0.25rem;
+}
+
+.stem, .branch {
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: 'Nanum Myeongjo', serif;
+}
+
+.stem.day-master {
+    color: #DC2626;
+}
+
+/* Elements Mini Display */
+.elements-bars-mini {
+    margin-top: 1rem;
+}
+
+.element-bar-mini {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.element-name {
+    width: 30px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.bar-container {
+    flex: 1;
+    height: 16px;
+    background: #E5E7EB;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+.element-count {
+    width: 20px;
+    text-align: right;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* Comparison Tabs */
+.comparison-tabs {
+    padding: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.tabs-header {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #E5E7EB;
+}
+
+.tab-btn {
+    padding: 0.75rem 1.5rem;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: #6B7280;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    color: #374151;
+}
+
+.tab-btn.active {
+    color: #F59E0B;
+    border-bottom-color: #F59E0B;
+}
+
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* Overview Tab */
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.overview-card {
+    background: #F9FAFB;
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid #E5E7EB;
+}
+
+.overview-card h4 {
+    margin: 0 0 1rem 0;
+    color: #374151;
+}
+
+.overview-details .detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.detail-item .label {
+    color: #6B7280;
+}
+
+.detail-item .value {
+    font-weight: 600;
+    color: #374151;
+}
+
+/* Compatibility Table */
+.compatibility-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.compatibility-table th,
+.compatibility-table td {
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid #E5E7EB;
+}
+
+.compatibility-table thead th {
+    background: #F9FAFB;
+    font-weight: 600;
+    color: #374151;
+}
+
+.compatibility-table tbody th {
+    background: #F9FAFB;
+    font-weight: 600;
+    color: #374151;
+}
+
+.compatibility-table td.self {
+    background: #F3F4F6;
+    color: #9CA3AF;
+}
+
+.compatibility-table td.excellent {
+    background: #D1FAE5;
+    color: #065F46;
+    font-weight: 600;
+}
+
+.compatibility-table td.good {
+    background: #FEF3C7;
+    color: #92400E;
+    font-weight: 600;
+}
+
+.compatibility-table td.average {
+    background: #FEE2E2;
+    color: #991B1B;
+    font-weight: 600;
+}
+
+/* Detailed Table */
+.detailed-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.detailed-table th,
+.detailed-table td {
+    padding: 0.75rem;
+    border: 1px solid #E5E7EB;
+}
+
+.detailed-table thead th {
+    background: #F9FAFB;
+    font-weight: 600;
+    color: #374151;
+}
+
+.detailed-table tbody th {
+    background: #F9FAFB;
+    font-weight: 600;
+    color: #374151;
+    text-align: left;
+}
+
+.detailed-table td {
+    text-align: center;
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 1.1rem;
+}
+
+/* Charts Container */
+#elements-comparison-chart {
+    max-width: 500px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+/* Notification */
+.comparison-notification {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #374151;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    z-index: 2000;
+    transition: top 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.comparison-notification.show {
+    top: 20px;
+}
+
+/* No Data Message */
+.no-data {
+    text-align: center;
+    padding: 2rem;
+    color: #6B7280;
+    font-style: italic;
+}
+
+/* Loading State */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: #6B7280;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .profiles-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .comparison-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .comparison-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .profiles-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    
+    .tabs-header {
+        flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+        flex: 1;
+        min-width: 100px;
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-comparison.floating-btn {
+        bottom: 60px;
+        right: 10px;
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .comparison-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .pillars-display {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

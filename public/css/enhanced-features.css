@@ -1,0 +1,412 @@
+/* 사주 명식 개선 스타일 - 수정 버전 */
+.saju-table {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.pillar {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: visible; /* 변경: hidden -> visible */
+    min-height: 280px; /* 최소 높이 추가 */
+}
+
+.pillar:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.day-pillar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.day-pillar .pillar-title,
+.day-pillar .stem-korean,
+.day-pillar .branch-korean,
+.day-pillar .stem-element,
+.day-pillar .branch-animal {
+    color: white !important;
+}
+
+.pillar-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    position: relative; /* 툴팁을 위한 relative 위치 */
+}
+
+.pillar-info {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: rgba(107, 102, 255, 0.2);
+    color: #6B66FF;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    cursor: help;
+    position: relative; /* 툴팁 기준점 */
+}
+
+.day-pillar .pillar-info {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+/* 천간 스타일 */
+.heavenly-stem {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0.25rem 0;
+    font-family: 'Noto Serif KR', serif;
+    line-height: 1.2;
+}
+
+.stem-korean {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin: 0.25rem 0;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.stem-element {
+    display: inline-block;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(107, 102, 255, 0.1);
+    color: #6B66FF;
+    border-radius: 20px;
+    margin: 0.25rem 0;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+/* 지지 스타일 */
+.earthly-branch {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #c0392b;
+    margin: 0.25rem 0;
+    font-family: 'Noto Serif KR', serif;
+    line-height: 1.2;
+}
+
+.branch-korean {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin: 0.25rem 0;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.branch-animal {
+    display: inline-block;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border-radius: 20px;
+    margin: 0.25rem 0;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+    .saju-table {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .pillar {
+        padding: 1rem;
+        min-height: 250px;
+    }
+    
+    .heavenly-stem,
+    .earthly-branch {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .saju-table {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 개선된 툴팁 스타일 */
+.pillar-info[title] {
+    position: relative;
+}
+
+.pillar-info[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: calc(100% + 10px); /* 위로 더 띄움 */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.95);
+    color: white;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    border-radius: 8px;
+    white-space: normal; /* 줄바꿈 허용 */
+    width: 250px; /* 고정 너비 */
+    max-width: 250px;
+    z-index: 10000; /* z-index 높임 */
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.pillar-info[title]:hover::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid rgba(0, 0, 0, 0.95);
+    z-index: 10001;
+}
+
+/* 첫 번째와 마지막 기둥의 툴팁 위치 조정 */
+.pillar:first-child .pillar-info[title]:hover::after {
+    left: 0;
+    transform: translateX(0);
+}
+
+.pillar:last-child .pillar-info[title]:hover::after {
+    left: auto;
+    right: 0;
+    transform: translateX(0);
+}
+
+/* 한자 설명 박스 */
+.saju-explanation {
+    background: #f8f9fa;
+    border-left: 4px solid #6B66FF;
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    border-radius: 8px;
+}
+
+.saju-explanation h4 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.saju-explanation p {
+    color: #5a6c7d;
+    line-height: 1.6;
+    margin: 0.5rem 0;
+}
+
+.explanation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.explanation-item {
+    padding: 0.75rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.explanation-item strong {
+    color: #6B66FF;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.explanation-item span {
+    color: #5a6c7d;
+    font-size: 0.9rem;
+}
+
+/* 가이드 버튼 스타일 */
+.guide-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(107, 102, 255, 0.3);
+}
+
+.guide-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(107, 102, 255, 0.4);
+}
+
+.guide-btn span {
+    font-weight: 500;
+}
+
+/* 섹션 타이틀 수정 */
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* 연도별 운세 차트 컨테이너 수정 */
+#fortune-timeline-section {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+#fortune-timeline-section h3 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.chart-container {
+    position: relative;
+    height: 300px; /* 고정 높이 */
+    width: 100%;
+    margin: 1.5rem 0;
+}
+
+#fortune-chart {
+    max-width: 100%;
+    height: 100%;
+}
+
+/* 운세 타임라인 년도 표시 */
+.fortune-years {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.fortune-year-item {
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+    border-left: 3px solid #6B66FF;
+}
+
+.fortune-year-item .year {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.fortune-year-item .fortune-score {
+    font-size: 1.2rem;
+    color: #6B66FF;
+}
+
+@media (max-width: 768px) {
+    .guide-btn {
+        margin-left: 0;
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .section-title {
+        flex-direction: column;
+    }
+    
+    .chart-container {
+        height: 250px;
+    }
+}/* 운세 타임라인 추가 스타일 */
+.fortune-summary {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.fortune-year-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.stat-item {
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid transparent;
+}
+
+.stat-item.best-year {
+    border-color: #4CAF50;
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.05) 0%, rgba(76, 175, 80, 0.1) 100%);
+}
+
+.stat-item.caution-year {
+    border-color: #FF9800;
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.05) 0%, rgba(255, 152, 0, 0.1) 100%);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.1rem;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .fortune-year-stats {
+        grid-template-columns: 1fr;
+    }
+}

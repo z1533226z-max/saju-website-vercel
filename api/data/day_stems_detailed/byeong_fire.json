@@ -1,0 +1,275 @@
+{
+  "name": "병화 (丙火)",
+  "element": "화 (火)",
+  "polarity": "양 (陽)",
+  
+  "basic": {
+    "nature": "태양, 큰 불",
+    "characteristics": [
+      "밝고 활발한 성격",
+      "열정적이고 적극적",
+      "리더십과 카리스마",
+      "낙천적이고 긍정적",
+      "관대하고 포용력 있음"
+    ],
+    "strengths": [
+      "뛰어난 에너지와 활력",
+      "강한 리더십과 영향력",
+      "긍정적 사고와 낙천성",
+      "창의력과 혁신성",
+      "대인관계 능력"
+    ],
+    "weaknesses": [
+      "성급함과 조급증",
+      "과시욕과 자만심",
+      "감정 기복이 심함",
+      "인내심 부족",
+      "세심함 부족"
+    ]
+  },
+  
+  "personality_detailed": {
+    "core_traits": {
+      "radiance": "태양처럼 밝은 에너지로 주변을 환하게 만들며, 긍정적인 영향력을 발산합니다.",
+      "passion": "모든 일에 열정적으로 임하며, 강한 추진력으로 목표를 달성합니다.",
+      "generosity": "관대하고 포용력이 있어 많은 사람들을 품을 수 있습니다.",
+      "leadership": "천성적인 리더로서 사람들을 이끌고 동기부여하는 능력이 탁월합니다.",
+      "optimism": "어떤 상황에서도 긍정적인 면을 보며 희망을 잃지 않습니다."
+    },
+    "emotional_patterns": {
+      "expression": "감정을 즉각적이고 직접적으로 표현하며 숨기지 못합니다.",
+      "stress_response": "스트레스를 받으면 폭발적으로 반응하거나 과도하게 활동적이 됩니다.",
+      "joy_triggers": "주목받고 인정받을 때, 목표를 달성했을 때 큰 기쁨을 느낍니다.",
+      "anger_triggers": "무시당하거나 부당한 대우를 받을 때 분노합니다.",
+      "coping_mechanisms": "운동이나 활동적인 취미를 통해 에너지를 발산합니다."
+    },
+    "behavioral_tendencies": {
+      "decision_making": "직관적이고 빠른 결정을 내리는 스타일",
+      "communication": "열정적이고 설득력 있는 화법",
+      "conflict_resolution": "정면 돌파형 해결 방식",
+      "work_style": "다이나믹하고 창의적인 업무 처리",
+      "social_interaction": "활발하고 사교적이며 파티의 중심"
+    },
+    "growth_areas": {
+      "patience": "인내심을 기르고 장기적 관점 개발",
+      "detail_orientation": "세부 사항에 대한 주의력 향상",
+      "emotional_control": "감정 조절 능력과 안정성 확보",
+      "humility": "겸손함과 타인에 대한 배려심 증진",
+      "consistency": "일관성 있는 노력과 끈기 개발"
+    }
+  },
+  
+  "ten_gods_interpretation": {
+    "비견_겁재": {
+      "positive": "동료들과 활발한 경쟁을 통해 서로 발전하며, 팀의 에너지를 높입니다.",
+      "negative": "과도한 경쟁심과 자기 과시로 갈등을 일으킬 수 있습니다.",
+      "advice": "건전한 경쟁과 협력의 균형을 맞추고, 타인의 빛나는 면도 인정하세요."
+    },
+    "식신_상관": {
+      "positive": "창의적인 아이디어가 샘솟으며, 표현력이 뛰어나 예술이나 미디어 분야에서 성공합니다.",
+      "negative": "과도한 자기표현과 비판으로 인간관계가 어려워질 수 있습니다.",
+      "advice": "창의성을 건설적으로 활용하고, 타인의 감정을 배려하는 표현을 익히세요."
+    },
+    "정재_편재": {
+      "positive": "활발한 경제 활동과 사업 수완으로 큰 재물을 모을 수 있습니다.",
+      "negative": "과시적 소비와 투기적 투자로 재물을 잃을 위험이 있습니다.",
+      "advice": "계획적인 재무 관리와 안정적인 투자를 병행하세요."
+    },
+    "정관_편관": {
+      "positive": "리더십을 인정받아 높은 지위에 오르고 영향력을 행사합니다.",
+      "negative": "권위에 대한 도전이나 과도한 권력욕으로 문제가 생길 수 있습니다.",
+      "advice": "책임감 있는 리더십과 섬기는 자세를 균형 있게 유지하세요."
+    },
+    "정인_편인": {
+      "positive": "학습 능력이 빠르고 다양한 분야에 관심을 가져 박학다식합니다.",
+      "negative": "깊이 있는 학습보다 표면적 지식에 그칠 수 있습니다.",
+      "advice": "한 분야를 깊이 있게 탐구하고 전문성을 기르세요."
+    }
+  },
+  
+  "career_detailed": {
+    "suitable_fields": [
+      "엔터테인먼트: 연예인, 방송인, MC, 프로듀서",
+      "리더십 포지션: CEO, 정치인, 사회운동가",
+      "미디어 및 광고: 광고 기획자, 마케터, PR 전문가",
+      "스포츠: 운동선수, 코치, 스포츠 해설가",
+      "영업 및 마케팅: 영업 관리자, 브랜드 매니저",
+      "교육 및 강연: 동기부여 강사, 교육 기업가",
+      "창업: 스타트업 창업자, 프랜차이즈 사업가"
+    ],
+    "work_environment": {
+      "ideal": "역동적이고 변화가 많은 창의적 환경",
+      "challenging": "단조롭고 반복적인 루틴 업무",
+      "team_dynamics": "팀을 이끌고 동기부여하는 리더 역할",
+      "growth_path": "빠른 성장과 도전적인 목표가 있는 환경"
+    },
+    "entrepreneurship": {
+      "potential": "매우 높음 - 열정과 리더십이 창업에 유리",
+      "suitable_business": "엔터테인먼트, F&B, 이벤트, 마케팅 에이전시",
+      "challenges": "인내심 부족, 세부 관리 소홀",
+      "success_factors": "혁신적 아이디어, 네트워킹, 빠른 실행력"
+    },
+    "career_development": {
+      "early_career": "다양한 경험을 통해 자신의 열정 분야 발견",
+      "mid_career": "리더십 포지션에서 영향력 확대",
+      "late_career": "멘토링과 후배 양성에 에너지 집중",
+      "retirement": "사회 활동과 봉사를 통한 지속적 기여"
+    }
+  },
+  
+  "love_marriage": {
+    "romantic_style": {
+      "approach": "적극적이고 열정적인 구애, 로맨틱한 이벤트",
+      "expression": "화려하고 드라마틱한 사랑 표현",
+      "commitment": "열정적이지만 변화를 추구하는 사랑",
+      "expectations": "상대방도 같은 열정과 에너지를 기대"
+    },
+    "ideal_partner": {
+      "personality": "자신을 이해하고 지지하면서도 독립적인 사람",
+      "values": "긍정적이고 활발하며 모험을 즐기는 사람",
+      "compatibility": "신금, 계수, 기토와 궁합이 좋음",
+      "challenges": "임수와는 충돌 가능성"
+    },
+    "marriage_life": {
+      "strengths": "활기차고 즐거운 가정 분위기 조성",
+      "challenges": "변덕스러움, 가정보다 외부 활동 중시",
+      "family_dynamics": "자유롭고 개방적인 가족 문화",
+      "conflict_areas": "일관성 부족과 감정 기복"
+    },
+    "relationship_advice": {
+      "stability": "관계의 안정성을 위해 일관된 노력을 기울이세요",
+      "attention": "배우자에게 충분한 관심과 시간을 할애하세요",
+      "patience": "상대방의 속도에 맞추는 인내심을 기르세요",
+      "appreciation": "일상의 소소한 것들에도 감사를 표현하세요"
+    }
+  },
+  
+  "wealth_detailed": {
+    "financial_traits": {
+      "earning_ability": "높은 수익 창출 능력과 다양한 수입원",
+      "spending_habits": "충동적이고 과시적인 소비 성향",
+      "saving_tendency": "저축보다는 투자와 소비 선호",
+      "investment_style": "공격적이고 위험을 감수하는 투자"
+    },
+    "wealth_accumulation": {
+      "methods": [
+        "사업과 창업을 통한 큰 수익",
+        "인맥과 네트워킹을 활용한 기회 포착",
+        "창의적 아이디어의 사업화",
+        "주식이나 벤처 투자"
+      ],
+      "timing": "젊은 시절부터 큰 기회와 변동",
+      "challenges": "충동적 투자, 과소비, 재무 관리 부실"
+    },
+    "financial_luck": {
+      "good_periods": "여름, 사오미 월",
+      "challenging_periods": "겨울, 해자축 월",
+      "lucky_directions": "남쪽, 남동쪽",
+      "lucky_numbers": "2, 7, 9"
+    },
+    "money_management": {
+      "strengths": "기회 포착 능력, 큰 거래 성사",
+      "weaknesses": "세부 관리 소홀, 충동 구매",
+      "advice": "전문가의 도움을 받아 체계적 재무 관리 구축"
+    }
+  },
+  
+  "health_detailed": {
+    "physical_constitution": {
+      "strong_areas": "심장, 순환계, 소장",
+      "weak_areas": "혈압, 신경계, 눈",
+      "common_issues": [
+        "고혈압, 심장 질환",
+        "눈의 피로, 시력 저하",
+        "열사병, 일사병",
+        "번아웃 증후군"
+      ]
+    },
+    "mental_health": {
+      "stress_factors": "과도한 활동, 인정 욕구, 경쟁 압박",
+      "emotional_issues": "조울증, 과잉 행동, 충동 조절 장애",
+      "coping_strategies": [
+        "규칙적인 휴식과 이완",
+        "명상과 요가를 통한 내면 평화",
+        "창의적 활동을 통한 에너지 발산",
+        "자연 속에서의 충전"
+      ]
+    },
+    "lifestyle_recommendations": {
+      "exercise": "수영, 사이클링 등 심혈관 운동",
+      "diet": [
+        "수분 섭취 충분히 하기",
+        "신선한 과일과 채소",
+        "매운 음식과 알코올 절제",
+        "규칙적인 식사 시간"
+      ],
+      "sleep": "충분한 수면과 낮잠으로 에너지 충전",
+      "stress_management": "취미 활동과 여행을 통한 스트레스 해소"
+    },
+    "preventive_care": {
+      "regular_checkups": "심혈관 검사, 안과 검진, 스트레스 검사",
+      "early_warning_signs": "두통, 가슴 답답함, 시력 저하",
+      "holistic_approach": "에너지 균형을 위한 전인적 건강 관리"
+    }
+  },
+  
+  "social_relations": {
+    "friendship_patterns": {
+      "quantity": "넓고 다양한 인맥 형성",
+      "quality": "표면적 관계가 많고 깊은 우정은 선택적",
+      "loyalty": "친구를 위해 열정적으로 돕는 의리",
+      "maintenance": "이벤트와 모임을 통한 관계 유지"
+    },
+    "professional_relationships": {
+      "leadership": "카리스마 있는 리더로 팀을 이끔",
+      "influence": "강한 영향력으로 조직 문화 형성",
+      "networking": "적극적인 네트워킹과 인맥 확장",
+      "reputation": "열정적이고 추진력 있는 사람으로 인식"
+    },
+    "family_dynamics": {
+      "parental_role": "재미있고 활기찬 부모",
+      "sibling_relations": "형제자매의 리더이자 보호자",
+      "extended_family": "가족 모임의 중심이자 분위기 메이커",
+      "traditions": "새로운 가족 전통 만들기"
+    },
+    "community_involvement": {
+      "leadership_roles": "지역 사회 리더나 운동가",
+      "event_organization": "축제나 이벤트 기획 및 주도",
+      "public_speaking": "대중 앞에서 연설과 강연",
+      "inspiration": "긍정적 에너지로 공동체 활성화"
+    }
+  },
+  
+  "spiritual_growth": {
+    "life_purpose": {
+      "mission": "빛과 열정으로 세상을 밝히고 사람들에게 희망 전달",
+      "values": "열정, 진실, 용기, 기쁨, 성장",
+      "legacy": "긍정적 변화와 영감을 주는 리더십"
+    },
+    "personal_development": {
+      "self_mastery": "내면의 불꽃을 조절하고 지혜롭게 사용",
+      "balance": "열정과 평정심의 균형 찾기",
+      "depth": "표면적 화려함을 넘어 깊이 있는 내면 개발",
+      "service": "개인의 빛을 타인을 위해 사용하기"
+    },
+    "spiritual_practices": {
+      "meditation": "활동적 명상과 움직이는 명상",
+      "creativity": "창의적 표현을 통한 영적 성장",
+      "celebration": "삶의 기쁨을 축하하고 감사하기",
+      "sharing": "에너지와 열정을 나누는 봉사"
+    },
+    "life_lessons": {
+      "patience": "모든 것에는 때가 있음을 배우기",
+      "humility": "겸손함 속에서 진정한 위대함 발견",
+      "depth": "화려함보다 진정성 추구하기",
+      "sustainability": "지속 가능한 열정 유지하기",
+      "wisdom": "열정에 지혜를 더하기"
+    },
+    "karmic_path": {
+      "past_influences": "과거의 성공과 실패에서 배운 교훈",
+      "present_challenges": "자아도취와 과시욕 극복",
+      "future_potential": "영감을 주는 리더이자 변화의 촉매자",
+      "soul_evolution": "개인의 빛을 통한 집단 의식의 고양"
+    }
+  }
+}

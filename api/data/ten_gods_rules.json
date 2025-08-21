@@ -1,0 +1,451 @@
+{
+  "ten_gods_rules": {
+    "description": "십성(Ten Gods) 판단 규칙 및 관계 정의",
+    "version": "1.0.0",
+    "last_updated": "2024-01-08"
+  },
+  
+  "heavenly_stems": {
+    "갑": {"element": "목", "polarity": "양", "english": "Gap", "number": 1},
+    "을": {"element": "목", "polarity": "음", "english": "Eul", "number": 2},
+    "병": {"element": "화", "polarity": "양", "english": "Byeong", "number": 3},
+    "정": {"element": "화", "polarity": "음", "english": "Jeong", "number": 4},
+    "무": {"element": "토", "polarity": "양", "english": "Mu", "number": 5},
+    "기": {"element": "토", "polarity": "음", "english": "Gi", "number": 6},
+    "경": {"element": "금", "polarity": "양", "english": "Gyeong", "number": 7},
+    "신": {"element": "금", "polarity": "음", "english": "Sin", "number": 8},
+    "임": {"element": "수", "polarity": "양", "english": "Im", "number": 9},
+    "계": {"element": "수", "polarity": "음", "english": "Gye", "number": 10}
+  },
+  
+  "element_cycle": {
+    "generating": {
+      "description": "상생 관계 - 생성하는 관계",
+      "cycle": ["목", "화", "토", "금", "수", "목"],
+      "relationships": {
+        "목": "화",
+        "화": "토",
+        "토": "금",
+        "금": "수",
+        "수": "목"
+      }
+    },
+    "controlling": {
+      "description": "상극 관계 - 극하는 관계",
+      "cycle": ["목", "토", "수", "화", "금", "목"],
+      "relationships": {
+        "목": "토",
+        "토": "수",
+        "수": "화",
+        "화": "금",
+        "금": "목"
+      }
+    }
+  },
+  
+  "ten_gods_mapping": {
+    "갑": {
+      "갑": "비견", "을": "겁재", "병": "식신", "정": "상관",
+      "무": "편재", "기": "정재", "경": "편관", "신": "정관",
+      "임": "편인", "계": "정인"
+    },
+    "을": {
+      "갑": "겁재", "을": "비견", "병": "상관", "정": "식신",
+      "무": "정재", "기": "편재", "경": "정관", "신": "편관",
+      "임": "정인", "계": "편인"
+    },
+    "병": {
+      "갑": "편인", "을": "정인", "병": "비견", "정": "겁재",
+      "무": "식신", "기": "상관", "경": "편재", "신": "정재",
+      "임": "편관", "계": "정관"
+    },
+    "정": {
+      "갑": "정인", "을": "편인", "병": "겁재", "정": "비견",
+      "무": "상관", "기": "식신", "경": "정재", "신": "편재",
+      "임": "정관", "계": "편관"
+    },
+    "무": {
+      "갑": "편관", "을": "정관", "병": "편인", "정": "정인",
+      "무": "비견", "기": "겁재", "경": "식신", "신": "상관",
+      "임": "편재", "계": "정재"
+    },
+    "기": {
+      "갑": "정관", "을": "편관", "병": "정인", "정": "편인",
+      "무": "겁재", "기": "비견", "경": "상관", "신": "식신",
+      "임": "정재", "계": "편재"
+    },
+    "경": {
+      "갑": "편재", "을": "정재", "병": "편관", "정": "정관",
+      "무": "편인", "기": "정인", "경": "비견", "신": "겁재",
+      "임": "식신", "계": "상관"
+    },
+    "신": {
+      "갑": "정재", "을": "편재", "병": "정관", "정": "편관",
+      "무": "정인", "기": "편인", "경": "겁재", "신": "비견",
+      "임": "상관", "계": "식신"
+    },
+    "임": {
+      "갑": "식신", "을": "상관", "병": "편재", "정": "정재",
+      "무": "편관", "기": "정관", "경": "편인", "신": "정인",
+      "임": "비견", "계": "겁재"
+    },
+    "계": {
+      "갑": "상관", "을": "식신", "병": "정재", "정": "편재",
+      "무": "정관", "기": "편관", "경": "정인", "신": "편인",
+      "임": "겁재", "계": "비견"
+    }
+  },
+  
+  "polarity_rules": {
+    "same_polarity": {
+      "description": "같은 음양 관계 - 편(偏) 십성",
+      "types": ["비견", "편재", "편관", "편인", "식신"]
+    },
+    "different_polarity": {
+      "description": "다른 음양 관계 - 정(正) 십성",
+      "types": ["겁재", "정재", "정관", "정인", "상관"]
+    },
+    "determination_rule": {
+      "same_element_same_polarity": "비견",
+      "same_element_different_polarity": "겁재",
+      "i_generate_same_polarity": "식신",
+      "i_generate_different_polarity": "상관",
+      "i_control_same_polarity": "편재",
+      "i_control_different_polarity": "정재",
+      "controls_me_same_polarity": "편관",
+      "controls_me_different_polarity": "정관",
+      "generates_me_same_polarity": "편인",
+      "generates_me_different_polarity": "정인"
+    }
+  },
+  
+  "ten_gods_attributes": {
+    "비견": {
+      "chinese": "比肩",
+      "english": "Companion",
+      "category": "비겁",
+      "category_english": "self",
+      "element_relationship": "same",
+      "polarity_relationship": "same",
+      "basic_meaning": {
+        "positive": ["독립심", "자신감", "경쟁력", "추진력", "리더십"],
+        "negative": ["고집", "자기중심적", "독선적", "경쟁심 과다"],
+        "life_areas": ["형제", "동료", "경쟁자", "친구", "동업자"]
+      },
+      "personality_traits": {
+        "strengths": "독립적이고 자신감이 있으며 추진력이 강함",
+        "weaknesses": "고집이 세고 타협을 어려워함",
+        "social": "동료와의 경쟁을 통해 성장"
+      },
+      "career_implications": "독립적인 사업이나 프리랜서, 개인 사업에 적합",
+      "wealth_implications": "자수성가형, 독립적인 재산 형성",
+      "relationship_implications": "독립적인 관계, 서로 존중하는 파트너십"
+    },
+    
+    "겁재": {
+      "chinese": "劫財",
+      "english": "Rob Wealth",
+      "category": "비겁",
+      "category_english": "self",
+      "element_relationship": "same",
+      "polarity_relationship": "different",
+      "basic_meaning": {
+        "positive": ["진취성", "도전정신", "모험심", "개척정신"],
+        "negative": ["재물 손실", "경쟁 과다", "불안정", "투기성"],
+        "life_areas": ["경쟁자", "라이벌", "도전", "모험", "변화"]
+      },
+      "personality_traits": {
+        "strengths": "도전적이고 진취적이며 개척정신이 강함",
+        "weaknesses": "안정성 부족, 투기적 성향",
+        "social": "경쟁을 통한 성장, 라이벌 관계"
+      },
+      "career_implications": "경쟁이 치열한 분야, 벤처, 스타트업",
+      "wealth_implications": "큰 돈을 벌기도 하지만 잃기도 쉬움",
+      "relationship_implications": "열정적이지만 불안정한 관계 가능성"
+    },
+    
+    "식신": {
+      "chinese": "食神",
+      "english": "Eating God",
+      "category": "식상",
+      "category_english": "output",
+      "element_relationship": "generates",
+      "polarity_relationship": "same",
+      "basic_meaning": {
+        "positive": ["재능", "창의성", "예술성", "표현력", "여유"],
+        "negative": ["나태", "방종", "산만함", "무계획성"],
+        "life_areas": ["자녀", "창작", "예술", "요리", "여가"]
+      },
+      "personality_traits": {
+        "strengths": "창의적이고 예술적이며 표현력이 풍부",
+        "weaknesses": "산만하고 계획성 부족",
+        "social": "즐겁고 편안한 인간관계"
+      },
+      "career_implications": "예술, 요리, 교육, 엔터테인먼트 분야",
+      "wealth_implications": "재능을 통한 수익 창출",
+      "relationship_implications": "낭만적이고 즐거운 관계"
+    },
+    
+    "상관": {
+      "chinese": "傷官",
+      "english": "Hurting Officer",
+      "category": "식상",
+      "category_english": "output",
+      "element_relationship": "generates",
+      "polarity_relationship": "different",
+      "basic_meaning": {
+        "positive": ["혁신", "개혁", "비판정신", "창의성", "리더십"],
+        "negative": ["반항", "비판적", "권위 도전", "충돌"],
+        "life_areas": ["혁신", "개혁", "비판", "도전", "변화"]
+      },
+      "personality_traits": {
+        "strengths": "혁신적이고 창의적이며 개혁적",
+        "weaknesses": "비판적이고 반항적",
+        "social": "기존 질서에 도전"
+      },
+      "career_implications": "개혁가, 혁신가, 창업가, 비평가",
+      "wealth_implications": "혁신을 통한 부의 창출",
+      "relationship_implications": "도전적이고 자극적인 관계"
+    },
+    
+    "정재": {
+      "chinese": "正財",
+      "english": "Direct Wealth",
+      "category": "재성",
+      "category_english": "wealth",
+      "element_relationship": "controls",
+      "polarity_relationship": "different",
+      "basic_meaning": {
+        "positive": ["안정적 재물", "성실", "절약", "계획성"],
+        "negative": ["인색", "보수적", "융통성 부족"],
+        "life_areas": ["정규 수입", "월급", "저축", "아내(남성)"]
+      },
+      "personality_traits": {
+        "strengths": "성실하고 계획적이며 안정 추구",
+        "weaknesses": "보수적이고 인색할 수 있음",
+        "social": "신뢰할 수 있는 관계"
+      },
+      "career_implications": "안정적인 직장, 공무원, 은행원",
+      "wealth_implications": "꾸준한 저축과 안정적 재산 증식",
+      "relationship_implications": "안정적이고 헌신적인 관계"
+    },
+    
+    "편재": {
+      "chinese": "偏財",
+      "english": "Indirect Wealth",
+      "category": "재성",
+      "category_english": "wealth",
+      "element_relationship": "controls",
+      "polarity_relationship": "same",
+      "basic_meaning": {
+        "positive": ["의외의 재물", "사업수완", "투자", "기회포착"],
+        "negative": ["투기", "불안정", "낭비", "변덕"],
+        "life_areas": ["부수입", "사업", "투자", "의외의 소득"]
+      },
+      "personality_traits": {
+        "strengths": "사업 수완이 있고 기회 포착 능력 뛰어남",
+        "weaknesses": "투기적이고 불안정할 수 있음",
+        "social": "폭넓은 인맥과 사교성"
+      },
+      "career_implications": "사업가, 투자가, 영업, 무역",
+      "wealth_implications": "큰 수익 가능하나 변동성 있음",
+      "relationship_implications": "자유롭고 다양한 관계"
+    },
+    
+    "정관": {
+      "chinese": "正官",
+      "english": "Direct Officer",
+      "category": "관성",
+      "category_english": "power",
+      "element_relationship": "controlled_by",
+      "polarity_relationship": "different",
+      "basic_meaning": {
+        "positive": ["명예", "지위", "책임감", "리더십", "정의"],
+        "negative": ["압박", "스트레스", "부담", "권위주의"],
+        "life_areas": ["직위", "명예", "남편(여성)", "상사", "법률"]
+      },
+      "personality_traits": {
+        "strengths": "책임감 있고 정의롭고 리더십 있음",
+        "weaknesses": "권위적이고 압박감을 느낄 수 있음",
+        "social": "존경받는 위치"
+      },
+      "career_implications": "관리직, 공직, 법조계, 대기업",
+      "wealth_implications": "지위를 통한 안정적 수입",
+      "relationship_implications": "책임감 있는 관계"
+    },
+    
+    "편관": {
+      "chinese": "偏官",
+      "english": "Seven Killings",
+      "category": "관성",
+      "category_english": "power",
+      "element_relationship": "controlled_by",
+      "polarity_relationship": "same",
+      "basic_meaning": {
+        "positive": ["추진력", "결단력", "개척", "용기", "돌파력"],
+        "negative": ["폭력성", "극단적", "파괴적", "독재적"],
+        "life_areas": ["권력", "군대", "경찰", "위기", "도전"]
+      },
+      "personality_traits": {
+        "strengths": "강한 추진력과 결단력, 위기 극복 능력",
+        "weaknesses": "극단적이고 폭력적일 수 있음",
+        "social": "카리스마 있는 리더"
+      },
+      "career_implications": "군인, 경찰, CEO, 위기관리전문가",
+      "wealth_implications": "큰 성공 또는 큰 실패",
+      "relationship_implications": "열정적이지만 격렬한 관계"
+    },
+    
+    "정인": {
+      "chinese": "正印",
+      "english": "Direct Resource",
+      "category": "인성",
+      "category_english": "resource",
+      "element_relationship": "generated_by",
+      "polarity_relationship": "different",
+      "basic_meaning": {
+        "positive": ["학문", "지혜", "보호", "교육", "전통"],
+        "negative": ["의존성", "나태", "비현실적", "수동적"],
+        "life_areas": ["어머니", "교육", "학문", "전통", "보호"]
+      },
+      "personality_traits": {
+        "strengths": "지적이고 학구적이며 전통을 중시",
+        "weaknesses": "의존적이고 수동적일 수 있음",
+        "social": "신뢰받는 조언자"
+      },
+      "career_implications": "교육자, 학자, 연구원, 종교인",
+      "wealth_implications": "지식과 명예를 통한 수입",
+      "relationship_implications": "안정적이고 보호받는 관계"
+    },
+    
+    "편인": {
+      "chinese": "偏印",
+      "english": "Indirect Resource",
+      "category": "인성",
+      "category_english": "resource",
+      "element_relationship": "generated_by",
+      "polarity_relationship": "same",
+      "basic_meaning": {
+        "positive": ["직관", "영감", "특수재능", "독창성", "철학"],
+        "negative": ["고독", "편협", "비밀스러움", "소외"],
+        "life_areas": ["특수기술", "종교", "철학", "신비", "직관"]
+      },
+      "personality_traits": {
+        "strengths": "직관적이고 영적이며 독창적",
+        "weaknesses": "고독하고 편협할 수 있음",
+        "social": "독특하고 신비로운 인물"
+      },
+      "career_implications": "예술가, 철학자, 종교인, 특수기술자",
+      "wealth_implications": "특수한 재능을 통한 수입",
+      "relationship_implications": "영적이고 특별한 관계"
+    }
+  },
+  
+  "category_analysis": {
+    "비겁": {
+      "english": "self",
+      "description": "자아와 독립성",
+      "includes": ["비견", "겁재"],
+      "balanced": "적절한 자신감과 독립성",
+      "excess": "지나친 자기중심, 고집, 경쟁심",
+      "deficiency": "자신감 부족, 의존성, 주체성 결여"
+    },
+    "식상": {
+      "english": "output",
+      "description": "표현과 창의성",
+      "includes": ["식신", "상관"],
+      "balanced": "창의적이고 표현력 풍부",
+      "excess": "산만함, 무절제, 반항적",
+      "deficiency": "표현력 부족, 창의성 결여"
+    },
+    "재성": {
+      "english": "wealth",
+      "description": "재물과 물질",
+      "includes": ["정재", "편재"],
+      "balanced": "안정적인 재물 운용",
+      "excess": "물질만능주의, 인색함",
+      "deficiency": "경제관념 부족, 재물운 약함"
+    },
+    "관성": {
+      "english": "power",
+      "description": "권력과 명예",
+      "includes": ["정관", "편관"],
+      "balanced": "적절한 리더십과 책임감",
+      "excess": "권위주의, 압박감, 스트레스",
+      "deficiency": "리더십 부족, 책임감 결여"
+    },
+    "인성": {
+      "english": "resource",
+      "description": "지원과 학문",
+      "includes": ["정인", "편인"],
+      "balanced": "지적 능력과 정신적 지원",
+      "excess": "의존성, 비현실적, 나태",
+      "deficiency": "학습 부족, 지원 체계 결여"
+    }
+  },
+  
+  "balance_interpretation": {
+    "ideal_distribution": {
+      "description": "이상적인 십성 분포",
+      "distribution": {
+        "비겁": "20%",
+        "식상": "20%",
+        "재성": "20%",
+        "관성": "20%",
+        "인성": "20%"
+      }
+    },
+    "imbalance_patterns": {
+      "비겁_과다": {
+        "symptoms": "자기중심적, 협력 어려움, 고집",
+        "recommendations": "타인 배려, 협력 학습, 유연성 개발"
+      },
+      "식상_과다": {
+        "symptoms": "산만함, 무계획, 실행력 부족",
+        "recommendations": "집중력 향상, 계획성 개발, 실천력 강화"
+      },
+      "재성_과다": {
+        "symptoms": "물질만능, 인간관계 소홀",
+        "recommendations": "정신적 가치 추구, 나눔 실천"
+      },
+      "관성_과다": {
+        "symptoms": "압박감, 스트레스, 권위주의",
+        "recommendations": "여유 찾기, 섬기는 리더십"
+      },
+      "인성_과다": {
+        "symptoms": "의존적, 비현실적, 수동적",
+        "recommendations": "독립성 개발, 실천력 강화"
+      }
+    }
+  },
+  
+  "calculation_rules": {
+    "strength_factors": {
+      "base_strength": {
+        "비견": 1.0,
+        "겁재": 0.9,
+        "식신": 0.8,
+        "상관": 0.85,
+        "정재": 0.9,
+        "편재": 0.85,
+        "정관": 1.0,
+        "편관": 0.95,
+        "정인": 0.9,
+        "편인": 0.85
+      },
+      "modifiers": {
+        "same_element": 1.2,
+        "supporting_element": 1.1,
+        "conflicting_element": 0.9,
+        "polarity_harmony": 1.05,
+        "polarity_conflict": 0.95
+      }
+    },
+    "balance_thresholds": {
+      "균형": {"min_difference": 0, "max_difference": 10},
+      "약간_불균형": {"min_difference": 11, "max_difference": 20},
+      "불균형": {"min_difference": 21, "max_difference": 30},
+      "극도_불균형": {"min_difference": 31, "max_difference": 100}
+    }
+  }
+}

@@ -1,0 +1,152 @@
+<!-- 궁합 및 추가 기능 섹션 -->
+<section id="additional-features" class="section-container" style="display: none;">
+    <div class="features-tabs">
+        <!-- 탭 헤더 -->
+        <div class="tab-navigation">
+            <button class="tab-button active" data-tab="compatibility">💑 궁합보기</button>
+            <button class="tab-button" data-tab="taekil">📅 택일</button>
+            <button class="tab-button" data-tab="naming">✍️ 작명</button>
+            <button class="tab-button" data-tab="comparison">🔄 비교분석</button>
+        </div>
+        
+        <!-- 탭 콘텐츠 -->
+        <div class="tab-contents">
+            <!-- 궁합 탭 -->
+            <div class="tab-content active" id="tab-compatibility">
+                <h3>사주 궁합 보기</h3>
+                <div class="compatibility-form">
+                    <div class="form-row">
+                        <div class="person-card">
+                            <h4>👤 본인 정보</h4>
+                            <div class="info-display">
+                                <p><strong>생년월일:</strong> <span id="person1-date"></span></p>
+                                <p><strong>출생시간:</strong> <span id="person1-time"></span></p>
+                                <p><strong>성별:</strong> <span id="person1-gender"></span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="person-card">
+                            <h4>💕 상대방 정보</h4>
+                            <form id="compatibility-form">
+                                <div class="form-group">
+                                    <label>생년월일</label>
+                                    <input type="date" id="partner-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>출생시간</label>
+                                    <input type="time" id="partner-time" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>성별</label>
+                                    <select id="partner-gender" required>
+                                        <option value="">선택</option>
+                                        <option value="male">남성</option>
+                                        <option value="female">여성</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn-primary">궁합 보기</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- 궁합 결과 -->
+                    <div id="compatibility-result" style="display: none;">
+                        <div class="result-card">
+                            <h4>💝 궁합 결과</h4>
+                            <div class="compatibility-score">
+                                <div class="score-circle">
+                                    <span class="score-value">0</span>
+                                    <span class="score-label">점</span>
+                                </div>
+                            </div>
+                            <div class="compatibility-details">
+                                <div class="detail-item">
+                                    <span>애정운</span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="detail-item">
+                                    <span>재물운</span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="detail-item">
+                                    <span>가족운</span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="compatibility-advice">
+                                <p id="compatibility-message"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 택일 탭 -->
+            <div class="tab-content" id="tab-taekil">
+                <h3>길일 택일</h3>
+                <div class="taekil-form">
+                    <div class="form-group">
+                        <label>택일 종류</label>
+                        <select id="taekil-type">
+                            <option value="wedding">결혼</option>
+                            <option value="moving">이사</option>
+                            <option value="business">개업</option>
+                            <option value="contract">계약</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>희망 기간</label>
+                        <input type="month" id="taekil-month">
+                    </div>
+                    <button class="btn-primary" onclick="calculateTaekil()">길일 찾기</button>
+                    
+                    <div id="taekil-result" style="display: none;">
+                        <h4>추천 길일</h4>
+                        <div class="taekil-dates"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 작명 탭 -->
+            <div class="tab-content" id="tab-naming">
+                <h3>작명 서비스</h3>
+                <div class="naming-form">
+                    <div class="form-group">
+                        <label>성씨</label>
+                        <input type="text" id="surname" placeholder="예: 김">
+                    </div>
+                    <div class="form-group">
+                        <label>성별</label>
+                        <select id="naming-gender">
+                            <option value="male">남아</option>
+                            <option value="female">여아</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" onclick="generateNames()">이름 추천</button>
+                    
+                    <div id="naming-result" style="display: none;">
+                        <h4>추천 이름</h4>
+                        <div class="name-suggestions"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 비교분석 탭 -->
+            <div class="tab-content" id="tab-comparison">
+                <h3>사주 비교 분석</h3>
+                <p>최대 3명까지 사주를 비교 분석할 수 있습니다.</p>
+                <div class="comparison-form">
+                    <button class="btn-primary" onclick="addComparisonPerson()">+ 사람 추가</button>
+                    <div id="comparison-people"></div>
+                    <button class="btn-primary" onclick="compareAll()">비교 분석</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

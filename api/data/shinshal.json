@@ -1,0 +1,1705 @@
+{
+  "shinshal_categories": {
+    "auspicious": {
+      "name": "길신 (吉神)",
+      "description": "좋은 영향을 주는 신살",
+      "general_effects": "행운, 보호, 성공, 재능 부여"
+    },
+    "inauspicious": {
+      "name": "흉신 (凶神)",
+      "description": "주의가 필요한 신살",
+      "general_effects": "장애, 시련, 주의 필요"
+    },
+    "neutral": {
+      "name": "중성 신살",
+      "description": "상황에 따라 길흉이 달라지는 신살",
+      "general_effects": "사용하기에 따라 길흉 결정"
+    }
+  },
+  "auspicious_shinshal": {
+    "천을귀인": {
+      "name": "천을귀인 (天乙貴人)",
+      "english": "Heavenly Noble Star",
+      "category": "auspicious",
+      "rank": 1,
+      "calculation_rules": {
+        "method": "일간 기준 지지 확인",
+        "mapping": {
+          "갑무": ["축", "미"],
+          "을기": ["자", "신"],
+          "병정": ["해", "유"],
+          "경신": ["인", "오"],
+          "임계": ["사", "묘"]
+        },
+        "check_positions": ["year", "month", "day", "hour"],
+        "special_conditions": [
+          "월지에 있으면 가장 강력",
+          "시지에 있으면 만년 귀인운"
+        ]
+      },
+      "influences": {
+        "positive": [
+          "최고의 귀인 조력",
+          "위기에서 구원받음",
+          "승진과 출세 기회",
+          "고난 극복의 힘",
+          "사회적 지위 상승"
+        ],
+        "areas_affected": [
+          "career: 승진, 귀인 조력",
+          "wealth: 안정적 재물 증가",
+          "health: 큰 병에서 회복",
+          "relationships: 좋은 인연 만남",
+          "education: 스승 만남"
+        ],
+        "strength_by_position": {
+          "year": "조상과 윗사람의 도움",
+          "month": "부모와 형제의 도움",
+          "day": "배우자와 자신의 복",
+          "hour": "자녀와 만년의 복"
+        }
+      },
+      "activation_methods": [
+        "덕을 쌓고 선행을 베풂",
+        "겸손하고 예의 바른 태도",
+        "어려운 사람 돕기",
+        "지속적인 자기 계발"
+      ],
+      "enhancement_tips": [
+        "백색이나 금색 물품 소지",
+        "북쪽이나 서쪽 방향 활용",
+        "금속 장신구 착용",
+        "귀인과의 인연 소중히"
+      ]
+    },
+    "월덕귀인": {
+      "name": "월덕귀인 (月德貴人)",
+      "english": "Monthly Virtue Noble",
+      "category": "auspicious",
+      "rank": 2,
+      "calculation_rules": {
+        "method": "월지 기준 천간 확인",
+        "mapping": {
+          "인": "병",
+          "묘": "갑",
+          "진": "임",
+          "사": "경",
+          "오": "병",
+          "미": "갑",
+          "신": "경",
+          "유": "무",
+          "술": "병",
+          "해": "갑",
+          "자": "임",
+          "축": "경"
+        },
+        "check_positions": ["year", "month", "day", "hour"],
+        "special_conditions": [
+          "월간에 있으면 효과 극대화",
+          "일간과 합이면 더욱 길함"
+        ]
+      },
+      "influences": {
+        "positive": [
+          "정신적 안정과 평화",
+          "덕망 있는 인품",
+          "사회적 신뢰 획득",
+          "재난에서 보호",
+          "안정된 생활"
+        ],
+        "areas_affected": [
+          "career: 안정적 직장 생활",
+          "wealth: 꾸준한 수입",
+          "health: 정신 건강",
+          "relationships: 화목한 가정",
+          "reputation: 좋은 평판"
+        ]
+      },
+      "activation_methods": [
+        "매달 초하루 기도나 명상",
+        "월별 덕목 실천",
+        "규칙적인 생활 패턴",
+        "감사 일기 작성"
+      ],
+      "enhancement_tips": [
+        "월광욕 하기",
+        "은색 액세서리 착용",
+        "달 모양 장식품 소지",
+        "매월 선행 실천"
+      ]
+    },
+    "천덕귀인": {
+      "name": "천덕귀인 (天德貴人)",
+      "english": "Heavenly Virtue Noble",
+      "category": "auspicious",
+      "rank": 3,
+      "calculation_rules": {
+        "method": "생월 기준 천간 확인",
+        "monthly_mapping": {
+          "1월": "정",
+          "2월": "신",
+          "3월": "임",
+          "4월": "신",
+          "5월": "기",
+          "6월": "갑",
+          "7월": "계",
+          "8월": "정",
+          "9월": "병",
+          "10월": "을",
+          "11월": "경",
+          "12월": "기"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "positive": [
+          "하늘의 덕을 받음",
+          "천성이 선량함",
+          "재난 회피",
+          "수명 연장",
+          "자손 번창"
+        ],
+        "areas_affected": [
+          "spirituality: 높은 영성",
+          "morality: 도덕적 품성",
+          "protection: 천우신조",
+          "longevity: 건강한 장수",
+          "posterity: 자손 복"
+        ]
+      },
+      "activation_methods": [
+        "하늘을 우러러 기도",
+        "선행과 음덕 쌓기",
+        "자연과 조화로운 생활",
+        "명상과 참선"
+      ],
+      "enhancement_tips": [
+        "높은 곳에서 명상",
+        "푸른색 계열 활용",
+        "아침 일출 보기",
+        "천연 재료 사용"
+      ]
+    },
+    "문창귀인": {
+      "name": "문창귀인 (文昌貴人)",
+      "english": "Literary Star",
+      "category": "auspicious",
+      "rank": 4,
+      "calculation_rules": {
+        "method": "일간 기준 지지 확인",
+        "mapping": {
+          "갑": "사",
+          "을": "오",
+          "병": "신",
+          "정": "유",
+          "무": "신",
+          "기": "유",
+          "경": "해",
+          "신": "자",
+          "임": "인",
+          "계": "묘"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "positive": [
+          "학문적 재능",
+          "문필의 능력",
+          "예술적 감각",
+          "창작 능력",
+          "시험 합격운"
+        ],
+        "areas_affected": [
+          "education: 학업 성취",
+          "career: 문화예술 분야",
+          "creativity: 창작 활동",
+          "communication: 글쓰기, 말하기",
+          "recognition: 작품 인정"
+        ]
+      },
+      "activation_methods": [
+        "매일 독서 습관",
+        "글쓰기 연습",
+        "예술 활동 참여",
+        "학습 환경 조성"
+      ],
+      "enhancement_tips": [
+        "문방사우 소지",
+        "서재 정리정돈",
+        "동쪽 방향 공부",
+        "녹색 문구류 사용"
+      ]
+    },
+    "학당귀인": {
+      "name": "학당귀인 (學堂貴人)",
+      "english": "Academic Hall Star",
+      "category": "auspicious",
+      "rank": 5,
+      "calculation_rules": {
+        "method": "일간 오행 기준 지지 확인",
+        "element_mapping": {
+          "목": ["해", "신"],
+          "화": ["인", "유"],
+          "토": ["사", "해"],
+          "금": ["사", "자"],
+          "수": ["신", "묘"]
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "positive": [
+          "학습 능력 향상",
+          "집중력 증가",
+          "기억력 개선",
+          "논리적 사고",
+          "학위 취득"
+        ],
+        "areas_affected": [
+          "academics: 학문적 성과",
+          "research: 연구 능력",
+          "analysis: 분석력",
+          "certification: 자격증 취득",
+          "teaching: 교육 능력"
+        ]
+      },
+      "activation_methods": [
+        "규칙적 학습 시간",
+        "조용한 학습 공간",
+        "체계적 학습 계획",
+        "멘토 찾기"
+      ],
+      "enhancement_tips": [
+        "수정 소지",
+        "보라색 활용",
+        "북쪽 향해 공부",
+        "학문의 신 모시기"
+      ]
+    },
+    "천의성": {
+      "name": "천의성 (天醫星)",
+      "english": "Heavenly Doctor Star",
+      "category": "auspicious",
+      "rank": 6,
+      "calculation_rules": {
+        "method": "월지 기준 순환",
+        "mapping": {
+          "자": "해",
+          "축": "자",
+          "인": "축",
+          "묘": "인",
+          "진": "묘",
+          "사": "진",
+          "오": "사",
+          "미": "오",
+          "신": "미",
+          "유": "신",
+          "술": "유",
+          "해": "술"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "positive": [
+          "건강 회복력",
+          "치유 능력",
+          "의료 재능",
+          "약초 지식",
+          "장수"
+        ],
+        "areas_affected": [
+          "health: 강한 면역력",
+          "healing: 치유 능력",
+          "medical: 의료업 적성",
+          "longevity: 건강 장수",
+          "recovery: 빠른 회복"
+        ]
+      },
+      "activation_methods": [
+        "건강한 생활습관",
+        "규칙적 운동",
+        "약초차 음용",
+        "의료 봉사"
+      ],
+      "enhancement_tips": [
+        "청색 계열 활용",
+        "동쪽 방향 중시",
+        "약초 재배",
+        "건강 관리 철저"
+      ]
+    },
+    "복성귀인": {
+      "name": "복성귀인 (福星貴人)",
+      "english": "Fortune Star",
+      "category": "auspicious",
+      "rank": 7,
+      "calculation_rules": {
+        "method": "일간 기준 지지 확인",
+        "mapping": {
+          "갑": "인",
+          "을": "축",
+          "병": "자",
+          "정": "유",
+          "무": "신",
+          "기": "미",
+          "경": "오",
+          "신": "사",
+          "임": "진",
+          "계": "묘"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "positive": [
+          "전반적 행운",
+          "복이 따름",
+          "좋은 기회",
+          "재물 증가",
+          "가정 화목"
+        ],
+        "areas_affected": [
+          "fortune: 종합적 행운",
+          "opportunity: 기회 포착",
+          "wealth: 재물 복",
+          "family: 가정 행복",
+          "social: 대인 관계"
+        ]
+      },
+      "activation_methods": [
+        "감사하는 마음",
+        "베푸는 삶",
+        "긍정적 사고",
+        "복을 나누기"
+      ],
+      "enhancement_tips": [
+        "복주머니 소지",
+        "붉은색 활용",
+        "남쪽 방향",
+        "웃는 얼굴"
+      ]
+    },
+    "장성": {
+      "name": "장성 (將星)",
+      "english": "General Star",
+      "category": "auspicious",
+      "rank": 8,
+      "calculation_rules": {
+        "method": "일지 삼합 기준",
+        "mapping": {
+          "자진신": "자",
+          "인오술": "오",
+          "사유축": "유",
+          "해묘미": "묘"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "positive": [
+          "리더십",
+          "통솔력",
+          "권위",
+          "조직 관리",
+          "결단력"
+        ],
+        "areas_affected": [
+          "leadership: 지도력",
+          "management: 관리 능력",
+          "authority: 권위 인정",
+          "military: 군사 재능",
+          "organization: 조직 운영"
+        ]
+      },
+      "activation_methods": [
+        "리더십 개발",
+        "책임감 함양",
+        "결단력 훈련",
+        "팀 활동 참여"
+      ],
+      "enhancement_tips": [
+        "칼이나 검 장식",
+        "흰색, 금색 활용",
+        "서쪽 방향",
+        "규율 생활"
+      ]
+    },
+    "역마": {
+      "name": "역마 (驛馬)",
+      "english": "Post Horse Star",
+      "category": "auspicious",
+      "rank": 9,
+      "calculation_rules": {
+        "method": "일지/년지 삼합 기준",
+        "mapping": {
+          "인오술": "신",
+          "신자진": "인",
+          "사유축": "해",
+          "해묘미": "사"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "positive": [
+          "이동과 변화",
+          "해외 기회",
+          "여행 운",
+          "활동성",
+          "새로운 경험"
+        ],
+        "negative_if_excessive": [
+          "정착 어려움",
+          "불안정",
+          "산만함"
+        ],
+        "areas_affected": [
+          "travel: 여행과 이동",
+          "overseas: 해외 인연",
+          "change: 변화와 전환",
+          "activity: 활발한 활동",
+          "trade: 무역업"
+        ]
+      },
+      "activation_methods": [
+        "여행 계획",
+        "외국어 학습",
+        "새로운 도전",
+        "네트워킹"
+      ],
+      "enhancement_tips": [
+        "여행 가방 준비",
+        "지도나 글로브",
+        "이동 수단 그림",
+        "다양한 경험"
+      ],
+      "mitigation_if_negative": [
+        "안정적 기반 만들기",
+        "한 곳에 정착 노력",
+        "장기 계획 수립"
+      ]
+    },
+    "홍염살": {
+      "name": "홍염살 (紅艶殺)",
+      "english": "Red Flame Star",
+      "category": "auspicious",
+      "rank": 10,
+      "calculation_rules": {
+        "method": "일간 기준 지지 확인",
+        "mapping": {
+          "갑": "오",
+          "을": "사",
+          "병": "인",
+          "정": "미",
+          "무": "진",
+          "기": "축",
+          "경": "술",
+          "신": "유",
+          "임": "자",
+          "계": "신"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "positive": [
+          "매력과 인기",
+          "이성 관계",
+          "예술적 재능",
+          "화려함",
+          "주목받음"
+        ],
+        "cautions": [
+          "과도한 이성 관계",
+          "허영심",
+          "스캔들 주의"
+        ],
+        "areas_affected": [
+          "romance: 연애운",
+          "charm: 매력 발산",
+          "popularity: 인기",
+          "arts: 예술 활동",
+          "entertainment: 연예계"
+        ]
+      },
+      "activation_methods": [
+        "외모 가꾸기",
+        "사교 활동",
+        "예술 활동",
+        "매력 개발"
+      ],
+      "enhancement_tips": [
+        "붉은색 의상",
+        "꽃 장식",
+        "향수 사용",
+        "밝은 메이크업"
+      ],
+      "control_methods": [
+        "절제와 품위",
+        "진실한 관계",
+        "내면 가꾸기"
+      ]
+    },
+    "금여": {
+      "name": "금여 (金輿)",
+      "english": "Golden Carriage Star",
+      "category": "auspicious",
+      "rank": 11,
+      "calculation_rules": {
+        "method": "일간 기준 지지 확인",
+        "mapping": {
+          "갑": "진",
+          "을": "사",
+          "병": "미",
+          "정": "신",
+          "무": "미",
+          "기": "신",
+          "경": "술",
+          "신": "해",
+          "임": "축",
+          "계": "인"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "positive": [
+          "부귀와 명예",
+          "고급 생활",
+          "재물 풍족",
+          "사치품",
+          "VIP 대우"
+        ],
+        "areas_affected": [
+          "wealth: 풍족한 재물",
+          "luxury: 고급 생활",
+          "status: 높은 지위",
+          "comfort: 편안한 생활",
+          "privilege: 특권 대우"
+        ]
+      },
+      "activation_methods": [
+        "품위 있는 생활",
+        "고급 취향 개발",
+        "재테크 공부",
+        "인맥 관리"
+      ],
+      "enhancement_tips": [
+        "금색 소품",
+        "고급 지갑",
+        "명품 소지",
+        "품격 유지"
+      ]
+    },
+    "태극귀인": {
+      "name": "태극귀인 (太極貴人)",
+      "english": "Taiji Noble Star",
+      "category": "auspicious",
+      "rank": 12,
+      "calculation_rules": {
+        "method": "일간 기준 지지 확인",
+        "mapping": {
+          "갑을": ["자", "오"],
+          "병정": ["묘", "유"],
+          "무기": ["진", "술", "축", "미"],
+          "경신": ["인", "해"],
+          "임계": ["신", "사"]
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "positive": [
+          "철학적 사고",
+          "깊은 통찰",
+          "종교성",
+          "직관력",
+          "영적 능력"
+        ],
+        "areas_affected": [
+          "philosophy: 철학적 깊이",
+          "spirituality: 영적 성장",
+          "intuition: 직관 능력",
+          "wisdom: 지혜 계발",
+          "religion: 종교 활동"
+        ]
+      },
+      "activation_methods": [
+        "명상과 참선",
+        "철학 공부",
+        "종교 활동",
+        "내면 탐구"
+      ],
+      "enhancement_tips": [
+        "태극 문양",
+        "음양 조화",
+        "흑백 조합",
+        "균형 추구"
+      ]
+    },
+    "삼기귀인": {
+      "name": "삼기귀인 (三奇貴人)",
+      "english": "Three Wonders Star",
+      "category": "auspicious",
+      "rank": 13,
+      "calculation_rules": {
+        "method": "천간 연속 확인",
+        "types": {
+          "천상삼기": ["갑", "무", "경"],
+          "지상삼기": ["을", "병", "정"],
+          "인중삼기": ["임", "계", "신"]
+        },
+        "check_positions": ["year", "month", "day"],
+        "special_conditions": [
+          "연월일 천간이 순서대로",
+          "또는 세 천간이 모두 존재"
+        ]
+      },
+      "influences": {
+        "positive": [
+          "비범한 재능",
+          "특별한 행운",
+          "기적적 성취",
+          "천재성",
+          "특수 능력"
+        ],
+        "areas_affected": [
+          "talent: 특별한 재능",
+          "achievement: 큰 성취",
+          "miracle: 기적적 사건",
+          "genius: 천재적 능력",
+          "luck: 특별한 행운"
+        ]
+      },
+      "activation_methods": [
+        "재능 개발",
+        "도전적 목표",
+        "창의적 활동",
+        "한계 돌파"
+      ],
+      "enhancement_tips": [
+        "3의 숫자 활용",
+        "삼각형 문양",
+        "세 가지 색 조합",
+        "삼위일체 추구"
+      ]
+    },
+    "천주귀인": {
+      "name": "천주귀인 (天廚貴人)",
+      "english": "Heavenly Kitchen Star",
+      "category": "auspicious",
+      "rank": 14,
+      "calculation_rules": {
+        "method": "일간 기준 지지 확인",
+        "mapping": {
+          "갑": "사",
+          "을": "오",
+          "병": "오",
+          "정": "미",
+          "무": "미",
+          "기": "신",
+          "경": "신",
+          "신": "유",
+          "임": "해",
+          "계": "자"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "positive": [
+          "먹을 복",
+          "요리 재능",
+          "미식",
+          "풍족한 식생활",
+          "음식업 성공"
+        ],
+        "areas_affected": [
+          "food: 음식 복",
+          "cooking: 요리 재능",
+          "hospitality: 접대업",
+          "nutrition: 영양 상태",
+          "business: 요식업"
+        ]
+      },
+      "activation_methods": [
+        "요리 배우기",
+        "미식 탐방",
+        "음식 나눔",
+        "건강한 식단"
+      ],
+      "enhancement_tips": [
+        "주방 정리",
+        "요리 도구",
+        "식기 관리",
+        "음식 감사"
+      ]
+    },
+    "현침살": {
+      "name": "현침살 (懸針殺)",
+      "english": "Hanging Needle Star",
+      "category": "auspicious",
+      "rank": 15,
+      "calculation_rules": {
+        "method": "일간 기준 지지 확인",
+        "mapping": {
+          "갑": "유",
+          "을": "신",
+          "병": "자",
+          "정": "해",
+          "무": "자",
+          "기": "해",
+          "경": "묘",
+          "신": "인",
+          "임": "오",
+          "계": "사"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "positive": [
+          "예리한 지능",
+          "분석력",
+          "비판적 사고",
+          "전문성",
+          "정확성"
+        ],
+        "cautions": [
+          "지나친 비판",
+          "냉소적 태도"
+        ],
+        "areas_affected": [
+          "intelligence: 날카로운 지능",
+          "analysis: 분석 능력",
+          "criticism: 비평 능력",
+          "precision: 정밀함",
+          "expertise: 전문성"
+        ]
+      },
+      "activation_methods": [
+        "논리 훈련",
+        "분석 연습",
+        "전문 분야 심화",
+        "정확성 추구"
+      ],
+      "enhancement_tips": [
+        "날카로운 도구",
+        "정밀 기기",
+        "차가운 색상",
+        "명확한 환경"
+      ]
+    }
+  },
+  "inauspicious_shinshal": {
+    "양인": {
+      "name": "양인 (羊刃)",
+      "english": "Yang Blade",
+      "category": "inauspicious",
+      "severity": "high",
+      "calculation_rules": {
+        "method": "일간 기준 지지 확인",
+        "mapping": {
+          "갑": "묘",
+          "을": "인",
+          "병": "오",
+          "정": "사",
+          "무": "오",
+          "기": "사",
+          "경": "유",
+          "신": "신",
+          "임": "자",
+          "계": "해"
+        },
+        "check_positions": ["year", "month", "day", "hour"],
+        "most_dangerous": "월지에 위치"
+      },
+      "influences": {
+        "negative": [
+          "극단적 성격",
+          "사고 위험",
+          "수술 가능성",
+          "폭력적 성향",
+          "충동적 행동"
+        ],
+        "areas_affected": [
+          "health: 부상, 수술",
+          "personality: 극단성",
+          "relationships: 충돌",
+          "career: 급격한 변화",
+          "safety: 사고 위험"
+        ],
+        "potential_benefits_if_controlled": [
+          "강한 추진력",
+          "결단력",
+          "돌파력"
+        ]
+      },
+      "mitigation_methods": [
+        "식신으로 제어 (일간 생하는 오행)",
+        "종교나 수행 활동",
+        "격투기나 운동으로 에너지 발산",
+        "명상과 마음 수련",
+        "안전 수칙 철저히 준수"
+      ],
+      "warning_signs": [
+        "잦은 분노",
+        "충동적 결정",
+        "위험한 행동",
+        "폭력적 생각"
+      ],
+      "remedies": {
+        "spiritual": "종교 활동, 명상, 기도",
+        "physical": "규칙적 운동, 무술 수련",
+        "mental": "분노 조절, 인내심 훈련",
+        "lifestyle": "안전 제일, 신중한 행동"
+      }
+    },
+    "겁살": {
+      "name": "겁살 (劫殺)",
+      "english": "Robbery Star",
+      "category": "inauspicious",
+      "severity": "high",
+      "calculation_rules": {
+        "method": "년지/일지 삼합 기준",
+        "mapping": {
+          "인오술": "해",
+          "신자진": "사",
+          "사유축": "인",
+          "해묘미": "신"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "negative": [
+          "재물 손실",
+          "도난 피해",
+          "사기 당함",
+          "투자 실패",
+          "금전 분쟁"
+        ],
+        "areas_affected": [
+          "wealth: 금전 손실",
+          "security: 도난 위험",
+          "trust: 사기 피해",
+          "investment: 투자 실패",
+          "disputes: 재산 분쟁"
+        ]
+      },
+      "mitigation_methods": [
+        "재물 관리 철저",
+        "보안 시스템 강화",
+        "신중한 투자",
+        "계약서 꼼꼼히 검토",
+        "믿을 만한 사람과만 거래"
+      ],
+      "prevention_tips": [
+        "중요 물품 보관 철저",
+        "비밀번호 관리",
+        "사기 수법 인지",
+        "법적 조언 구하기",
+        "보험 가입"
+      ],
+      "remedies": {
+        "practical": "금고 사용, 보안 강화",
+        "financial": "분산 투자, 안전 자산",
+        "legal": "계약서 작성, 법적 보호",
+        "spiritual": "재물 보호 부적"
+      }
+    },
+    "화개살": {
+      "name": "화개살 (華蓋殺)",
+      "english": "Canopy Star",
+      "category": "inauspicious",
+      "severity": "medium",
+      "calculation_rules": {
+        "method": "년지/일지 삼합 기준",
+        "mapping": {
+          "인오술": "술",
+          "신자진": "진",
+          "사유축": "축",
+          "해묘미": "미"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "negative": [
+          "고독감",
+          "독신 경향",
+          "은둔 성향",
+          "대인기피",
+          "우울감"
+        ],
+        "positive_aspects": [
+          "예술적 재능",
+          "종교적 성향",
+          "철학적 사고",
+          "독창성"
+        ],
+        "areas_affected": [
+          "relationships: 인간관계 어려움",
+          "marriage: 독신 가능성",
+          "social: 사회 활동 제한",
+          "spirituality: 종교/철학 관심",
+          "creativity: 예술 활동"
+        ]
+      },
+      "mitigation_methods": [
+        "적극적인 사회 활동",
+        "동호회나 모임 참여",
+        "봉사 활동",
+        "예술 활동으로 승화",
+        "종교 활동 참여"
+      ],
+      "positive_utilization": [
+        "예술 작품 창작",
+        "학문 연구",
+        "종교 수행",
+        "철학 탐구",
+        "창의적 활동"
+      ],
+      "remedies": {
+        "social": "모임 참여, 친구 만들기",
+        "creative": "예술 활동, 창작",
+        "spiritual": "명상, 종교 활동",
+        "therapeutic": "상담, 치료"
+      }
+    },
+    "고란살": {
+      "name": "고란살 (孤鸞殺)",
+      "english": "Loneliness Star",
+      "category": "inauspicious",
+      "severity": "medium",
+      "calculation_rules": {
+        "method": "생월 계절 기준",
+        "mapping": {
+          "인묘진": "사",
+          "사오미": "신",
+          "신유술": "해",
+          "해자축": "인"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "negative": [
+          "가족과 멀어짐",
+          "외로움",
+          "독립적 생활",
+          "배우자 인연 약함",
+          "자녀 인연 약함"
+        ],
+        "areas_affected": [
+          "family: 가족 관계",
+          "marriage: 결혼 생활",
+          "children: 자녀 관계",
+          "loneliness: 고독감",
+          "independence: 독립 생활"
+        ]
+      },
+      "mitigation_methods": [
+        "가족과 자주 연락",
+        "친구 관계 강화",
+        "사회 활동 증가",
+        "펫 키우기",
+        "봉사 활동"
+      ],
+      "coping_strategies": [
+        "독립성을 장점으로",
+        "자기 계발 집중",
+        "취미 생활 충실",
+        "온라인 커뮤니티",
+        "정기 모임 참여"
+      ],
+      "remedies": {
+        "family": "정기적 가족 모임",
+        "social": "동호회 활동",
+        "emotional": "상담, 치료",
+        "lifestyle": "공동체 생활"
+      }
+    },
+    "백호살": {
+      "name": "백호살 (白虎殺)",
+      "english": "White Tiger Star",
+      "category": "inauspicious",
+      "severity": "high",
+      "calculation_rules": {
+        "method": "일간 기준 지지 확인",
+        "mapping": {
+          "갑": "술",
+          "을": "유",
+          "병": "신",
+          "정": "미",
+          "무": "신",
+          "기": "미",
+          "경": "오",
+          "신": "사",
+          "임": "진",
+          "계": "묘"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "negative": [
+          "혈광지재",
+          "수술",
+          "교통사고",
+          "부상",
+          "급성 질병"
+        ],
+        "areas_affected": [
+          "health: 부상, 수술",
+          "safety: 사고 위험",
+          "blood: 출혈 사고",
+          "surgery: 수술 가능성",
+          "accidents: 각종 사고"
+        ]
+      },
+      "mitigation_methods": [
+        "안전 운전",
+        "위험한 활동 피하기",
+        "정기 건강 검진",
+        "보험 가입",
+        "안전 장비 착용"
+      ],
+      "prevention": [
+        "날카로운 물건 조심",
+        "극한 스포츠 자제",
+        "음주 운전 금지",
+        "안전 수칙 준수",
+        "응급 키트 구비"
+      ],
+      "remedies": {
+        "health": "정기 검진, 예방 접종",
+        "safety": "안전 장비, 보호 장구",
+        "spiritual": "호신 부적",
+        "practical": "보험 가입"
+      }
+    },
+    "망신살": {
+      "name": "망신살 (亡神殺)",
+      "english": "Disgrace Star",
+      "category": "inauspicious",
+      "severity": "medium",
+      "calculation_rules": {
+        "method": "년지/일지 삼합 기준",
+        "mapping": {
+          "인오술": "자",
+          "신자진": "오",
+          "사유축": "묘",
+          "해묘미": "유"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "negative": [
+          "명예 실추",
+          "평판 손상",
+          "구설수",
+          "스캔들",
+          "망신당함"
+        ],
+        "areas_affected": [
+          "reputation: 평판",
+          "honor: 명예",
+          "social: 사회적 지위",
+          "scandal: 스캔들",
+          "gossip: 소문"
+        ]
+      },
+      "mitigation_methods": [
+        "언행 조심",
+        "신중한 처신",
+        "비밀 유지",
+        "정직한 생활",
+        "겸손한 태도"
+      ],
+      "prevention": [
+        "SNS 주의",
+        "사생활 보호",
+        "논란 회피",
+        "공적 발언 신중",
+        "품위 유지"
+      ],
+      "remedies": {
+        "behavioral": "신중한 언행",
+        "social": "평판 관리",
+        "professional": "PR 전문가 상담",
+        "spiritual": "참회와 반성"
+      }
+    },
+    "천라지망": {
+      "name": "천라지망 (天羅地網)",
+      "english": "Heaven Net Earth Web",
+      "category": "inauspicious",
+      "severity": "high",
+      "calculation_rules": {
+        "method": "특정 지지 확인",
+        "types": {
+          "천라": ["술", "해"],
+          "지망": ["진", "사"]
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "negative": [
+          "진로 막힘",
+          "발전 정체",
+          "갇힌 느낌",
+          "자유 제한",
+          "답답함"
+        ],
+        "areas_affected": [
+          "career: 승진 정체",
+          "progress: 발전 제한",
+          "freedom: 자유 제한",
+          "movement: 이동 어려움",
+          "growth: 성장 정체"
+        ]
+      },
+      "mitigation_methods": [
+        "인내심 갖기",
+        "때를 기다리기",
+        "내실 다지기",
+        "학습과 준비",
+        "작은 성취 축적"
+      ],
+      "breakthrough_methods": [
+        "새로운 기술 습득",
+        "인맥 확대",
+        "시야 확장",
+        "유연한 사고",
+        "대안 모색"
+      ],
+      "remedies": {
+        "mental": "인내와 수용",
+        "strategic": "장기 계획",
+        "spiritual": "명상과 기도",
+        "practical": "기회 준비"
+      }
+    },
+    "급각살": {
+      "name": "급각살 (急脚殺)",
+      "english": "Sudden Setback Star",
+      "category": "inauspicious",
+      "severity": "high",
+      "calculation_rules": {
+        "method": "일간 기준 지지 확인",
+        "mapping": {
+          "갑을": ["유", "신"],
+          "병정": ["자", "해"],
+          "무기": ["묘", "인"],
+          "경신": ["오", "사"],
+          "임계": ["축", "미"]
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "negative": [
+          "갑작스런 실패",
+          "급전직하",
+          "예상 못한 손실",
+          "계획 무산",
+          "급격한 변화"
+        ],
+        "areas_affected": [
+          "plans: 계획 실패",
+          "sudden: 급격한 변화",
+          "loss: 예상 못한 손실",
+          "setback: 좌절",
+          "disruption: 혼란"
+        ]
+      },
+      "mitigation_methods": [
+        "여유 계획",
+        "대안 준비",
+        "리스크 관리",
+        "보험 가입",
+        "비상금 마련"
+      ],
+      "recovery_strategies": [
+        "빠른 대응",
+        "유연한 사고",
+        "실패 수용",
+        "재기 계획",
+        "교훈 도출"
+      ],
+      "remedies": {
+        "planning": "예비 계획",
+        "financial": "비상금 확보",
+        "mental": "심리적 준비",
+        "support": "지원 체계"
+      }
+    },
+    "원진살": {
+      "name": "원진살 (怨嗔殺)",
+      "english": "Distant Conflict Star",
+      "category": "inauspicious",
+      "severity": "medium",
+      "calculation_rules": {
+        "method": "지지 간 충돌",
+        "mapping": {
+          "자": "미",
+          "축": "오",
+          "인": "사",
+          "묘": "진",
+          "진": "묘",
+          "사": "인",
+          "오": "축",
+          "미": "자",
+          "신": "해",
+          "유": "술",
+          "술": "유",
+          "해": "신"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "negative": [
+          "인간관계 갈등",
+          "원한 관계",
+          "소통 어려움",
+          "오해와 불신",
+          "감정 충돌"
+        ],
+        "areas_affected": [
+          "relationships: 대인 관계",
+          "communication: 소통",
+          "trust: 신뢰",
+          "emotions: 감정",
+          "conflicts: 갈등"
+        ]
+      },
+      "mitigation_methods": [
+        "이해와 포용",
+        "대화 노력",
+        "중재자 활용",
+        "감정 조절",
+        "거리 두기"
+      ],
+      "resolution_methods": [
+        "진심 어린 대화",
+        "오해 풀기",
+        "용서와 화해",
+        "전문 상담",
+        "시간 갖기"
+      ],
+      "remedies": {
+        "communication": "대화법 학습",
+        "emotional": "감정 관리",
+        "mediation": "중재 상담",
+        "spiritual": "용서와 화해"
+      }
+    },
+    "귀문관살": {
+      "name": "귀문관살 (鬼門關殺)",
+      "english": "Ghost Gate Star",
+      "category": "inauspicious",
+      "severity": "medium",
+      "calculation_rules": {
+        "method": "계절별 지지",
+        "seasonal_mapping": {
+          "춘": ["축", "미"],
+          "하": ["진", "술"],
+          "추": ["축", "미"],
+          "동": ["진", "술"]
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "negative": [
+          "영적 장애",
+          "음기 과다",
+          "악몽",
+          "불안감",
+          "초자연적 경험"
+        ],
+        "areas_affected": [
+          "spiritual: 영적 영역",
+          "mental: 정신 건강",
+          "dreams: 꿈과 수면",
+          "energy: 기운",
+          "supernatural: 초자연"
+        ]
+      },
+      "mitigation_methods": [
+        "양기 보충",
+        "밝은 환경",
+        "규칙적 생활",
+        "종교 활동",
+        "정화 의식"
+      ],
+      "protection_methods": [
+        "부적 소지",
+        "염주 착용",
+        "향 피우기",
+        "소금 정화",
+        "햇빛 쬐기"
+      ],
+      "remedies": {
+        "spiritual": "종교 의식",
+        "environmental": "풍수 조정",
+        "energy": "기공, 명상",
+        "cleansing": "정화 의식"
+      }
+    },
+    "공망": {
+      "name": "공망 (空亡)",
+      "english": "Emptiness Star",
+      "category": "inauspicious",
+      "severity": "high",
+      "calculation_rules": {
+        "method": "일주 60갑자 기준",
+        "special_note": "일주에 따라 특정 지지 2개가 공망",
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "negative": [
+          "헛수고",
+          "결실 부족",
+          "공허함",
+          "성취 어려움",
+          "무위"
+        ],
+        "philosophical_meaning": [
+          "집착 버리기",
+          "무위자연",
+          "비움의 미학"
+        ],
+        "areas_affected": [
+          "achievement: 성취 어려움",
+          "results: 결과 부족",
+          "emptiness: 공허감",
+          "efforts: 헛된 노력",
+          "material: 물질 부족"
+        ]
+      },
+      "mitigation_methods": [
+        "실질적 목표",
+        "현실적 계획",
+        "꾸준한 노력",
+        "작은 성취 중시",
+        "정신적 가치 추구"
+      ],
+      "positive_utilization": [
+        "영적 수행",
+        "집착 버리기",
+        "내면 탐구",
+        "예술 활동",
+        "봉사 활동"
+      ],
+      "remedies": {
+        "practical": "구체적 목표",
+        "spiritual": "명상, 수행",
+        "mental": "만족감 찾기",
+        "lifestyle": "단순한 삶"
+      }
+    },
+    "탕화살": {
+      "name": "탕화살 (湯火殺)",
+      "english": "Hot Water Star",
+      "category": "inauspicious",
+      "severity": "medium",
+      "calculation_rules": {
+        "method": "일지 삼합 기준",
+        "mapping": {
+          "인오술": "묘",
+          "신자진": "유",
+          "사유축": "자",
+          "해묘미": "오"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "negative": [
+          "화상 위험",
+          "뜨거운 물 사고",
+          "화재 위험",
+          "열병",
+          "화기 사고"
+        ],
+        "areas_affected": [
+          "safety: 화상 사고",
+          "fire: 화재 위험",
+          "heat: 열 관련",
+          "kitchen: 주방 사고",
+          "burns: 화상"
+        ]
+      },
+      "mitigation_methods": [
+        "화기 조심",
+        "주방 안전",
+        "소화기 비치",
+        "화재 보험",
+        "안전 수칙"
+      ],
+      "prevention": [
+        "요리 시 주의",
+        "전기 안전",
+        "가스 점검",
+        "온도 확인",
+        "보호 장구"
+      ],
+      "remedies": {
+        "safety": "화재 경보기",
+        "prevention": "안전 교육",
+        "protection": "보호 장비",
+        "insurance": "화재 보험"
+      }
+    },
+    "도화살": {
+      "name": "도화살 (桃花殺)",
+      "english": "Peach Blossom Star",
+      "category": "inauspicious",
+      "severity": "medium",
+      "calculation_rules": {
+        "method": "일지/년지 삼합 기준",
+        "mapping": {
+          "인오술": "묘",
+          "신자진": "유",
+          "사유축": "오",
+          "해묘미": "자"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "negative": [
+          "문란한 이성 관계",
+          "불륜",
+          "스캔들",
+          "정조 문제",
+          "복잡한 연애"
+        ],
+        "positive_if_controlled": [
+          "매력",
+          "인기",
+          "예술성"
+        ],
+        "areas_affected": [
+          "romance: 연애 관계",
+          "attraction: 이성 유혹",
+          "scandal: 스캔들",
+          "marriage: 결혼 생활",
+          "reputation: 평판"
+        ]
+      },
+      "mitigation_methods": [
+        "절제와 품위",
+        "일편단심",
+        "건전한 관계",
+        "도덕적 생활",
+        "배우자 중시"
+      ],
+      "positive_utilization": [
+        "예술 활동",
+        "대중 예술",
+        "서비스업",
+        "뷰티 산업",
+        "엔터테인먼트"
+      ],
+      "remedies": {
+        "moral": "도덕적 생활",
+        "relationship": "건전한 관계",
+        "spiritual": "절제 수행",
+        "social": "평판 관리"
+      }
+    },
+    "혈인살": {
+      "name": "혈인살 (血刃殺)",
+      "english": "Blood Blade Star",
+      "category": "inauspicious",
+      "severity": "high",
+      "calculation_rules": {
+        "method": "지지 순환",
+        "mapping": {
+          "자": "축",
+          "축": "인",
+          "인": "묘",
+          "묘": "진",
+          "진": "사",
+          "사": "오",
+          "오": "미",
+          "미": "신",
+          "신": "유",
+          "유": "술",
+          "술": "해",
+          "해": "자"
+        },
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "negative": [
+          "출혈 사고",
+          "수술",
+          "혈액 질환",
+          "생리 문제",
+          "혈관 질환"
+        ],
+        "areas_affected": [
+          "blood: 혈액 관련",
+          "surgery: 수술",
+          "injuries: 부상",
+          "health: 건강",
+          "accidents: 사고"
+        ]
+      },
+      "mitigation_methods": [
+        "정기 건강 검진",
+        "혈액 검사",
+        "안전 주의",
+        "수술 신중",
+        "건강 관리"
+      ],
+      "health_management": [
+        "혈압 관리",
+        "혈당 체크",
+        "정기 검진",
+        "운동 습관",
+        "식단 조절"
+      ],
+      "remedies": {
+        "medical": "정기 검진",
+        "prevention": "건강 관리",
+        "safety": "사고 예방",
+        "spiritual": "건강 기원"
+      }
+    },
+    "역마충": {
+      "name": "역마충 (驛馬沖)",
+      "english": "Post Horse Clash",
+      "category": "inauspicious",
+      "severity": "medium",
+      "calculation_rules": {
+        "method": "역마와 충",
+        "description": "역마가 충을 받는 경우",
+        "check_positions": ["year", "month", "day", "hour"]
+      },
+      "influences": {
+        "negative": [
+          "이동 중 사고",
+          "여행 트러블",
+          "교통 사고",
+          "계획 차질",
+          "불안정한 이동"
+        ],
+        "areas_affected": [
+          "travel: 여행 문제",
+          "movement: 이동 장애",
+          "accidents: 교통 사고",
+          "plans: 계획 차질",
+          "stability: 불안정"
+        ]
+      },
+      "mitigation_methods": [
+        "여행 보험",
+        "안전 운전",
+        "계획 점검",
+        "여유 일정",
+        "비상 대비"
+      ],
+      "travel_safety": [
+        "출발 전 점검",
+        "날씨 확인",
+        "경로 확인",
+        "비상 연락망",
+        "보험 가입"
+      ],
+      "remedies": {
+        "practical": "철저한 준비",
+        "safety": "안전 수칙",
+        "insurance": "여행 보험",
+        "spiritual": "여행 안전 기원"
+      }
+    }
+  },
+  "shinshal_interactions": {
+    "reinforcement": {
+      "description": "서로 강화하는 신살 조합",
+      "examples": [
+        {
+          "combination": ["천을귀인", "월덕귀인"],
+          "effect": "귀인운 극대화, 사회적 성공"
+        },
+        {
+          "combination": ["문창귀인", "학당귀인"],
+          "effect": "학문적 성취, 시험 합격"
+        },
+        {
+          "combination": ["양인", "백호살"],
+          "effect": "사고 위험 증가, 주의 필요"
+        }
+      ]
+    },
+    "neutralization": {
+      "description": "서로 중화시키는 신살 조합",
+      "examples": [
+        {
+          "combination": ["천을귀인", "양인"],
+          "effect": "양인의 흉함이 감소"
+        },
+        {
+          "combination": ["천의성", "백호살"],
+          "effect": "건강 문제 완화"
+        },
+        {
+          "combination": ["복성귀인", "겁살"],
+          "effect": "재물 손실 감소"
+        }
+      ]
+    },
+    "conflict": {
+      "description": "서로 충돌하는 신살 조합",
+      "examples": [
+        {
+          "combination": ["역마", "천라지망"],
+          "effect": "이동 제한, 진퇴양난"
+        },
+        {
+          "combination": ["홍염살", "고란살"],
+          "effect": "연애와 고독의 갈등"
+        },
+        {
+          "combination": ["금여", "공망"],
+          "effect": "부귀의 헛됨"
+        }
+      ]
+    }
+  },
+  "general_mitigation_principles": {
+    "spiritual": [
+      "종교 활동과 기도",
+      "명상과 수행",
+      "선행과 봉사",
+      "참회와 반성",
+      "감사와 겸손"
+    ],
+    "practical": [
+      "안전 수칙 준수",
+      "건강 관리",
+      "재물 관리",
+      "인간관계 관리",
+      "위험 회피"
+    ],
+    "mental": [
+      "긍정적 사고",
+      "마음 수련",
+      "스트레스 관리",
+      "감정 조절",
+      "인내심 기르기"
+    ],
+    "lifestyle": [
+      "규칙적 생활",
+      "건전한 취미",
+      "좋은 인연 만들기",
+      "환경 정화",
+      "풍수 조정"
+    ]
+  },
+  "shinshal_strength_factors": {
+    "position_strength": {
+      "year": 0.7,
+      "month": 0.9,
+      "day": 1.0,
+      "hour": 0.8
+    },
+    "multiple_occurrence": 1.2,
+    "seasonal_match": 1.15,
+    "element_support": 1.1,
+    "conflicting_presence": 0.8,
+    "time_period_influence": {
+      "major_fortune": 1.3,
+      "annual_fortune": 1.2,
+      "monthly_fortune": 1.1
+    }
+  }
+}

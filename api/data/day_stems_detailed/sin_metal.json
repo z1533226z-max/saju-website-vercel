@@ -1,0 +1,275 @@
+{
+  "name": "신금 (辛金)",
+  "element": "금 (金)",
+  "polarity": "음 (陰)",
+  
+  "basic": {
+    "nature": "보석, 은, 정제된 금속",
+    "characteristics": [
+      "섬세하고 예민한 감각",
+      "완벽주의적 성향",
+      "예술적 감성",
+      "깔끔하고 정확함",
+      "품위와 우아함"
+    ],
+    "strengths": [
+      "뛰어난 미적 감각",
+      "섬세한 관찰력",
+      "완벽한 기술력",
+      "높은 품격",
+      "정확성과 정밀함"
+    ],
+    "weaknesses": [
+      "지나친 완벽주의",
+      "예민함과 신경질",
+      "비판적 성향",
+      "융통성 부족",
+      "스트레스 취약"
+    ]
+  },
+  
+  "personality_detailed": {
+    "core_traits": {
+      "refinement": "보석처럼 정제되고 세련된 품격과 우아함을 지녔습니다.",
+      "perfectionism": "모든 일에 완벽을 추구하며 최고의 품질을 지향합니다.",
+      "sensitivity": "섬세한 감수성으로 미묘한 변화와 아름다움을 감지합니다.",
+      "precision": "정확하고 정밀한 작업을 선호하며 디테일에 강합니다.",
+      "elegance": "타고난 품위와 우아함으로 주변을 매료시킵니다."
+    },
+    "emotional_patterns": {
+      "expression": "절제되고 우아한 감정 표현",
+      "stress_response": "예민하게 반응하며 신체화 증상 나타남",
+      "joy_triggers": "아름다움, 완벽한 성취, 인정받을 때",
+      "anger_triggers": "조잡함, 부정확함, 무례함에 분노",
+      "coping_mechanisms": "예술 활동, 정리정돈, 명상"
+    },
+    "behavioral_tendencies": {
+      "decision_making": "신중하고 완벽을 추구하는 결정",
+      "communication": "정확하고 세련된 언어 사용",
+      "conflict_resolution": "논리적이고 이성적 해결",
+      "work_style": "정밀하고 체계적인 업무 처리",
+      "social_interaction": "선택적이고 품위 있는 사교"
+    },
+    "growth_areas": {
+      "flexibility": "완벽하지 않아도 괜찮음을 인정",
+      "tolerance": "타인의 실수에 대한 관대함",
+      "spontaneity": "즉흥성과 자유로움 개발",
+      "stress_management": "스트레스 관리 능력",
+      "warmth": "따뜻함과 친근함 표현"
+    }
+  },
+  
+  "ten_gods_interpretation": {
+    "비견_겁재": {
+      "positive": "전문가들과 높은 수준의 협력과 경쟁을 통해 성장합니다.",
+      "negative": "과도한 경쟁심과 비교로 스트레스를 받을 수 있습니다.",
+      "advice": "자신만의 독특한 가치를 인정하고 타인과 비교하지 마세요."
+    },
+    "식신_상관": {
+      "positive": "예술적 재능과 창의성이 뛰어나 문화예술 분야에서 성공합니다.",
+      "negative": "비판적 성향으로 인간관계가 어려워질 수 있습니다.",
+      "advice": "긍정적인 피드백과 격려를 함께 제공하세요."
+    },
+    "정재_편재": {
+      "positive": "정밀한 계획과 관리로 안정적인 부를 축적합니다.",
+      "negative": "지나치게 보수적인 투자로 기회를 놓칠 수 있습니다.",
+      "advice": "계산된 위험을 감수하고 투자 포트폴리오를 다각화하세요."
+    },
+    "정관_편관": {
+      "positive": "전문성을 인정받아 조직에서 중요한 역할을 맡습니다.",
+      "negative": "완벽주의로 인해 리더십 발휘를 주저할 수 있습니다.",
+      "advice": "80%의 완성도로도 충분함을 인정하고 실행하세요."
+    },
+    "정인_편인": {
+      "positive": "깊이 있는 학문 연구와 전문 지식을 축적합니다.",
+      "negative": "지나친 이론 추구로 실용성이 떨어질 수 있습니다.",
+      "advice": "이론과 실무의 균형을 맞추고 실용적 적용을 고려하세요."
+    }
+  },
+  
+  "career_detailed": {
+    "suitable_fields": [
+      "예술 및 디자인: 보석 디자이너, 화가, 조각가",
+      "의료: 치과의사, 성형외과, 피부과",
+      "기술 및 공학: 정밀기계, 전자공학, 나노기술",
+      "금융: 회계사, 감사, 재무분석가",
+      "법률: 변호사, 특허 전문가, 법무사",
+      "미용 및 패션: 메이크업 아티스트, 패션 디자이너",
+      "연구: 과학자, 연구원, 분석가"
+    ],
+    "work_environment": {
+      "ideal": "조용하고 정돈된 전문적 환경",
+      "challenging": "혼란스럽고 비체계적인 환경",
+      "team_dynamics": "전문가로서 독립적 업무 수행",
+      "growth_path": "전문성 심화를 통한 인정"
+    },
+    "entrepreneurship": {
+      "potential": "중상 - 전문성은 뛰어나나 사업 추진력 부족",
+      "suitable_business": "고급 서비스, 전문 컨설팅, 럭셔리 제품",
+      "challenges": "마케팅 부족, 완벽주의로 인한 지연",
+      "success_factors": "품질, 전문성, 브랜드 가치"
+    },
+    "career_development": {
+      "early_career": "기술과 전문성 완벽히 습득",
+      "mid_career": "분야 최고 전문가로 인정",
+      "late_career": "컨설턴트나 교육자 역할",
+      "retirement": "예술 활동이나 취미 생활"
+    }
+  },
+  
+  "love_marriage": {
+    "romantic_style": {
+      "approach": "신중하고 까다로운 선택",
+      "expression": "세련되고 우아한 사랑 표현",
+      "commitment": "완벽한 사랑을 추구",
+      "expectations": "높은 기준과 이상"
+    },
+    "ideal_partner": {
+      "personality": "지적이고 세련되며 품위 있는 사람",
+      "values": "문화와 예술을 사랑하는 사람",
+      "compatibility": "병화, 무토, 임수와 궁합이 좋음",
+      "challenges": "을목과는 충돌 가능성"
+    },
+    "marriage_life": {
+      "strengths": "세심한 배려와 높은 생활 수준",
+      "challenges": "까다로움, 비판적 태도",
+      "family_dynamics": "품격 있는 가정 문화",
+      "conflict_areas": "완벽주의로 인한 스트레스"
+    },
+    "relationship_advice": {
+      "acceptance": "상대방의 불완전함을 받아들이세요",
+      "appreciation": "작은 것에도 감사를 표현하세요",
+      "flexibility": "기준을 조금 낮추고 유연해지세요",
+      "warmth": "따뜻한 감정 표현을 늘리세요"
+    }
+  },
+  
+  "wealth_detailed": {
+    "financial_traits": {
+      "earning_ability": "전문성을 통한 높은 수입",
+      "spending_habits": "품질 중심의 선택적 소비",
+      "saving_tendency": "계획적 저축과 투자",
+      "investment_style": "안전하고 안정적인 투자"
+    },
+    "wealth_accumulation": {
+      "methods": [
+        "전문 서비스와 컨설팅",
+        "고급 제품 사업",
+        "예술품 투자",
+        "안정적 금융 상품"
+      ],
+      "timing": "중년 이후 안정적 축적",
+      "challenges": "과도한 신중함으로 기회 상실"
+    },
+    "financial_luck": {
+      "good_periods": "가을, 유술 월",
+      "challenging_periods": "봄, 묘진 월",
+      "lucky_directions": "서쪽, 북서쪽",
+      "lucky_numbers": "4, 6, 8"
+    },
+    "money_management": {
+      "strengths": "정밀한 재무 관리",
+      "weaknesses": "투자 기회 보수적 접근",
+      "advice": "적극적 자산 운용 고려"
+    }
+  },
+  
+  "health_detailed": {
+    "physical_constitution": {
+      "strong_areas": "폐, 피부, 호흡기",
+      "weak_areas": "신경계, 정신건강, 알레르기",
+      "common_issues": [
+        "스트레스성 질환",
+        "불면증",
+        "피부 트러블",
+        "호흡기 알레르기"
+      ]
+    },
+    "mental_health": {
+      "stress_factors": "완벽주의, 과도한 자기 비판",
+      "emotional_issues": "불안, 강박, 우울",
+      "coping_strategies": [
+        "예술 치료",
+        "요가와 명상",
+        "정원 가꾸기",
+        "음악 감상"
+      ]
+    },
+    "lifestyle_recommendations": {
+      "exercise": "요가, 필라테스, 수영",
+      "diet": [
+        "깨끗하고 신선한 음식",
+        "유기농 식품",
+        "충분한 수분 섭취",
+        "카페인 절제"
+      ],
+      "sleep": "수면 환경 최적화",
+      "stress_management": "완벽주의 완화 연습"
+    },
+    "preventive_care": {
+      "regular_checkups": "정신건강 상담, 알레르기 검사",
+      "early_warning_signs": "불면, 피부 트러블, 불안",
+      "holistic_approach": "심신 균형과 스트레스 관리"
+    }
+  },
+  
+  "social_relations": {
+    "friendship_patterns": {
+      "quality": "소수의 수준 높은 친구",
+      "loyalty": "신중하지만 깊은 우정",
+      "selection": "까다로운 선택 기준",
+      "maintenance": "품격 있는 교류"
+    },
+    "professional_relationships": {
+      "expertise": "분야 최고 전문가",
+      "standards": "높은 기준과 품질 추구",
+      "collaboration": "전문가 네트워크",
+      "reputation": "완벽주의자이자 전문가"
+    },
+    "family_dynamics": {
+      "parental_role": "세심하고 교육적인 부모",
+      "sibling_relations": "독립적이지만 배려하는 관계",
+      "extended_family": "품위 있는 거리 유지",
+      "standards": "가족에게도 높은 기준 적용"
+    },
+    "community_involvement": {
+      "cultural": "문화예술 활동 참여",
+      "quality": "품격 있는 사회 기여",
+      "expertise": "전문 지식 공유",
+      "standards": "지역사회 수준 향상"
+    }
+  },
+  
+  "spiritual_growth": {
+    "life_purpose": {
+      "mission": "완벽과 아름다움을 통해 세상을 정화하고 향상시키기",
+      "values": "완벽, 아름다움, 정확, 품격, 진실",
+      "legacy": "예술과 전문성의 유산"
+    },
+    "personal_development": {
+      "acceptance": "불완전함의 아름다움 인정",
+      "compassion": "자신과 타인에 대한 자비",
+      "balance": "완벽과 수용의 균형",
+      "authenticity": "진정한 자아 표현"
+    },
+    "spiritual_practices": {
+      "meditation": "정화와 정제의 명상",
+      "art": "예술을 통한 영적 표현",
+      "mindfulness": "순간의 완벽함 인식",
+      "gratitude": "일상의 아름다움 감사"
+    },
+    "life_lessons": {
+      "imperfection": "불완전함도 완벽의 일부",
+      "process": "과정도 결과만큼 중요",
+      "compassion": "비판보다 이해 선택",
+      "joy": "완벽 추구 속에서도 기쁨 찾기",
+      "letting_go": "통제 욕구 내려놓기"
+    },
+    "karmic_path": {
+      "past_influences": "과거의 완벽 추구 경험",
+      "present_challenges": "완벽주의와 수용의 균형",
+      "future_potential": "예술과 지혜의 스승",
+      "soul_evolution": "정제를 통한 영적 성장"
+    }
+  }
+}

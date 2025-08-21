@@ -1,0 +1,275 @@
+{
+  "name": "을목 (乙木)",
+  "element": "목 (木)",
+  "polarity": "음 (陰)",
+  
+  "basic": {
+    "nature": "꽃, 덩굴, 화초",
+    "characteristics": [
+      "부드럽고 유연한 성품",
+      "적응력이 뛰어남",
+      "섬세하고 예민한 감성",
+      "협조적이고 온화함",
+      "예술적 감각이 발달"
+    ],
+    "strengths": [
+      "뛰어난 적응력과 유연성",
+      "섬세한 관찰력",
+      "예술적 재능",
+      "협상과 조정 능력",
+      "인내심과 끈기"
+    ],
+    "weaknesses": [
+      "우유부단함",
+      "의존적 성향",
+      "지나친 감수성",
+      "자기주장 부족",
+      "환경에 휩쓸리기 쉬움"
+    ]
+  },
+  
+  "personality_detailed": {
+    "core_traits": {
+      "flexibility": "환경과 상황에 따라 유연하게 적응하며, 변화를 자연스럽게 받아들입니다.",
+      "sensitivity": "섬세한 감수성으로 타인의 감정을 잘 읽고 공감합니다.",
+      "creativity": "예술적 감각과 창의력이 뛰어나 아름다움을 추구합니다.",
+      "cooperation": "협력과 조화를 중시하며 갈등을 피하려 합니다.",
+      "resilience": "부드러움 속에 강인함을 지니고 있어 어려움을 극복합니다."
+    },
+    "emotional_patterns": {
+      "expression": "간접적이고 부드러운 감정 표현을 선호합니다.",
+      "stress_response": "스트레스를 내면화하여 혼자 삭이는 경향이 있습니다.",
+      "joy_triggers": "아름다운 것을 보거나 조화로운 관계에서 기쁨을 느낍니다.",
+      "anger_triggers": "무시당하거나 인정받지 못할 때 상처받습니다.",
+      "coping_mechanisms": "예술 활동이나 자연과의 교감을 통해 치유합니다."
+    },
+    "behavioral_tendencies": {
+      "decision_making": "여러 의견을 수렴하고 신중하게 결정하는 스타일",
+      "communication": "부드럽고 완곡한 표현을 사용하는 소통 방식",
+      "conflict_resolution": "타협과 중재를 통한 평화로운 해결 추구",
+      "work_style": "세심하고 꼼꼼하게 일을 처리하는 스타일",
+      "social_interaction": "다양한 사람들과 조화롭게 어울리는 사교성"
+    },
+    "growth_areas": {
+      "assertiveness": "자기 의견을 명확하게 표현하는 능력 개발",
+      "independence": "독립적인 사고와 행동 능력 강화",
+      "boundaries": "건강한 경계 설정과 거절하는 법 학습",
+      "confidence": "자신감과 자존감 향상",
+      "leadership": "필요시 리더십을 발휘하는 능력 개발"
+    }
+  },
+  
+  "ten_gods_interpretation": {
+    "비견_겁재": {
+      "positive": "동료들과 조화롭게 협력하며 팀워크를 발휘합니다.",
+      "negative": "경쟁 상황에서 자신감이 부족하고 양보하기 쉽습니다.",
+      "advice": "건강한 경쟁심을 기르고 자신의 가치를 인정하세요."
+    },
+    "식신_상관": {
+      "positive": "예술적 재능과 창의력이 풍부하여 문화예술 분야에서 성공할 수 있습니다.",
+      "negative": "감정 기복이 심하고 예민하여 대인관계에 어려움이 있을 수 있습니다.",
+      "advice": "감정을 건설적으로 표현하는 방법을 찾고 안정감을 유지하세요."
+    },
+    "정재_편재": {
+      "positive": "꾸준한 노력으로 안정적인 재물을 모을 수 있습니다.",
+      "negative": "재물에 대한 욕심이 부족하여 기회를 놓칠 수 있습니다.",
+      "advice": "적극적인 재테크와 자산 관리에 관심을 가지세요."
+    },
+    "정관_편관": {
+      "positive": "조직에서 중간 관리자나 조정자 역할을 잘 수행합니다.",
+      "negative": "권위에 대한 부담감으로 리더십 발휘를 주저할 수 있습니다.",
+      "advice": "자신감을 갖고 필요시 리더십을 발휘하는 연습을 하세요."
+    },
+    "정인_편인": {
+      "positive": "학습 능력이 뛰어나고 지적 호기심이 풍부합니다.",
+      "negative": "이론에 치우쳐 실천력이 부족할 수 있습니다.",
+      "advice": "배운 것을 실생활에 적용하고 실천하는 습관을 기르세요."
+    }
+  },
+  
+  "career_detailed": {
+    "suitable_fields": [
+      "예술 및 디자인: 화가, 디자이너, 플로리스트, 인테리어 디자이너",
+      "문화 및 엔터테인먼트: 작가, 시인, 음악가, 배우",
+      "교육 및 상담: 유아교육, 상담사, 심리치료사",
+      "미용 및 패션: 미용사, 스타일리스트, 패션 디자이너",
+      "서비스업: 호텔리어, 승무원, 고객 서비스",
+      "의료 및 간호: 간호사, 물리치료사, 약사",
+      "환경 및 원예: 조경사, 원예사, 플로리스트"
+    ],
+    "work_environment": {
+      "ideal": "조화롭고 평화로운 분위기의 창의적인 환경",
+      "challenging": "경쟁이 치열하고 압박이 심한 환경",
+      "team_dynamics": "협력적인 팀원으로서 조정자 역할 수행",
+      "growth_path": "전문성을 인정받아 점진적으로 성장하는 경로"
+    },
+    "entrepreneurship": {
+      "potential": "중간 - 창의적 아이디어는 풍부하나 추진력 부족",
+      "suitable_business": "예술 공방, 꽃집, 카페, 문화 콘텐츠",
+      "challenges": "결단력 부족, 경영 능력 개발 필요",
+      "success_factors": "파트너십, 니치 마켓, 고객 관계 중시"
+    },
+    "career_development": {
+      "early_career": "다양한 경험을 통해 적성 찾기",
+      "mid_career": "전문 분야에서 인정받는 전문가로 성장",
+      "late_career": "후배 양성과 문화 전수에 기여",
+      "retirement": "취미와 예술 활동을 통한 자아실현"
+    }
+  },
+  
+  "love_marriage": {
+    "romantic_style": {
+      "approach": "로맨틱하고 감성적인 접근, 천천히 관계 발전",
+      "expression": "은은하고 간접적인 애정 표현",
+      "commitment": "헌신적이고 충실한 사랑",
+      "expectations": "정서적 교감과 이해를 중시"
+    },
+    "ideal_partner": {
+      "personality": "강하면서도 포용력 있는 사람, 자신을 이끌어줄 수 있는 사람",
+      "values": "예술과 문화를 사랑하고 감수성이 풍부한 사람",
+      "compatibility": "갑목, 병화, 계수와 궁합이 좋음",
+      "challenges": "신금과는 상충 가능성"
+    },
+    "marriage_life": {
+      "strengths": "배려심 깊고 가정적인 배우자",
+      "challenges": "의존적 성향, 결정력 부족",
+      "family_dynamics": "화목한 가정 분위기 조성에 노력",
+      "conflict_areas": "우유부단함으로 인한 갈등"
+    },
+    "relationship_advice": {
+      "communication": "자신의 감정과 의견을 명확히 표현하는 연습을 하세요",
+      "independence": "건강한 독립성을 유지하며 상호의존적 관계를 지향하세요",
+      "boundaries": "사랑하면서도 자신을 잃지 않는 균형을 찾으세요",
+      "romance": "일상 속에서도 로맨스를 유지하는 노력을 계속하세요"
+    }
+  },
+  
+  "wealth_detailed": {
+    "financial_traits": {
+      "earning_ability": "꾸준하고 안정적인 수입 추구",
+      "spending_habits": "감성적 소비 경향, 예술품이나 미적 가치에 투자",
+      "saving_tendency": "불규칙적인 저축 패턴",
+      "investment_style": "안전한 투자 선호, 위험 회피"
+    },
+    "wealth_accumulation": {
+      "methods": [
+        "예술 작품이나 창작 활동을 통한 수익",
+        "장기적인 투자와 복리 효과",
+        "부동산이나 안정적인 자산",
+        "파트너십을 통한 사업"
+      ],
+      "timing": "중년 이후 점진적인 부의 축적",
+      "challenges": "적극적인 투자 기회 포착 부족"
+    },
+    "financial_luck": {
+      "good_periods": "봄과 여름, 인묘사오 월",
+      "challenging_periods": "가을, 신유 월",
+      "lucky_directions": "동쪽, 남동쪽",
+      "lucky_numbers": "3, 4, 8"
+    },
+    "money_management": {
+      "strengths": "불필요한 낭비 자제, 실용적 소비",
+      "weaknesses": "감정적 구매, 재테크 지식 부족",
+      "advice": "체계적인 재무 계획 수립과 전문가 조언 활용"
+    }
+  },
+  
+  "health_detailed": {
+    "physical_constitution": {
+      "strong_areas": "간, 담낭, 신경계, 호흡기",
+      "weak_areas": "소화기, 순환계, 근골격계",
+      "common_issues": [
+        "신경성 위장 장애",
+        "알레르기, 아토피",
+        "불면증, 신경 쇠약",
+        "호르몬 불균형"
+      ]
+    },
+    "mental_health": {
+      "stress_factors": "대인관계 갈등, 과도한 감정 노동, 완벽주의",
+      "emotional_issues": "불안, 우울, 자존감 저하",
+      "coping_strategies": [
+        "예술 치료와 창작 활동",
+        "자연 치유와 원예 요법",
+        "요가와 명상",
+        "음악 치료와 아로마테라피"
+      ]
+    },
+    "lifestyle_recommendations": {
+      "exercise": "요가, 필라테스, 태극권 등 부드러운 운동",
+      "diet": [
+        "신선한 유기농 채소와 과일",
+        "소화가 잘 되는 부드러운 음식",
+        "따뜻한 차와 허브티",
+        "자극적인 음식 피하기"
+      ],
+      "sleep": "규칙적인 수면 습관, 숙면을 위한 환경 조성",
+      "stress_management": "정기적인 휴식과 취미 활동"
+    },
+    "preventive_care": {
+      "regular_checkups": "호르몬 검사, 알레르기 검사, 정신건강 상담",
+      "early_warning_signs": "만성 피로, 소화 불량, 불안감",
+      "holistic_approach": "심신의 균형을 위한 통합적 건강 관리"
+    }
+  },
+  
+  "social_relations": {
+    "friendship_patterns": {
+      "quality": "깊고 의미 있는 소수의 친구 관계",
+      "loyalty": "변하지 않는 우정과 신뢰",
+      "selection": "감성적 교감이 가능한 사람들과 친구",
+      "maintenance": "세심한 배려와 관심으로 관계 유지"
+    },
+    "professional_relationships": {
+      "teamwork": "협력적이고 조화로운 팀 플레이어",
+      "mediation": "갈등 상황에서 중재자 역할",
+      "networking": "부드러운 인맥 관리와 관계 형성",
+      "reputation": "친절하고 배려심 깊은 사람으로 인정"
+    },
+    "family_dynamics": {
+      "parental_role": "자상하고 헌신적인 부모",
+      "sibling_relations": "형제자매와 화목한 관계 유지",
+      "extended_family": "가족 행사와 모임에 적극 참여",
+      "emotional_support": "가족의 정서적 안정을 담당"
+    },
+    "community_involvement": {
+      "volunteer_work": "문화예술 분야 자원봉사",
+      "cultural_activities": "지역 문화 행사 참여와 기여",
+      "environmental_care": "환경 보호와 녹색 운동 참여",
+      "gentle_influence": "부드러운 영향력으로 긍정적 변화 유도"
+    }
+  },
+  
+  "spiritual_growth": {
+    "life_purpose": {
+      "mission": "아름다움과 조화를 통해 세상을 더 나은 곳으로 만들기",
+      "values": "조화, 아름다움, 평화, 성장, 창의성",
+      "legacy": "예술과 문화를 통한 정신적 유산 남기기"
+    },
+    "personal_development": {
+      "self_discovery": "내면의 강인함을 발견하고 개발하기",
+      "emotional_mastery": "감정을 이해하고 건강하게 표현하기",
+      "creative_expression": "창의성을 통한 자아실현",
+      "inner_strength": "부드러움 속의 강인함 개발"
+    },
+    "spiritual_practices": {
+      "meditation": "자연 속에서의 명상과 관조",
+      "artistic_practice": "예술을 통한 영적 표현",
+      "mindfulness": "일상에서의 마음챙김 실천",
+      "gratitude": "감사 일기와 긍정적 사고"
+    },
+    "life_lessons": {
+      "self_worth": "자신의 가치를 인정하고 사랑하기",
+      "boundaries": "건강한 경계 설정하기",
+      "authenticity": "진정한 자신을 표현하기",
+      "resilience": "유연함 속에서 회복탄력성 기르기",
+      "trust": "자신과 우주를 신뢰하기"
+    },
+    "karmic_path": {
+      "past_influences": "과거의 상처를 치유하고 성장의 자양분으로 삼기",
+      "present_challenges": "의존성 극복과 독립성 확립",
+      "future_potential": "영감을 주는 예술가이자 치유자로 성장",
+      "soul_evolution": "개인의 창의성을 통한 집단 의식의 향상"
+    }
+  }
+}

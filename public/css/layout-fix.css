@@ -1,0 +1,272 @@
+/* 
+ * 해석 카드 레이아웃 완전 수정 v2
+ * 화면 크기별 최적화된 그리드 시스템
+ * 우선순위를 높이기 위해 더 구체적인 선택자 사용
+ */
+
+/* ===================================
+   기본 해석 그리드 설정 (우선순위 강제)
+   =================================== */
+#results-section .interpretation {
+    display: grid !important;
+    gap: 1.5rem !important;
+    margin: 2rem 0 !important;
+    padding: 0 1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    grid-template-columns: 1fr !important;
+}
+
+/* 태블릿 (768px+): 2열 */
+@media (min-width: 768px) {
+    #results-section .interpretation {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 2rem !important;
+        padding: 0 2rem !important;
+    }
+}
+
+/* 데스크톱 (1024px+): 상위 4개는 2x2 그리드 */
+@media (min-width: 1024px) {
+    #results-section .interpretation {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 2rem !important;
+        max-width: 1200px !important;
+        margin: 2rem auto !important;
+    }
+    
+    /* 5번째 카드부터(십성, 대운, 운세차트)는 전체 너비 사용 */
+    #results-section .interpretation .interpretation-card:nth-child(5),
+    #results-section .interpretation .interpretation-card:nth-child(6),
+    #results-section .interpretation .interpretation-card:nth-child(7),
+    #results-section .interpretation .interpretation-card:nth-child(8) {
+        grid-column: 1 / -1 !important;
+    }
+}
+
+/* 와이드스크린 (1440px+): 상위 4개는 4열 */
+@media (min-width: 1440px) {
+    #results-section .interpretation {
+        grid-template-columns: repeat(4, 1fr) !important;
+        max-width: 1400px !important;
+        gap: 2.5rem !important;
+    }
+    
+    /* 하위 특수 섹션은 여전히 전체 너비 */
+    #results-section .interpretation .interpretation-card:nth-child(5),
+    #results-section .interpretation .interpretation-card:nth-child(6),
+    #results-section .interpretation .interpretation-card:nth-child(7),
+    #results-section .interpretation .interpretation-card:nth-child(8) {
+        grid-column: 1 / -1 !important;
+    }
+}
+
+/* 울트라 와이드 (1920px+) */
+@media (min-width: 1920px) {
+    #results-section .interpretation {
+        max-width: 1600px !important;
+        gap: 3rem !important;
+    }
+}
+
+/* ===================================
+   해석 카드 기본 스타일
+   =================================== */
+#results-section .interpretation-card {
+    background: linear-gradient(135deg, #fdf6f0 0%, #f7e8dc 100%) !important;
+    border-radius: 12px !important;
+    padding: 1.5rem !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 200px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+/* 상위 4개 카드 높이 제한 */
+#results-section .interpretation-card:nth-child(-n+4) {
+    max-height: 400px !important;
+}
+
+@media (min-width: 1440px) {
+    #results-section .interpretation-card:nth-child(-n+4) {
+        max-height: 350px !important;
+    }
+}
+
+#results-section .interpretation-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+#results-section .interpretation-card h3 {
+    color: #8b4513 !important;
+    font-size: 1.25rem !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.75rem !important;
+    border-bottom: 2px solid rgba(139, 69, 19, 0.2) !important;
+    flex-shrink: 0 !important;
+}
+
+#results-section .interpretation-card > p {
+    flex: 1 !important;
+    line-height: 1.6 !important;
+    color: #4a4a4a !important;
+    overflow: auto !important;
+}
+
+/* ===================================
+   십성 관계 분석 - 항상 가로 그리드
+   =================================== */
+#results-section .ten-gods-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+    margin-top: 1rem !important;
+    width: 100% !important;
+}
+
+@media (min-width: 768px) {
+    #results-section .ten-gods-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 1.5rem !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    #results-section .ten-gods-grid {
+        grid-template-columns: repeat(5, 1fr) !important;
+    }
+}
+
+@media (min-width: 1440px) {
+    #results-section .ten-gods-grid {
+        grid-template-columns: repeat(5, 1fr) !important;
+        gap: 2rem !important;
+    }
+}
+
+/* ===================================
+   대운 흐름 - 좌우 배치 유지
+   =================================== */
+#results-section .major-fortune-timeline {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    margin-top: 1rem !important;
+    width: 100% !important;
+}
+
+@media (min-width: 768px) {
+    #results-section .major-fortune-timeline {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 2rem !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    #results-section .major-fortune-timeline {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 3rem !important;
+    }
+}
+
+/* ===================================
+   운세 차트 - 전체 너비 활용
+   =================================== */
+#results-section #fortune-chart {
+    width: 100% !important;
+    height: 300px !important;
+    margin-top: 1rem !important;
+    position: relative !important;
+    background: white !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    box-sizing: border-box !important;
+}
+
+@media (min-width: 768px) {
+    #results-section #fortune-chart {
+        height: 350px !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    #results-section #fortune-chart {
+        height: 400px !important;
+    }
+}
+
+/* ===================================
+   반응형 폰트 크기 조정
+   =================================== */
+@media (min-width: 1024px) {
+    #results-section .interpretation-card h3 {
+        font-size: 1.5rem !important;
+    }
+    
+    #results-section .interpretation-card > p {
+        font-size: 1.05rem !important;
+    }
+    
+    #results-section .interpretation-card {
+        padding: 2rem !important;
+    }
+}
+
+@media (min-width: 1440px) {
+    #results-section .interpretation-card h3 {
+        font-size: 1.6rem !important;
+    }
+    
+    #results-section .interpretation-card > p {
+        font-size: 1.1rem !important;
+    }
+    
+    #results-section .interpretation-card {
+        padding: 2.5rem !important;
+    }
+}
+
+/* ===================================
+   다크 모드 지원
+   =================================== */
+@media (prefers-color-scheme: dark) {
+    #results-section .interpretation-card {
+        background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%) !important;
+        color: #f0f0f0 !important;
+    }
+    
+    #results-section .interpretation-card h3 {
+        color: #d4a574 !important;
+        border-bottom-color: rgba(212, 165, 116, 0.3) !important;
+    }
+    
+    #results-section .interpretation-card > p {
+        color: #e0e0e0 !important;
+    }
+    
+    #results-section .fortune-chart {
+        background: #2c3e50 !important;
+    }
+}
+
+/* ===================================
+   디버그용 테두리 (필요시 활성화)
+   =================================== */
+/*
+#results-section .interpretation {
+    border: 2px solid red !important;
+}
+
+#results-section .interpretation-card {
+    border: 2px solid blue !important;
+}
+
+#results-section .interpretation-card:nth-child(n+5) {
+    border: 2px solid green !important;
+}
+*/

@@ -1,0 +1,275 @@
+{
+  "name": "임수 (壬水)",
+  "element": "수 (水)",
+  "polarity": "양 (陽)",
+  
+  "basic": {
+    "nature": "바다, 큰 강, 대양",
+    "characteristics": [
+      "자유롭고 활동적",
+      "지혜롭고 총명함",
+      "적응력이 뛰어남",
+      "포용력이 크고 관대함",
+      "변화를 즐기고 모험적"
+    ],
+    "strengths": [
+      "뛰어난 지능과 통찰력",
+      "강한 적응력과 유연성",
+      "넓은 포용력",
+      "창의적 사고",
+      "커뮤니케이션 능력"
+    ],
+    "weaknesses": [
+      "변덕스러움",
+      "일관성 부족",
+      "감정 기복",
+      "산만함",
+      "책임 회피 경향"
+    ]
+  },
+  
+  "personality_detailed": {
+    "core_traits": {
+      "fluidity": "물처럼 자유롭게 흐르며 어떤 상황에도 적응하는 유연성을 지녔습니다.",
+      "intelligence": "깊은 지혜와 통찰력으로 사물의 본질을 꿰뚫어 봅니다.",
+      "expansiveness": "바다처럼 넓은 마음으로 모든 것을 포용하고 이해합니다.",
+      "dynamism": "끊임없이 움직이고 변화하며 새로운 것을 추구합니다.",
+      "communication": "뛰어난 소통 능력으로 사람들을 연결하고 조화를 이룹니다."
+    },
+    "emotional_patterns": {
+      "expression": "감정이 풍부하고 자유롭게 표현하며 변화무쌍합니다.",
+      "stress_response": "스트레스를 회피하거나 다른 활동으로 전환합니다.",
+      "joy_triggers": "자유, 새로운 경험, 지적 자극에서 기쁨을 느낍니다.",
+      "anger_triggers": "구속, 제한, 부자유에 분노합니다.",
+      "coping_mechanisms": "여행, 새로운 활동, 사람들과의 교류를 통해 해소합니다."
+    },
+    "behavioral_tendencies": {
+      "decision_making": "직관적이고 유연한 결정",
+      "communication": "유창하고 설득력 있는 소통",
+      "conflict_resolution": "회피하거나 우회적 해결",
+      "work_style": "창의적이고 자유로운 방식",
+      "social_interaction": "활발하고 다양한 인맥 형성"
+    },
+    "growth_areas": {
+      "consistency": "일관성과 지속성 개발",
+      "responsibility": "책임감과 신뢰성 강화",
+      "focus": "집중력과 완성도 향상",
+      "commitment": "헌신과 약속 이행",
+      "stability": "정서적 안정성 확보"
+    }
+  },
+  
+  "ten_gods_interpretation": {
+    "비견_겁재": {
+      "positive": "동료들과 자유롭게 협력하며 창의적인 시너지를 만듭니다.",
+      "negative": "경쟁보다 회피를 선택하여 기회를 놓칠 수 있습니다.",
+      "advice": "건전한 경쟁을 통해 성장하고 책임감을 기르세요."
+    },
+    "식신_상관": {
+      "positive": "뛰어난 창의력과 표현력으로 예술이나 문학 분야에서 성공합니다.",
+      "negative": "산만함과 일관성 부족으로 완성도가 떨어질 수 있습니다.",
+      "advice": "한 가지에 집중하여 깊이 있게 발전시키세요."
+    },
+    "정재_편재": {
+      "positive": "다양한 수입원과 창의적인 사업 아이디어로 부를 창출합니다.",
+      "negative": "계획 없는 소비와 투자로 재정 불안정을 겪을 수 있습니다.",
+      "advice": "체계적인 재무 관리와 장기 계획을 수립하세요."
+    },
+    "정관_편관": {
+      "positive": "유연한 리더십과 창의적 문제 해결로 인정받습니다.",
+      "negative": "책임 회피와 일관성 부족으로 신뢰를 잃을 수 있습니다.",
+      "advice": "책임감을 갖고 일관된 리더십을 발휘하세요."
+    },
+    "정인_편인": {
+      "positive": "폭넓은 지식과 통찰력으로 지혜로운 조언자가 됩니다.",
+      "negative": "깊이 없는 지식과 산만한 학습으로 전문성이 부족할 수 있습니다.",
+      "advice": "한 분야를 깊이 있게 탐구하여 전문가가 되세요."
+    }
+  },
+  
+  "career_detailed": {
+    "suitable_fields": [
+      "미디어 및 방송: 방송인, 기자, PD, 작가",
+      "교육 및 강연: 강사, 교수, 교육 컨설턴트",
+      "무역 및 국제업무: 무역업, 통역, 외교관",
+      "관광 및 서비스: 여행업, 호텔업, 이벤트",
+      "IT 및 혁신: 소프트웨어, 스타트업, 혁신 컨설팅",
+      "예술 및 엔터테인먼트: 음악가, 배우, 프로듀서",
+      "컨설팅: 경영 컨설팅, 전략 기획"
+    ],
+    "work_environment": {
+      "ideal": "자유롭고 창의적인 환경",
+      "challenging": "엄격하고 규제가 많은 환경",
+      "team_dynamics": "유연한 협력자이자 아이디어 제공자",
+      "growth_path": "다양한 경험을 통한 성장"
+    },
+    "entrepreneurship": {
+      "potential": "높음 - 창의성과 적응력이 뛰어남",
+      "suitable_business": "콘텐츠, 미디어, 교육, 무역",
+      "challenges": "일관성 부족, 재무 관리",
+      "success_factors": "혁신, 네트워킹, 트렌드 파악"
+    },
+    "career_development": {
+      "early_career": "다양한 경험과 탐색",
+      "mid_career": "전문 분야 확립과 네트워크 구축",
+      "late_career": "지혜와 경험 공유",
+      "retirement": "여행과 새로운 학습"
+    }
+  },
+  
+  "love_marriage": {
+    "romantic_style": {
+      "approach": "자유롭고 로맨틱한 접근",
+      "expression": "변화무쌍하고 열정적인 표현",
+      "commitment": "자유로운 사랑 추구",
+      "expectations": "지적 교감과 자유"
+    },
+    "ideal_partner": {
+      "personality": "독립적이고 지적이며 자유로운 사람",
+      "values": "자유와 성장을 중시하는 사람",
+      "compatibility": "정화, 경금, 갑목과 궁합이 좋음",
+      "challenges": "무토와는 충돌 가능성"
+    },
+    "marriage_life": {
+      "strengths": "재미있고 활기찬 관계",
+      "challenges": "일관성 부족, 책임 회피",
+      "family_dynamics": "자유롭고 개방적인 가족",
+      "conflict_areas": "안정성 부족과 변덕"
+    },
+    "relationship_advice": {
+      "commitment": "약속을 지키고 일관성을 유지하세요",
+      "stability": "정서적 안정감을 제공하세요",
+      "presence": "현재에 충실하고 집중하세요",
+      "responsibility": "가족에 대한 책임감을 가지세요"
+    }
+  },
+  
+  "wealth_detailed": {
+    "financial_traits": {
+      "earning_ability": "다양한 수입원과 높은 잠재력",
+      "spending_habits": "충동적이고 변덕스러운 소비",
+      "saving_tendency": "불규칙적인 저축",
+      "investment_style": "모험적이고 다각화된 투자"
+    },
+    "wealth_accumulation": {
+      "methods": [
+        "창의적 사업과 벤처",
+        "지적 재산권",
+        "글로벌 투자",
+        "네트워크 활용"
+      ],
+      "timing": "기복이 있지만 큰 기회 포착",
+      "challenges": "일관성 부족, 계획 없는 투자"
+    },
+    "financial_luck": {
+      "good_periods": "겨울, 해자축 월",
+      "challenging_periods": "여름, 사오미 월",
+      "lucky_directions": "북쪽, 북서쪽",
+      "lucky_numbers": "1, 6, 7"
+    },
+    "money_management": {
+      "strengths": "기회 포착, 창의적 수익 창출",
+      "weaknesses": "충동 소비, 재무 계획 부족",
+      "advice": "전문가와 함께 체계적 관리"
+    }
+  },
+  
+  "health_detailed": {
+    "physical_constitution": {
+      "strong_areas": "신장, 방광, 순환계",
+      "weak_areas": "면역계, 호르몬, 정신건강",
+      "common_issues": [
+        "신장 질환",
+        "호르몬 불균형",
+        "우울증, 조울증",
+        "만성 피로"
+      ]
+    },
+    "mental_health": {
+      "stress_factors": "구속감, 일상의 반복, 책임 압박",
+      "emotional_issues": "감정 기복, 불안, 산만함",
+      "coping_strategies": [
+        "여행과 새로운 경험",
+        "수영이나 수상 스포츠",
+        "창의적 활동",
+        "사회적 교류"
+      ]
+    },
+    "lifestyle_recommendations": {
+      "exercise": "수영, 요트, 서핑 등 수상 스포츠",
+      "diet": [
+        "충분한 수분 섭취",
+        "신장에 좋은 음식",
+        "짠 음식 절제",
+        "규칙적인 식사"
+      ],
+      "sleep": "일정한 수면 패턴 확립",
+      "stress_management": "다양한 활동과 취미"
+    },
+    "preventive_care": {
+      "regular_checkups": "신장 기능 검사, 호르몬 검사",
+      "early_warning_signs": "부종, 피로, 감정 기복",
+      "holistic_approach": "유연성과 안정성의 균형"
+    }
+  },
+  
+  "social_relations": {
+    "friendship_patterns": {
+      "quantity": "넓고 다양한 인맥",
+      "quality": "가볍지만 즐거운 관계",
+      "loyalty": "자유로운 우정",
+      "maintenance": "간헐적이지만 지속적"
+    },
+    "professional_relationships": {
+      "networking": "뛰어난 네트워킹 능력",
+      "collaboration": "유연한 협력자",
+      "influence": "아이디어와 영감 제공",
+      "reputation": "창의적이고 재미있는 사람"
+    },
+    "family_dynamics": {
+      "parental_role": "자유롭고 친구 같은 부모",
+      "sibling_relations": "독립적이지만 친밀한 관계",
+      "extended_family": "느슨하지만 따뜻한 관계",
+      "freedom": "가족 구성원의 자유 존중"
+    },
+    "community_involvement": {
+      "innovation": "새로운 아이디어 제시",
+      "connection": "사람들을 연결하는 역할",
+      "culture": "문화 활동 참여와 기획",
+      "global": "국제적 교류와 활동"
+    }
+  },
+  
+  "spiritual_growth": {
+    "life_purpose": {
+      "mission": "자유와 지혜로 세상을 연결하고 순환시키기",
+      "values": "자유, 지혜, 창의, 연결, 흐름",
+      "legacy": "혁신과 연결의 유산"
+    },
+    "personal_development": {
+      "flow": "삶의 흐름과 하나되기",
+      "wisdom": "경험을 통한 지혜 축적",
+      "balance": "자유와 책임의 균형",
+      "depth": "표면을 넘어 깊이 탐구"
+    },
+    "spiritual_practices": {
+      "meditation": "흐르는 물 명상",
+      "travel": "여행을 통한 영적 성장",
+      "learning": "끊임없는 학습과 탐구",
+      "connection": "모든 것과의 연결 인식"
+    },
+    "life_lessons": {
+      "commitment": "자유 속에서도 헌신 배우기",
+      "depth": "넓이와 함께 깊이 추구",
+      "presence": "현재 순간에 머물기",
+      "responsibility": "자유에는 책임이 따름",
+      "stillness": "고요함 속의 지혜 발견"
+    },
+    "karmic_path": {
+      "past_influences": "과거의 자유 추구 경험",
+      "present_challenges": "자유와 책임의 균형",
+      "future_potential": "지혜로운 안내자이자 연결자",
+      "soul_evolution": "흐름을 통한 우주적 이해"
+    }
+  }
+}

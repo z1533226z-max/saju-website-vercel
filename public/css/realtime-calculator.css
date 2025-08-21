@@ -1,0 +1,243 @@
+/**
+ * Real-time Calculator Styles
+ */
+
+.realtime-indicator {
+    background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 2px solid #81C784;
+    transition: all 0.3s ease;
+}
+
+.realtime-indicator.active {
+    background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+    border-color: #FFB74D;
+}
+
+.indicator-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.indicator-icon {
+    font-size: 1.5rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.indicator-text {
+    flex: 1;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+/* Mini Toggle for Real-time */
+.realtime-toggle {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+.realtime-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider-mini {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ccc;
+    border-radius: 13px;
+    transition: 0.4s;
+}
+
+.toggle-slider-mini::before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+.realtime-toggle input:checked + .toggle-slider-mini {
+    background: #4CAF50;
+}
+
+.realtime-toggle input:checked + .toggle-slider-mini::before {
+    transform: translateX(24px);
+}
+
+/* Calculation Status */
+.calculation-status {
+    margin-top: 0.75rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    min-height: 32px;
+}
+
+.calculation-status.typing {
+    background: #E3F2FD;
+    color: #1976D2;
+    border-left: 3px solid #1976D2;
+}
+
+.calculation-status.calculating {
+    background: #FFF9C4;
+    color: #F57C00;
+    border-left: 3px solid #F57C00;
+    animation: calculating 1s ease-in-out infinite;
+}
+
+@keyframes calculating {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.calculation-status.completed {
+    background: #E8F5E9;
+    color: #2E7D32;
+    border-left: 3px solid #2E7D32;
+}
+
+.calculation-status.error {
+    background: #FFEBEE;
+    color: #C62828;
+    border-left: 3px solid #C62828;
+}
+
+.calculation-status.incomplete {
+    background: #F5F5F5;
+    color: #616161;
+    border-left: 3px solid #9E9E9E;
+}
+
+/* Results Animation */
+.results-appearing {
+    animation: slideInUp 0.5s ease;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form Input Highlights */
+.form-input-realtime {
+    position: relative;
+}
+
+.form-input-realtime::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.form-input-realtime.active::after {
+    transform: scaleX(1);
+}
+
+/* Input Field Glow Effect */
+input.realtime-active,
+select.realtime-active {
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+    border-color: #4CAF50;
+}
+
+/* Loading Overlay for Results */
+.results-loading {
+    position: relative;
+}
+
+.results-loading::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.results-loading::after {
+    content: "계산 중...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+    font-weight: 600;
+    color: var(--color-primary);
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .indicator-content {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    
+    .realtime-toggle {
+        margin: 0 auto;
+    }
+    
+    .calculation-status {
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .realtime-indicator {
+        padding: 0.75rem;
+    }
+    
+    .indicator-icon {
+        font-size: 1.2rem;
+    }
+    
+    .indicator-text {
+        font-size: 0.9rem;
+    }
+}

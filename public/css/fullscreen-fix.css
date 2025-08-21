@@ -1,0 +1,233 @@
+/**
+ * 전체화면 및 와이드스크린 레이아웃 수정
+ * Created: 2025-01-10
+ */
+
+/* ===================================
+   해석 카드 그리드 전체화면 최적화
+   =================================== */
+
+/* 기본 레이아웃 - 모바일 우선 */
+.interpretation {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.interpretation-card {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 태블릿 (768px 이상) */
+@media (min-width: 768px) {
+    .interpretation {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        max-width: 900px;
+    }
+}
+
+/* 데스크톱 (1024px 이상) */
+@media (min-width: 1024px) {
+    .interpretation {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 1100px;
+    }
+    
+    .interpretation-card {
+        min-height: 280px;
+    }
+}
+
+/* 와이드 스크린 (1440px 이상) */
+@media (min-width: 1440px) {
+    .interpretation {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1400px;
+        gap: 2.5rem;
+    }
+}
+
+/* 울트라 와이드 (1920px 이상) */
+@media (min-width: 1920px) {
+    .interpretation {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1600px;
+        gap: 3rem;
+    }
+    
+    .interpretation-card {
+        min-height: 320px;
+        padding: 2.5rem;
+    }
+}
+
+/* 4K 디스플레이 (2560px 이상) */
+@media (min-width: 2560px) {
+    .interpretation {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 2000px;
+        gap: 3rem;
+    }
+    
+    .interpretation-card {
+        min-height: 350px;
+        padding: 3rem;
+    }
+}
+
+/* ===================================
+   사주 테이블 한글 해석 스타일
+   =================================== */
+
+.pillar {
+    position: relative;
+    padding: 1.5rem 1rem;
+}
+
+.stem-korean,
+.branch-korean {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-secondary, #888);
+    margin-top: 0.125rem;
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+.heavenly-stem {
+    margin-bottom: 0.125rem;
+}
+
+.earthly-branch {
+    margin-top: 0.5rem;
+    margin-bottom: 0.125rem;
+}
+
+/* 전체화면에서 사주 테이블 중앙 정렬 */
+@media (min-width: 1920px) {
+    .saju-table {
+        max-width: 1000px;
+        margin: 3rem auto;
+        gap: 2.5rem;
+    }
+    
+    .pillar {
+        padding: 2rem 1.5rem;
+    }
+    
+    .stem-korean,
+    .branch-korean {
+        font-size: 0.85rem;
+        margin-top: 0.25rem;
+    }
+}
+
+/* ===================================
+   해석 카드 애니메이션 개선
+   =================================== */
+
+.interpretation-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-origin: center;
+}
+
+.interpretation-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* 카드 내용 정렬 */
+.interpretation-card h3 {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid rgba(212, 165, 116, 0.3);
+}
+
+.interpretation-card p,
+.interpretation-card div {
+    line-height: 1.8;
+}
+
+/* ===================================
+   스크롤바 스타일 개선
+   =================================== */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f5f5f5;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #d4a574 0%, #b8935f 100%);
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #b8935f 0%, #9c7a4f 100%);
+}
+
+/* Firefox 스크롤바 */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #d4a574 #f5f5f5;
+}
+
+/* ===================================
+   컨테이너 쿼리 지원 (모던 브라우저)
+   =================================== */
+
+@supports (container-type: inline-size) {
+    .section-container {
+        container-type: inline-size;
+    }
+    
+    @container (min-width: 1200px) {
+        .interpretation-card {
+            padding: 2.5rem;
+            font-size: 1.05rem;
+        }
+    }
+    
+    @container (min-width: 1600px) {
+        .interpretation-card {
+            padding: 3rem;
+            font-size: 1.1rem;
+        }
+    }
+}
+
+/* ===================================
+   다크 모드 지원
+   =================================== */
+
+@media (prefers-color-scheme: dark) {
+    .interpretation-card {
+        background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+        border-color: #444;
+    }
+    
+    .stem-korean,
+    .branch-korean {
+        color: #aaa;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #2a2a2a;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #8b6f47 0%, #705a3a 100%);
+    }
+}
