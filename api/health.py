@@ -1,38 +1,41 @@
 """
-Health check endpoint for Vercel deployment
+Test Health check - Debug version
 """
-from datetime import datetime
 from http.server import BaseHTTPRequestHandler
 import json
+import sys
+import os
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        """Handle GET request for health check"""
-        # Set response headers
+        """Handle GET request"""
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
         self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Methods', 'GET, OPTIONS')
         self.end_headers()
         
-        # Response data
+        # Debug info
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        parent_dir = os.path.dirname(current_dir)
+        
+        # Check if _core exists
+        core_path = os.path.join(current_dir, '_core')
+        core_exists = os.path.exists(core_path)
+        core_files = []
+        if core_exists:
+            try:
+                core_files = os.listdir(core_path)
+            except:
+                pass
+        
         response = {
-            'status': 'healthy',
-            'timestamp': datetime.now().isoformat(),
-            'service': 'saju-backend-vercel',
-            'version': '2.0.0',
-            'environment': 'vercel'
+            'status': 'debug',
+            'current_dir': current_dir,
+            'parent_dir': parent_dir,
+            'sys_path': sys.path[:5],
+            'core_exists': core_exists,
+            'core_path': core_path,
+            'core_files': core_files[:5] if core_files else []
         }
         
-        # Send response
-        self.wfile.write(json.dumps(response, ensure_ascii=False).encode('utf-8'))
-        return
-    
-    def do_OPTIONS(self):
-        """Handle OPTIONS request for CORS preflight"""
-        self.send_response(200)
-        self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Methods', 'GET, OPTIONS')
-        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
-        self.end_headers()
-        return
+        self.wfile.write(json.dumps(response).encode('utf-8'))
