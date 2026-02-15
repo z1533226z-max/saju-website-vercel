@@ -29,6 +29,9 @@ window.sajuForm = function() {
         majorFortune: {},
         fortuneTimeline: {},
         balance: {},
+        pattern: null,
+        shinshal: null,
+        yongshin: null,
         
         // 천간 한글 및 설명
         heavenlyStemInfo: {
@@ -156,11 +159,11 @@ window.sajuForm = function() {
                     body: JSON.stringify(formData)
                 });
                 
-                if (!response.ok) {
-                    throw new Error('서버 오류가 발생했습니다.');
-                }
-                
                 const result = await response.json();
+
+                if (!response.ok || result.status === 'error') {
+                    throw new Error(result.error || '서버 오류가 발생했습니다.');
+                }
                 
                 // 결과 데이터 매핑
                 this.mapResultData(result);
@@ -239,6 +242,15 @@ window.sajuForm = function() {
             if (result.balance) {
                 this.balance = result.balance;
             }
+
+            // 격국 분석 매핑
+            this.pattern = result.pattern || null;
+
+            // 신살 분석 매핑
+            this.shinshal = result.shinshal || null;
+
+            // 용신 분석 매핑
+            this.yongshin = result.yongshin || null;
         },
         
         // 차트 그리기

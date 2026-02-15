@@ -22,7 +22,7 @@ const APP_CONFIG = {
     
     // Application Settings
     APP: {
-        VERSION: '1.0.0',
+        VERSION: '2.0.0',
         NAME: '사주팔자',
         DESCRIPTION: '생년월일시로 보는 운세',
         DEFAULT_LANGUAGE: 'ko',
@@ -33,36 +33,23 @@ const APP_CONFIG = {
     FEATURES: {
         ENABLE_HISTORY: true,
         ENABLE_COMPATIBILITY: true,
-        ENABLE_SHARE: true,
         ENABLE_DARK_MODE: true,
-        ENABLE_ANALYTICS: true,
-        ENABLE_ADS: true
+        ENABLE_ANALYTICS: true
     },
     
-    // Google AdSense Configuration
+    // Google AdSense - 자동 광고 사용 (index.html <head> 스크립트로 동작)
     ADSENSE: {
-        CLIENT_ID: 'ca-pub-XXXXXXXXXXXXXXXX', // Replace with actual AdSense client ID
-        SLOTS: {
-            TOP_BANNER: 'XXXXXXXXXX',
-            INFEED: 'XXXXXXXXXX',
-            DISPLAY: 'XXXXXXXXXX',
-            MATCHED: 'XXXXXXXXXX'
-        }
+        CLIENT_ID: 'ca-pub-7479840445702290'
     },
-    
+
     // Google Analytics Configuration
     ANALYTICS: {
-        TRACKING_ID: 'G-XXXXXXXXXX', // Replace with actual GA tracking ID
+        TRACKING_ID: 'G-XXXXXXXXXX', // TODO: 실제 GA4 측정 ID로 교체
         EVENTS: {
             CALCULATE: 'calculate_saju',
             SHARE: 'share_result',
             VIEW_DETAIL: 'view_detail'
         }
-    },
-    
-    // Kakao SDK Configuration
-    KAKAO: {
-        APP_KEY: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' // Replace with actual Kakao app key
     },
     
     // Local Storage Keys

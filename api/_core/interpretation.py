@@ -7,8 +7,8 @@ Generates comprehensive interpretations based on calculated Saju and elements
 import json
 import os
 from typing import Dict, List, Optional
-from .ten_gods_calculator import TenGodsCalculator, analyze_saju_ten_gods
-from .major_fortune_calculator import MajorFortuneCalculator, analyze_major_fortune
+from _core.ten_gods_calculator import TenGodsCalculator, analyze_saju_ten_gods
+from _core.major_fortune_calculator import MajorFortuneCalculator, analyze_major_fortune
 
 
 class Interpreter:

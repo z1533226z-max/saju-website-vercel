@@ -7,104 +7,150 @@ import sys
 import os
 from datetime import datetime
 
-# Add parent directory to path for imports
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Add parent directory to path for imports (module level)
+_parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if _parent_dir not in sys.path:
+    sys.path.insert(0, _parent_dir)
 
 from _core.saju_calculator import SajuCalculator
 from _core.elements import ElementsAnalyzer
 from _core.compatibility import CompatibilityAnalyzer
 from _core.lunar_converter_improved import ImprovedLunarConverter
 
+# Module-level initialization for cold start optimization
+_saju_calculator = SajuCalculator()
+_elements_analyzer = ElementsAnalyzer()
+_compatibility_analyzer = CompatibilityAnalyzer()
+_lunar_converter = ImprovedLunarConverter()
+
+
+def _send_json(handler, status_code, data):
+    """Send JSON response with proper headers"""
+    handler.send_response(status_code)
+    handler.send_header('Content-Type', 'application/json; charset=utf-8')
+    handler.send_header('Access-Control-Allow-Origin', '*')
+    handler.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
+    handler.send_header('Access-Control-Allow-Headers', 'Content-Type')
+    handler.end_headers()
+    handler.wfile.write(json.dumps(data, ensure_ascii=False).encode('utf-8'))
+
+
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         """Handle POST request for compatibility calculation"""
         try:
-            # Set CORS headers
-            self.send_response(200)
-            self.send_header('Content-Type', 'application/json')
-            self.send_header('Access-Control-Allow-Origin', '*')
-            self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
-            self.send_header('Access-Control-Allow-Headers', 'Content-Type')
-            self.end_headers()
-            
             # Read request body
-            content_length = int(self.headers['Content-Length'])
+            content_length = int(self.headers.get('Content-Length', 0))
+            if content_length == 0:
+                _send_json(self, 400, {'status': 'error', 'error': '요청 본문이 비어있습니다.'})
+                return
+
             post_data = self.rfile.read(content_length)
-            data = json.loads(post_data.decode('utf-8'))
-            
-            # Initialize components
-            saju_calculator = SajuCalculator()
-            elements_analyzer = ElementsAnalyzer()
-            compatibility_analyzer = CompatibilityAnalyzer()
-            lunar_converter = ImprovedLunarConverter()
-            
+            try:
+                data = json.loads(post_data.decode('utf-8'))
+            except (json.JSONDecodeError, UnicodeDecodeError):
+                _send_json(self, 400, {'status': 'error', 'error': '잘못된 JSON 형식입니다.'})
+                return
+
+            # Validate person data exists
+            if 'person1' not in data or 'person2' not in data:
+                _send_json(self, 400, {'status': 'error', 'error': 'person1, person2 데이터가 필요합니다.'})
+                return
+
             # Process both persons
             persons = []
             for person_key in ['person1', 'person2']:
                 person_data = data[person_key]
-                
+
                 # Parse date
-                birth_date = datetime.strptime(person_data['birthDate'], '%Y-%m-%d')
-                birth_time = person_data['birthTime']
+                birth_date_str = person_data.get('birthDate', '')
+                if not birth_date_str:
+                    _send_json(self, 400, {
+                        'status': 'error',
+                        'error': f'{person_key}의 birthDate가 필요합니다.'
+                    })
+                    return
+
+                try:
+                    birth_date = datetime.strptime(birth_date_str, '%Y-%m-%d')
+                except ValueError:
+                    _send_json(self, 400, {
+                        'status': 'error',
+                        'error': f'{person_key}의 birthDate 형식이 올바르지 않습니다. (YYYY-MM-DD)'
+                    })
+                    return
+
+                birth_time = person_data.get('birthTime', '12:00')
                 gender = person_data.get('gender', 'neutral')
                 is_lunar = person_data.get('isLunar', False)
-                
+
                 # Convert lunar to solar if needed
                 if is_lunar:
                     try:
-                        converted_date = lunar_converter.lunar_to_solar(
+                        converted_date = _lunar_converter.lunar_to_solar(
                             birth_date.year, birth_date.month, birth_date.day
                         )
-                        if converted_date:
-                            birth_date = datetime(converted_date[0], converted_date[1], converted_date[2])
-                    except:
+                        if converted_date is not None:
+                            # lunar_to_solar returns datetime object
+                            birth_date = converted_date
+                    except Exception:
                         pass  # Use original date if conversion fails
-                
-                # Calculate Saju
-                saju_result = saju_calculator.calculate_saju(
-                    birth_date.year,
-                    birth_date.month,
-                    birth_date.day,
-                    birth_time
+
+                # Calculate Saju with correct signature
+                saju_result = _saju_calculator.calculate_saju(
+                    birth_date=birth_date,
+                    birth_time=birth_time,
+                    gender=gender,
+                    is_lunar=is_lunar
                 )
-                
+
                 # Analyze elements
-                elements_result = elements_analyzer.analyze_elements(saju_result)
-                
+                elements_result = _elements_analyzer.analyze_elements(saju_result)
+
                 persons.append({
                     'saju': saju_result,
                     'elements': elements_result,
-                    'gender': gender
+                    'gender': gender,
+                    'is_lunar': is_lunar
                 })
-            
-            # Calculate compatibility
-            compatibility_result = compatibility_analyzer.analyze_compatibility(
+
+            # Calculate compatibility with full parameters
+            compatibility_result = _compatibility_analyzer.analyze_compatibility(
                 persons[0]['saju'],
                 persons[1]['saju'],
                 persons[0]['elements'],
-                persons[1]['elements']
+                persons[1]['elements'],
+                gender1=persons[0]['gender'],
+                gender2=persons[1]['gender'],
+                is_lunar1=persons[0]['is_lunar'],
+                is_lunar2=persons[1]['is_lunar']
             )
-            
+
             # Format response
             response_data = {
-                'person1': persons[0],
-                'person2': persons[1],
-                'compatibility': compatibility_result,
-                'status': 'success'
+                'status': 'success',
+                'person1': {
+                    'saju': persons[0]['saju'],
+                    'elements': persons[0]['elements'],
+                    'gender': persons[0]['gender']
+                },
+                'person2': {
+                    'saju': persons[1]['saju'],
+                    'elements': persons[1]['elements'],
+                    'gender': persons[1]['gender']
+                },
+                'compatibility': compatibility_result
             }
-            
-            # Send response
-            self.wfile.write(json.dumps(response_data, ensure_ascii=False).encode('utf-8'))
-            
+
+            _send_json(self, 200, response_data)
+
         except Exception as e:
             print(f"Error in compatibility handler: {str(e)}")
-            self.send_response(500)
-            self.send_header('Content-Type', 'application/json')
-            self.send_header('Access-Control-Allow-Origin', '*')
-            self.end_headers()
-            error_response = {'error': str(e)}
-            self.wfile.write(json.dumps(error_response, ensure_ascii=False).encode('utf-8'))
-    
+            _send_json(self, 500, {
+                'status': 'error',
+                'error': f'서버 오류가 발생했습니다: {str(e)}'
+            })
+
     def do_OPTIONS(self):
         """Handle OPTIONS request for CORS preflight"""
         self.send_response(200)
@@ -112,4 +158,3 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
         self.send_header('Access-Control-Allow-Headers', 'Content-Type')
         self.end_headers()
-        return

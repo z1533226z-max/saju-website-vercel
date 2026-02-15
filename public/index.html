@@ -408,6 +408,117 @@
                 </div>
             </div>
             
+            <!-- 격국 분석 섹션 -->
+            <div class="interpretation-card" x-show="pattern" x-data="{ showPattern: false }">
+                <h3 @click="showPattern = !showPattern" style="cursor: pointer;">
+                    격국(格局) 분석
+                    <span x-text="showPattern ? '▲' : '▼'" style="float: right; font-size: 0.8em;"></span>
+                </h3>
+                <div x-show="showPattern" x-transition>
+                    <div class="pattern-info" x-show="pattern">
+                        <div class="pattern-header">
+                            <span class="pattern-badge" x-text="pattern?.pattern_category"></span>
+                            <strong x-text="pattern?.pattern_name"></strong>
+                        </div>
+                        <p x-text="pattern?.description"></p>
+                        <div class="pattern-details" x-show="pattern?.characteristics">
+                            <h4>주요 특성</h4>
+                            <ul>
+                                <template x-for="char in (pattern?.characteristics || [])">
+                                    <li x-text="char"></li>
+                                </template>
+                            </ul>
+                        </div>
+                        <div class="pattern-guidance">
+                            <p><strong>직업 적성:</strong> <span x-text="pattern?.career_guidance"></span></p>
+                            <p><strong>재물운:</strong> <span x-text="pattern?.wealth_fortune"></span></p>
+                            <p><strong>인간관계:</strong> <span x-text="pattern?.relationship_advice"></span></p>
+                        </div>
+                        <div class="pattern-cautions" x-show="pattern?.cautions?.length > 0">
+                            <h4>주의사항</h4>
+                            <ul>
+                                <template x-for="caution in (pattern?.cautions || [])">
+                                    <li x-text="caution"></li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 신살 분석 섹션 -->
+            <div class="interpretation-card" x-show="shinshal" x-data="{ showShinshal: false }">
+                <h3 @click="showShinshal = !showShinshal" style="cursor: pointer;">
+                    신살(神煞) 분석
+                    <span x-text="showShinshal ? '▲' : '▼'" style="float: right; font-size: 0.8em;"></span>
+                </h3>
+                <div x-show="showShinshal" x-transition>
+                    <div x-show="shinshal?.auspicious?.length > 0">
+                        <h4 style="color: #2563eb; margin-top: 1rem;">길신 (吉神)</h4>
+                        <template x-for="item in (shinshal?.auspicious || [])">
+                            <div class="shinshal-item auspicious">
+                                <strong x-text="item.korean_name || item.name"></strong>
+                                <span class="shinshal-location" x-text="(item.location || []).join(', ')"></span>
+                                <p x-text="item.description"></p>
+                            </div>
+                        </template>
+                    </div>
+                    <div x-show="shinshal?.inauspicious?.length > 0">
+                        <h4 style="color: #dc2626; margin-top: 1rem;">흉신 (凶神)</h4>
+                        <template x-for="item in (shinshal?.inauspicious || [])">
+                            <div class="shinshal-item inauspicious">
+                                <strong x-text="item.korean_name || item.name"></strong>
+                                <span class="shinshal-location" x-text="(item.location || []).join(', ')"></span>
+                                <p x-text="item.description"></p>
+                                <p class="mitigation" x-show="item.mitigation" x-text="'해소법: ' + item.mitigation"></p>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 용신 분석 섹션 -->
+            <div class="interpretation-card" x-show="yongshin" x-data="{ showYongshin: false }">
+                <h3 @click="showYongshin = !showYongshin" style="cursor: pointer;">
+                    용신(用神) 분석
+                    <span x-text="showYongshin ? '▲' : '▼'" style="float: right; font-size: 0.8em;"></span>
+                </h3>
+                <div x-show="showYongshin" x-transition>
+                    <div class="yongshin-info" x-show="yongshin">
+                        <div class="yongshin-strength">
+                            <p><strong>일주(日主):</strong> <span x-text="yongshin?.day_master"></span> (<span x-text="yongshin?.day_master_element"></span>)</p>
+                            <p><strong>신강/신약:</strong> <span x-text="yongshin?.strength"></span> (점수: <span x-text="yongshin?.strength_score"></span>)</p>
+                        </div>
+                        <div class="yongshin-gods">
+                            <div class="useful-gods">
+                                <h4>용신 (用神) - 도움이 되는 기운</h4>
+                                <ul>
+                                    <template x-for="god in (yongshin?.useful_gods || [])">
+                                        <li x-text="god"></li>
+                                    </template>
+                                </ul>
+                            </div>
+                            <div class="harmful-gods">
+                                <h4>기신 (忌神) - 주의할 기운</h4>
+                                <ul>
+                                    <template x-for="god in (yongshin?.harmful_gods || [])">
+                                        <li x-text="god"></li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="yongshin-recommendations" x-show="yongshin?.recommendations?.length > 0">
+                            <h4>추천 사항</h4>
+                            <ul>
+                                <template x-for="rec in (yongshin?.recommendations || [])">
+                                    <li x-text="rec"></li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- 공유 버튼 -->
             <div class="share-buttons">
                 <button class="share-btn kakao-btn" onclick="shareKakao()">
@@ -703,7 +814,6 @@
     <script src="js/saju-form-enhanced.js"></script>
     <script src="js/compatibility-clean.js"></script>
     <script src="js/additional-features.js"></script>
-    <script src="js/layout-debug.js"></script>
     <script src="js/main.js"></script>
     <script>
         // sajuForm is now loaded from external file: js/saju-form-enhanced.js
@@ -1006,25 +1116,13 @@
     <div id="saju-guide-modal"></div>
     
     <script>
-    // 가이드 모달 로드
-    fetch('saju-guide-modal.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('saju-guide-modal').innerHTML = html;
-        });
-    
     function openSajuGuide() {
-        const modal = document.querySelector('#saju-guide-modal .modal');
-        if (modal) {
-            modal.style.display = 'flex';
-        }
+        // Inline guide - show info modal with combined content
+        showInfoModal('천간');
     }
-    
+
     function closeSajuGuide() {
-        const modal = document.querySelector('#saju-guide-modal .modal');
-        if (modal) {
-            modal.style.display = 'none';
-        }
+        closeInfoModal();
     }
     </script>
 </body>

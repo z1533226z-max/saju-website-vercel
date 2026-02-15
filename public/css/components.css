@@ -1011,3 +1011,123 @@
     height: 35px;
   }
 }
+
+/* ===================================
+   Pattern / Shinshal / Yongshin Sections
+   =================================== */
+
+.pattern-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.pattern-badge {
+    background: var(--color-accent, #6B66FF);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
+.pattern-guidance p,
+.yongshin-strength p {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
+.pattern-cautions ul,
+.pattern-details ul,
+.yongshin-recommendations ul {
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.pattern-cautions li,
+.pattern-details li,
+.yongshin-recommendations li {
+    margin-bottom: 0.3rem;
+    line-height: 1.5;
+}
+
+.shinshal-item {
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+    border-left: 3px solid;
+}
+
+.shinshal-item.auspicious {
+    background: #f0f9ff;
+    border-left-color: #2563eb;
+}
+
+.shinshal-item.inauspicious {
+    background: #fef2f2;
+    border-left-color: #dc2626;
+}
+
+.shinshal-item strong {
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.shinshal-location {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.shinshal-item p {
+    margin: 0.3rem 0 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.shinshal-item .mitigation {
+    color: #059669;
+    font-style: italic;
+}
+
+.yongshin-gods {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.useful-gods, .harmful-gods {
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.useful-gods {
+    background: #f0fdf4;
+}
+
+.harmful-gods {
+    background: #fef2f2;
+}
+
+.useful-gods h4 {
+    color: #059669;
+}
+
+.harmful-gods h4 {
+    color: #dc2626;
+}
+
+.useful-gods ul, .harmful-gods ul {
+    padding-left: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+.useful-gods li, .harmful-gods li {
+    margin-bottom: 0.25rem;
+}
+
+@media (max-width: 640px) {
+    .yongshin-gods {
+        grid-template-columns: 1fr;
+    }
+}

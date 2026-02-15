@@ -402,6 +402,16 @@ class SajuCalculator:
             - time_range: 시간 범위
             - early_late: 초시/정시 구분
         """
+        # 한국어 시진명 → HH:MM 변환
+        time_name_map = {
+            '자시': '00:00', '축시': '02:00', '인시': '04:00',
+            '묘시': '06:00', '진시': '08:00', '사시': '10:00',
+            '오시': '12:00', '미시': '14:00', '신시': '16:00',
+            '유시': '18:00', '술시': '20:00', '해시': '22:00',
+        }
+        if birth_time in time_name_map:
+            birth_time = time_name_map[birth_time]
+
         # 시간 파싱
         hour, minute = map(int, birth_time.split(':'))
         

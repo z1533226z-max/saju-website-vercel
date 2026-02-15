@@ -1,13 +1,8 @@
 # Python dependencies for Vercel deployment
-# No Flask or Flask-CORS needed for Vercel Functions
+# Uses BaseHTTPRequestHandler (no framework needed)
 
-# Lunar calendar conversion - FIXED
+# Lunar calendar conversion
 lunarcalendar==0.0.9
-korean-lunar-calendar==0.3.1
-lunardate==0.2.2
 
 # Date handling
 python-dateutil==2.8.2
-
-# Additional utilities
-pytz==2024.1
