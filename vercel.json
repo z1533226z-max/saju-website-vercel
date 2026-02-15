@@ -16,7 +16,18 @@
     },
     {
       "src": "/api/saju/info/(.*)",
-      "dest": "/api/saju/info.py"
+      "dest": "/api/saju/info.py",
+      "headers": { "Cache-Control": "public, max-age=86400, s-maxage=86400" }
+    },
+    {
+      "src": "/css/(.*)",
+      "dest": "/public/css/$1",
+      "headers": { "Cache-Control": "public, max-age=604800" }
+    },
+    {
+      "src": "/js/(.*)",
+      "dest": "/public/js/$1",
+      "headers": { "Cache-Control": "public, max-age=604800" }
     },
     {
       "src": "/(.*)",
@@ -27,25 +38,5 @@
     "api/**/*.py": {
       "maxDuration": 30
     }
-  },
-  "headers": [
-    {
-      "source": "/api/saju/info/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, s-maxage=86400" }
-      ]
-    },
-    {
-      "source": "/css/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=604800" }
-      ]
-    },
-    {
-      "source": "/js/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=604800" }
-      ]
-    }
-  ]
+  }
 }
