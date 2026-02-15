@@ -457,9 +457,9 @@
                         <h4 style="color: #2563eb; margin-top: 1rem;">길신 (吉神)</h4>
                         <template x-for="item in (shinshal?.auspicious || [])">
                             <div class="shinshal-item auspicious">
-                                <strong x-text="item.korean_name || item.name"></strong>
-                                <span class="shinshal-location" x-text="(item.location || []).join(', ')"></span>
-                                <p x-text="item.description"></p>
+                                <strong x-text="item.korean_name || item.name" style="color: #1e40af;"></strong>
+                                <span class="shinshal-location" x-text="(item.location || []).map(l => ({year:'년주',month:'월주',day:'일주',hour:'시주'}[l] || l)).join(', ')" style="color: #555;"></span>
+                                <p x-text="item.influence || item.description" style="color: #333;"></p>
                             </div>
                         </template>
                     </div>
@@ -467,9 +467,9 @@
                         <h4 style="color: #dc2626; margin-top: 1rem;">흉신 (凶神)</h4>
                         <template x-for="item in (shinshal?.inauspicious || [])">
                             <div class="shinshal-item inauspicious">
-                                <strong x-text="item.korean_name || item.name"></strong>
-                                <span class="shinshal-location" x-text="(item.location || []).join(', ')"></span>
-                                <p x-text="item.description"></p>
+                                <strong x-text="item.korean_name || item.name" style="color: #991b1b;"></strong>
+                                <span class="shinshal-location" x-text="(item.location || []).map(l => ({year:'년주',month:'월주',day:'일주',hour:'시주'}[l] || l)).join(', ')" style="color: #555;"></span>
+                                <p x-text="item.influence || item.description" style="color: #333;"></p>
                                 <p class="mitigation" x-show="item.mitigation" x-text="'해소법: ' + item.mitigation"></p>
                             </div>
                         </template>
@@ -485,16 +485,16 @@
                 </h3>
                 <div x-show="showYongshin" x-transition>
                     <div class="yongshin-info" x-show="yongshin">
-                        <div class="yongshin-strength">
-                            <p><strong>일주(日主):</strong> <span x-text="yongshin?.day_master"></span> (<span x-text="yongshin?.day_master_element"></span>)</p>
-                            <p><strong>신강/신약:</strong> <span x-text="yongshin?.strength"></span> (점수: <span x-text="yongshin?.strength_score"></span>)</p>
+                        <div class="yongshin-strength" style="margin-bottom: 1rem;">
+                            <p style="color: #e0d5c0;"><strong>일주(日主):</strong> <span x-text="yongshin?.day_master"></span> (<span x-text="({'목':'목(木)','화':'화(火)','토':'토(土)','금':'금(金)','수':'수(水)'}[yongshin?.day_master_element] || yongshin?.day_master_element)"></span>)</p>
+                            <p style="color: #e0d5c0;"><strong>신강/신약:</strong> <span x-text="({'strong':'신강(身强)','weak':'신약(身弱)','balanced':'중화(中和)'}[yongshin?.strength] || yongshin?.strength)"></span></p>
                         </div>
                         <div class="yongshin-gods">
                             <div class="useful-gods">
                                 <h4>용신 (用神) - 도움이 되는 기운</h4>
                                 <ul>
                                     <template x-for="god in (yongshin?.useful_gods || [])">
-                                        <li x-text="god"></li>
+                                        <li x-text="({'목':'목(木) 🌲','화':'화(火) 🔥','토':'토(土) 🏔️','금':'금(金) ⚪','수':'수(水) 💧'}[god] || god)" style="color: #166534; font-size: 1.1em;"></li>
                                     </template>
                                 </ul>
                             </div>
@@ -502,7 +502,7 @@
                                 <h4>기신 (忌神) - 주의할 기운</h4>
                                 <ul>
                                     <template x-for="god in (yongshin?.harmful_gods || [])">
-                                        <li x-text="god"></li>
+                                        <li x-text="({'목':'목(木) 🌲','화':'화(火) 🔥','토':'토(土) 🏔️','금':'금(金) ⚪','수':'수(水) 💧'}[god] || god)" style="color: #991b1b; font-size: 1.1em;"></li>
                                     </template>
                                 </ul>
                             </div>

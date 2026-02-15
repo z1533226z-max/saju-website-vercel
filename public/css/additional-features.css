@@ -330,6 +330,111 @@
     }
 }
 
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+    .features-tabs {
+        background: #2a2a2a;
+    }
+
+    .tab-navigation {
+        background: linear-gradient(135deg, #333 0%, #444 100%);
+        border-bottom-color: #d4a574;
+    }
+
+    .tab-button {
+        color: #ccc;
+    }
+
+    .tab-button:hover {
+        color: #e6b655;
+        background: rgba(212, 165, 116, 0.15);
+    }
+
+    .tab-button.active {
+        background: #2a2a2a;
+        color: #e6b655;
+    }
+
+    .tab-contents {
+        color: #e0e0e0;
+    }
+
+    .tab-contents h3 {
+        color: #e6b655;
+    }
+
+    .person-card {
+        background: linear-gradient(135deg, #3a3020 0%, #2d2518 100%);
+        border-color: rgba(212, 165, 116, 0.3);
+    }
+
+    .person-card h4 {
+        color: #e6b655;
+    }
+
+    .info-display p,
+    .form-group label {
+        color: #bbb;
+    }
+
+    .form-group input,
+    .form-group select {
+        background: #333;
+        color: #e0e0e0;
+        border-color: #555;
+    }
+
+    .result-card {
+        background: #2a2a2a;
+        color: #e0e0e0;
+    }
+
+    .result-card h4 {
+        color: #e6b655;
+    }
+
+    .detail-item span {
+        color: #ccc;
+    }
+
+    .progress-bar {
+        background: #444;
+    }
+
+    .compatibility-advice {
+        background: linear-gradient(135deg, #3a3020 0%, #2d2518 100%);
+    }
+
+    .compatibility-advice p {
+        color: #ccc;
+    }
+
+    .date-card {
+        background: #2a2a2a;
+        color: #e0e0e0;
+    }
+
+    .date-header {
+        color: #e6b655;
+    }
+
+    .date-info p {
+        color: #bbb;
+    }
+
+    .name-card {
+        background: linear-gradient(135deg, #3a3020 0%, #2d2518 100%);
+    }
+
+    .name-card h4 {
+        color: #e6b655;
+    }
+
+    .name-card p {
+        color: #bbb;
+    }
+}
+
 /* 반응형 */
 @media (max-width: 768px) {
     .tab-navigation {
