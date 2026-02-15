@@ -31,6 +31,15 @@ _shinshal_calculator = ShinshalCalculator()
 _yongshin_analyzer = YongshinAnalyzer()
 
 
+def _json_serializer(obj):
+    """Custom JSON serializer for dataclasses and datetime objects"""
+    if hasattr(obj, '__dataclass_fields__'):
+        return asdict(obj)
+    if isinstance(obj, datetime):
+        return obj.isoformat()
+    raise TypeError(f"Object of type {type(obj).__name__} is not JSON serializable")
+
+
 def _send_json(handler, status_code, data):
     """Send JSON response with proper headers"""
     handler.send_response(status_code)
@@ -39,7 +48,7 @@ def _send_json(handler, status_code, data):
     handler.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
     handler.send_header('Access-Control-Allow-Headers', 'Content-Type')
     handler.end_headers()
-    handler.wfile.write(json.dumps(data, ensure_ascii=False).encode('utf-8'))
+    handler.wfile.write(json.dumps(data, ensure_ascii=False, default=_json_serializer).encode('utf-8'))
 
 
 def _validate_input(data):
