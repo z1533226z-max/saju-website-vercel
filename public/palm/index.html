@@ -99,7 +99,7 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/palm.css?v=3">
+    <link rel="stylesheet" href="/css/palm.css?v=4">
 
     <!-- Google AdSense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7479840445702290"
@@ -551,17 +551,33 @@
             const vision = await FilesetResolver.forVisionTasks(
                 "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/wasm"
             );
-            handLandmarker = await HandLandmarker.createFromOptions(vision, {
-                baseOptions: {
-                    modelAssetPath: "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task",
-                    delegate: "GPU"
-                },
-                runningMode: "IMAGE",
-                numHands: 2,
-                minHandDetectionConfidence: 0.5,
-                minHandPresenceConfidence: 0.5
-            });
-            console.log("[AI] MediaPipe Hand Landmarker 초기화 완료");
+            // GPU 먼저 시도, 실패 시 CPU fallback
+            try {
+                handLandmarker = await HandLandmarker.createFromOptions(vision, {
+                    baseOptions: {
+                        modelAssetPath: "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task",
+                        delegate: "GPU"
+                    },
+                    runningMode: "IMAGE",
+                    numHands: 2,
+                    minHandDetectionConfidence: 0.3,
+                    minHandPresenceConfidence: 0.3
+                });
+                console.log("[AI] MediaPipe Hand Landmarker 초기화 완료 (GPU)");
+            } catch (gpuErr) {
+                console.warn("[AI] GPU 실패, CPU fallback:", gpuErr);
+                handLandmarker = await HandLandmarker.createFromOptions(vision, {
+                    baseOptions: {
+                        modelAssetPath: "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task",
+                        delegate: "CPU"
+                    },
+                    runningMode: "IMAGE",
+                    numHands: 2,
+                    minHandDetectionConfidence: 0.3,
+                    minHandPresenceConfidence: 0.3
+                });
+                console.log("[AI] MediaPipe Hand Landmarker 초기화 완료 (CPU)");
+            }
             document.getElementById('aiStatus').textContent = 'AI 모델 준비 완료';
             document.getElementById('aiStatus').style.color = 'var(--color-gold)';
         } catch (err) {
@@ -675,9 +691,10 @@
     const uploadCard = document.querySelector('.upload-card');
 
     function showSection(section) {
-        uploadSection.style.display = (section === 'upload' || section === 'preview') ? 'block' : 'none';
+        // upload-section: upload, preview, results 모두에서 보임 (previewContainer가 안에 있으므로)
+        uploadSection.style.display = (section === 'upload' || section === 'preview' || section === 'results') ? 'block' : 'none';
         uploadCard.style.display = section === 'upload' ? 'block' : 'none';
-        previewContainer.style.display = section === 'preview' ? 'block' : 'none';
+        previewContainer.style.display = (section === 'preview' || section === 'results') ? 'block' : 'none';
         loadingSection.style.display = section === 'loading' ? 'block' : 'none';
         resultsSection.style.display = section === 'results' ? 'block' : 'none';
     }
@@ -720,7 +737,12 @@
         loadingProgress.style.width = '25%';
         await sleep(300);
 
+        console.log("[AI] 이미지 분석 시작:", previewImage.naturalWidth, "x", previewImage.naturalHeight);
         const result = handLandmarker.detect(previewImage);
+        console.log("[AI] 분석 결과:", JSON.stringify({
+            landmarks: result.landmarks?.length || 0,
+            handednesses: result.handednesses?.length || 0
+        }));
 
         if (!result.landmarks || result.landmarks.length === 0) {
             loadingStatus.textContent = '손바닥을 감지하지 못했습니다. 밝은 곳에서 손바닥을 펴고 다시 촬영해주세요.';
