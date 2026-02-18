@@ -99,7 +99,7 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/palm.css?v=4">
+    <link rel="stylesheet" href="/css/palm.css?v=5">
 
     <!-- Google AdSense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7479840445702290"
@@ -821,57 +821,77 @@
         return { x: p1.x + (p2.x - p1.x) * t, y: p1.y + (p2.y - p1.y) * t };
     }
 
+    // 두 점의 중간점 (가중 평균)
+    function midpoint(p1, p2, w1 = 0.5) {
+        return { x: p1.x * w1 + p2.x * (1 - w1), y: p1.y * w1 + p2.y * (1 - w1) };
+    }
+
     function computePalmLines(lm) {
-        // 감정선 (Heart Line): 새끼손가락 MCP 아래 → 검지 MCP 아래
-        // 실제 손금보다 약간 MCP 쪽(손가락 뿌리 바로 아래)에 위치
+        // === 기준점 계산 ===
+        // MCP 라인의 중간 y값 (손가락 뿌리 높이)
+        const mcpCenterY = (lm[LM.INDEX_MCP].y + lm[LM.MIDDLE_MCP].y + lm[LM.RING_MCP].y + lm[LM.PINKY_MCP].y) / 4;
+        const wristY = lm[LM.WRIST].y;
+        const palmHeight = wristY - mcpCenterY; // 양수 (위가 작은 좌표계)
+
+        // 감정선 (Heart Line): MCP 라인 바로 아래, 부드러운 수평 곡선
+        // 새끼손가락 아래 → 검지~중지 사이까지 수평에 가깝게
+        const heartY = mcpCenterY + palmHeight * 0.22; // MCP 아래 22% 지점
         const heartLine = {
             name: 'heart', label: '감정선', color: '#FF6B6B',
             points: [
-                lerp(lm[LM.PINKY_MCP], lm[LM.WRIST], 0.15),
-                lerp(lm[LM.RING_MCP], lm[LM.WRIST], 0.16),
-                lerp(lm[LM.RING_MCP], lm[LM.MIDDLE_MCP], 0.5),
-                lerp(lm[LM.MIDDLE_MCP], lm[LM.WRIST], 0.18),
-                lerp(lm[LM.INDEX_MCP], lm[LM.WRIST], 0.15),
+                { x: lm[LM.PINKY_MCP].x, y: lm[LM.PINKY_MCP].y + palmHeight * 0.18 },
+                { x: lerp(lm[LM.PINKY_MCP], lm[LM.RING_MCP], 0.5).x, y: heartY },
+                { x: lm[LM.RING_MCP].x, y: heartY - palmHeight * 0.01 },
+                { x: lerp(lm[LM.RING_MCP], lm[LM.MIDDLE_MCP], 0.5).x, y: heartY - palmHeight * 0.02 },
+                { x: lm[LM.MIDDLE_MCP].x, y: heartY - palmHeight * 0.02 },
+                { x: lerp(lm[LM.MIDDLE_MCP], lm[LM.INDEX_MCP], 0.5).x, y: heartY - palmHeight * 0.05 },
+                { x: lm[LM.INDEX_MCP].x, y: lm[LM.INDEX_MCP].y + palmHeight * 0.15 },
             ]
         };
 
-        // 두뇌선 (Head Line): 엄지~검지 사이 → 새끼 방향 가로질러
-        // 감정선보다 아래, 손바닥 중간 가로선
+        // 두뇌선 (Head Line): 감정선 아래, 검지 MCP 부근에서 시작 → 새끼 방향으로 약간 하강
+        const headStartY = mcpCenterY + palmHeight * 0.38;
         const headLine = {
             name: 'head', label: '두뇌선', color: '#4ECDC4',
             points: [
-                lerp(lm[LM.INDEX_MCP], lm[LM.WRIST], 0.32),
-                lerp(lm[LM.INDEX_MCP], lm[LM.WRIST], 0.38),
-                lerp(lm[LM.MIDDLE_MCP], lm[LM.WRIST], 0.38),
-                lerp(lm[LM.RING_MCP], lm[LM.WRIST], 0.40),
-                lerp(lm[LM.PINKY_MCP], lm[LM.WRIST], 0.42),
+                { x: lm[LM.INDEX_MCP].x, y: lm[LM.INDEX_MCP].y + palmHeight * 0.35 },
+                { x: lerp(lm[LM.INDEX_MCP], lm[LM.MIDDLE_MCP], 0.5).x, y: headStartY },
+                { x: lm[LM.MIDDLE_MCP].x, y: headStartY + palmHeight * 0.02 },
+                { x: lerp(lm[LM.MIDDLE_MCP], lm[LM.RING_MCP], 0.5).x, y: headStartY + palmHeight * 0.05 },
+                { x: lm[LM.RING_MCP].x, y: headStartY + palmHeight * 0.08 },
+                { x: lerp(lm[LM.RING_MCP], lm[LM.PINKY_MCP], 0.5).x, y: headStartY + palmHeight * 0.12 },
             ]
         };
 
-        // 생명선 (Life Line): 엄지~검지 사이 시작 → 엄지 뿌리를 감싸며 손목 방향 곡선
+        // 생명선 (Life Line): 검지~엄지 사이에서 시작 → 엄지 뿌리를 따라 곡선
+        // 두뇌선과 시작점이 거의 같거나 약간 위
+        const lifeStartX = lm[LM.INDEX_MCP].x;
+        const lifeStartY = lm[LM.INDEX_MCP].y + palmHeight * 0.32;
+        const thumbX = lm[LM.THUMB_CMC].x;
         const lifeLine = {
             name: 'life', label: '생명선', color: '#45B7D1',
             points: [
-                lerp(lm[LM.INDEX_MCP], lm[LM.WRIST], 0.30),
-                lerp(lm[LM.THUMB_MCP], lm[LM.MIDDLE_MCP], 0.20),
-                lerp(lm[LM.THUMB_MCP], lm[LM.WRIST], 0.30),
-                lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.40),
-                lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.65),
-                lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.88),
+                { x: lifeStartX, y: lifeStartY },
+                { x: lerp(lm[LM.INDEX_MCP], lm[LM.THUMB_MCP], 0.4).x, y: lifeStartY + palmHeight * 0.08 },
+                { x: lerp(lm[LM.THUMB_MCP], lm[LM.WRIST], 0.15).x, y: lerp(lm[LM.THUMB_MCP], lm[LM.WRIST], 0.15).y },
+                { x: lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.25).x, y: lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.25).y },
+                { x: lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.45).x + palmHeight * 0.03, y: lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.45).y },
+                { x: lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.65).x + palmHeight * 0.05, y: lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.65).y },
+                { x: lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.82).x + palmHeight * 0.06, y: lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.82).y },
             ]
         };
 
-        // 운명선 (Fate Line): 손목 중앙 → 중지 방향 세로
-        // 약간 곡선을 주어 자연스럽게
-        const wristCenter = lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0);
+        // 운명선 (Fate Line): 손목 중앙~약간 아래에서 → 중지 방향 세로
+        // 약간 곡선 (살짝 S자)
+        const fateBottomX = lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.08).x;
         const fateLine = {
             name: 'fate', label: '운명선', color: '#DDA0DD',
             points: [
-                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.12),
-                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.30),
-                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.50),
-                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.72),
-                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.88),
+                { x: fateBottomX, y: wristY - palmHeight * 0.05 },
+                { x: lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.25).x - palmHeight * 0.01, y: lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.25).y },
+                { x: lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.50).x, y: lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.50).y },
+                { x: lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.72).x + palmHeight * 0.01, y: lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.72).y },
+                { x: lm[LM.MIDDLE_MCP].x, y: mcpCenterY + palmHeight * 0.08 },
             ]
         };
 
