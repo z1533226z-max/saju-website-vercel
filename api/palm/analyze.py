@@ -131,10 +131,17 @@ def call_gemini_api(image_base64, mime_type='image/jpeg'):
         result = json.loads(resp.read().decode('utf-8'))
 
     # Extract text from response
-    text = result['candidates'][0]['content']['parts'][0]['text']
+    candidates = result.get('candidates', [])
+    if not candidates:
+        raise ValueError(f"No candidates in Gemini response: {json.dumps(result, ensure_ascii=False)[:200]}")
+
+    parts = candidates[0].get('content', {}).get('parts', [])
+    if not parts or 'text' not in parts[0]:
+        raise ValueError("No text in Gemini response")
+
+    text = parts[0]['text'].strip()
 
     # Clean markdown code blocks if present
-    text = text.strip()
     if text.startswith('```json'):
         text = text[7:]
     if text.startswith('```'):
@@ -142,6 +149,9 @@ def call_gemini_api(image_base64, mime_type='image/jpeg'):
     if text.endswith('```'):
         text = text[:-3]
     text = text.strip()
+
+    if not text:
+        raise ValueError("Empty text from Gemini")
 
     return json.loads(text)
 
