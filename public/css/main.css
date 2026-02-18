@@ -371,6 +371,173 @@ p {
 }
 
 /* ===================================
+   로또킹 프로모션 배너
+   =================================== */
+#lotto-promo-banner {
+  padding: 1.5rem 1rem;
+}
+.lotto-banner {
+  display: block;
+  max-width: 720px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  position: relative;
+  background: linear-gradient(135deg, #1a0e08 0%, #2a1510 30%, #1a0e08 60%, #0f1a12 100%);
+  border: 1px solid rgba(211, 97, 53, 0.3);
+  padding: 24px 28px;
+  transition: all 0.3s ease;
+  animation: lotto-banner-glow 3s ease-in-out infinite;
+}
+.lotto-banner:hover {
+  transform: translateY(-3px);
+  border-color: rgba(211, 97, 53, 0.6);
+}
+/* 글로우 배경 */
+.lotto-banner-glow {
+  position: absolute;
+  inset: -1px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, rgba(211,97,53,0.15), transparent 40%, transparent 60%, rgba(62,86,65,0.15));
+  z-index: 0;
+  pointer-events: none;
+}
+/* 샤인 스윕 */
+.lotto-banner-shine {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.06) 45%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.06) 55%, transparent 70%);
+  animation: lotto-shine-sweep 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+@keyframes lotto-shine-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+@keyframes lotto-banner-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(211,97,53,0.2), 0 0 40px rgba(211,97,53,0.08), 0 4px 24px rgba(0,0,0,0.4); }
+  50% { box-shadow: 0 0 30px rgba(211,97,53,0.35), 0 0 60px rgba(211,97,53,0.12), 0 4px 24px rgba(0,0,0,0.4); }
+}
+/* 상단 악센트 바 */
+.lotto-banner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #D36135, #E8834A, #D36135, #3E5641, #D36135);
+  background-size: 300% 100%;
+  animation: lotto-bar-move 4s linear infinite;
+  z-index: 2;
+}
+@keyframes lotto-bar-move {
+  0% { background-position: 0% 0; }
+  100% { background-position: 300% 0; }
+}
+/* 컨텐츠 레이아웃 */
+.lotto-banner-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+/* 로또볼 */
+.lotto-banner-left {
+  flex-shrink: 0;
+}
+.lotto-banner-balls {
+  display: flex;
+  gap: 5px;
+}
+.lotto-ball {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+  font-family: 'Noto Sans KR', sans-serif;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+.lb-yellow { background: linear-gradient(145deg, #FFC107, #FF9800); box-shadow: 0 2px 8px rgba(255,193,7,0.4); }
+.lb-blue { background: linear-gradient(145deg, #42A5F5, #1976D2); box-shadow: 0 2px 8px rgba(33,150,243,0.4); }
+.lb-red { background: linear-gradient(145deg, #EF5350, #C62828); box-shadow: 0 2px 8px rgba(244,67,54,0.4); }
+.lb-gray { background: linear-gradient(145deg, #9E9E9E, #616161); box-shadow: 0 2px 8px rgba(158,158,158,0.4); }
+.lb-green { background: linear-gradient(145deg, #66BB6A, #2E7D32); box-shadow: 0 2px 8px rgba(76,175,80,0.4); }
+/* 중앙 텍스트 */
+.lotto-banner-center {
+  flex: 1;
+  min-width: 0;
+}
+.lotto-banner-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  background: linear-gradient(135deg, #D36135, #C05430);
+  margin-bottom: 6px;
+}
+.lotto-banner-title {
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+  margin: 0 0 4px 0 !important;
+  line-height: 1.3;
+  font-family: 'Noto Sans KR', sans-serif;
+  background: linear-gradient(135deg, #fff, #E8D4B8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.lotto-banner-desc {
+  font-size: 12px !important;
+  color: #9B918A !important;
+  margin: 0 !important;
+  line-height: 1.4;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+/* CTA 버튼 */
+.lotto-banner-right {
+  flex-shrink: 0;
+}
+.lotto-banner-cta {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #D36135, #C05430);
+  box-shadow: 0 2px 12px rgba(211,97,53,0.3);
+  white-space: nowrap;
+  transition: all 0.2s;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.lotto-banner:hover .lotto-banner-cta {
+  background: linear-gradient(135deg, #E8834A, #D36135);
+  box-shadow: 0 4px 20px rgba(211,97,53,0.5);
+}
+/* 모바일 반응형 */
+@media (max-width: 600px) {
+  .lotto-banner { padding: 16px; }
+  .lotto-banner-content { flex-wrap: wrap; gap: 12px; }
+  .lotto-banner-left { width: 100%; }
+  .lotto-banner-balls { justify-content: center; }
+  .lotto-banner-center { text-align: center; width: 100%; }
+  .lotto-banner-title { font-size: 15px !important; }
+  .lotto-banner-right { width: 100%; text-align: center; }
+  .lotto-banner-cta { width: 100%; display: block; text-align: center; }
+}
+
+/* ===================================
    Hero Section
    =================================== */
 
