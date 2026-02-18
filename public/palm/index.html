@@ -180,6 +180,22 @@
                     <span id="aiStatus">AI 모델 로딩 중...</span>
                 </div>
 
+                <!-- 어떤 손으로? -->
+                <div class="hand-select-guide">
+                    <h4>어떤 손을 촬영하나요?</h4>
+                    <p class="hand-guide-desc">양손 모두 가능합니다. AI가 왼손/오른손을 자동 인식합니다.</p>
+                    <div class="hand-guide-items">
+                        <div class="hand-guide-item">
+                            <span class="hand-emoji">🤚</span>
+                            <strong>왼손</strong> = 타고난 운명 (선천운)
+                        </div>
+                        <div class="hand-guide-item">
+                            <span class="hand-emoji">✋</span>
+                            <strong>오른손</strong> = 만들어가는 운명 (후천운)
+                        </div>
+                    </div>
+                </div>
+
                 <!-- 촬영 가이드 -->
                 <div class="upload-guide">
                     <h4>촬영 가이드</h4>
@@ -190,7 +206,7 @@
                         </div>
                         <div class="guide-item">
                             <span class="guide-icon">🤚</span>
-                            <span>손바닥을 펴고 촬영</span>
+                            <span>손바닥을 활짝 펴기</span>
                         </div>
                         <div class="guide-item">
                             <span class="guide-icon">📐</span>
@@ -807,52 +823,55 @@
 
     function computePalmLines(lm) {
         // 감정선 (Heart Line): 새끼손가락 MCP 아래 → 검지 MCP 아래
+        // 실제 손금보다 약간 MCP 쪽(손가락 뿌리 바로 아래)에 위치
         const heartLine = {
             name: 'heart', label: '감정선', color: '#FF6B6B',
             points: [
-                lerp(lm[LM.PINKY_MCP], lm[LM.WRIST], 0.12),
-                lerp(lm[LM.PINKY_MCP], lm[LM.RING_MCP], 0.5),
-                lerp(lm[LM.RING_MCP], lm[LM.WRIST], 0.18),
-                lerp(lm[LM.MIDDLE_MCP], lm[LM.WRIST], 0.20),
-                lerp(lm[LM.INDEX_MCP], lm[LM.MIDDLE_MCP], 0.5),
-                lerp(lm[LM.INDEX_MCP], lm[LM.WRIST], 0.16),
+                lerp(lm[LM.PINKY_MCP], lm[LM.WRIST], 0.15),
+                lerp(lm[LM.RING_MCP], lm[LM.WRIST], 0.16),
+                lerp(lm[LM.RING_MCP], lm[LM.MIDDLE_MCP], 0.5),
+                lerp(lm[LM.MIDDLE_MCP], lm[LM.WRIST], 0.18),
+                lerp(lm[LM.INDEX_MCP], lm[LM.WRIST], 0.15),
             ]
         };
 
-        // 두뇌선 (Head Line): 엄지~검지 사이 → 손바닥 가로질러
+        // 두뇌선 (Head Line): 엄지~검지 사이 → 새끼 방향 가로질러
+        // 감정선보다 아래, 손바닥 중간 가로선
         const headLine = {
             name: 'head', label: '두뇌선', color: '#4ECDC4',
             points: [
-                lerp(lm[LM.THUMB_CMC], lm[LM.INDEX_MCP], 0.65),
+                lerp(lm[LM.INDEX_MCP], lm[LM.WRIST], 0.32),
                 lerp(lm[LM.INDEX_MCP], lm[LM.WRIST], 0.38),
-                lerp(lm[LM.MIDDLE_MCP], lm[LM.WRIST], 0.40),
-                lerp(lm[LM.RING_MCP], lm[LM.WRIST], 0.42),
-                lerp(lm[LM.RING_MCP], lm[LM.PINKY_MCP], 0.3),
+                lerp(lm[LM.MIDDLE_MCP], lm[LM.WRIST], 0.38),
+                lerp(lm[LM.RING_MCP], lm[LM.WRIST], 0.40),
+                lerp(lm[LM.PINKY_MCP], lm[LM.WRIST], 0.42),
             ]
         };
 
-        // 생명선 (Life Line): 엄지~검지 사이 → 엄지 뿌리 감싸며 손목으로
+        // 생명선 (Life Line): 엄지~검지 사이 시작 → 엄지 뿌리를 감싸며 손목 방향 곡선
         const lifeLine = {
             name: 'life', label: '생명선', color: '#45B7D1',
             points: [
-                lerp(lm[LM.THUMB_CMC], lm[LM.INDEX_MCP], 0.55),
-                lerp(lm[LM.THUMB_MCP], lm[LM.INDEX_MCP], 0.3),
-                lerp(lm[LM.THUMB_MCP], lm[LM.WRIST], 0.20),
-                lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.45),
-                lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.70),
-                lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.90),
+                lerp(lm[LM.INDEX_MCP], lm[LM.WRIST], 0.30),
+                lerp(lm[LM.THUMB_MCP], lm[LM.MIDDLE_MCP], 0.20),
+                lerp(lm[LM.THUMB_MCP], lm[LM.WRIST], 0.30),
+                lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.40),
+                lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.65),
+                lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.88),
             ]
         };
 
-        // 운명선 (Fate Line): 손목 중앙 → 중지 방향 수직
+        // 운명선 (Fate Line): 손목 중앙 → 중지 방향 세로
+        // 약간 곡선을 주어 자연스럽게
+        const wristCenter = lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0);
         const fateLine = {
             name: 'fate', label: '운명선', color: '#DDA0DD',
             points: [
-                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.08),
+                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.12),
                 lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.30),
-                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.55),
-                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.80),
-                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.92),
+                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.50),
+                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.72),
+                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.88),
             ]
         };
 
