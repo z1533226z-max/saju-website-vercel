@@ -11,6 +11,7 @@ import os
 import base64
 import hashlib
 import time
+import urllib.error
 
 _ALLOWED_ORIGIN = os.getenv('ALLOWED_ORIGIN', '*')
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', '')
@@ -159,6 +160,7 @@ class handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         """Handle palm analysis request"""
+        remaining = 0
         try:
             # Check API key
             if not GEMINI_API_KEY:
@@ -184,7 +186,11 @@ class handler(BaseHTTPRequestHandler):
                 return
 
             body = self.rfile.read(content_length)
-            data = json.loads(body.decode('utf-8'))
+            try:
+                data = json.loads(body.decode('utf-8'))
+            except json.JSONDecodeError:
+                self._error(400, 'Invalid request JSON')
+                return
 
             # Extract image
             image_data = data.get('image', '')
@@ -208,8 +214,6 @@ class handler(BaseHTTPRequestHandler):
             result['remaining'] = remaining
             self._json_response(200, result)
 
-        except json.JSONDecodeError:
-            self._error(400, 'Invalid JSON')
         except urllib.error.HTTPError as e:
             error_body = e.read().decode('utf-8') if e.fp else ''
             if e.code == 429:
