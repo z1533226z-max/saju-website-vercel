@@ -243,15 +243,16 @@
     gap: 0.5rem;
 }
 
-.pillar {
+.pillars-display .pillar {
     text-align: center;
     padding: 0.5rem;
     background: var(--color-bg-tertiary);
     border-radius: 6px;
     border: 1px solid var(--color-border);
+    min-height: auto;
 }
 
-.pillar-title {
+.pillars-display .pillar-title {
     font-size: 0.75rem;
     color: var(--color-text-muted);
     margin-bottom: 0.25rem;

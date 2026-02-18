@@ -22,11 +22,6 @@
     grid-template-columns: repeat(3, 1fr);
   }
   
-  /* Results adjustments */
-  .interpretation {
-    grid-template-columns: 1fr;
-  }
-  
   /* Info grid adjustments */
   .info-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -77,17 +72,6 @@
   .gender-card {
     width: 100%;
     max-width: 300px;
-  }
-  
-  /* Saju table */
-  .saju-table {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 400px;
-  }
-  
-  /* Elements chart */
-  .chart-container {
-    height: 250px;
   }
   
   /* Info grid */
@@ -254,34 +238,11 @@
     font-size: 10px;
   }
   
-  /* Results section */
-  .saju-table {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-    max-width: 300px;
-  }
-  
-  .pillar {
-    display: grid;
-    grid-template-columns: auto 1fr 1fr;
-    align-items: center;
-    gap: var(--spacing-md);
-    text-align: left;
-  }
-  
-  .pillar-title {
-    font-weight: var(--font-bold);
-  }
-  
   /* Elements analysis */
   .elements-analysis {
     padding: var(--spacing-lg);
   }
-  
-  .chart-container {
-    height: 200px;
-  }
-  
+
   .elements-legend {
     grid-template-columns: 1fr;
   }

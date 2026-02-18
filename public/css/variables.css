@@ -30,7 +30,9 @@
   --color-gold-soft: #C9A84C;         /* 부드러운 금 */
   --color-gold-muted: #8B7335;        /* 차분한 금 — Borders */
   --color-gold-dark: #6B5A1E;         /* 어두운 금 */
+  --color-gold-deep: #8B6914;         /* 깊은 금 */
   --color-gold-text: #E8D48B;         /* 금색 텍스트용 */
+  --color-text-muted: rgba(255, 255, 255, 0.4); /* 흐린 텍스트 */
   --color-gold-glow: rgba(212, 175, 55, 0.15);
 
   /* Accent Colors (mapped from gold) */
