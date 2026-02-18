@@ -328,22 +328,46 @@ p {
   width: 100%;
 }
 
-/* 로또킹 네비 링크 — 코랄 강조 */
+/* 로또킹 네비 링크 — 강렬한 코랄 CTA */
 .main-nav .lotto-nav-link {
-  color: #D36135 !important;
-  animation: lotto-nav-pulse 2.5s ease-in-out infinite;
+  color: #fff !important;
+  font-weight: 700 !important;
+  font-size: var(--text-sm) !important;
+  padding: 6px 16px !important;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #D36135, #E8834A) !important;
+  border: none !important;
+  box-shadow: 0 0 12px rgba(211, 97, 53, 0.4), 0 0 24px rgba(211, 97, 53, 0.15);
+  animation: lotto-nav-glow 2s ease-in-out infinite;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  letter-spacing: 0.5px;
 }
 .main-nav .lotto-nav-link:hover {
-  background: rgba(211, 97, 53, 0.15) !important;
-  border-color: rgba(211, 97, 53, 0.5) !important;
-  box-shadow: 0 0 12px rgba(211, 97, 53, 0.3);
+  color: #fff !important;
+  background: linear-gradient(135deg, #E8834A, #D36135) !important;
+  box-shadow: 0 0 20px rgba(211, 97, 53, 0.6), 0 0 40px rgba(211, 97, 53, 0.25) !important;
+  transform: scale(1.05);
 }
 .main-nav .lotto-nav-link::after {
-  display: none;
+  display: none !important;
 }
-@keyframes lotto-nav-pulse {
-  0%, 100% { box-shadow: 0 0 0 rgba(211, 97, 53, 0); }
-  50% { box-shadow: 0 0 10px rgba(211, 97, 53, 0.2); }
+.lotto-nav-icon {
+  font-size: 14px;
+}
+.lotto-nav-arrow {
+  font-size: 12px;
+  opacity: 0.8;
+  transition: transform 0.2s;
+}
+.lotto-nav-link:hover .lotto-nav-arrow {
+  transform: translateX(2px);
+}
+@keyframes lotto-nav-glow {
+  0%, 100% { box-shadow: 0 0 12px rgba(211, 97, 53, 0.4), 0 0 24px rgba(211, 97, 53, 0.15); }
+  50% { box-shadow: 0 0 20px rgba(211, 97, 53, 0.6), 0 0 40px rgba(211, 97, 53, 0.25); }
 }
 
 /* ===================================
