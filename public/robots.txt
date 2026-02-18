@@ -3,4 +3,4 @@ Allow: /
 Disallow: /api/
 Disallow: /public/public/
 
-Sitemap: https://saju-website-vercel.vercel.app/sitemap.xml
+Sitemap: https://saju.gon.ai.kr/sitemap.xml
