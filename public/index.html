@@ -908,23 +908,55 @@
         </div>
     </section>
 
+    </main>
+
+    <!-- 정보 모달 -->
+    <div id="info-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" style="display: none;">
+        <div class="modal-overlay" data-action="closeInfoModal"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="닫기" data-action="closeInfoModal">×</button>
+            <h2 id="modal-title"></h2>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
     <!-- 로또킹 크로스 프로모션 배너 -->
     <style>
+        @keyframes lotto-banner-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(211, 97, 53, 0.2), 0 0 30px rgba(211, 97, 53, 0.1), 0 4px 20px rgba(0,0,0,0.15); }
+            50% { box-shadow: 0 0 25px rgba(211, 97, 53, 0.35), 0 0 50px rgba(211, 97, 53, 0.15), 0 4px 20px rgba(0,0,0,0.15); }
+        }
+        @keyframes lotto-banner-shine {
+            0% { transform: translateX(-100%) skewX(-15deg); }
+            100% { transform: translateX(300%) skewX(-15deg); }
+        }
+        .lotto-banner-link {
+            animation: lotto-banner-glow 3s ease-in-out infinite;
+        }
         .lotto-banner-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(211, 97, 53, 0.15), 0 4px 20px rgba(0, 0, 0, 0.08) !important;
-            border-color: rgba(211, 97, 53, 0.35) !important;
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(211, 97, 53, 0.4), 0 0 60px rgba(211, 97, 53, 0.2), 0 8px 32px rgba(0,0,0,0.2) !important;
+            border-color: rgba(211, 97, 53, 0.5) !important;
+        }
+        .lotto-banner-link::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: lotto-banner-shine 4s ease-in-out infinite;
+            pointer-events: none;
         }
     </style>
     <section id="lotto-promo-banner" style="padding: 2rem 1rem;">
         <a href="https://lotto.gon.ai.kr" target="_blank" rel="noopener noreferrer" class="lotto-banner-link"
            style="display:block; max-width:640px; margin:0 auto; border-radius:16px; overflow:hidden;
                   text-decoration:none; background:linear-gradient(135deg, #FFF7ED 0%, #FFFFFF 50%, #F0FDF4 100%);
-                  border:1px solid rgba(211,97,53,0.2); padding:20px 24px; position:relative;
-                  transition:all 0.3s ease; box-shadow:0 4px 20px rgba(211,97,53,0.08);">
+                  border:1px solid rgba(211,97,53,0.3); padding:20px 24px; position:relative;
+                  transition:all 0.3s ease;">
             <!-- Top accent bar -->
-            <div style="position:absolute; top:0; left:24px; right:24px; height:2px;
-                        background:linear-gradient(90deg, transparent, #D36135, #3E5641, transparent);
+            <div style="position:absolute; top:0; left:0; right:0; height:3px;
+                        background:linear-gradient(90deg, #D36135, #E8834A, #3E5641, #D36135);
+                        background-size: 200% 100%;
                         border-radius:0 0 4px 4px;"></div>
 
             <div style="display:flex; align-items:center; gap:16px;">
@@ -943,7 +975,7 @@
 
                 <div style="flex:1; min-width:0;">
                     <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
-                        <span style="font-size:10px; font-weight:600; color:#D36135; letter-spacing:1px;">자매 서비스</span>
+                        <span style="font-size:10px; font-weight:600; color:#D36135; letter-spacing:1px;">로또킹</span>
                     </div>
                     <h4 style="font-size:15px; font-weight:800; color:#111827; margin:0 0 4px 0; line-height:1.3;
                                font-family:'Noto Sans KR',sans-serif;">
@@ -966,18 +998,6 @@
             </div>
         </a>
     </section>
-
-    </main>
-
-    <!-- 정보 모달 -->
-    <div id="info-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" style="display: none;">
-        <div class="modal-overlay" data-action="closeInfoModal"></div>
-        <div class="modal-content">
-            <button class="modal-close" aria-label="닫기" data-action="closeInfoModal">×</button>
-            <h2 id="modal-title"></h2>
-            <div id="modal-body"></div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer id="site-footer">
