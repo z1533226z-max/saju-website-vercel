@@ -492,6 +492,7 @@
             <div class="name-card">
                 <h4>${name.full}</h4>
                 <p><strong>한자:</strong> ${name.hanja}</p>
+                <p><strong>오행:</strong> ${name.element} (${{'木':'나무','火':'불','土':'땅','金':'쇠','水':'물'}[name.element]})</p>
                 <p><strong>의미:</strong> ${name.meaning}</p>
                 <p><strong>획수:</strong> ${name.strokes}</p>
             </div>
@@ -500,27 +501,90 @@
         resultDiv.style.display = 'block';
     };
     
-    // 이름 생성 (임시)
+    // 이름 생성 — 오행 기반 다양한 이름 풀에서 랜덤 추천
     function generateRandomNames(surname, gender) {
         const maleNames = [
-            { name: '준서', hanja: '俊瑞', meaning: '뛰어나고 상서로운', strokes: '9-13' },
-            { name: '민준', hanja: '敏俊', meaning: '민첩하고 준수한', strokes: '11-9' },
-            { name: '서준', hanja: '瑞俊', meaning: '상서롭고 뛰어난', strokes: '13-9' }
+            // 木 (목) — 나무/성장 기운
+            { name: '준혁', hanja: '俊赫', meaning: '뛰어나고 빛나는', strokes: '9-14', element: '木' },
+            { name: '동현', hanja: '東賢', meaning: '동쪽의 현명한 빛', strokes: '8-15', element: '木' },
+            { name: '재원', hanja: '才源', meaning: '재능의 근원', strokes: '3-13', element: '木' },
+            { name: '건우', hanja: '建宇', meaning: '세상을 세우는', strokes: '9-6', element: '木' },
+            { name: '승현', hanja: '承賢', meaning: '현명함을 이어받는', strokes: '8-15', element: '木' },
+            // 火 (화) — 불/열정 기운
+            { name: '시우', hanja: '時宇', meaning: '시대를 빛내는', strokes: '10-6', element: '火' },
+            { name: '준서', hanja: '俊瑞', meaning: '뛰어나고 상서로운', strokes: '9-13', element: '火' },
+            { name: '도윤', hanja: '道允', meaning: '올바른 길을 허락하는', strokes: '13-4', element: '火' },
+            { name: '태양', hanja: '泰陽', meaning: '크고 밝은 빛', strokes: '11-12', element: '火' },
+            { name: '지호', hanja: '志浩', meaning: '뜻이 넓고 큰', strokes: '7-11', element: '火' },
+            // 土 (토) — 땅/안정 기운
+            { name: '민준', hanja: '敏俊', meaning: '민첩하고 준수한', strokes: '11-9', element: '土' },
+            { name: '우진', hanja: '宇鎭', meaning: '세상을 진정시키는', strokes: '6-18', element: '土' },
+            { name: '예준', hanja: '禮俊', meaning: '예의 바르고 뛰어난', strokes: '18-9', element: '土' },
+            { name: '성민', hanja: '成敏', meaning: '이루고 민첩한', strokes: '7-11', element: '土' },
+            { name: '현우', hanja: '賢宇', meaning: '현명하고 넓은 세상', strokes: '15-6', element: '土' },
+            // 金 (금) — 쇠/결단 기운
+            { name: '서준', hanja: '瑞俊', meaning: '상서롭고 뛰어난', strokes: '13-9', element: '金' },
+            { name: '정우', hanja: '正宇', meaning: '올바르고 넓은', strokes: '5-6', element: '金' },
+            { name: '승우', hanja: '勝宇', meaning: '승리하는 넓은 세상', strokes: '12-6', element: '金' },
+            { name: '찬영', hanja: '燦英', meaning: '빛나는 영웅', strokes: '17-8', element: '金' },
+            { name: '수호', hanja: '守浩', meaning: '지켜내는 큰 뜻', strokes: '6-11', element: '金' },
+            // 水 (수) — 물/지혜 기운
+            { name: '하준', hanja: '河俊', meaning: '큰 강처럼 뛰어난', strokes: '8-9', element: '水' },
+            { name: '윤서', hanja: '潤瑞', meaning: '윤택하고 상서로운', strokes: '15-13', element: '水' },
+            { name: '지환', hanja: '智煥', meaning: '지혜롭게 빛나는', strokes: '12-13', element: '水' },
+            { name: '민서', hanja: '敏瑞', meaning: '민첩하고 상서로운', strokes: '11-13', element: '水' },
+            { name: '연우', hanja: '淵宇', meaning: '깊은 연못처럼 넓은', strokes: '12-6', element: '水' }
         ];
-        
+
         const femaleNames = [
-            { name: '서연', hanja: '瑞妍', meaning: '상서롭고 아름다운', strokes: '13-7' },
-            { name: '지안', hanja: '智安', meaning: '지혜롭고 평안한', strokes: '12-6' },
-            { name: '하은', hanja: '夏恩', meaning: '여름의 은혜', strokes: '10-10' }
+            // 木 (목) — 나무/성장 기운
+            { name: '수아', hanja: '秀雅', meaning: '빼어나고 우아한', strokes: '7-12', element: '木' },
+            { name: '예린', hanja: '藝潾', meaning: '예술적이고 맑은', strokes: '19-15', element: '木' },
+            { name: '하린', hanja: '夏潾', meaning: '여름처럼 맑고 빛나는', strokes: '10-15', element: '木' },
+            { name: '채원', hanja: '采源', meaning: '빛나는 근원', strokes: '8-13', element: '木' },
+            { name: '윤아', hanja: '潤雅', meaning: '윤택하고 우아한', strokes: '15-12', element: '木' },
+            // 火 (화) — 불/열정 기운
+            { name: '서연', hanja: '瑞妍', meaning: '상서롭고 아름다운', strokes: '13-7', element: '火' },
+            { name: '지유', hanja: '智柔', meaning: '지혜롭고 부드러운', strokes: '12-9', element: '火' },
+            { name: '다은', hanja: '多恩', meaning: '은혜가 많은', strokes: '6-10', element: '火' },
+            { name: '소율', hanja: '昭律', meaning: '밝고 바른', strokes: '9-9', element: '火' },
+            { name: '나윤', hanja: '娜允', meaning: '아리따고 너그러운', strokes: '10-4', element: '火' },
+            // 土 (토) — 땅/안정 기운
+            { name: '지안', hanja: '智安', meaning: '지혜롭고 평안한', strokes: '12-6', element: '土' },
+            { name: '서윤', hanja: '瑞允', meaning: '상서롭고 너그러운', strokes: '13-4', element: '土' },
+            { name: '예은', hanja: '禮恩', meaning: '예의 바르고 은혜로운', strokes: '18-10', element: '土' },
+            { name: '민서', hanja: '敏瑞', meaning: '민첩하고 상서로운', strokes: '11-13', element: '土' },
+            { name: '아린', hanja: '雅潾', meaning: '우아하고 맑은', strokes: '12-15', element: '土' },
+            // 金 (금) — 쇠/결단 기운
+            { name: '하은', hanja: '夏恩', meaning: '여름의 은혜', strokes: '10-10', element: '金' },
+            { name: '수빈', hanja: '秀彬', meaning: '빼어나고 빛나는', strokes: '7-11', element: '金' },
+            { name: '채은', hanja: '采恩', meaning: '빛나는 은혜', strokes: '8-10', element: '金' },
+            { name: '시은', hanja: '詩恩', meaning: '시적인 은혜', strokes: '13-10', element: '金' },
+            { name: '정아', hanja: '靜雅', meaning: '고요하고 우아한', strokes: '16-12', element: '金' },
+            // 水 (수) — 물/지혜 기운
+            { name: '유나', hanja: '柔娜', meaning: '부드럽고 아리따운', strokes: '9-10', element: '水' },
+            { name: '윤서', hanja: '潤瑞', meaning: '윤택하고 상서로운', strokes: '15-13', element: '水' },
+            { name: '소윤', hanja: '昭允', meaning: '밝고 너그러운', strokes: '9-4', element: '水' },
+            { name: '하율', hanja: '河律', meaning: '강물처럼 흐르는', strokes: '8-9', element: '水' },
+            { name: '은서', hanja: '恩瑞', meaning: '은혜롭고 상서로운', strokes: '10-13', element: '水' }
         ];
-        
-        const selectedNames = gender === 'male' ? maleNames : femaleNames;
-        
-        return selectedNames.map(n => ({
+
+        const pool = gender === 'male' ? maleNames : femaleNames;
+
+        // Fisher-Yates 셔플 후 5개 선택
+        const shuffled = [...pool];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        const selected = shuffled.slice(0, 5);
+
+        return selected.map(n => ({
             full: surname + n.name,
             hanja: n.hanja,
             meaning: n.meaning,
-            strokes: n.strokes
+            strokes: n.strokes,
+            element: n.element
         }));
     };
     

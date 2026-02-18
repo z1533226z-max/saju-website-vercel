@@ -692,7 +692,7 @@
   box-shadow: var(--shadow-glass);
   transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Gold accent line at top */
