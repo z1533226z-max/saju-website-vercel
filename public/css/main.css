@@ -88,12 +88,7 @@ p {
   box-shadow: 0 1px 0 rgba(212, 175, 55, 0.05);
 }
 
-@media (prefers-color-scheme: light) {
-  #site-header {
-    background: rgba(247, 244, 239, 0.9);
-    box-shadow: 0 1px 0 rgba(200, 150, 62, 0.08);
-  }
-}
+/* 墨金 — dark-first header, no light override */
 
 .header-container {
   display: flex;

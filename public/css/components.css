@@ -541,6 +541,46 @@
   word-break: keep-all;
 }
 
+/* Full-width single-column layout for 심화분석 / 운세흐름 tabs */
+.interpretation--full {
+  grid-template-columns: 1fr !important;
+}
+
+/* 대운 흐름 - current/next period side by side */
+.major-fortune-timeline {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+}
+
+.major-fortune-timeline h4 {
+  color: var(--color-gold);
+  font-family: var(--font-heading);
+  margin-bottom: var(--spacing-sm);
+}
+
+.current-period,
+.next-period {
+  padding: var(--spacing-lg);
+  background: var(--color-warm-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.current-period {
+  border-left: 3px solid var(--color-gold);
+}
+
+.next-period {
+  border-left: 3px solid var(--color-gold-muted);
+}
+
+@media (max-width: 768px) {
+  .major-fortune-timeline {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Share Buttons */
 .share-buttons {
   display: flex;

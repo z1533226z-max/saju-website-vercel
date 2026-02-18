@@ -339,22 +339,4 @@
    Dark Mode Support
    =================================== */
 
-/* Dark mode variables are defined in variables.css */
-@media (prefers-color-scheme: dark) {
-  .ink-wash-pattern {
-    opacity: 0.3;
-  }
-
-  .hero-background {
-    background: linear-gradient(135deg, #161210 0%, #231E18 100%);
-  }
-
-  .ad-container {
-    background: #231E18;
-    border-color: #3D3529;
-  }
-
-  .ad-container::before {
-    color: #7A6E60;
-  }
-}
+/* 墨金 — dark-first, no media query needed */
