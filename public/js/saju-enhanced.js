@@ -297,25 +297,6 @@ function showError(message) {
 window.calculateSaju = calculateSaju;
 window.loadTestData = loadTestData;
 
-// Add CSS files if not already loaded
-function loadEnhancedStyles() {
-    const styles = [
-        'css/tabs.css',
-        'css/timeline.css',
-        'css/print.css'
-    ];
-    
-    styles.forEach(href => {
-        if (!document.querySelector(`link[href="${href}"]`)) {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = href;
-            document.head.appendChild(link);
-        }
-    });
-}
-
-// Load styles
-loadEnhancedStyles();
+// CSS files are now loaded directly in index.html with cache-bust params
 
 console.log('Saju Enhanced Features loaded successfully');

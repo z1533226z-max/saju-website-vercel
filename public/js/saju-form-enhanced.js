@@ -543,13 +543,13 @@ window.sajuForm = function() {
         // 오행 색상
         getElementColor(element) {
             const colors = {
-                'wood': '#4CAF50',
-                'fire': '#FF6B6B',
-                'earth': '#FFA726',
-                'metal': '#9E9E9E',
-                'water': '#42A5F5'
+                'wood': '#7B9E89',
+                'fire': '#D4736A',
+                'earth': '#C8A882',
+                'metal': '#A8A5A0',
+                'water': '#6B8CAE'
             };
-            return colors[element] || '#999';
+            return colors[element] || '#888';
         },
         
         // 추가 기능 토글

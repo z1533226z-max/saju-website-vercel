@@ -30,6 +30,11 @@
       "headers": { "Cache-Control": "public, max-age=3600, s-maxage=86400" }
     },
     {
+      "src": "/index.html",
+      "dest": "/public/index.html",
+      "headers": { "Cache-Control": "public, max-age=0, s-maxage=60, must-revalidate" }
+    },
+    {
       "src": "/(.*)",
       "dest": "/public/$1"
     }
