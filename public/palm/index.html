@@ -797,8 +797,21 @@
         loadingProgress.style.width = '25%';
         await sleep(300);
 
-        console.log("[AI] 이미지 분석 시작:", previewImage.naturalWidth, "x", previewImage.naturalHeight);
-        const result = handLandmarker.detect(previewImage);
+        // 이미지를 Canvas에 그려서 detect에 전달 (display:none 이미지 문제 해결)
+        const detectCanvas = document.createElement('canvas');
+        const MAX_DIM = 1280; // 너무 큰 이미지 리사이즈
+        let dw = previewImage.naturalWidth, dh = previewImage.naturalHeight;
+        if (dw > MAX_DIM || dh > MAX_DIM) {
+            const scale = MAX_DIM / Math.max(dw, dh);
+            dw = Math.round(dw * scale);
+            dh = Math.round(dh * scale);
+        }
+        detectCanvas.width = dw;
+        detectCanvas.height = dh;
+        detectCanvas.getContext('2d').drawImage(previewImage, 0, 0, dw, dh);
+        console.log("[AI] 이미지 분석 시작:", previewImage.naturalWidth, "x", previewImage.naturalHeight, "→ Canvas:", dw, "x", dh);
+
+        const result = handLandmarker.detect(detectCanvas);
         console.log("[AI] 분석 결과:", JSON.stringify({
             landmarks: result.landmarks?.length || 0,
             handednesses: result.handednesses?.length || 0
