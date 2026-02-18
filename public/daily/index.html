@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="오늘의 운세 - 띠별, 별자리별 오늘의 운세를 확인하세요. 매일 업데이트되는 총운, 재물운, 연애운, 건강운, 행운의 숫자와 색상을 무료로 제공합니다.">
+    <meta name="keywords" content="오늘의운세, 오늘운세, 띠별운세, 일일운세, 무료운세, 데일리운세, 매일운세, 행운의숫자, 행운의색">
+    <title>오늘의 운세 | 매일 업데이트 띠별 운세 - 사주명리</title>
+    <link rel="canonical" href="https://saju.gon.ai.kr/daily/">
+
+    <!-- Naver Search Advisor -->
+    <meta name="naver-site-verification" content="0e1c05903546c204ebb9e52263162fe36a32fb28" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="오늘의 운세 | 매일 업데이트 띠별 운세">
+    <meta property="og:description" content="오늘의 띠별 운세를 확인하세요. 매일 새롭게 업데이트되는 총운, 재물운, 연애운, 건강운.">
+    <meta property="og:url" content="https://saju.gon.ai.kr/daily/">
+    <meta property="og:image" content="https://saju.gon.ai.kr/assets/images/og-image.jpg">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:site_name" content="사주명리">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="오늘의 운세 | 매일 업데이트 띠별 운세">
+    <meta name="twitter:description" content="오늘의 띠별 운세를 확인하세요. 매일 새롭게 업데이트됩니다.">
+
+    <!-- Google AdSense -->
+    <meta name="google-adsense-account" content="ca-pub-7479840445702290">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "오늘의 운세",
+        "description": "매일 업데이트되는 띠별 운세",
+        "url": "https://saju.gon.ai.kr/daily/",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "사주명리",
+            "url": "https://saju.gon.ai.kr/"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://saju.gon.ai.kr/" },
+                { "@type": "ListItem", "position": 2, "name": "오늘의 운세", "item": "https://saju.gon.ai.kr/daily/" }
+            ]
+        }
+    }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/zodiac.css?v=1">
+    <link rel="stylesheet" href="/css/daily.css?v=1">
+
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7479840445702290"
+         crossorigin="anonymous"></script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BNRL6FRMMM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BNRL6FRMMM');
+    </script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="site-header">
+        <nav class="container" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem;">
+            <a href="/" class="logo-link" style="text-decoration: none;">
+                <h1 style="font-family: var(--font-heading); font-size: var(--text-xl); margin: 0;">
+                    <span class="gold-text">사주명리</span>
+                </h1>
+            </a>
+            <nav class="nav-links">
+                <a href="/">사주풀이</a>
+                <a href="/zodiac/">띠별 운세</a>
+                <a href="/daily/" class="active">오늘의 운세</a>
+            </nav>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="daily-hero">
+        <div class="container">
+            <div class="hero-badge" id="today-date-badge"></div>
+            <h1 class="hero-title"><span class="gold-text">오늘의 운세</span></h1>
+            <p class="hero-subtitle">매일 새롭게 업데이트되는 띠별 운세입니다.<br>자신의 띠를 선택하여 오늘의 운세를 확인하세요.</p>
+        </div>
+    </section>
+
+    <!-- Zodiac Selector -->
+    <section class="daily-section">
+        <div class="container">
+            <h2 class="section-title"><span class="gold-text">내 띠 선택</span></h2>
+
+            <div class="zodiac-selector" id="zodiac-selector">
+                <button class="zodiac-chip" data-zodiac="rat" onclick="selectZodiac('rat')">🐀 쥐</button>
+                <button class="zodiac-chip" data-zodiac="ox" onclick="selectZodiac('ox')">🐂 소</button>
+                <button class="zodiac-chip" data-zodiac="tiger" onclick="selectZodiac('tiger')">🐅 호랑이</button>
+                <button class="zodiac-chip" data-zodiac="rabbit" onclick="selectZodiac('rabbit')">🐇 토끼</button>
+                <button class="zodiac-chip" data-zodiac="dragon" onclick="selectZodiac('dragon')">🐉 용</button>
+                <button class="zodiac-chip" data-zodiac="snake" onclick="selectZodiac('snake')">🐍 뱀</button>
+                <button class="zodiac-chip" data-zodiac="horse" onclick="selectZodiac('horse')">🐴 말</button>
+                <button class="zodiac-chip" data-zodiac="goat" onclick="selectZodiac('goat')">🐑 양</button>
+                <button class="zodiac-chip" data-zodiac="monkey" onclick="selectZodiac('monkey')">🐒 원숭이</button>
+                <button class="zodiac-chip" data-zodiac="rooster" onclick="selectZodiac('rooster')">🐓 닭</button>
+                <button class="zodiac-chip" data-zodiac="dog" onclick="selectZodiac('dog')">🐕 개</button>
+                <button class="zodiac-chip" data-zodiac="pig" onclick="selectZodiac('pig')">🐷 돼지</button>
+            </div>
+
+            <!-- Birth Year Quick Check -->
+            <div class="birth-year-check">
+                <label>태어난 해로 찾기:</label>
+                <input type="number" id="birth-year" placeholder="예: 1990" min="1920" max="2025">
+                <button onclick="findZodiacByYear()">확인</button>
+            </div>
+
+            <!-- Result Area -->
+            <div id="daily-result" class="daily-result" style="display: none;"></div>
+        </div>
+    </section>
+
+    <!-- Today's Overview -->
+    <section class="overview-section">
+        <div class="container">
+            <h2 class="section-title"><span class="gold-text">오늘의 기운</span></h2>
+            <div id="today-energy" class="energy-cards"></div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="gold-text">더 정확한 운세가 궁금하신가요?</h2>
+            <p>생년월일시를 입력하면 사주팔자 기반의 정밀한 운세를 확인할 수 있습니다.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="/" class="cta-btn">무료 사주풀이</a>
+                <a href="/zodiac/" class="cta-btn" style="background: transparent; border: 1px solid var(--color-gold); color: var(--color-gold);">2026년 띠별 운세</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/">사주풀이</a>
+                <a href="/zodiac/">띠별 운세</a>
+                <a href="/daily/">오늘의 운세</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 사주명리. 전통 명리학 기반 운세 서비스.</p>
+            <p class="footer-disclaimer">본 서비스의 운세 결과는 전통 명리학에 기반한 참고용 정보이며, 중요한 결정은 전문가와 상담하시기 바랍니다.</p>
+        </div>
+    </footer>
+
+    <script>
+    // ============================================================
+    // Daily Fortune Generator
+    // Date-based deterministic random (same date = same result)
+    // ============================================================
+
+    const ZODIAC_DATA = {
+        rat:     { name: '쥐띠',      emoji: '🐀', hanja: '子', element: '수(水)', branch: 0 },
+        ox:      { name: '소띠',      emoji: '🐂', hanja: '丑', element: '토(土)', branch: 1 },
+        tiger:   { name: '호랑이띠',  emoji: '🐅', hanja: '寅', element: '목(木)', branch: 2 },
+        rabbit:  { name: '토끼띠',    emoji: '🐇', hanja: '卯', element: '목(木)', branch: 3 },
+        dragon:  { name: '용띠',      emoji: '🐉', hanja: '辰', element: '토(土)', branch: 4 },
+        snake:   { name: '뱀띠',      emoji: '🐍', hanja: '巳', element: '화(火)', branch: 5 },
+        horse:   { name: '말띠',      emoji: '🐴', hanja: '午', element: '화(火)', branch: 6 },
+        goat:    { name: '양띠',      emoji: '🐑', hanja: '未', element: '토(土)', branch: 7 },
+        monkey:  { name: '원숭이띠',  emoji: '🐒', hanja: '申', element: '금(金)', branch: 8 },
+        rooster: { name: '닭띠',      emoji: '🐓', hanja: '酉', element: '금(金)', branch: 9 },
+        dog:     { name: '개띠',      emoji: '🐕', hanja: '戌', element: '토(土)', branch: 10 },
+        pig:     { name: '돼지띠',    emoji: '🐷', hanja: '亥', element: '수(水)', branch: 11 }
+    };
+
+    const FORTUNE_MESSAGES = {
+        overall: [
+            '모든 일이 순조롭게 풀리는 날입니다. 적극적으로 행동하세요.',
+            '차분하게 준비하면 좋은 결과를 얻을 수 있는 날입니다.',
+            '예상치 못한 기회가 찾아올 수 있습니다. 열린 마음을 가지세요.',
+            '인내심이 필요한 날입니다. 서두르지 마세요.',
+            '주변 사람들과의 소통이 행운을 가져다줍니다.',
+            '자기 자신에게 집중하면 좋은 하루가 됩니다.',
+            '새로운 시작에 좋은 날입니다. 미루던 일을 시작해보세요.',
+            '감사하는 마음이 더 큰 행복을 가져다줍니다.',
+            '작은 변화가 큰 결과를 만들어내는 날입니다.',
+            '직감을 믿고 행동하면 좋은 결과를 얻을 수 있습니다.',
+            '배움과 성장의 기회가 있는 날입니다. 새로운 것을 배워보세요.',
+            '조용히 내면을 돌아보는 시간이 필요한 날입니다.'
+        ],
+        money: [
+            '재물운이 좋습니다. 투자나 저축에 좋은 시기입니다.',
+            '지출을 줄이고 절약하는 것이 좋은 날입니다.',
+            '뜻밖의 수입이 있을 수 있습니다.',
+            '금전적인 결정은 신중하게 내리세요.',
+            '소비보다는 저축에 집중하면 좋겠습니다.',
+            '사업적 기회가 올 수 있으니 준비하세요.',
+            '과감한 투자보다는 안정적인 운용이 좋습니다.',
+            '동업이나 협력에서 재물이 올 수 있습니다.',
+            '부수입의 기회가 생길 수 있습니다.',
+            '금전 거래는 서류를 꼼꼼히 확인하세요.',
+            '절약의 습관이 큰 부를 가져다줍니다.',
+            '기다리면 더 좋은 조건이 올 수 있습니다.'
+        ],
+        love: [
+            '로맨틱한 만남의 기회가 있습니다.',
+            '상대방에게 진심을 표현하면 좋은 반응을 얻을 수 있습니다.',
+            '가족과의 시간을 가지면 마음이 편안해집니다.',
+            '갈등이 있다면 대화로 풀어보세요.',
+            '새로운 인연이 다가올 수 있는 날입니다.',
+            '기존 관계가 더욱 깊어지는 날입니다.',
+            '사소한 배려가 큰 감동을 줍니다.',
+            '혼자만의 시간도 중요합니다. 자기 자신을 사랑하세요.',
+            '오래된 친구와의 연락이 기쁨을 가져다줍니다.',
+            '솔직한 마음이 좋은 관계를 만듭니다.',
+            '상대방의 말에 귀 기울이면 관계가 좋아집니다.',
+            '만남의 자리에서 좋은 인연을 만날 수 있습니다.'
+        ],
+        health: [
+            '활력이 넘치는 날입니다. 운동을 시작해보세요.',
+            '충분한 수면이 건강의 기본입니다. 일찍 잠자리에 드세요.',
+            '스트레스 관리에 신경 쓰세요. 명상이 도움이 됩니다.',
+            '가벼운 산책이 기분 전환에 좋은 날입니다.',
+            '수분 섭취를 충분히 하세요.',
+            '무리한 운동보다는 스트레칭으로 몸을 풀어주세요.',
+            '균형 잡힌 식사가 중요한 날입니다.',
+            '자연 속에서 시간을 보내면 에너지가 충전됩니다.',
+            '정기 건강검진을 미루지 마세요.',
+            '눈과 허리에 주의하세요. 자세를 바로 하세요.',
+            '따뜻한 차 한 잔이 마음과 몸을 녹여줍니다.',
+            '일과 휴식의 균형을 잘 맞추세요.'
+        ]
+    };
+
+    const LUCKY_COLORS = ['빨강', '주황', '노랑', '초록', '파랑', '남색', '보라', '분홍', '하늘색', '금색', '은색', '갈색'];
+    const LUCKY_DIRECTIONS = ['동쪽', '서쪽', '남쪽', '북쪽', '동남쪽', '동북쪽', '서남쪽', '서북쪽'];
+
+    // Seeded random number generator
+    function seededRandom(seed) {
+        let s = seed;
+        return function() {
+            s = (s * 1103515245 + 12345) & 0x7fffffff;
+            return s / 0x7fffffff;
+        };
+    }
+
+    function getDaySeed() {
+        const now = new Date();
+        return now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
+    }
+
+    function generateDailyFortune(zodiacKey) {
+        const zodiac = ZODIAC_DATA[zodiacKey];
+        const daySeed = getDaySeed();
+        const seed = daySeed * 13 + zodiac.branch * 7919;
+        const rng = seededRandom(seed);
+
+        // Generate scores (50-100 range)
+        const overallScore = Math.floor(rng() * 40 + 55);
+        const moneyScore = Math.floor(rng() * 40 + 50);
+        const loveScore = Math.floor(rng() * 40 + 50);
+        const healthScore = Math.floor(rng() * 40 + 55);
+
+        // Select messages
+        const overallMsg = FORTUNE_MESSAGES.overall[Math.floor(rng() * FORTUNE_MESSAGES.overall.length)];
+        const moneyMsg = FORTUNE_MESSAGES.money[Math.floor(rng() * FORTUNE_MESSAGES.money.length)];
+        const loveMsg = FORTUNE_MESSAGES.love[Math.floor(rng() * FORTUNE_MESSAGES.love.length)];
+        const healthMsg = FORTUNE_MESSAGES.health[Math.floor(rng() * FORTUNE_MESSAGES.health.length)];
+
+        // Lucky items
+        const luckyNumber = Math.floor(rng() * 45) + 1;
+        const luckyNumber2 = Math.floor(rng() * 45) + 1;
+        const luckyColor = LUCKY_COLORS[Math.floor(rng() * LUCKY_COLORS.length)];
+        const luckyDirection = LUCKY_DIRECTIONS[Math.floor(rng() * LUCKY_DIRECTIONS.length)];
+        const luckyTime = `${Math.floor(rng() * 12 + 1)}시`;
+
+        // Star rating (1-5)
+        const starRating = Math.min(5, Math.max(1, Math.round(overallScore / 20)));
+
+        return {
+            zodiac, overallScore, moneyScore, loveScore, healthScore,
+            overallMsg, moneyMsg, loveMsg, healthMsg,
+            luckyNumber: `${Math.min(luckyNumber, luckyNumber2)}, ${Math.max(luckyNumber, luckyNumber2)}`,
+            luckyColor, luckyDirection, luckyTime, starRating
+        };
+    }
+
+    function getScoreGrade(score) {
+        if (score >= 90) return { text: '대길', class: 'grade-best' };
+        if (score >= 80) return { text: '길', class: 'grade-good' };
+        if (score >= 70) return { text: '소길', class: 'grade-ok' };
+        if (score >= 60) return { text: '평', class: 'grade-normal' };
+        return { text: '주의', class: 'grade-caution' };
+    }
+
+    function renderStars(count) {
+        return '★'.repeat(count) + '☆'.repeat(5 - count);
+    }
+
+    let selectedZodiac = null;
+
+    function selectZodiac(zodiacKey) {
+        selectedZodiac = zodiacKey;
+
+        // Update chip styles
+        document.querySelectorAll('.zodiac-chip').forEach(chip => {
+            chip.classList.toggle('active', chip.dataset.zodiac === zodiacKey);
+        });
+
+        // Save preference
+        localStorage.setItem('daily-zodiac', zodiacKey);
+
+        // Generate and display
+        const fortune = generateDailyFortune(zodiacKey);
+        const grade = getScoreGrade(fortune.overallScore);
+
+        const resultEl = document.getElementById('daily-result');
+        resultEl.style.display = 'block';
+        resultEl.innerHTML = `
+            <div class="result-header">
+                <div class="result-emoji">${fortune.zodiac.emoji}</div>
+                <div class="result-info">
+                    <h3>${fortune.zodiac.name} <span class="result-hanja">${fortune.zodiac.hanja}(${fortune.zodiac.element})</span></h3>
+                    <div class="result-stars">${renderStars(fortune.starRating)}</div>
+                </div>
+                <div class="result-grade ${grade.class}">${grade.text}</div>
+            </div>
+
+            <div class="result-scores-grid">
+                <div class="result-score-card">
+                    <div class="rsc-icon">🔮</div>
+                    <div class="rsc-label">총운</div>
+                    <div class="rsc-score">${fortune.overallScore}<small>점</small></div>
+                    <div class="rsc-bar"><div class="rsc-fill" style="width: ${fortune.overallScore}%; background: var(--color-gold);"></div></div>
+                </div>
+                <div class="result-score-card">
+                    <div class="rsc-icon">💰</div>
+                    <div class="rsc-label">재물운</div>
+                    <div class="rsc-score">${fortune.moneyScore}<small>점</small></div>
+                    <div class="rsc-bar"><div class="rsc-fill" style="width: ${fortune.moneyScore}%; background: #D4AF37;"></div></div>
+                </div>
+                <div class="result-score-card">
+                    <div class="rsc-icon">💕</div>
+                    <div class="rsc-label">연애운</div>
+                    <div class="rsc-score">${fortune.loveScore}<small>점</small></div>
+                    <div class="rsc-bar"><div class="rsc-fill" style="width: ${fortune.loveScore}%; background: #F87171;"></div></div>
+                </div>
+                <div class="result-score-card">
+                    <div class="rsc-icon">💪</div>
+                    <div class="rsc-label">건강운</div>
+                    <div class="rsc-score">${fortune.healthScore}<small>점</small></div>
+                    <div class="rsc-bar"><div class="rsc-fill" style="width: ${fortune.healthScore}%; background: #4ADE80;"></div></div>
+                </div>
+            </div>
+
+            <div class="result-messages">
+                <div class="result-msg-card">
+                    <h4>🔮 오늘의 총운</h4>
+                    <p>${fortune.overallMsg}</p>
+                </div>
+                <div class="result-msg-card">
+                    <h4>💰 재물운</h4>
+                    <p>${fortune.moneyMsg}</p>
+                </div>
+                <div class="result-msg-card">
+                    <h4>💕 연애운</h4>
+                    <p>${fortune.loveMsg}</p>
+                </div>
+                <div class="result-msg-card">
+                    <h4>💪 건강운</h4>
+                    <p>${fortune.healthMsg}</p>
+                </div>
+            </div>
+
+            <div class="result-lucky">
+                <div class="lucky-chip"><span class="lucky-icon">🔢</span> 행운의 숫자: <strong>${fortune.luckyNumber}</strong></div>
+                <div class="lucky-chip"><span class="lucky-icon">🎨</span> 행운의 색: <strong>${fortune.luckyColor}</strong></div>
+                <div class="lucky-chip"><span class="lucky-icon">🧭</span> 행운의 방향: <strong>${fortune.luckyDirection}</strong></div>
+                <div class="lucky-chip"><span class="lucky-icon">⏰</span> 행운의 시간: <strong>${fortune.luckyTime}</strong></div>
+            </div>
+
+            <div class="result-cta">
+                <p>더 정확한 운세를 원하시면 생년월일시로 사주풀이를 해보세요!</p>
+                <a href="/" class="cta-btn-sm">무료 사주풀이 바로가기</a>
+            </div>
+        `;
+
+        // Animate
+        resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => {
+            resultEl.querySelectorAll('.rsc-fill').forEach(bar => {
+                bar.style.transition = 'width 0.8s ease-out';
+            });
+        }, 100);
+    }
+
+    function findZodiacByYear() {
+        const yearInput = document.getElementById('birth-year');
+        const year = parseInt(yearInput.value);
+        if (!year || year < 1920 || year > 2025) {
+            alert('1920~2025 사이의 출생연도를 입력해주세요.');
+            return;
+        }
+
+        const zodiacKeys = ['monkey', 'rooster', 'dog', 'pig', 'rat', 'ox', 'tiger', 'rabbit', 'dragon', 'snake', 'horse', 'goat'];
+        const index = year % 12;
+        selectZodiac(zodiacKeys[index]);
+    }
+
+    // Initialize
+    function init() {
+        // Set today's date
+        const now = new Date();
+        const dateStr = `${now.getFullYear()}년 ${now.getMonth() + 1}월 ${now.getDate()}일 ${['일', '월', '화', '수', '목', '금', '토'][now.getDay()]}요일`;
+        document.getElementById('today-date-badge').textContent = dateStr;
+
+        // Today's energy
+        const daySeed = getDaySeed();
+        const rng = seededRandom(daySeed * 31);
+        const dayElements = ['목(木)', '화(火)', '토(土)', '금(金)', '수(水)'];
+        const dayColors = ['var(--color-wood)', 'var(--color-fire)', 'var(--color-earth)', 'var(--color-metal)', 'var(--color-water)'];
+        const dayEmojis = ['🌿', '🔥', '⛰️', '⚔️', '💧'];
+        const mainElement = Math.floor(rng() * 5);
+        const dayEnergy = Math.floor(rng() * 40 + 60);
+
+        document.getElementById('today-energy').innerHTML = `
+            <div class="energy-card main">
+                <div class="energy-emoji">${dayEmojis[mainElement]}</div>
+                <h3>오늘의 주 기운</h3>
+                <p class="energy-element" style="color: ${dayColors[mainElement]}">${dayElements[mainElement]}</p>
+                <p class="energy-desc">${['성장과 발전의 에너지', '열정과 활력의 에너지', '안정과 조화의 에너지', '결단과 정리의 에너지', '지혜와 유연함의 에너지'][mainElement]}</p>
+            </div>
+            <div class="energy-card">
+                <div class="energy-emoji">☯</div>
+                <h3>전체 운세 지수</h3>
+                <p class="energy-score">${dayEnergy}<small>/100</small></p>
+                <p class="energy-desc">${dayEnergy >= 80 ? '매우 좋은 날!' : dayEnergy >= 65 ? '괜찮은 하루' : '평온한 하루'}</p>
+            </div>
+            <div class="energy-card">
+                <div class="energy-emoji">📅</div>
+                <h3>오늘의 조언</h3>
+                <p class="energy-advice">${[
+                    '새로운 시도에 열린 마음을 가지세요',
+                    '주변 사람들에게 감사를 표현하세요',
+                    '자기 자신에게 투자하는 날로 만드세요',
+                    '작은 성공을 축하하며 기운을 얻으세요',
+                    '마음의 여유를 갖고 하루를 보내세요'
+                ][Math.floor(rng() * 5)]}</p>
+            </div>
+        `;
+
+        // Restore preference
+        const saved = localStorage.getItem('daily-zodiac');
+        if (saved && ZODIAC_DATA[saved]) {
+            selectZodiac(saved);
+        }
+    }
+
+    init();
+    </script>
+
+</body>
+</html>
