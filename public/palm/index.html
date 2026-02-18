@@ -591,58 +591,12 @@
         </div>
     </footer>
 
-    <!-- MediaPipe Hand Landmarker -->
+    <!-- Gemini AI 직접 분석 -->
     <script type="module">
-    import { HandLandmarker, FilesetResolver }
-        from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/vision_bundle.mjs";
 
-    // ===== MediaPipe AI Model =====
-    let handLandmarker = null;
-    let detectedLandmarks = null; // 실제 감지된 21개 관절점
-    let handedness = null;
-
-    async function initMediaPipe() {
-        try {
-            const vision = await FilesetResolver.forVisionTasks(
-                "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/wasm"
-            );
-            // GPU 먼저 시도, 실패 시 CPU fallback
-            try {
-                handLandmarker = await HandLandmarker.createFromOptions(vision, {
-                    baseOptions: {
-                        modelAssetPath: "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task",
-                        delegate: "GPU"
-                    },
-                    runningMode: "IMAGE",
-                    numHands: 2,
-                    minHandDetectionConfidence: 0.3,
-                    minHandPresenceConfidence: 0.3
-                });
-                console.log("[AI] MediaPipe Hand Landmarker 초기화 완료 (GPU)");
-            } catch (gpuErr) {
-                console.warn("[AI] GPU 실패, CPU fallback:", gpuErr);
-                handLandmarker = await HandLandmarker.createFromOptions(vision, {
-                    baseOptions: {
-                        modelAssetPath: "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task",
-                        delegate: "CPU"
-                    },
-                    runningMode: "IMAGE",
-                    numHands: 2,
-                    minHandDetectionConfidence: 0.3,
-                    minHandPresenceConfidence: 0.3
-                });
-                console.log("[AI] MediaPipe Hand Landmarker 초기화 완료 (CPU)");
-            }
-            document.getElementById('aiStatus').textContent = 'AI 모델 준비 완료';
-            document.getElementById('aiStatus').style.color = 'var(--color-gold)';
-        } catch (err) {
-            console.error("[AI] MediaPipe 초기화 실패:", err);
-            document.getElementById('aiStatus').textContent = 'AI 모델 로딩 중... (잠시 후 다시 시도)';
-        }
-    }
-
-    // 페이지 로드 시 즉시 초기화
-    initMediaPipe();
+    // AI 모델 상태 표시
+    document.getElementById('aiStatus').textContent = 'AI 분석 준비 완료';
+    document.getElementById('aiStatus').style.color = 'var(--color-gold)';
 
     // ===== DOM Elements =====
     const uploadArea = document.getElementById('uploadArea');
@@ -660,51 +614,6 @@
     const resultsSection = document.getElementById('resultsSection');
     const uploadSection = document.getElementById('upload-section');
     const lineLegend = document.getElementById('lineLegend');
-
-    // ===== Palm Line Interpretation Data =====
-    const palmInterpretations = {
-        life: {
-            long:   { score: 92, tags: ['강한 체력', '활력 충만', '장수'], text: '매우 강한 생명력을 가지고 있습니다. 체력이 뛰어나고 질병에 대한 저항력이 높으며, 활기찬 삶을 영위할 수 있는 타고난 건강 체질입니다.', extra: '생명선이 길고 깊다는 것은 기초 체력이 튼튼하다는 의미입니다. 활동적인 라이프스타일을 유지하면 더 큰 활력을 얻을 수 있으며, 노후에도 건강한 상태를 유지할 가능성이 높습니다.' },
-            curved: { score: 87, tags: ['열정적', '에너지 충만', '적극적'], text: '넘치는 에너지와 열정의 소유자입니다. 새로운 경험에 대한 호기심이 강하고, 적극적으로 인생을 개척해 나가는 타입입니다.', extra: '크게 휘어진 생명선은 감정적으로 풍부하고 인생을 능동적으로 살아가는 사람에게 많이 보입니다.' },
-            straight:{ score: 78, tags: ['신중함', '조심성', '계획적'], text: '신중하고 계획적인 성격의 소유자입니다. 모험보다는 안정을 추구하며, 꼼꼼하게 계획을 세워 실행하는 스타일입니다.', extra: '직선에 가까운 생명선은 이성적이고 논리적인 판단력을 의미합니다.' },
-            short:  { score: 72, tags: ['집중력', '순간 에너지', '도전적'], text: '짧은 생명선은 수명과 무관합니다. 순간적인 집중력과 폭발적인 에너지를 보여주는 사람에게 많이 나타납니다.', extra: '짧고 선명한 생명선은 효율적인 에너지 사용을 의미합니다.' }
-        },
-        heart: {
-            long:   { score: 90, tags: ['풍부한 감성', '로맨틱', '배려심'], text: '감성이 풍부하고 로맨틱한 성향입니다. 타인에 대한 공감 능력이 뛰어나며, 깊고 의미 있는 관계를 형성합니다.', extra: '길고 곡선인 감정선은 사랑과 우정에서 깊은 유대를 형성하는 사람에게 나타납니다.' },
-            curved: { score: 88, tags: ['이상주의', '순수한 사랑', '헌신적'], text: '이상적인 사랑을 추구하는 낭만주의자입니다. 순수하고 헌신적인 사랑을 하며, 파트너에게 최선을 다합니다.', extra: '곡선이 큰 감정선은 높은 이상과 기준을 가진 사람에게 나타납니다.' },
-            straight:{ score: 82, tags: ['이성적', '실용적', '안정적'], text: '감정을 이성적으로 다루는 타입입니다. 관계에서 안정감을 중시하며, 현실적이고 실용적인 사랑을 추구합니다.', extra: '직선형 감정선은 감정에 휩쓸리지 않는 냉정한 판단력을 의미합니다.' },
-            short:  { score: 75, tags: ['독립적', '자유로운', '개인주의'], text: '독립적이고 자유로운 영혼입니다. 개인의 자유를 중시하며, 구속 받지 않는 관계를 선호합니다.', extra: '짧은 감정선은 자기만의 시간과 공간을 소중히 여기는 사람에게 많이 나타납니다.' }
-        },
-        head: {
-            long:   { score: 91, tags: ['논리적', '분석적', '학자형'], text: '뛰어난 논리력과 분석력의 소유자입니다. 복잡한 문제를 체계적으로 해결하며, 학문이나 연구 분야에서 큰 성과를 거둘 수 있습니다.', extra: '길고 직선인 두뇌선은 뛰어난 집중력과 논리적 사고력을 의미합니다.' },
-            curved: { score: 86, tags: ['창의적', '예술적', '상상력'], text: '풍부한 상상력과 창의력을 가지고 있습니다. 예술, 문학, 디자인 등 창작 분야에서 독보적인 재능을 발휘할 수 있습니다.', extra: '아래로 휘어진 두뇌선은 강한 상상력과 창조적 사고를 나타냅니다.' },
-            straight:{ score: 85, tags: ['집중력', '기억력', '전문성'], text: '강한 집중력과 뛰어난 기억력의 소유자입니다. 한 분야에 깊이 파고드는 전문가 기질이 있습니다.', extra: '깊고 선명한 두뇌선은 정신적 에너지가 풍부하고 강한 의지력을 나타냅니다.' },
-            short:  { score: 77, tags: ['직관적', '실행력', '결단력'], text: '직관적이고 빠른 판단력을 가졌습니다. 오래 고민하기보다 즉각적으로 행동하며, 실행력이 뛰어납니다.', extra: '짧은 두뇌선은 핵심을 빠르게 파악하고 즉시 실행하는 능력을 나타냅니다.' }
-        },
-        fate: {
-            long:   { score: 93, tags: ['목표 지향', '성공운', '리더십'], text: '강한 목표 의식과 리더십을 갖추고 있습니다. 인생의 방향이 뚜렷하며, 꾸준한 노력으로 큰 성취를 이룰 수 있습니다.', extra: '뚜렷하게 이어지는 운명선은 매우 강한 의지와 목표 의식을 나타냅니다.' },
-            curved: { score: 86, tags: ['자수성가', '노력형', '독립적'], text: '스스로의 힘으로 성공을 이루는 자수성가형입니다. 끈기와 노력으로 반드시 목표를 달성합니다.', extra: '생명선에서 갈라져 나오는 운명선은 자신의 힘으로 길을 개척하는 사람에게 나타납니다.' },
-            straight:{ score: 80, tags: ['전환점', '성장형', '발전'], text: '인생의 중반부터 본격적인 성장이 시작됩니다. 경험이 밑거름이 되어 성공에 도달합니다.', extra: '직선형 운명선은 꾸준한 성장을 의미합니다.' },
-            short:  { score: 74, tags: ['자유로운 삶', '유연한', '다재다능'], text: '특정 길에 얽매이지 않는 자유로운 영혼입니다. 다양한 분야에 관심이 있으며, 유연하게 인생을 설계해 나갑니다.', extra: '짧은 운명선은 다양한 가능성을 탐색하는 열린 마인드를 나타냅니다.' }
-        }
-    };
-
-    const summaryMessages = [
-        { min: 90, text: '탁월한 손금입니다! 타고난 운과 재능이 조화를 이루고 있습니다.' },
-        { min: 80, text: '매우 좋은 손금입니다. 균형 잡힌 기운이 삶의 여러 영역에서 긍정적인 영향을 줍니다.' },
-        { min: 70, text: '좋은 손금입니다. 특별한 강점이 보이며, 이를 잘 활용하면 큰 성과를 거둘 수 있습니다.' },
-        { min: 60, text: '안정적인 손금입니다. 꾸준한 노력이 좋은 결과로 이어질 기운입니다.' },
-        { min: 0, text: '잠재력이 큰 손금입니다. 자신을 믿고 도전하세요.' }
-    ];
-
-    // ===== Landmark Indices =====
-    const LM = {
-        WRIST: 0, THUMB_CMC: 1, THUMB_MCP: 2, THUMB_IP: 3, THUMB_TIP: 4,
-        INDEX_MCP: 5, INDEX_PIP: 6, INDEX_DIP: 7, INDEX_TIP: 8,
-        MIDDLE_MCP: 9, MIDDLE_PIP: 10, MIDDLE_DIP: 11, MIDDLE_TIP: 12,
-        RING_MCP: 13, RING_PIP: 14, RING_DIP: 15, RING_TIP: 16,
-        PINKY_MCP: 17, PINKY_PIP: 18, PINKY_DIP: 19, PINKY_TIP: 20
-    };
 
     // ===== Image Handling =====
     let currentImageData = null;
@@ -760,7 +669,7 @@
     btnRetry.addEventListener('click', () => { resetAll(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
     function resetAll() {
-        currentImageData = null; detectedLandmarks = null;
+        currentImageData = null;
         fileInput.value = ''; cameraInput.value = '';
         lineLegend.style.display = 'none';
         overlayCanvas.getContext('2d').clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
@@ -774,117 +683,72 @@
         const loadingProgress = document.getElementById('loadingProgress');
         const loadingStatus = document.getElementById('loadingStatus');
 
-        let currentStage = '';
         try {
-        // Stage 1: AI 모델 확인
-        currentStage = 'AI 모델 확인';
-        loadingStatus.textContent = 'AI 모델을 준비하는 중...';
-        loadingProgress.style.width = '10%';
-
-        if (!handLandmarker) {
-            loadingStatus.textContent = 'AI 모델을 다운로드하는 중... (최초 1회)';
-            await initMediaPipe();
-            if (!handLandmarker) {
-                loadingStatus.textContent = 'AI 모델 로딩 실패. 새로고침 후 다시 시도해주세요.';
-                setTimeout(() => showSection('preview'), 3000);
-                return;
-            }
-        }
-
-        // Stage 2: 손 감지
-        currentStage = '손 감지';
-        loadingStatus.textContent = 'MediaPipe AI로 손바닥을 감지하는 중...';
-        loadingProgress.style.width = '25%';
-        await sleep(300);
-
-        // 이미지를 Canvas에 그려서 detect에 전달 (display:none 이미지 문제 해결)
-        const detectCanvas = document.createElement('canvas');
-        const MAX_DIM = 1280; // 너무 큰 이미지 리사이즈
-        let dw = previewImage.naturalWidth, dh = previewImage.naturalHeight;
-        if (dw > MAX_DIM || dh > MAX_DIM) {
-            const scale = MAX_DIM / Math.max(dw, dh);
-            dw = Math.round(dw * scale);
-            dh = Math.round(dh * scale);
-        }
-        detectCanvas.width = dw;
-        detectCanvas.height = dh;
-        detectCanvas.getContext('2d').drawImage(previewImage, 0, 0, dw, dh);
-        console.log("[AI] 이미지 분석 시작:", previewImage.naturalWidth, "x", previewImage.naturalHeight, "→ Canvas:", dw, "x", dh);
-
-        const result = handLandmarker.detect(detectCanvas);
-        console.log("[AI] 분석 결과:", JSON.stringify({
-            landmarks: result.landmarks?.length || 0,
-            handednesses: result.handednesses?.length || 0
-        }));
-
-        if (!result.landmarks || result.landmarks.length === 0) {
-            loadingStatus.textContent = '손바닥을 감지하지 못했습니다. 밝은 곳에서 손바닥을 펴고 다시 촬영해주세요.';
+        // 사용량 체크
+        if (getAiUsageToday() >= AI_DAILY_LIMIT) {
+            loadingStatus.textContent = '오늘의 AI 분석 횟수를 모두 사용했습니다. 내일 다시 시도해주세요.';
             loadingProgress.style.width = '100%';
             loadingProgress.style.background = '#ff4444';
-            setTimeout(() => {
-                loadingProgress.style.background = '';
-                showSection('preview');
-            }, 3000);
+            setTimeout(() => { loadingProgress.style.background = ''; showSection('preview'); }, 3000);
             return;
         }
 
-        detectedLandmarks = result.landmarks[0]; // 21개 관절점
-        handedness = result.handednesses?.[0]?.[0]?.categoryName || 'Unknown';
-        console.log("[AI] 손 감지 성공:", handedness, "21개 관절점 확보");
-
-        // Stage 3~7: 손금선 분석 진행 표시
-        currentStage = '손금선 계산';
-        loadingStatus.textContent = '21개 관절점에서 손금선을 계산하는 중...';
-        loadingProgress.style.width = '40%';
+        // Stage 1: 이미지 전송 준비
+        loadingStatus.textContent = 'Gemini AI에 손금 사진을 전송하는 중...';
+        loadingProgress.style.width = '20%';
         await sleep(300);
 
-        loadingStatus.textContent = '생명선·감정선·두뇌선을 분석하는 중...';
-        loadingProgress.style.width = '60%';
+        // Stage 2: API 호출
+        loadingStatus.textContent = 'AI가 손금을 분석하고 있습니다...';
+        loadingProgress.style.width = '50%';
+
+        const response = await fetch('/api/palm/analyze', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ image: currentImageData })
+        });
+
+        const data = await response.json();
+
+        if (response.status === 429) {
+            loadingStatus.textContent = data.message || '오늘의 AI 분석 횟수를 모두 사용했습니다.';
+            loadingProgress.style.width = '100%';
+            loadingProgress.style.background = '#ff4444';
+            setTimeout(() => { loadingProgress.style.background = ''; showSection('preview'); }, 3000);
+            return;
+        }
+
+        if (response.status === 503) {
+            loadingStatus.textContent = data.message || '분석 요청이 많습니다. 잠시 후 다시 시도해주세요.';
+            loadingProgress.style.width = '100%';
+            loadingProgress.style.background = '#ff4444';
+            setTimeout(() => { loadingProgress.style.background = ''; showSection('preview'); }, 3000);
+            return;
+        }
+
+        if (!response.ok) throw new Error(data.error || 'API error');
+
+        // Stage 3: 결과 처리
+        loadingStatus.textContent = '분석 결과를 정리하는 중...';
+        loadingProgress.style.width = '90%';
         await sleep(300);
 
-        loadingStatus.textContent = '운명선 및 부가 요소를 분석하는 중...';
-        loadingProgress.style.width = '80%';
-        await sleep(300);
-
-        // 결과 계산
-        currentStage = 'computePalmLines';
-        console.log("[AI] computePalmLines 시작...");
-        const palmLines = computePalmLines(detectedLandmarks);
-        console.log("[AI] computePalmLines 완료:", palmLines.length, "개 선");
-
-        currentStage = 'analyzePalmLines';
-        console.log("[AI] analyzePalmLines 시작...");
-        const analysis = analyzePalmLines(palmLines, detectedLandmarks);
-        console.log("[AI] analyzePalmLines 완료:", Object.keys(analysis));
-
-        currentStage = 'applyResults';
-        applyResults(analysis);
-
-        loadingStatus.textContent = '종합 해석을 생성하는 중...';
-        loadingProgress.style.width = '95%';
-        await sleep(200);
+        incrementAiUsage();
 
         loadingProgress.style.width = '100%';
         await sleep(200);
 
-        // 라인 애니메이션과 함께 결과 표시
-        currentStage = 'showResults';
+        // 결과를 UI에 적용
+        applyGeminiResults(data);
         showSection('results');
-        await drawAnimatedOverlay(palmLines);
         animateResults();
 
-        // Gemini AI 정밀 분석 (비동기 - 기본 결과 표시 후 추가)
-        callGeminiAnalysis();
-
         } catch (err) {
-            console.error("[AI] 분석 중 오류 (단계: " + currentStage + "):", err);
-            loadingStatus.textContent = '분석 중 오류가 발생했습니다. 다시 촬영해주세요. (' + currentStage + ')';
+            console.error("[AI] Gemini 분석 오류:", err);
+            loadingStatus.textContent = '분석 중 오류가 발생했습니다. 다시 시도해주세요.';
             loadingProgress.style.width = '100%';
             loadingProgress.style.background = '#ff4444';
-            setTimeout(() => {
-                loadingProgress.style.background = '';
-                showSection('preview');
-            }, 3000);
+            setTimeout(() => { loadingProgress.style.background = ''; showSection('preview'); }, 3000);
         }
     }
 
@@ -914,276 +778,38 @@
         }
     }
 
-    async function callGeminiAnalysis() {
-        const aiAnalysisSection = document.getElementById('aiAnalysisSection');
-        const aiLoadingSection = document.getElementById('aiLoadingSection');
-        const aiErrorSection = document.getElementById('aiErrorSection');
-
-        // 클라이언트 사이드 사용량 체크
-        if (getAiUsageToday() >= AI_DAILY_LIMIT) {
-            aiLoadingSection.style.display = 'none';
-            aiAnalysisSection.style.display = 'none';
-            aiErrorSection.style.display = 'block';
-            return;
-        }
-
-        // 로딩 표시
-        aiLoadingSection.style.display = 'block';
-        aiAnalysisSection.style.display = 'none';
-        aiErrorSection.style.display = 'none';
-
-        try {
-            const response = await fetch('/api/palm/analyze', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ image: currentImageData })
-            });
-
-            const data = await response.json();
-
-            if (response.status === 429) {
-                // 서버 사이드 제한
-                aiLoadingSection.style.display = 'none';
-                document.getElementById('aiErrorTitle').textContent = data.message || '오늘의 AI 분석 횟수를 모두 사용했습니다';
-                aiErrorSection.style.display = 'block';
-                return;
-            }
-
-            if (response.status === 503) {
-                aiLoadingSection.style.display = 'none';
-                document.getElementById('aiErrorTitle').textContent = '분석 요청이 많습니다';
-                document.getElementById('aiErrorText').textContent = data.message || '잠시 후 다시 시도해주세요.';
-                aiErrorSection.style.display = 'block';
-                return;
-            }
-
-            if (!response.ok) throw new Error(data.error || 'API error');
-
-            // 성공 - 사용량 증가
-            incrementAiUsage();
-
-            // 결과 표시
-            displayAiResults(data);
-
-        } catch (err) {
-            console.error('[AI] Gemini API error:', err);
-            aiLoadingSection.style.display = 'none';
-            document.getElementById('aiErrorTitle').textContent = 'AI 분석을 불러올 수 없습니다';
-            document.getElementById('aiErrorText').textContent = '네트워크 오류가 발생했습니다. 기본 분석 결과를 참고해주세요.';
-            aiErrorSection.style.display = 'block';
-        }
-    }
-
-    function displayAiResults(data) {
-        document.getElementById('aiLoadingSection').style.display = 'none';
-        document.getElementById('aiErrorSection').style.display = 'none';
-
-        // AI 결과 채우기
-        document.getElementById('aiOverallText').textContent = data.overall || '';
-        document.getElementById('aiPersonalityText').textContent = data.personality || '';
-        document.getElementById('aiLoveText').textContent = data.love || '';
-        document.getElementById('aiCareerText').textContent = data.career || '';
-        document.getElementById('aiHealthText').textContent = data.health || '';
-        document.getElementById('aiAdviceText').textContent = data.advice || '';
-
-        // 각 선별 AI 분석을 기존 카드의 상세 해설에도 반영
-        if (data.lines) {
-            const lineMap = {
-                heart_line: 'heart',
-                head_line: 'head',
-                life_line: 'life',
-                fate_line: 'fate'
-            };
-            for (const [apiKey, domKey] of Object.entries(lineMap)) {
-                const lineData = data.lines[apiKey];
-                if (lineData) {
-                    const extraEl = document.getElementById(domKey + 'ExtraContent');
-                    if (extraEl) extraEl.innerHTML = '<p style="color:var(--color-gold);font-size:0.8rem;margin-bottom:0.3rem;">AI 분석</p>' + lineData.description;
-                }
-            }
-        }
-
-        // 남은 횟수 표시
-        const remaining = data.remaining !== undefined ? data.remaining : (AI_DAILY_LIMIT - getAiUsageToday());
-        document.getElementById('aiRemaining').textContent = `오늘 남은 AI 분석 횟수: ${remaining}회 / ${AI_DAILY_LIMIT}회`;
-
-        // 표시
-        document.getElementById('aiAnalysisSection').style.display = 'block';
-
-        // 부드러운 스크롤
-        document.getElementById('aiAnalysisSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-    // ===== Compute Palm Lines from Landmarks =====
-    function lerp(p1, p2, t) {
-        return { x: p1.x + (p2.x - p1.x) * t, y: p1.y + (p2.y - p1.y) * t };
-    }
-
-    function computePalmLines(lm) {
-        // === 기준점 계산 ===
-        const mcpCenterY = (lm[LM.INDEX_MCP].y + lm[LM.MIDDLE_MCP].y + lm[LM.RING_MCP].y + lm[LM.PINKY_MCP].y) / 4;
-        const wristY = lm[LM.WRIST].y;
-        const palmH = wristY - mcpCenterY; // 손바닥 높이 (양수)
-
-        // 엄지가 어느 쪽인지 판단 (실제 랜드마크 기준)
-        const thumbSide = lm[LM.THUMB_CMC].x < lm[LM.PINKY_MCP].x ? -1 : 1;
-        // thumbSide: -1이면 엄지가 왼쪽, 1이면 엄지가 오른쪽
-
-        // 새끼손가락~검지 순서 정렬 (항상 새끼→검지 방향으로)
-        const pinkyX = lm[LM.PINKY_MCP].x;
-        const ringX = lm[LM.RING_MCP].x;
-        const midX = lm[LM.MIDDLE_MCP].x;
-        const idxX = lm[LM.INDEX_MCP].x;
-        const thumbCmcX = lm[LM.THUMB_CMC].x;
-        const thumbMcpX = lm[LM.THUMB_MCP].x;
-
-        // ============================================================
-        // 감정선 (Heart Line): 새끼손가락 MCP 아래 → 검지 MCP 아래
-        // 손가락 뿌리(MCP) 바로 아래, 비교적 수평
-        // ============================================================
-        const heartY = mcpCenterY + palmH * 0.18;
-        const heartLine = {
-            name: 'heart', label: '감정선', color: '#FF6B6B',
-            points: [
-                { x: pinkyX, y: lm[LM.PINKY_MCP].y + palmH * 0.15 },
-                { x: (pinkyX + ringX) / 2, y: heartY },
-                { x: ringX, y: heartY },
-                { x: (ringX + midX) / 2, y: heartY - palmH * 0.01 },
-                { x: midX, y: heartY - palmH * 0.02 },
-                { x: (midX + idxX) / 2, y: heartY - palmH * 0.04 },
-                { x: idxX, y: lm[LM.INDEX_MCP].y + palmH * 0.12 },
-            ]
+    // ===== Gemini 결과를 전체 UI에 적용 =====
+    function applyGeminiResults(data) {
+        // 라인 카드 채우기
+        const lineMap = {
+            heart_line: { dom: 'heart', name: '감정선' },
+            head_line: { dom: 'head', name: '두뇌선' },
+            life_line: { dom: 'life', name: '생명선' },
+            fate_line: { dom: 'fate', name: '운명선' }
         };
 
-        // ============================================================
-        // 두뇌선 (Head Line): 검지 쪽 시작 → 새끼 방향, 약간 하강
-        // 감정선 아래, 손바닥 중앙 가로선
-        // ============================================================
-        const headBaseY = mcpCenterY + palmH * 0.35;
-        const headLine = {
-            name: 'head', label: '두뇌선', color: '#4ECDC4',
-            points: [
-                { x: idxX, y: lm[LM.INDEX_MCP].y + palmH * 0.33 },
-                { x: (idxX + midX) / 2, y: headBaseY },
-                { x: midX, y: headBaseY + palmH * 0.02 },
-                { x: (midX + ringX) / 2, y: headBaseY + palmH * 0.05 },
-                { x: ringX, y: headBaseY + palmH * 0.08 },
-                { x: (ringX + pinkyX) / 2, y: headBaseY + palmH * 0.12 },
-            ]
-        };
-
-        // ============================================================
-        // 생명선 (Life Line): 엄지~검지 사이에서 시작 → 엄지 뿌리를 감싸는 곡선
-        // 핵심: 엄지 쪽으로 곡선을 그려야 함 (thumbSide 방향)
-        // ============================================================
-        // 시작점: 검지 MCP와 엄지 MCP 사이
-        const lifeStart = {
-            x: (idxX + thumbMcpX) / 2,
-            y: lm[LM.INDEX_MCP].y + palmH * 0.28
-        };
-
-        // 엄지 뿌리를 따라 손목 방향으로 곡선
-        // THUMB_CMC → WRIST 경로를 따르되, 손바닥 안쪽으로 약간 들어오게
-        const inward = -thumbSide * palmH * 0.04; // 손바닥 안쪽 방향 오프셋
-        const lifeLine = {
-            name: 'life', label: '생명선', color: '#45B7D1',
-            points: [
-                lifeStart,
-                { x: thumbMcpX + inward * 0.5, y: lifeStart.y + palmH * 0.10 },
-                { x: thumbCmcX + inward * 1.0, y: lm[LM.THUMB_CMC].y + palmH * 0.05 },
-                { x: thumbCmcX + inward * 1.5, y: lm[LM.THUMB_CMC].y + palmH * 0.15 },
-                { x: thumbCmcX + inward * 2.0, y: lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.5).y },
-                { x: thumbCmcX + inward * 2.2, y: lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.7).y },
-                { x: lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.85).x + inward * 1.5, y: lerp(lm[LM.THUMB_CMC], lm[LM.WRIST], 0.85).y },
-            ]
-        };
-
-        // ============================================================
-        // 운명선 (Fate Line): 손목 중앙 → 중지 방향 세로
-        // ============================================================
-        const fateLine = {
-            name: 'fate', label: '운명선', color: '#DDA0DD',
-            points: [
-                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.08),
-                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.25),
-                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.45),
-                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.65),
-                lerp(lm[LM.WRIST], lm[LM.MIDDLE_MCP], 0.85),
-            ]
-        };
-
-        return [heartLine, headLine, lifeLine, fateLine];
-    }
-
-    // ===== Analyze Palm Lines (실측 기반) =====
-    function dist(p1, p2) {
-        return Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
-    }
-
-    function lineLength(points) {
-        let len = 0;
-        for (let i = 1; i < points.length; i++) len += dist(points[i-1], points[i]);
-        return len;
-    }
-
-    function curvature(points) {
-        if (points.length < 3) return 0;
-        const straightDist = dist(points[0], points[points.length - 1]);
-        const totalLen = lineLength(points);
-        return totalLen > 0 ? (totalLen / straightDist - 1) : 0;
-    }
-
-    function analyzePalmLines(palmLines, lm) {
-        const results = {};
-        const palmSize = dist(lm[LM.WRIST], lm[LM.MIDDLE_MCP]);
-
-        palmLines.forEach(line => {
-            const len = lineLength(line.points);
-            const curve = curvature(line.points);
-            const relLen = len / palmSize; // 손바닥 대비 상대 길이
-
-            let type;
-            if (relLen > 0.8 && curve > 0.08) type = 'long';
-            else if (relLen > 0.6 && curve > 0.12) type = 'curved';
-            else if (relLen > 0.5 && curve < 0.08) type = 'straight';
-            else type = 'short';
-
-            const interp = palmInterpretations[line.name][type];
-
-            // 실측값으로 점수 미세 조정
-            const lenBonus = Math.round((relLen - 0.5) * 15);
-            const curveBonus = Math.round(curve * 30);
-            const score = Math.max(60, Math.min(98, interp.score + lenBonus + curveBonus));
-
-            results[line.name] = {
-                type, score, ...interp, score,
-                measured: {
-                    length: relLen.toFixed(2),
-                    curvature: curve.toFixed(3),
-                    palmSize: palmSize.toFixed(3)
-                }
-            };
-            // 최종 점수를 실측 보정값으로 덮어쓰기
-            results[line.name].score = score;
-        });
-
-        return results;
-    }
-
-    // ===== Apply Results to DOM =====
-    function applyResults(analysis) {
+        const ratingToScore = { '매우 강함': 95, '강함': 88, '보통': 75, '약함': 65, '매우 약함': 55 };
         let totalScore = 0;
-        ['life', 'heart', 'head', 'fate'].forEach(name => {
-            const a = analysis[name];
-            totalScore += a.score;
-            document.getElementById(name + 'Score').textContent = a.score;
-            document.getElementById(name + 'Bar').style.width = a.score + '%';
-            document.getElementById(name + 'Tags').innerHTML = a.tags.map(t => `<span class="tag">${t}</span>`).join('');
-            document.getElementById(name + 'Text').textContent = a.text;
-            document.getElementById(name + 'ExtraContent').textContent = a.extra;
-        });
+        let lineCount = 0;
 
-        const avg = Math.round(totalScore / 4);
+        for (const [apiKey, info] of Object.entries(lineMap)) {
+            const lineData = data.lines?.[apiKey];
+            if (!lineData) continue;
+
+            const score = ratingToScore[lineData.rating] || 75;
+            totalScore += score;
+            lineCount++;
+
+            document.getElementById(info.dom + 'Score').textContent = score;
+            document.getElementById(info.dom + 'Bar').style.width = score + '%';
+            document.getElementById(info.dom + 'Tags').innerHTML =
+                (lineData.keywords || []).map(t => `<span class="tag">${t}</span>`).join('');
+            document.getElementById(info.dom + 'Text').textContent = lineData.description || '';
+            document.getElementById(info.dom + 'ExtraContent').textContent = '';
+        }
+
+        // 종합 점수
+        const avg = lineCount > 0 ? Math.round(totalScore / lineCount) : 75;
         document.getElementById('totalScore').textContent = avg;
         document.getElementById('summaryBadge').textContent = `종합 ${avg}점`;
 
@@ -1195,152 +821,34 @@
             circle.style.strokeDashoffset = offset;
         }, 300);
 
-        const msg = summaryMessages.find(m => avg >= m.min);
-        document.getElementById('summaryMessage').textContent = msg ? msg.text : '';
+        // 종합 메시지
+        const handStr = data.hand || '손';
+        let summaryText = '';
+        if (avg >= 90) summaryText = '탁월한 손금입니다! 타고난 운과 재능이 조화를 이루고 있습니다.';
+        else if (avg >= 80) summaryText = '매우 좋은 손금입니다. 균형 잡힌 기운이 긍정적인 영향을 줍니다.';
+        else if (avg >= 70) summaryText = '좋은 손금입니다. 특별한 강점을 잘 활용하면 큰 성과를 거둘 수 있습니다.';
+        else if (avg >= 60) summaryText = '안정적인 손금입니다. 꾸준한 노력이 좋은 결과로 이어질 기운입니다.';
+        else summaryText = '잠재력이 큰 손금입니다. 자신을 믿고 도전하세요.';
+        document.getElementById('summaryMessage').textContent = `[${handStr} 감지] ${summaryText}`;
 
-        // 부가 분석 - 실측 기반
-        if (detectedLandmarks) {
-            const lm = detectedLandmarks;
+        // 부가 분석 (AI 기반 텍스트)
+        document.getElementById('fingerText').textContent = data.personality || '성격 분석 결과를 아래 AI 분석에서 확인하세요.';
+        document.getElementById('mountText').textContent = data.career || '직업운 분석 결과를 아래 AI 분석에서 확인하세요.';
+        document.getElementById('specialText').textContent = data.health || '건강운 분석 결과를 아래 AI 분석에서 확인하세요.';
 
-            // 손가락 길이 비율 분석
-            const indexLen = dist(lm[LM.INDEX_MCP], lm[LM.INDEX_TIP]);
-            const ringLen = dist(lm[LM.RING_MCP], lm[LM.RING_TIP]);
-            const middleLen = dist(lm[LM.MIDDLE_MCP], lm[LM.MIDDLE_TIP]);
-            const ratio = indexLen / ringLen;
+        // AI 심층 분석 섹션
+        document.getElementById('aiLoadingSection').style.display = 'none';
+        document.getElementById('aiErrorSection').style.display = 'none';
+        document.getElementById('aiOverallText').textContent = data.overall || '';
+        document.getElementById('aiPersonalityText').textContent = data.personality || '';
+        document.getElementById('aiLoveText').textContent = data.love || '';
+        document.getElementById('aiCareerText').textContent = data.career || '';
+        document.getElementById('aiHealthText').textContent = data.health || '';
+        document.getElementById('aiAdviceText').textContent = data.advice || '';
 
-            let fingerText;
-            if (ratio > 1.02) fingerText = '검지가 약지보다 긴 편으로 리더십 기질이 돋보입니다. 이 특성을 잘 활용해 보세요.';
-            else if (ratio < 0.98) fingerText = '약지가 검지보다 긴 편으로 예술적 감각이 돋보입니다. 이 특성을 잘 활용해 보세요.';
-            else fingerText = '검지와 약지가 균형 잡혀 조화로운 성격이 돋보입니다. 이 특성을 잘 활용해 보세요.';
-            document.getElementById('fingerText').textContent = fingerText;
-
-            // 손바닥 구(丘) 분석
-            const jupiterArea = dist(lm[LM.INDEX_MCP], lm[LM.INDEX_PIP]);
-            const moonArea = dist(lm[LM.PINKY_MCP], lm[LM.WRIST]);
-            const venusArea = dist(lm[LM.THUMB_CMC], lm[LM.WRIST]);
-
-            let mountText;
-            if (venusArea > moonArea && venusArea > jupiterArea) mountText = '금성구(매력)가 풍부하여, 해당 영역에서 강한 기운이 작용하고 있습니다.';
-            else if (moonArea > jupiterArea) mountText = '달의 구(직관력)가 발달하여, 해당 영역에서 강한 기운이 작용하고 있습니다.';
-            else mountText = '목성구(리더십)가 발달하여, 해당 영역에서 강한 기운이 작용하고 있습니다.';
-            document.getElementById('mountText').textContent = mountText;
-
-            // 특수 문양
-            const handSpan = dist(lm[LM.INDEX_TIP], lm[LM.PINKY_TIP]);
-            const palmW = dist(lm[LM.INDEX_MCP], lm[LM.PINKY_MCP]);
-            const spreadRatio = handSpan / palmW;
-            let specialText;
-            if (spreadRatio > 1.8) specialText = '넓게 펼쳐진 손가락 형태가 감지되어 개방적이고 진취적인 기운이 발견됩니다.';
-            else if (spreadRatio > 1.4) specialText = '균형 잡힌 손가락 간격이 감지되어 안정적이고 조화로운 기운이 발견됩니다.';
-            else specialText = '모아진 손가락 형태가 감지되어 집중력 있고 신중한 기운이 발견됩니다.';
-            document.getElementById('specialText').textContent = specialText;
-        }
-
-        // 손잡이 정보 표시
-        const handStr = handedness === 'Left' ? '왼손' : handedness === 'Right' ? '오른손' : '손';
-        document.getElementById('summaryMessage').textContent =
-            `[${handStr} 감지] ` + (msg ? msg.text : '');
-    }
-
-    // ===== Animated Palm Line Drawing =====
-    async function drawAnimatedOverlay(palmLines) {
-        const ctx = overlayCanvas.getContext('2d');
-        const w = overlayCanvas.width;
-        const h = overlayCanvas.height;
-        ctx.clearRect(0, 0, w, h);
-
-        // 반투명 오버레이
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.12)';
-        ctx.fillRect(0, 0, w, h);
-
-        // 21개 관절점 점 표시 (미세하게)
-        if (detectedLandmarks) {
-            detectedLandmarks.forEach((lm, i) => {
-                const px = lm.x * w, py = lm.y * h;
-                ctx.beginPath();
-                ctx.arc(px, py, Math.max(2, w * 0.003), 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 215, 0, 0.4)';
-                ctx.fill();
-            });
-        }
-
-        // 각 라인을 순차적으로 애니메이션
-        for (const line of palmLines) {
-            await animateLine(ctx, line, w, h, 1200);
-            await sleep(200);
-        }
-
-        lineLegend.style.display = 'flex';
-        previewContainer.style.display = 'block';
-        previewContainer.style.marginBottom = '2rem';
-    }
-
-    function animateLine(ctx, line, imgW, imgH, duration) {
-        return new Promise(resolve => {
-            const pixelPoints = line.points.map(p => ({ x: p.x * imgW, y: p.y * imgH }));
-            const startTime = performance.now();
-
-            function draw(now) {
-                const elapsed = now - startTime;
-                const progress = Math.min(elapsed / duration, 1.0);
-                // easeInOutCubic
-                const eased = progress < 0.5
-                    ? 4 * progress * progress * progress
-                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-
-                // 글로우
-                ctx.save();
-                ctx.shadowColor = line.color;
-                ctx.shadowBlur = 12;
-                ctx.strokeStyle = line.color;
-                ctx.lineWidth = Math.max(3, imgW * 0.004);
-                ctx.lineCap = 'round';
-                ctx.lineJoin = 'round';
-                ctx.globalAlpha = 0.6;
-                drawPartialCurve(ctx, pixelPoints, eased);
-                ctx.restore();
-
-                // 메인 라인
-                ctx.strokeStyle = line.color;
-                ctx.lineWidth = Math.max(2, imgW * 0.003);
-                ctx.lineCap = 'round';
-                ctx.globalAlpha = 1;
-                drawPartialCurve(ctx, pixelPoints, eased);
-
-                if (progress < 1.0) {
-                    requestAnimationFrame(draw);
-                } else {
-                    // 라벨
-                    const lp = pixelPoints[1] || pixelPoints[0];
-                    const fontSize = Math.max(12, imgW * 0.022);
-                    ctx.font = `bold ${fontSize}px "Noto Sans KR", sans-serif`;
-                    ctx.fillStyle = line.color;
-                    ctx.shadowColor = 'rgba(0,0,0,0.8)';
-                    ctx.shadowBlur = 4;
-                    ctx.fillText(line.label, lp.x + 8, lp.y - 8);
-                    ctx.shadowBlur = 0;
-                    resolve();
-                }
-            }
-            requestAnimationFrame(draw);
-        });
-    }
-
-    function drawPartialCurve(ctx, points, progress) {
-        if (points.length < 2) return;
-        const totalPts = Math.max(2, Math.floor(points.length * progress));
-        ctx.beginPath();
-        ctx.moveTo(points[0].x, points[0].y);
-        for (let i = 1; i < totalPts - 1; i++) {
-            const xc = (points[i].x + points[i + 1].x) / 2;
-            const yc = (points[i].y + points[i + 1].y) / 2;
-            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-        }
-        if (totalPts >= 2) {
-            const last = points[totalPts - 1];
-            ctx.lineTo(last.x, last.y);
-        }
-        ctx.stroke();
+        const remaining = data.remaining !== undefined ? data.remaining : (AI_DAILY_LIMIT - getAiUsageToday());
+        document.getElementById('aiRemaining').textContent = `오늘 남은 AI 분석 횟수: ${remaining}회 / ${AI_DAILY_LIMIT}회`;
+        document.getElementById('aiAnalysisSection').style.display = 'block';
     }
 
     // ===== Animate Results =====
