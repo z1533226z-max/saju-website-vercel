@@ -113,7 +113,7 @@ class Interpreter:
                 fortune_timeline = self.major_fortune_calculator.generate_fortune_timeline(
                     saju, birth_date, gender
                 )
-            except:
+            except Exception:
                 major_fortune_analysis = None
                 fortune_timeline = None
         else:

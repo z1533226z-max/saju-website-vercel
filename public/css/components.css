@@ -38,7 +38,7 @@
   border-radius: var(--radius-lg);
   text-align: center;
   cursor: pointer;
-  transition: all var(--duration-fast) var(--ease-in-out);
+  transition: border-color var(--duration-fast) var(--ease-in-out), transform var(--duration-fast) var(--ease-in-out), background var(--duration-fast) var(--ease-in-out);
   background: var(--color-bg-primary);
 }
 
@@ -54,7 +54,14 @@
 }
 
 .radio-card input[type="radio"] {
-  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 .radio-label {
@@ -88,7 +95,7 @@
   border-radius: var(--input-radius);
   background: var(--color-bg-primary);
   font-size: var(--text-base);
-  transition: all var(--duration-fast) var(--ease-in-out);
+  transition: border-color var(--duration-fast) var(--ease-in-out), box-shadow var(--duration-fast) var(--ease-in-out);
 }
 
 .input-field select:focus {
@@ -121,7 +128,7 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-bg-primary);
-  transition: all var(--duration-fast) var(--ease-in-out);
+  transition: border-color var(--duration-fast) var(--ease-in-out), background-color var(--duration-fast) var(--ease-in-out), color var(--duration-fast) var(--ease-in-out);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -165,7 +172,7 @@
   border-radius: var(--radius-lg);
   text-align: center;
   cursor: pointer;
-  transition: all var(--duration-fast) var(--ease-in-out);
+  transition: border-color var(--duration-fast) var(--ease-in-out), transform var(--duration-fast) var(--ease-in-out), background var(--duration-fast) var(--ease-in-out);
   background: var(--color-bg-primary);
   display: flex;
   flex-direction: column;
@@ -185,7 +192,14 @@
 }
 
 .gender-card input[type="radio"] {
-  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 .gender-icon {
@@ -206,7 +220,7 @@
   border-radius: var(--radius-lg);
   font-size: var(--text-lg);
   font-weight: var(--font-semibold);
-  transition: all var(--duration-normal) var(--ease-in-out);
+  transition: transform var(--duration-normal) var(--ease-in-out), box-shadow var(--duration-normal) var(--ease-in-out), opacity var(--duration-normal) var(--ease-in-out);
   box-shadow: var(--shadow-md);
   margin-top: var(--spacing-xl);
 }
@@ -260,7 +274,7 @@
   padding: var(--spacing-lg);
   text-align: center;
   box-shadow: var(--shadow-md);
-  transition: all var(--duration-normal) var(--ease-in-out);
+  transition: transform var(--duration-normal) var(--ease-in-out), box-shadow var(--duration-normal) var(--ease-in-out);
 }
 
 .pillar:hover {
@@ -330,7 +344,7 @@
   font-size: 0.7rem;
   line-height: 18px;
   cursor: help;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .pillar-info:hover {
@@ -417,7 +431,7 @@
   border-radius: var(--radius-lg);
   padding: var(--spacing-xl);
   box-shadow: var(--shadow-md);
-  transition: all var(--duration-normal) var(--ease-in-out);
+  transition: transform var(--duration-normal) var(--ease-in-out), box-shadow var(--duration-normal) var(--ease-in-out);
 }
 
 .interpretation-card:hover {
@@ -453,7 +467,7 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: var(--text-base);
-  transition: all var(--duration-fast) var(--ease-in-out);
+  transition: background-color var(--duration-fast) var(--ease-in-out), color var(--duration-fast) var(--ease-in-out), border-color var(--duration-fast) var(--ease-in-out), transform var(--duration-fast) var(--ease-in-out);
 }
 
 .share-btn:hover {
@@ -491,7 +505,7 @@
   padding: var(--spacing-xl);
   text-align: center;
   box-shadow: var(--shadow-md);
-  transition: all var(--duration-normal) var(--ease-in-out);
+  transition: transform var(--duration-normal) var(--ease-in-out), box-shadow var(--duration-normal) var(--ease-in-out);
 }
 
 .info-card:hover {
@@ -529,7 +543,7 @@
   color: var(--color-accent);
   font-size: var(--text-base);
   font-weight: var(--font-medium);
-  transition: all var(--duration-fast) var(--ease-in-out);
+  transition: transform var(--duration-fast) var(--ease-in-out), color var(--duration-fast) var(--ease-in-out);
 }
 
 .learn-more:hover {
@@ -915,7 +929,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
   z-index: 10000;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }

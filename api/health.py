@@ -3,6 +3,9 @@ Health check endpoint for Saju API
 """
 from http.server import BaseHTTPRequestHandler
 import json
+import os
+
+_ALLOWED_ORIGIN = os.getenv('ALLOWED_ORIGIN', '*')
 
 
 class handler(BaseHTTPRequestHandler):
@@ -10,7 +13,7 @@ class handler(BaseHTTPRequestHandler):
         """Handle GET request"""
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
-        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Origin', _ALLOWED_ORIGIN)
         self.end_headers()
 
         response = {

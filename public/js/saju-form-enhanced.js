@@ -135,7 +135,11 @@ window.sajuForm = function() {
         async calculateSaju() {
             // 입력 검증
             if (!this.birthYear || !this.birthMonth || !this.birthDay || !this.selectedHour || !this.gender) {
-                alert('모든 항목을 입력해주세요.');
+                if (typeof showToast === 'function') {
+                    showToast('모든 항목을 입력해주세요.', 'warning');
+                } else {
+                    alert('모든 항목을 입력해주세요.');
+                }
                 return;
             }
             
@@ -200,7 +204,11 @@ window.sajuForm = function() {
                 
             } catch (error) {
                 console.error('Error:', error);
-                alert('사주 계산 중 오류가 발생했습니다. 다시 시도해주세요.');
+                if (typeof showToast === 'function') {
+                    showToast('사주 계산 중 오류가 발생했습니다. 다시 시도해주세요.', 'error');
+                } else {
+                    alert('사주 계산 중 오류가 발생했습니다. 다시 시도해주세요.');
+                }
             } finally {
                 this.loading = false;
             }

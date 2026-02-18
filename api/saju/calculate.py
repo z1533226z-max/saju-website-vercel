@@ -7,6 +7,9 @@ import sys
 import os
 from datetime import datetime
 from dataclasses import asdict
+import logging
+
+logger = logging.getLogger('saju')
 
 # Add parent directory to path for imports (module level)
 _parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -40,11 +43,14 @@ def _json_serializer(obj):
     raise TypeError(f"Object of type {type(obj).__name__} is not JSON serializable")
 
 
+_ALLOWED_ORIGIN = os.getenv('ALLOWED_ORIGIN', '*')
+
+
 def _send_json(handler, status_code, data):
     """Send JSON response with proper headers"""
     handler.send_response(status_code)
     handler.send_header('Content-Type', 'application/json; charset=utf-8')
-    handler.send_header('Access-Control-Allow-Origin', '*')
+    handler.send_header('Access-Control-Allow-Origin', _ALLOWED_ORIGIN)
     handler.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
     handler.send_header('Access-Control-Allow-Headers', 'Content-Type')
     handler.end_headers()
@@ -229,16 +235,18 @@ class handler(BaseHTTPRequestHandler):
             _send_json(self, 200, response_data)
 
         except Exception as e:
+            # 서버 로그에만 상세 에러 기록
+            logger.error(f'Calculation error: {str(e)}')
             _send_json(self, 500, {
                 'status': 'error',
-                'error': f'서버 오류가 발생했습니다: {str(e)}',
+                'error': '서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.',
                 'type': 'calculation_error'
             })
 
     def do_OPTIONS(self):
         """Handle OPTIONS request for CORS preflight"""
         self.send_response(200)
-        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Origin', _ALLOWED_ORIGIN)
         self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
         self.send_header('Access-Control-Allow-Headers', 'Content-Type')
         self.end_headers()

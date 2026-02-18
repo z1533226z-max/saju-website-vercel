@@ -225,16 +225,23 @@ function fallbackCopyLink(text) {
 /**
  * Show toast notification
  */
-function showToast(message, duration = APP_CONFIG.UI.TOAST_DURATION) {
+function showToast(message, type = 'info', duration = APP_CONFIG.UI.TOAST_DURATION) {
+    // duration이 숫자로 올 때 (이전 호출 방식 호환)
+    if (typeof type === 'number') {
+        duration = type;
+        type = 'info';
+    }
     // Remove existing toast
     const existingToast = document.querySelector('.toast');
     if (existingToast) {
         existingToast.remove();
     }
-    
+
     // Create new toast
     const toast = document.createElement('div');
-    toast.className = 'toast';
+    toast.className = 'toast toast-' + type;
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', type === 'error' ? 'assertive' : 'polite');
     toast.textContent = message;
     toast.style.cssText = `
         position: fixed;

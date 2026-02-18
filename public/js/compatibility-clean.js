@@ -2,8 +2,6 @@
 (function() {
     'use strict';
     
-    console.log('✨ 궁합 모듈 로드됨');
-    
     // 궁합 계산 함수
     async function calculateCompatibility(event) {
         if (event) {
@@ -11,11 +9,9 @@
             event.stopPropagation();
         }
         
-        console.log('🎯 궁합 계산 시작');
-        
         // 1. 본인 정보 확인
         if (!window.lastSajuCalculation) {
-            alert('먼저 본인의 사주를 계산해주세요.');
+            ((typeof showToast === 'function') ? showToast : alert)('먼저 본인의 사주를 계산해주세요.');
             document.getElementById('input-section').scrollIntoView({ behavior: 'smooth' });
             return;
         }
@@ -28,7 +24,7 @@
         
         // 3. 유효성 검사
         if (!partnerDate || !partnerTime || !partnerGender) {
-            alert('상대방의 모든 정보를 입력해주세요.');
+            ((typeof showToast === 'function') ? showToast : alert)('상대방의 모든 정보를 입력해주세요.');
             return;
         }
         
@@ -48,8 +44,6 @@
             }
         };
         
-        console.log('📤 요청 데이터:', requestData);
-        
         // 5. API 호출
         try {
             const response = await fetch('/api/saju/compatibility', {
@@ -65,8 +59,6 @@
             }
             
             const data = await response.json();
-            console.log('✅ API 응답:', data);
-            
             // 6. 결과 표시
             if (data.compatibility) {
                 displayResult(data.compatibility);
@@ -83,8 +75,6 @@
     
     // 결과 표시 함수
     function displayResult(compatibility) {
-        console.log('📊 결과 표시:', compatibility);
-        
         const resultDiv = document.getElementById('compatibility-result');
         if (!resultDiv) return;
         
@@ -170,14 +160,10 @@
     
     // 이벤트 리스너 등록
     function initCompatibility() {
-        console.log('🎯 궁합 이벤트 초기화');
         
         // 폼 찾기
         const form = document.getElementById('compatibility-form');
-        if (!form) {
-            console.log('⚠️ 궁합 폼을 찾을 수 없음');
-            return;
-        }
+        if (!form) return;
         
         // 기존 리스너 제거
         const newForm = form.cloneNode(true);
@@ -190,7 +176,6 @@
             calculateCompatibility(e);
         });
         
-        console.log('✅ 궁합 폼 이벤트 등록 완료');
     }
     
     // 탭 기능
@@ -252,7 +237,7 @@
         const month = document.getElementById('taekil-month').value;
         
         if (!month) {
-            alert('희망 기간을 선택해주세요.');
+            ((typeof showToast === 'function') ? showToast : alert)('희망 기간을 선택해주세요.');
             return;
         }
         
@@ -270,7 +255,11 @@
             });
         }
         
-        datesDiv.innerHTML = dates.map(date => `
+        datesDiv.innerHTML = `
+            <p style="color: var(--color-text-secondary, #888); font-size: 0.9em; margin-bottom: 12px;">
+                * 참고용 샘플 결과입니다. 정확한 택일은 전문가 상담을 권장합니다.
+            </p>
+        ` + dates.map(date => `
             <div class="date-card">
                 <div class="date-header">${date.date}</div>
                 <div class="date-info">
@@ -279,7 +268,7 @@
                 </div>
             </div>
         `).join('');
-        
+
         resultDiv.style.display = 'block';
     };
     
@@ -289,7 +278,7 @@
         const gender = document.getElementById('naming-gender').value;
         
         if (!surname) {
-            alert('성씨를 입력해주세요.');
+            ((typeof showToast === 'function') ? showToast : alert)('성씨를 입력해주세요.');
             return;
         }
         
@@ -304,13 +293,17 @@
              { name: '지안', meaning: '지혜롭고 평안한' },
              { name: '하은', meaning: '여름의 은혜' }];
         
-        suggestionsDiv.innerHTML = names.map(n => `
+        suggestionsDiv.innerHTML = `
+            <p style="color: var(--color-text-secondary, #888); font-size: 0.9em; margin-bottom: 12px;">
+                * 참고용 샘플 이름입니다. 정확한 작명은 전문가 상담을 권장합니다.
+            </p>
+        ` + names.map(n => `
             <div class="name-card">
                 <h4>${surname}${n.name}</h4>
                 <p><strong>의미:</strong> ${n.meaning}</p>
             </div>
         `).join('');
-        
+
         resultDiv.style.display = 'block';
     };
     
@@ -328,5 +321,4 @@
     // 전역 함수 노출
     window.calculateCompatibility = calculateCompatibility;
     
-    console.log('✅ 궁합 모듈 초기화 완료');
 })();

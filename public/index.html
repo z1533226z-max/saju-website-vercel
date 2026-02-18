@@ -3,10 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="무료 사주팔자 운세 - 생년월일시로 보는 정확한 사주 풀이">
-    <meta name="keywords" content="사주, 사주팔자, 운세, 사주풀이, 무료사주, 오늘의운세">
-    <title>사주명리 - 당신의 운명을 읽다</title>
-    
+    <meta name="description" content="무료 사주팔자 운세 서비스 - 생년월일시를 입력하면 사주 원국, 오행 균형, 격국 분석, 신살, 용신을 한눈에 확인할 수 있습니다. 궁합, 택일, 작명까지 제공하는 종합 사주명리 플랫폼입니다.">
+    <meta name="keywords" content="사주, 사주팔자, 운세, 사주풀이, 무료사주, 오늘의운세, 궁합, 사주명리, 오행, 격국, 신살, 용신, 택일, 작명">
+    <title>무료 사주팔자 운세 | 생년월일시 사주풀이 - 사주명리</title>
+    <link rel="canonical" href="https://saju-website-vercel.vercel.app/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="무료 사주팔자 운세 | 사주명리">
+    <meta property="og:description" content="생년월일시로 보는 무료 사주팔자 풀이. 오행 분석, 격국, 신살, 용신, 궁합까지 정확한 사주명리 해석.">
+    <meta property="og:url" content="https://saju-website-vercel.vercel.app/">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:site_name" content="사주명리">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="무료 사주팔자 운세 | 사주명리">
+    <meta name="twitter:description" content="생년월일시로 보는 무료 사주팔자 풀이. 오행 분석, 격국, 신살, 용신, 궁합까지.">
+
+    <!-- Schema.org 구조화 데이터 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "사주명리",
+        "description": "생년월일시로 보는 무료 사주팔자 풀이. 오행 분석, 격국, 신살, 용신, 궁합 서비스.",
+        "url": "https://saju-website-vercel.vercel.app/",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "KRW"
+        },
+        "inLanguage": "ko"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "사주팔자란 무엇인가요?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "사주팔자(四柱八字)는 태어난 연, 월, 일, 시의 네 기둥(四柱)과 각 기둥의 천간·지지 여덟 글자(八字)로 운명을 분석하는 동양 명리학입니다."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "사주 분석에 필요한 정보는 무엇인가요?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "생년월일과 출생시간(태어난 시각)이 필요합니다. 음력/양력 여부와 성별도 함께 입력하시면 더 정확한 분석이 가능합니다."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "오행(五行)이란 무엇인가요?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "오행은 목(木), 화(火), 토(土), 금(金), 수(水) 다섯 가지 원소를 의미하며, 사주팔자에서 각 글자는 이 오행 중 하나에 속합니다. 오행의 균형이 운세에 큰 영향을 미칩니다."
+                }
+            }
+        ]
+    }
+    </script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,10 +95,10 @@
     <link rel="stylesheet" href="css/additional-features.css">
     
     <!-- Alpine.js for reactivity -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js"></script>
+
     <!-- Chart.js for elements chart -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
     
     <!-- Google AdSense -->
     <meta name="google-adsense-account" content="ca-pub-7479840445702290">
@@ -792,10 +857,10 @@
     </section>
 
     <!-- 정보 모달 -->
-    <div id="info-modal" class="modal" style="display: none;">
+    <div id="info-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" style="display: none;">
         <div class="modal-overlay" onclick="closeInfoModal()"></div>
         <div class="modal-content">
-            <button class="modal-close" onclick="closeInfoModal()">×</button>
+            <button class="modal-close" aria-label="닫기" onclick="closeInfoModal()">×</button>
             <h2 id="modal-title"></h2>
             <div id="modal-body"></div>
         </div>
@@ -804,7 +869,8 @@
     <!-- Footer -->
     <footer id="site-footer">
         <div class="footer-container">
-            <p>&copy; 2024 사주명리</p>
+            <p>&copy; 2026 사주명리 | 본 서비스는 참고용이며, 전문 상담을 대체하지 않습니다.</p>
+            <p class="footer-privacy">입력하신 정보는 서버에 저장되지 않습니다.</p>
         </div>
     </footer>
 
@@ -877,7 +943,7 @@
                     btn.innerHTML = originalHTML;
                 }, 2000);
             }).catch(err => {
-                alert('링크 복사에 실패했습니다.');
+                if (typeof showToast === 'function') showToast('링크 복사에 실패했습니다.', 'error');
             });
         }
         
@@ -1009,15 +1075,34 @@
                 title.innerHTML = content[type].title;
                 body.innerHTML = content[type].body;
                 modal.style.display = 'block';
-                document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+                document.body.style.overflow = 'hidden';
+                // 트리거 저장 및 모달 닫기 버튼에 포커스
+                _modalTrigger = document.activeElement;
+                const closeBtn = modal.querySelector('.modal-close');
+                if (closeBtn) closeBtn.focus();
             }
         }
         
+        let _modalTrigger = null; // 모달 트리거 요소 저장
         function closeInfoModal() {
             const modal = document.getElementById('info-modal');
             modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // 배경 스크롤 복원
+            document.body.style.overflow = 'auto';
+            // 포커스를 트리거 요소로 복원
+            if (_modalTrigger) {
+                _modalTrigger.focus();
+                _modalTrigger = null;
+            }
         }
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('info-modal');
+                if (modal && modal.style.display !== 'none') {
+                    closeInfoModal();
+                }
+            }
+        });
         
         // Initialize Luopan Compass
         document.addEventListener('DOMContentLoaded', function() {
