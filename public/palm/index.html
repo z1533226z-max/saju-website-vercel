@@ -774,8 +774,10 @@
         const loadingProgress = document.getElementById('loadingProgress');
         const loadingStatus = document.getElementById('loadingStatus');
 
+        let currentStage = '';
         try {
         // Stage 1: AI 모델 확인
+        currentStage = 'AI 모델 확인';
         loadingStatus.textContent = 'AI 모델을 준비하는 중...';
         loadingProgress.style.width = '10%';
 
@@ -790,6 +792,7 @@
         }
 
         // Stage 2: 손 감지
+        currentStage = '손 감지';
         loadingStatus.textContent = 'MediaPipe AI로 손바닥을 감지하는 중...';
         loadingProgress.style.width = '25%';
         await sleep(300);
@@ -816,40 +819,43 @@
         handedness = result.handednesses?.[0]?.[0]?.categoryName || 'Unknown';
         console.log("[AI] 손 감지 성공:", handedness, "21개 관절점 확보");
 
-        // Stage 3: 손금선 계산
+        // Stage 3~7: 손금선 분석 진행 표시
+        currentStage = '손금선 계산';
         loadingStatus.textContent = '21개 관절점에서 손금선을 계산하는 중...';
         loadingProgress.style.width = '40%';
-        await sleep(400);
-
-        // Stage 4: 생명선 분석
-        loadingStatus.textContent = '생명선을 분석하는 중...';
-        loadingProgress.style.width = '55%';
-        await sleep(350);
-
-        // Stage 5: 감정선·두뇌선 분석
-        loadingStatus.textContent = '감정선·두뇌선을 분석하는 중...';
-        loadingProgress.style.width = '70%';
-        await sleep(350);
-
-        // Stage 6: 운명선·부가 분석
-        loadingStatus.textContent = '운명선 및 부가 요소를 분석하는 중...';
-        loadingProgress.style.width = '85%';
         await sleep(300);
 
-        // Stage 7: 결과 생성
+        loadingStatus.textContent = '생명선·감정선·두뇌선을 분석하는 중...';
+        loadingProgress.style.width = '60%';
+        await sleep(300);
+
+        loadingStatus.textContent = '운명선 및 부가 요소를 분석하는 중...';
+        loadingProgress.style.width = '80%';
+        await sleep(300);
+
+        // 결과 계산
+        currentStage = 'computePalmLines';
+        console.log("[AI] computePalmLines 시작...");
+        const palmLines = computePalmLines(detectedLandmarks);
+        console.log("[AI] computePalmLines 완료:", palmLines.length, "개 선");
+
+        currentStage = 'analyzePalmLines';
+        console.log("[AI] analyzePalmLines 시작...");
+        const analysis = analyzePalmLines(palmLines, detectedLandmarks);
+        console.log("[AI] analyzePalmLines 완료:", Object.keys(analysis));
+
+        currentStage = 'applyResults';
+        applyResults(analysis);
+
         loadingStatus.textContent = '종합 해석을 생성하는 중...';
         loadingProgress.style.width = '95%';
-        await sleep(300);
-
-        // 결과 계산 + 오버레이 그리기
-        const palmLines = computePalmLines(detectedLandmarks);
-        const analysis = analyzePalmLines(palmLines, detectedLandmarks);
-        applyResults(analysis);
+        await sleep(200);
 
         loadingProgress.style.width = '100%';
         await sleep(200);
 
         // 라인 애니메이션과 함께 결과 표시
+        currentStage = 'showResults';
         showSection('results');
         await drawAnimatedOverlay(palmLines);
         animateResults();
@@ -858,8 +864,8 @@
         callGeminiAnalysis();
 
         } catch (err) {
-            console.error("[AI] 분석 중 오류:", err);
-            loadingStatus.textContent = '분석 중 오류가 발생했습니다. 다시 시도해주세요.';
+            console.error("[AI] 분석 중 오류 (단계: " + currentStage + "):", err);
+            loadingStatus.textContent = '분석 중 오류가 발생했습니다. 다시 촬영해주세요. (' + currentStage + ')';
             loadingProgress.style.width = '100%';
             loadingProgress.style.background = '#ff4444';
             setTimeout(() => {
