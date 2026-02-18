@@ -1,13 +1,15 @@
 /**
- * Enhanced Date Picker Styles
+ * Enhanced Date Picker — 墨金 Dark Luxury
  * Lunar/Solar calendar toggle and improved UI
  */
 
 .enhanced-date-picker {
-    background: var(--color-bg-white);
+    background: var(--color-glass-surface);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--color-border);
     border-radius: 12px;
     padding: 1.5rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-glass);
 }
 
 /* Calendar Toggle */
@@ -42,22 +44,22 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, #FFD700, #FFA500);
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-deep));
     border-radius: 20px;
     transition: all 0.4s ease;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
 }
 
 .toggle-switch input:checked + .toggle-slider {
-    background: linear-gradient(135deg, #4A5568, #2D3748);
+    background: linear-gradient(135deg, var(--color-bg-tertiary), var(--color-bg-secondary));
 }
 
 .toggle-label {
-    color: white;
+    color: var(--color-bg-primary);
     font-weight: 600;
     font-size: 0.9rem;
     z-index: 1;
@@ -70,6 +72,10 @@
 
 .toggle-label.lunar {
     opacity: 0.5;
+}
+
+.toggle-switch input:checked + .toggle-slider .toggle-label {
+    color: var(--color-text-primary);
 }
 
 .toggle-switch input:checked + .toggle-slider .toggle-label.solar {
@@ -87,10 +93,10 @@
     width: 32px;
     left: 4px;
     bottom: 4px;
-    background: white;
+    background: var(--color-bg-primary);
     border-radius: 50%;
     transition: transform 0.4s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .toggle-switch input:checked + .toggle-slider::before {
@@ -110,13 +116,15 @@
 }
 
 .type-indicator.solar {
-    background: linear-gradient(135deg, #FFE5B4, #FFD700);
-    color: #8B4513;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+    color: var(--color-gold);
+    border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .type-indicator.lunar {
-    background: linear-gradient(135deg, #E6E6FA, #B8B8D0);
-    color: #4A5568;
+    background: linear-gradient(135deg, rgba(168, 162, 200, 0.15), rgba(168, 162, 200, 0.05));
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
 }
 
 /* Date Input Group */
@@ -143,23 +151,24 @@
 .date-select {
     width: 100%;
     padding: 0.75rem;
-    border: 2px solid var(--color-border);
+    border: 1px solid var(--color-border);
     border-radius: 8px;
-    background: white;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
     font-size: 1rem;
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .date-select:hover {
-    border-color: var(--color-primary-light);
+    border-color: var(--color-gold-muted);
 }
 
 .date-select:focus-visible {
-    outline: 3px solid var(--color-primary, #d4a574);
+    outline: 3px solid rgba(212, 175, 55, 0.3);
     outline-offset: 2px;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
 }
 
 .lunar-leap {
@@ -185,10 +194,11 @@
 
 /* Calendar Preview */
 .calendar-preview {
-    background: var(--color-bg-light);
+    background: var(--color-bg-secondary);
     border-radius: 10px;
     padding: 1rem;
     margin-bottom: 1rem;
+    border: 1px solid var(--color-border);
 }
 
 .preview-header {
@@ -202,8 +212,9 @@
 .preview-header button {
     width: 32px;
     height: 32px;
-    border: none;
-    background: white;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-primary);
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -211,12 +222,12 @@
     justify-content: center;
     font-size: 1.2rem;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .preview-header button:hover {
-    background: var(--color-primary);
-    color: white;
+    background: var(--color-gold);
+    color: var(--color-bg-primary);
+    border-color: var(--color-gold);
     transform: scale(1.1);
 }
 
@@ -227,7 +238,7 @@
 }
 
 .calendar-grid {
-    background: white;
+    background: var(--color-bg-tertiary);
     border-radius: 8px;
     padding: 1rem;
 }
@@ -248,11 +259,11 @@
 }
 
 .weekdays span:first-child {
-    color: #D32F2F;
+    color: var(--color-error);
 }
 
 .weekdays span:last-child {
-    color: #1976D2;
+    color: #5b9cf6;
 }
 
 .days {
@@ -270,22 +281,23 @@
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 0.9rem;
+    color: var(--color-text-primary);
 }
 
 .days span.day:hover {
-    background: var(--color-bg-light);
+    background: var(--color-bg-secondary);
     transform: scale(1.1);
 }
 
 .days span.selected {
-    background: var(--color-primary);
-    color: white;
+    background: var(--color-gold);
+    color: var(--color-bg-primary);
     font-weight: 600;
 }
 
 .days span.today {
-    background: var(--color-secondary-light);
-    color: white;
+    background: var(--color-gold-muted);
+    color: var(--color-text-primary);
     font-weight: 600;
     position: relative;
 }
@@ -298,7 +310,7 @@
     transform: translateX(-50%);
     width: 4px;
     height: 4px;
-    background: white;
+    background: var(--color-gold);
     border-radius: 50%;
 }
 
@@ -307,20 +319,21 @@
 }
 
 .days span:nth-child(7n+1):not(.empty) {
-    color: #D32F2F;
+    color: var(--color-error);
 }
 
 .days span:nth-child(7n):not(.empty) {
-    color: #1976D2;
+    color: #5b9cf6;
 }
 
 /* Date Conversion Display */
 .date-conversion-display {
-    background: var(--color-bg-lighter);
+    background: var(--color-bg-tertiary);
     border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1rem;
     min-height: 50px;
+    border: 1px solid var(--color-border);
 }
 
 .conversion-item {
@@ -337,7 +350,7 @@
 
 .conversion-value {
     font-size: 1.1rem;
-    color: var(--color-primary);
+    color: var(--color-gold);
     font-weight: 600;
 }
 
@@ -348,19 +361,19 @@
 
 .btn-today {
     padding: 0.75rem 2rem;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-    color: white;
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-deep));
+    color: var(--color-bg-primary);
     border: none;
     border-radius: 25px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
 }
 
 .btn-today:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
 }
 
 .btn-today:active {
@@ -372,21 +385,21 @@
     .date-input-group {
         flex-direction: column;
     }
-    
+
     .date-field {
         width: 100%;
     }
-    
+
     .toggle-container {
         flex-direction: column;
         align-items: stretch;
     }
-    
+
     .toggle-switch {
         width: 100%;
         margin-bottom: 0.5rem;
     }
-    
+
     .calendar-type-display {
         justify-content: center;
     }
@@ -396,11 +409,11 @@
     .enhanced-date-picker {
         padding: 1rem;
     }
-    
+
     .days span {
         font-size: 0.8rem;
     }
-    
+
     .weekdays span {
         font-size: 0.75rem;
     }

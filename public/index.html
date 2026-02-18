@@ -74,10 +74,10 @@
     }
     </script>
 
-    <!-- Fonts -->
+    <!-- Fonts — Noto Serif KR (headings) + Cormorant Garamond (display) + Noto Sans KR (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <!-- Styles -->
     <link rel="stylesheet" href="css/reset.css">
@@ -107,9 +107,9 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7479840445702290"
          crossorigin="anonymous"></script>
 
-    <!-- Theme color & CDN preconnect -->
+    <!-- Theme color — Dark-first design -->
+    <meta name="theme-color" content="#0C0B10" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#F7F4EF" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#161210" media="(prefers-color-scheme: dark)">
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 </head>
 <body>
@@ -140,7 +140,10 @@
                 <span class="site-title">사주명리</span>
             </div>
             <nav class="main-nav">
-                <a href="#input-section">운세보기</a>
+                <a href="#input-section">사주풀이</a>
+                <a href="#additional-features" data-action="navToFeatures" data-tab="compatibility">궁합</a>
+                <a href="#additional-features" data-action="navToFeatures" data-tab="taekil">택일</a>
+                <a href="#additional-section">더 알아보기</a>
             </nav>
         </div>
     </header>
@@ -292,7 +295,17 @@
                     <span>📖 한자 의미 보기</span>
                 </button>
             </h2>
-            
+
+            <!-- 결과 탭 네비게이션 -->
+            <div class="result-tabs" role="tablist" aria-label="분석 결과 탭">
+                <button class="result-tab-btn" :class="{ active: resultTab === 'basic' }" @click="resultTab = 'basic'" role="tab" :aria-selected="resultTab === 'basic'">기본 분석</button>
+                <button class="result-tab-btn" :class="{ active: resultTab === 'advanced' }" @click="resultTab = 'advanced'" role="tab" :aria-selected="resultTab === 'advanced'">심화 분석</button>
+                <button class="result-tab-btn" :class="{ active: resultTab === 'fortune' }" @click="resultTab = 'fortune'" role="tab" :aria-selected="resultTab === 'fortune'">운세 흐름</button>
+            </div>
+
+            <!-- 탭 1: 기본 분석 -->
+            <div class="result-tab-panel" x-show="resultTab === 'basic'" x-transition.opacity>
+
             <!-- 사주 명식 표 -->
             <div class="saju-table">
                 <div class="pillar year-pillar">
@@ -416,7 +429,13 @@
                     <h3>건강운</h3>
                     <p x-text="interpretation.health"></p>
                 </div>
-                
+            </div><!-- end .interpretation -->
+            </div><!-- end 기본 분석 tab -->
+
+            <!-- 탭 2: 심화 분석 -->
+            <div class="result-tab-panel" x-show="resultTab === 'advanced'" x-transition.opacity>
+            <div class="interpretation">
+
                 <!-- 십성 분석 섹션 -->
                 <div class="interpretation-card" x-show="interpretation.ten_gods">
                     <h3>십성 관계 분석</h3>
@@ -432,59 +451,8 @@
                     </div>
                 </div>
 
-                <!-- 대운 분석 섹션 -->
-                <div class="interpretation-card" x-show="interpretation.major_fortune">
-                    <h3>대운 흐름</h3>
-                    <div class="major-fortune-timeline">
-                        <div class="current-period" x-show="interpretation.major_fortune.current_period">
-                            <h4>현재 대운</h4>
-                            <p>
-                                <span x-text="interpretation.major_fortune.current_period.combined_name"></span>
-                                (<span x-text="interpretation.major_fortune.current_period.start_age"></span>세 ~ 
-                                <span x-text="interpretation.major_fortune.current_period.end_age"></span>세)
-                            </p>
-                            <p x-text="interpretation.major_fortune.current_period.description"></p>
-                        </div>
-                        
-                        <div class="next-period" x-show="interpretation.major_fortune.next_period">
-                            <h4>다음 대운</h4>
-                            <p>
-                                <span x-text="interpretation.major_fortune.next_period.combined_name"></span>
-                                (<span x-text="interpretation.major_fortune.next_period.start_age"></span>세 ~ 
-                                <span x-text="interpretation.major_fortune.next_period.end_age"></span>세)
-                            </p>
-                            <p x-text="interpretation.major_fortune.next_period.description"></p>
-                        </div>
-                    </div>
-                </div>
+            </div><!-- end .interpretation (advanced) -->
 
-                <!-- 운세 타임라인 섹션 -->
-                <div class="interpretation-card" id="fortune-timeline-section" x-show="interpretation.fortune_timeline">
-                    <h3>연도별 운세 흐름</h3>
-                    <div class="chart-container">
-                        <canvas id="fortune-chart" width="600" height="300"></canvas>
-                    </div>
-                    <div class="fortune-summary" x-show="interpretation.fortune_timeline?.summary">
-                        <div class="fortune-year-stats">
-                            <div class="stat-item best-year">
-                                <span class="stat-label">🌟 최고의 해</span>
-                                <span class="stat-value">
-                                    <span x-text="interpretation.fortune_timeline?.summary?.best_year?.year"></span>년
-                                    (점수: <span x-text="interpretation.fortune_timeline?.summary?.best_year?.score"></span>)
-                                </span>
-                            </div>
-                            <div class="stat-item caution-year">
-                                <span class="stat-label">⚠️ 주의할 해</span>
-                                <span class="stat-value">
-                                    <span x-text="interpretation.fortune_timeline?.summary?.worst_year?.year"></span>년
-                                    (점수: <span x-text="interpretation.fortune_timeline?.summary?.worst_year?.score"></span>)
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
             <!-- 격국 분석 섹션 -->
             <div class="interpretation-card" x-show="pattern" x-data="{ showPattern: false }">
                 <h3 class="toggle-header">
@@ -601,6 +569,66 @@
                     </div>
                 </div>
             </div>
+            </div><!-- end 심화 분석 tab -->
+
+            <!-- 탭 3: 운세 흐름 -->
+            <div class="result-tab-panel" x-show="resultTab === 'fortune'" x-transition.opacity>
+            <div class="interpretation">
+
+                <!-- 대운 분석 섹션 -->
+                <div class="interpretation-card" x-show="interpretation.major_fortune">
+                    <h3>대운 흐름</h3>
+                    <div class="major-fortune-timeline">
+                        <div class="current-period" x-show="interpretation.major_fortune.current_period">
+                            <h4>현재 대운</h4>
+                            <p>
+                                <span x-text="interpretation.major_fortune.current_period.combined_name"></span>
+                                (<span x-text="interpretation.major_fortune.current_period.start_age"></span>세 ~
+                                <span x-text="interpretation.major_fortune.current_period.end_age"></span>세)
+                            </p>
+                            <p x-text="interpretation.major_fortune.current_period.description"></p>
+                        </div>
+
+                        <div class="next-period" x-show="interpretation.major_fortune.next_period">
+                            <h4>다음 대운</h4>
+                            <p>
+                                <span x-text="interpretation.major_fortune.next_period.combined_name"></span>
+                                (<span x-text="interpretation.major_fortune.next_period.start_age"></span>세 ~
+                                <span x-text="interpretation.major_fortune.next_period.end_age"></span>세)
+                            </p>
+                            <p x-text="interpretation.major_fortune.next_period.description"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 운세 타임라인 섹션 -->
+                <div class="interpretation-card" id="fortune-timeline-section" x-show="interpretation.fortune_timeline">
+                    <h3>연도별 운세 흐름</h3>
+                    <div class="chart-container">
+                        <canvas id="fortune-chart" width="600" height="300"></canvas>
+                    </div>
+                    <div class="fortune-summary" x-show="interpretation.fortune_timeline?.summary">
+                        <div class="fortune-year-stats">
+                            <div class="stat-item best-year">
+                                <span class="stat-label">최고의 해</span>
+                                <span class="stat-value">
+                                    <span x-text="interpretation.fortune_timeline?.summary?.best_year?.year"></span>년
+                                    (점수: <span x-text="interpretation.fortune_timeline?.summary?.best_year?.score"></span>)
+                                </span>
+                            </div>
+                            <div class="stat-item caution-year">
+                                <span class="stat-label">주의할 해</span>
+                                <span class="stat-value">
+                                    <span x-text="interpretation.fortune_timeline?.summary?.worst_year?.year"></span>년
+                                    (점수: <span x-text="interpretation.fortune_timeline?.summary?.worst_year?.score"></span>)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- end .interpretation (fortune) -->
+            </div><!-- end 운세 흐름 tab -->
 
             <!-- 공유 버튼 -->
             <div class="share-buttons">

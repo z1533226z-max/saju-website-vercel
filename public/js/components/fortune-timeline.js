@@ -230,8 +230,8 @@ class FortuneTimeline {
                     {
                         label: '대운',
                         data: majorData,
-                        borderColor: '#8B4513',
-                        backgroundColor: 'rgba(139, 69, 19, 0.1)',
+                        borderColor: '#D4AF37',
+                        backgroundColor: 'rgba(212, 175, 55, 0.08)',
                         tension: 0.4,
                         borderWidth: 3,
                         pointRadius: 4,
@@ -240,8 +240,8 @@ class FortuneTimeline {
                     {
                         label: '세운',
                         data: yearlyData,
-                        borderColor: '#FF5722',
-                        backgroundColor: 'rgba(255, 87, 34, 0.1)',
+                        borderColor: '#F0D78C',
+                        backgroundColor: 'rgba(240, 215, 140, 0.06)',
                         tension: 0.4,
                         borderWidth: 2,
                         borderDash: [5, 5],
@@ -264,21 +264,35 @@ class FortuneTimeline {
                         max: 100,
                         ticks: {
                             stepSize: 10,
+                            color: 'rgba(232, 224, 212, 0.6)',
                             callback: function(value) {
                                 return value + '점';
                             }
+                        },
+                        grid: {
+                            color: 'rgba(212, 175, 55, 0.06)'
                         }
                     },
                     x: {
                         title: {
                             display: true,
-                            text: '연도'
+                            text: '연도',
+                            color: 'rgba(232, 224, 212, 0.6)'
+                        },
+                        ticks: {
+                            color: 'rgba(232, 224, 212, 0.6)'
+                        },
+                        grid: {
+                            color: 'rgba(212, 175, 55, 0.04)'
                         }
                     }
                 },
                 plugins: {
                     legend: {
-                        position: 'top'
+                        position: 'top',
+                        labels: {
+                            color: 'rgba(232, 224, 212, 0.8)'
+                        }
                     },
                     tooltip: {
                         callbacks: {

@@ -1,15 +1,16 @@
-/* 사주 명식 개선 스타일 - 리디자인 */
+/* 사주 명식 개선 — 墨金 Glass Style */
 .saju-table {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     margin: 2rem auto;
     max-width: 800px;
-    background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-warm-surface) 100%);
+    background: var(--color-glass-surface);
+    backdrop-filter: blur(var(--glass-blur));
     padding: 2rem;
     border-radius: 15px;
     border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-warm-md);
+    box-shadow: var(--shadow-glass);
 }
 
 .pillar {
@@ -18,42 +19,43 @@
     padding: 1.5rem;
     text-align: center;
     box-shadow: var(--shadow-warm);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     position: relative;
     overflow: visible;
     min-height: 280px;
-    border: 1px solid var(--color-border-light);
+    border: 1px solid var(--color-border);
 }
 
 .pillar:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-warm-hover);
+    border-color: var(--color-gold-muted);
 }
 
-/* 일주 - 골드 강조 (보라색 제거) */
+/* Day Pillar — Gold glow */
 .day-pillar {
-    background: var(--color-warm-surface);
-    border: 2px solid var(--color-accent);
-    box-shadow: 0 0 0 4px var(--color-warm-highlight), var(--shadow-warm-md);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.06) 0%, var(--color-warm-surface) 100%);
+    border: 1px solid var(--color-gold);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.08), var(--shadow-glass);
 }
 
 .day-pillar .pillar-title {
-    color: var(--color-accent) !important;
+    color: var(--color-gold);
     font-weight: bold;
 }
 
 .day-pillar .stem-korean,
 .day-pillar .branch-korean {
-    color: var(--color-text-secondary) !important;
+    color: var(--color-text-secondary);
 }
 
 .day-pillar .stem-element {
-    background: var(--color-warm-highlight) !important;
-    color: var(--color-accent) !important;
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--color-gold);
 }
 
 .day-pillar .branch-animal {
-    color: var(--color-accent) !important;
+    color: var(--color-gold);
 }
 
 .pillar-title {
@@ -139,7 +141,7 @@
     display: inline-block;
     font-size: 0.85rem;
     padding: 0.25rem 0.75rem;
-    background: rgba(194, 85, 74, 0.1);
+    background: rgba(248, 113, 113, 0.08);
     color: var(--color-fire);
     border-radius: 20px;
     margin: 0.25rem 0;
@@ -234,13 +236,15 @@
     transform: translateX(0);
 }
 
-/* 한자 설명 박스 - 보라색 → 골드 */
+/* Saju explanation — Gold accent box */
 .saju-explanation {
-    background: var(--color-warm-surface);
-    border-left: 4px solid var(--color-accent);
+    background: var(--color-glass-surface);
+    border-left: 3px solid var(--color-gold);
     padding: 1rem 1.5rem;
     margin: 2rem 0;
     border-radius: 8px;
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-gold);
 }
 
 .saju-explanation h4 {

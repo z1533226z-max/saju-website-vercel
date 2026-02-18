@@ -1,13 +1,15 @@
 /**
- * Fortune Timeline Styles
+ * Fortune Timeline — 墨金 Dark Luxury
  */
 
 .fortune-timeline-container {
     width: 100%;
-    background: var(--color-bg-white);
+    background: var(--color-glass-surface);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--color-border);
     border-radius: 12px;
     padding: 2rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-glass);
 }
 
 /* Timeline Header */
@@ -17,13 +19,14 @@
     align-items: center;
     margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .timeline-header h3 {
     font-size: 1.5rem;
-    color: var(--color-text-primary);
+    color: var(--color-gold);
     font-weight: 600;
+    font-family: var(--font-heading);
 }
 
 .timeline-controls {
@@ -35,7 +38,8 @@
     width: 36px;
     height: 36px;
     border: 1px solid var(--color-border);
-    background: var(--color-bg-white);
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
     border-radius: 6px;
     cursor: pointer;
     display: flex;
@@ -45,8 +49,9 @@
 }
 
 .timeline-controls button:hover {
-    background: var(--color-bg-light);
-    border-color: var(--color-primary);
+    background: var(--color-bg-tertiary);
+    border-color: var(--color-gold-muted);
+    color: var(--color-gold);
 }
 
 /* Timeline Body */
@@ -84,34 +89,36 @@
 
 .fortune-period {
     flex: 0 0 150px;
-    background: var(--color-bg-light);
+    background: var(--color-bg-secondary);
     border-radius: 8px;
     padding: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    border: 1px solid var(--color-border);
     position: relative;
+    color: var(--color-text-primary);
 }
 
 .fortune-period:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border-color: var(--color-primary-light);
+    box-shadow: var(--shadow-glass);
+    border-color: var(--color-gold-muted);
 }
 
 .fortune-period.current {
-    background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light));
-    color: white;
+    background: linear-gradient(135deg, var(--color-gold-deep), var(--color-gold));
+    color: var(--color-bg-primary);
+    border-color: var(--color-gold);
 }
 
 .fortune-period.current .period-header,
 .fortune-period.current .period-element {
-    color: white;
+    color: var(--color-bg-primary);
 }
 
 .fortune-period.selected {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
 }
 
 .period-header {
@@ -126,7 +133,7 @@
 }
 
 .period-score {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(212, 175, 55, 0.15);
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 0.8rem;
@@ -139,6 +146,7 @@
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
     font-weight: 700;
+    font-family: var(--font-heading);
 }
 
 .period-element {
@@ -150,7 +158,7 @@
 
 .period-bar {
     height: 6px;
-    background: var(--color-bg-lighter);
+    background: var(--color-bg-tertiary);
     border-radius: 3px;
     overflow: hidden;
 }
@@ -176,19 +184,20 @@
 
 .yearly-period {
     flex: 0 0 100px;
-    background: var(--color-bg-light);
+    background: var(--color-bg-secondary);
     border-radius: 8px;
     padding: 1rem 0.75rem;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    border: 1px solid var(--color-border);
     position: relative;
+    color: var(--color-text-primary);
 }
 
 .yearly-period:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-glass);
 }
 
 .yearly-period.past {
@@ -196,19 +205,20 @@
 }
 
 .yearly-period.current {
-    background: var(--color-primary);
-    color: white;
+    background: var(--color-gold);
+    color: var(--color-bg-primary);
     font-weight: 600;
+    border-color: var(--color-gold);
 }
 
 .yearly-period.current .year-age,
 .yearly-period.current .year-stems {
-    color: white;
+    color: var(--color-bg-primary);
 }
 
 .yearly-period.selected {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
 }
 
 .year-label {
@@ -230,6 +240,7 @@
     font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
+    font-family: var(--font-heading);
 }
 
 .year-score {
@@ -248,7 +259,8 @@
 
 /* Combined Fortune Graph */
 .combined-fortune-graph {
-    background: var(--color-bg-light);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     padding: 1.5rem;
     margin-bottom: 2rem;
@@ -260,7 +272,8 @@
 
 /* Fortune Details Panel */
 .fortune-details-panel {
-    background: var(--color-bg-light);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     padding: 1.5rem;
     margin-top: 2rem;
@@ -268,13 +281,14 @@
 
 .fortune-details-panel h4 {
     font-size: 1.1rem;
-    color: var(--color-text-primary);
+    color: var(--color-gold);
     margin-bottom: 1rem;
     font-weight: 600;
 }
 
 .fortune-detail-card {
-    background: var(--color-bg-white);
+    background: var(--color-glass-surface);
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     padding: 1.5rem;
     position: relative;
@@ -282,7 +296,7 @@
 
 .fortune-detail-card h5 {
     font-size: 1.2rem;
-    color: var(--color-primary);
+    color: var(--color-gold);
     margin-bottom: 1rem;
     font-weight: 600;
 }
@@ -297,7 +311,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0.5rem;
-    background: var(--color-bg-lighter);
+    background: var(--color-bg-tertiary);
     border-radius: 4px;
 }
 
@@ -313,9 +327,9 @@
 
 .detail-description {
     padding: 1rem;
-    background: var(--color-bg-light);
+    background: var(--color-bg-secondary);
     border-radius: 6px;
-    border-left: 4px solid var(--color-primary);
+    border-left: 4px solid var(--color-gold);
 }
 
 .detail-description p {
@@ -327,8 +341,8 @@
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: var(--color-primary);
-    color: white;
+    background: var(--color-gold);
+    color: var(--color-bg-primary);
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -343,19 +357,19 @@
 
 .timeline-track::-webkit-scrollbar-track,
 .yearly-timeline-scroll::-webkit-scrollbar-track {
-    background: var(--color-bg-lighter);
+    background: var(--color-bg-tertiary);
     border-radius: 4px;
 }
 
 .timeline-track::-webkit-scrollbar-thumb,
 .yearly-timeline-scroll::-webkit-scrollbar-thumb {
-    background: var(--color-border);
+    background: var(--color-gold-muted);
     border-radius: 4px;
 }
 
 .timeline-track::-webkit-scrollbar-thumb:hover,
 .yearly-timeline-scroll::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primary-light);
+    background: var(--color-gold);
 }
 
 /* Animation */
@@ -389,30 +403,30 @@
     .fortune-timeline-container {
         padding: 1rem;
     }
-    
+
     .timeline-header {
         flex-direction: column;
         gap: 1rem;
         align-items: flex-start;
     }
-    
+
     .fortune-period {
         flex: 0 0 120px;
     }
-    
+
     .yearly-period {
         flex: 0 0 80px;
         padding: 0.75rem 0.5rem;
     }
-    
+
     .year-stems {
         font-size: 0.9rem;
     }
-    
+
     .detail-items {
         gap: 0.5rem;
     }
-    
+
     .detail-item {
         flex-direction: column;
         gap: 0.25rem;
@@ -425,16 +439,16 @@
         height: 32px;
         font-size: 0.9rem;
     }
-    
+
     .fortune-period {
         flex: 0 0 100px;
         padding: 0.75rem;
     }
-    
+
     .period-stems {
         font-size: 1.2rem;
     }
-    
+
     #combined-fortune-chart {
         height: 200px;
     }

@@ -7,24 +7,24 @@ class SajuCharts {
     constructor() {
         this.charts = {};
         this.colors = {
-            wood: '#4CAF50',    // 목 - Green
-            fire: '#FF5722',    // 화 - Red
-            earth: '#FFC107',   // 토 - Yellow
-            metal: '#9E9E9E',   // 금 - Gray
-            water: '#2196F3'    // 수 - Blue
+            wood: '#7B9E89',    // 목 - Muted sage
+            fire: '#D4736A',    // 화 - Muted coral
+            earth: '#C8A882',   // 토 - Warm sand
+            metal: '#A8A5A0',   // 금 - Soft silver
+            water: '#6B8CAE'    // 수 - Steel blue
         };
-        
+
         this.tenGodsColors = {
-            '정관': '#E91E63',
-            '편관': '#F44336',
-            '정인': '#9C27B0',
-            '편인': '#673AB7',
-            '정재': '#3F51B5',
-            '편재': '#2196F3',
-            '비견': '#00BCD4',
-            '겁재': '#009688',
-            '식신': '#4CAF50',
-            '상관': '#8BC34A'
+            '정관': '#e879a0',
+            '편관': '#D4736A',
+            '정인': '#a78bfa',
+            '편인': '#8b7cf6',
+            '정재': '#5b9cf6',
+            '편재': '#38bdf8',
+            '비견': '#4ade80',
+            '겁재': '#86efac',
+            '식신': '#7B9E89',
+            '상관': '#D4AF37'
         };
     }
     
@@ -51,8 +51,8 @@ class SajuCharts {
                     elementData['금'] || 0,
                     elementData['수'] || 0
                 ],
-                backgroundColor: 'rgba(139, 69, 19, 0.2)',
-                borderColor: 'rgba(139, 69, 19, 1)',
+                backgroundColor: 'rgba(212, 175, 55, 0.12)',
+                borderColor: 'rgba(212, 175, 55, 0.6)',
                 borderWidth: 2,
                 pointBackgroundColor: [
                     this.colors.wood,
@@ -61,9 +61,9 @@ class SajuCharts {
                     this.colors.metal,
                     this.colors.water
                 ],
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(139, 69, 19, 1)',
+                pointBorderColor: 'rgba(12, 11, 16, 0.8)',
+                pointHoverBackgroundColor: '#F0D78C',
+                pointHoverBorderColor: '#D4AF37',
                 pointRadius: 6,
                 pointHoverRadius: 8
             }]
@@ -78,18 +78,24 @@ class SajuCharts {
                     max: Math.max(...Object.values(elementData)) + 1 || 5,
                     ticks: {
                         stepSize: 1,
+                        color: 'rgba(232, 224, 212, 0.5)',
+                        backdropColor: 'transparent',
                         font: {
                             size: 12
                         }
                     },
                     pointLabels: {
+                        color: 'rgba(232, 224, 212, 0.7)',
                         font: {
                             size: 14,
                             weight: 'bold'
                         }
                     },
                     grid: {
-                        color: 'rgba(0, 0, 0, 0.1)'
+                        color: 'rgba(212, 175, 55, 0.08)'
+                    },
+                    angleLines: {
+                        color: 'rgba(212, 175, 55, 0.08)'
                     }
                 }
             },
@@ -167,7 +173,19 @@ class SajuCharts {
                     y: {
                         beginAtZero: true,
                         ticks: {
-                            stepSize: 1
+                            stepSize: 1,
+                            color: 'rgba(232, 224, 212, 0.6)'
+                        },
+                        grid: {
+                            color: 'rgba(212, 175, 55, 0.06)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: 'rgba(232, 224, 212, 0.6)'
+                        },
+                        grid: {
+                            color: 'rgba(212, 175, 55, 0.04)'
                         }
                     }
                 },

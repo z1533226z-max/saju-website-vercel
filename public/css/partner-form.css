@@ -1,47 +1,49 @@
 /* ===================================
-   상대방 정보 입력 폼 스타일링
+   상대방 정보 입력 폼 — 墨金 Dark Luxury
    =================================== */
 
 /* 출생시간 선택 */
 #partner-time {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--color-border);
     border-radius: 6px;
     font-size: 0.95rem;
-    background: white;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
     cursor: pointer;
 }
 
 #partner-time:focus-visible {
-    outline: 3px solid #6366f1;
+    outline: 3px solid rgba(212, 175, 55, 0.3);
     outline-offset: 2px;
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
 }
 
 /* 시간 모름 옵션 스타일 */
 #partner-time option[value="unknown"] {
     font-style: italic;
-    color: #6b7280;
+    color: var(--color-text-muted);
 }
 
 /* 음력/양력 선택 */
 #partner-calendar {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--color-border);
     border-radius: 6px;
     font-size: 0.95rem;
-    background: white;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
     cursor: pointer;
 }
 
 #partner-calendar:focus-visible {
-    outline: 3px solid #6366f1;
+    outline: 3px solid rgba(212, 175, 55, 0.3);
     outline-offset: 2px;
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
 }
 
 /* 폼 그룹 스타일 */
@@ -53,7 +55,7 @@
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: #374151;
+    color: var(--color-text-secondary);
     font-size: 0.9rem;
 }
 
@@ -61,12 +63,12 @@
 .time-unknown-info {
     display: none;
     padding: 0.75rem;
-    background: #fef3c7;
-    border: 1px solid #fbbf24;
+    background: rgba(251, 191, 36, 0.08);
+    border: 1px solid rgba(251, 191, 36, 0.2);
     border-radius: 6px;
     margin-top: 0.5rem;
     font-size: 0.85rem;
-    color: #92400e;
+    color: var(--color-warning);
 }
 
 .time-unknown-info.show {

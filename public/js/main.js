@@ -87,6 +87,24 @@ function initializeSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
+
+            // Handle navigation to additional features (궁합/택일)
+            if (this.dataset.action === 'navToFeatures') {
+                const tabName = this.dataset.tab;
+                // Show features section
+                if (window.additionalFeatures) {
+                    window.additionalFeatures.showFeatures();
+                }
+                // Activate the target tab
+                if (tabName) {
+                    const tabBtn = document.querySelector(`.tab-button[data-tab="${tabName}"]`);
+                    if (tabBtn) {
+                        tabBtn.click();
+                    }
+                }
+                return;
+            }
+
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 target.scrollIntoView({

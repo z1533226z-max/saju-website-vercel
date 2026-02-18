@@ -1,5 +1,5 @@
 /* ===================================
-   공유 버튼 스타일링
+   공유 버튼 — 墨金 Dark Luxury
    =================================== */
 
 .share-buttons {
@@ -15,20 +15,20 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
+    background: var(--color-glass-surface);
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
     font-size: 0.95rem;
     font-weight: 500;
-    color: #374151;
+    color: var(--color-text-primary);
 }
 
 .share-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-color: #d1d5db;
+    box-shadow: var(--shadow-glass);
+    border-color: var(--color-gold-muted);
 }
 
 /* 카카오톡 버튼 특별 스타일 */
@@ -49,11 +49,11 @@
 
 /* 링크 복사 버튼 */
 .share-btn .copy-icon {
-    stroke: #6b7280;
+    stroke: var(--color-text-muted);
 }
 
 .share-btn:hover .copy-icon {
-    stroke: #4b5563;
+    stroke: var(--color-gold);
 }
 
 /* 모바일 반응형 */
@@ -62,7 +62,7 @@
         flex-direction: column;
         align-items: center;
     }
-    
+
     .share-btn {
         width: 200px;
         justify-content: center;
@@ -71,13 +71,13 @@
 
 /* 복사 완료 애니메이션 */
 .share-btn.copied {
-    background: #10b981;
-    border-color: #10b981;
-    color: white;
+    background: var(--color-success);
+    border-color: var(--color-success);
+    color: var(--color-bg-primary);
 }
 
 .share-btn.copied .copy-icon {
-    stroke: white;
+    stroke: var(--color-bg-primary);
 }
 
 /* 버튼 클릭 효과 */

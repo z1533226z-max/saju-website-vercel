@@ -264,7 +264,7 @@ class AdLoader {
             const [width, height] = size.split('x');
             container.style.minHeight = `${height}px`;
             container.style.minWidth = `${width}px`;
-            container.style.backgroundColor = '#f0f0f0';
+            container.style.backgroundColor = 'var(--color-bg-secondary, #13121A)';
             container.style.display = 'flex';
             container.style.alignItems = 'center';
             container.style.justifyContent = 'center';
@@ -273,8 +273,8 @@ class AdLoader {
             if (!container.querySelector('.ad-placeholder')) {
                 const placeholder = document.createElement('div');
                 placeholder.className = 'ad-placeholder';
-                placeholder.textContent = 'à \)...';
-                placeholder.style.color = '#999';
+                placeholder.textContent = 'ï¿½ \)...';
+                placeholder.style.color = 'var(--color-text-muted, #666)';
                 placeholder.style.fontSize = '12px';
                 container.appendChild(placeholder);
             }
@@ -443,11 +443,11 @@ class AdLoader {
             <div class="ad-fallback" style="
                 padding: 20px;
                 text-align: center;
-                background: #f5f5f5;
-                border: 1px solid #ddd;
+                background: var(--color-bg-secondary, #13121A);
+                border: 1px solid var(--color-border, #2A2940);
                 border-radius: 4px;
             ">
-                <p style="color: #666; margin: 0;">à| ˆì,  ÆµÈä</p>
+                <p style="color: var(--color-text-muted, #666); margin: 0;">ï¿½| ï¿½ï¿½,  Æµï¿½ï¿½</p>
             </div>
         `;
     }

@@ -49,8 +49,11 @@
         
         // 본인 정보 확인
         if (!window.lastSajuCalculation) {
-            alert('먼저 본인의 사주를 계산해주세요.');
-            document.getElementById('additional-features').style.display = 'none';
+            if (typeof showToast === 'function') {
+                showToast('먼저 본인의 사주를 계산해주세요.', 'error');
+            } else {
+                alert('먼저 본인의 사주를 계산해주세요.');
+            }
             document.getElementById('input-section').scrollIntoView({ behavior: 'smooth' });
             return;
         }
@@ -406,11 +409,11 @@
                 progress.style.width = `${value}%`;
                 // 점수에 따른 색상 변경
                 if (value >= 80) {
-                    progress.style.backgroundColor = '#ff6b9d';
+                    progress.style.backgroundColor = '#D4AF37';
                 } else if (value >= 60) {
-                    progress.style.backgroundColor = '#feca57';
+                    progress.style.backgroundColor = '#F0D78C';
                 } else {
-                    progress.style.backgroundColor = '#48dbfb';
+                    progress.style.backgroundColor = '#8B7335';
                 }
             }
         }
@@ -558,82 +561,65 @@
         });
     });
     
+    // 본인 사주 정보를 궁합 폼에 반영
+    function updatePerson1Info() {
+        if (window.lastSajuCalculation) {
+            const info = window.lastSajuCalculation;
+            const birthDate = new Date(info.birthDate);
+            const dateStr = `${birthDate.getFullYear()}년 ${birthDate.getMonth() + 1}월 ${birthDate.getDate()}일`;
+            const genderStr = info.gender === 'male' ? '남성' : '여성';
+
+            const person1Date = document.getElementById('person1-date');
+            const person1Time = document.getElementById('person1-time');
+            const person1Gender = document.getElementById('person1-gender');
+
+            if (person1Date) person1Date.textContent = dateStr + (info.isLunar ? ' (음력)' : ' (양력)');
+            if (person1Time) {
+                const hourDisplay = info.birthHourName || info.birthTime;
+                const timeRange = info.birthTimeRange ? ` (${info.birthTimeRange})` : '';
+                person1Time.textContent = hourDisplay + timeRange;
+            }
+            if (person1Gender) person1Gender.textContent = genderStr;
+
+            const personCard = document.querySelector('.person-card');
+            if (personCard) personCard.classList.add('has-data');
+
+            // 이전에 추가된 안내 버튼 제거
+            const goToCalcBtn = document.querySelector('.go-to-calc');
+            if (goToCalcBtn) goToCalcBtn.remove();
+        } else {
+            const person1Date = document.getElementById('person1-date');
+            const person1Time = document.getElementById('person1-time');
+            const person1Gender = document.getElementById('person1-gender');
+
+            if (person1Date) {
+                person1Date.innerHTML = '<span style="color: var(--color-error);">사주 계산 후 이용 가능</span>';
+                if (person1Time) person1Time.textContent = '-';
+                if (person1Gender) person1Gender.textContent = '-';
+            }
+        }
+    }
+
     // 전역 노출
     window.additionalFeatures = {
-        showFeatures: function() {
-            console.log('🚀 showFeatures 호출됨');
-            
+        showFeatures: function(targetTab) {
             const section = document.getElementById('additional-features');
             if (section) {
                 section.style.display = 'block';
                 section.scrollIntoView({ behavior: 'smooth' });
-                
+
                 // 탭 초기화 재실행
                 initTabs();
                 initTimeSelectHandler();
-                
-                // 폼 초기화 - 폼 리셋
-                const compatibilityForm = document.getElementById('compatibility-form');
-                if (compatibilityForm) {
-                    // 폼 리셋 (선택적)
-                    // compatibilityForm.reset();
-                    console.log('📋 궁합 폼 확인됨');
+
+                // 특정 탭 활성화
+                if (targetTab) {
+                    const tabBtn = document.querySelector(`.tab-button[data-tab="${targetTab}"]`);
+                    if (tabBtn) tabBtn.click();
                 }
-                
-                // 본인 정보가 있으면 궁합 폼에 자동 입력
-                if (window.lastSajuCalculation) {
-                    const info = window.lastSajuCalculation;
-                    
-                    // 날짜 포맷팅
-                    const birthDate = new Date(info.birthDate);
-                    const dateStr = `${birthDate.getFullYear()}년 ${birthDate.getMonth() + 1}월 ${birthDate.getDate()}일`;
-                    const genderStr = info.gender === 'male' ? '남성' : '여성';
-                    
-                    // 본인 정보 표시
-                    const person1Date = document.getElementById('person1-date');
-                    const person1Time = document.getElementById('person1-time');
-                    const person1Gender = document.getElementById('person1-gender');
-                    
-                    if (person1Date) person1Date.textContent = dateStr + (info.isLunar ? ' (음력)' : ' (양력)');
-                    if (person1Time) {
-                        // 십이지시 이름과 시간 범위 표시
-                        const hourDisplay = info.birthHourName || info.birthTime;
-                        const timeRange = info.birthTimeRange ? ` (${info.birthTimeRange})` : '';
-                        person1Time.textContent = hourDisplay + timeRange;
-                    }
-                    if (person1Gender) person1Gender.textContent = genderStr;
-                    
-                    // 본인 정보 카드 스타일 업데이트
-                    const personCard = document.querySelector('.person-card');
-                    if (personCard) {
-                        personCard.classList.add('has-data');
-                    }
-                } else {
-                    // 사주 계산이 안 되어 있으면 안내
-                    const person1Date = document.getElementById('person1-date');
-                    const person1Time = document.getElementById('person1-time');
-                    const person1Gender = document.getElementById('person1-gender');
-                    
-                    if (person1Date) {
-                        person1Date.innerHTML = `<span style="color: #ef4444;">먼저 사주를 계산해주세요</span>`;
-                        person1Time.textContent = '-';
-                        person1Gender.textContent = '-';
-                        
-                        // 사주 계산하러 가기 버튼 추가
-                        const infoDisplay = document.querySelector('.info-display');
-                        if (infoDisplay && !infoDisplay.querySelector('.go-to-calc')) {
-                            const button = document.createElement('button');
-                            button.className = 'btn-primary go-to-calc';
-                            button.textContent = '사주 계산하러 가기';
-                            button.style.marginTop = '1rem';
-                            button.onclick = function() {
-                                document.getElementById('additional-features').style.display = 'none';
-                                document.getElementById('input-section').scrollIntoView({ behavior: 'smooth' });
-                            };
-                            infoDisplay.appendChild(button);
-                        }
-                    }
-                }
+
+                // 본인 정보 반영
+                updatePerson1Info();
             }
         },
         hideFeatures: function() {

@@ -1,18 +1,20 @@
-/* 추가 기능 스타일 */
+/* 추가 기능 스타일 — 墨金 Dark Luxury */
 
 /* 탭 네비게이션 */
 .features-tabs {
     margin: 2rem 0;
-    background: white;
+    background: var(--color-glass-surface);
+    backdrop-filter: blur(var(--glass-blur));
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-glass);
     overflow: hidden;
+    border: 1px solid var(--color-border);
 }
 
 .tab-navigation {
     display: flex;
-    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
-    border-bottom: 2px solid var(--color-accent);
+    background: var(--color-bg-tertiary);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .tab-button {
@@ -22,31 +24,31 @@
     border: none;
     font-size: 1rem;
     font-weight: 500;
-    color: #666;
+    color: var(--color-text-secondary);
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: all 0.3s ease;
     position: relative;
 }
 
 .tab-button:hover {
-    background: rgba(212, 165, 116, 0.1);
-    color: var(--color-gold-text);
+    background: var(--color-glass-hover);
+    color: var(--color-gold);
 }
 
 .tab-button.active {
-    background: white;
-    color: var(--color-gold-text);
+    background: var(--color-glass-surface);
+    color: var(--color-gold);
     font-weight: 600;
 }
 
 .tab-button.active::after {
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: -1px;
     left: 0;
     right: 0;
     height: 2px;
-    background: var(--color-accent);
+    background: var(--color-gold);
 }
 
 /* 탭 콘텐츠 */
@@ -77,20 +79,22 @@
 
 .person-card {
     padding: 1.5rem;
-    background: linear-gradient(135deg, #fdf6f0 0%, #f7e8dc 100%);
+    background: var(--color-glass-surface);
+    backdrop-filter: blur(var(--glass-blur));
     border-radius: 12px;
-    border: 1px solid rgba(212, 165, 116, 0.2);
+    border: 1px solid var(--color-border);
 }
 
 .person-card h4 {
-    color: var(--color-gold-text);
+    color: var(--color-gold);
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    font-family: var(--font-heading);
 }
 
 .info-display p {
     margin: 0.5rem 0;
-    color: #555;
+    color: var(--color-text-secondary);
 }
 
 .form-group {
@@ -100,7 +104,7 @@
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #666;
+    color: var(--color-text-secondary);
     font-weight: 500;
 }
 
@@ -108,36 +112,38 @@
 .form-group select {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
     border-radius: 6px;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
+    background: var(--color-warm-surface);
+    color: var(--color-text-primary);
 }
 
 .form-group input:focus-visible,
 .form-group select:focus-visible {
-    outline: 3px solid var(--color-accent);
-    outline-offset: 2px;
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+    outline: none;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px var(--color-gold-glow), 0 0 12px rgba(212, 175, 55, 0.08);
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 50%, var(--color-gold-light) 100%);
+    color: var(--color-bg-primary);
     border: none;
     padding: 0.75rem 2rem;
     border-radius: 8px;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     margin-top: 1rem;
+    font-family: var(--font-heading);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(212, 165, 116, 0.3);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
 }
 
 /* 궁합 결과 */
@@ -148,16 +154,19 @@
 
 .result-card {
     padding: 2rem;
-    background: white;
+    background: var(--color-glass-surface);
+    backdrop-filter: blur(var(--glass-blur));
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-glass);
+    border: 1px solid var(--color-border);
 }
 
 .result-card h4 {
     text-align: center;
-    color: var(--color-gold-text);
+    color: var(--color-gold);
     margin-bottom: 2rem;
     font-size: 1.5rem;
+    font-family: var(--font-heading);
 }
 
 .compatibility-score {
@@ -172,10 +181,10 @@
     justify-content: center;
     width: 150px;
     height: 150px;
-    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+    background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 50%, var(--color-gold-light) 100%);
     border-radius: 50%;
-    color: white;
-    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+    color: var(--color-bg-primary);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
 }
 
 .score-value {
@@ -199,34 +208,35 @@
 .detail-item span {
     display: block;
     margin-bottom: 0.5rem;
-    color: #666;
+    color: var(--color-text-secondary);
     font-weight: 500;
 }
 
 .progress-bar {
     width: 100%;
     height: 24px;
-    background: #f0f0f0;
+    background: var(--color-bg-tertiary);
     border-radius: 12px;
     overflow: hidden;
 }
 
 .progress {
     height: 100%;
-    background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
+    background: linear-gradient(90deg, var(--color-gold-dark) 0%, var(--color-gold) 50%, var(--color-gold-light) 100%);
     border-radius: 12px;
     transition: width 1s ease;
 }
 
 .compatibility-advice {
     padding: 1.5rem;
-    background: linear-gradient(135deg, #fdf6f0 0%, #f7e8dc 100%);
+    background: var(--color-glass-surface);
     border-radius: 8px;
     text-align: center;
+    border: 1px solid var(--color-border);
 }
 
 .compatibility-advice p {
-    color: #555;
+    color: var(--color-text-secondary);
     line-height: 1.6;
     margin: 0;
 }
@@ -246,28 +256,30 @@
 
 .date-card {
     padding: 1.5rem;
-    background: white;
+    background: var(--color-glass-surface);
     border-radius: 8px;
-    border: 2px solid var(--color-accent);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--color-gold-muted);
+    transition: all 0.3s ease;
 }
 
 .date-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.1);
+    border-color: var(--color-gold);
 }
 
 .date-header {
     font-size: 1.2rem;
     font-weight: bold;
-    color: var(--color-gold-text);
+    color: var(--color-gold);
     margin-bottom: 1rem;
     text-align: center;
+    font-family: var(--font-heading);
 }
 
 .date-info p {
     margin: 0.5rem 0;
-    color: #555;
+    color: var(--color-text-secondary);
     font-size: 0.95rem;
 }
 
@@ -286,24 +298,27 @@
 
 .name-card {
     padding: 1.5rem;
-    background: linear-gradient(135deg, #fdf6f0 0%, #f7e8dc 100%);
+    background: var(--color-glass-surface);
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .name-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
+    border-color: var(--color-gold-muted);
 }
 
 .name-card h4 {
-    color: var(--color-gold-text);
+    color: var(--color-gold);
     font-size: 1.5rem;
     margin-bottom: 1rem;
+    font-family: var(--font-heading);
 }
 
 .name-card p {
-    color: #666;
+    color: var(--color-text-secondary);
     margin: 0.5rem 0;
     font-size: 0.9rem;
 }
@@ -331,110 +346,8 @@
     }
 }
 
-/* 다크 모드 지원 - 따뜻한 톤 */
-@media (prefers-color-scheme: dark) {
-    .features-tabs {
-        background: #231E18;
-    }
-
-    .tab-navigation {
-        background: linear-gradient(135deg, #2F2820 0%, #3D3529 100%);
-        border-bottom-color: var(--color-accent);
-    }
-
-    .tab-button {
-        color: #A89A8A;
-    }
-
-    .tab-button:hover {
-        color: var(--color-accent);
-        background: rgba(200, 150, 62, 0.15);
-    }
-
-    .tab-button.active {
-        background: #231E18;
-        color: var(--color-accent);
-    }
-
-    .tab-contents {
-        color: #E8E0D4;
-    }
-
-    .tab-contents h3 {
-        color: var(--color-accent);
-    }
-
-    .person-card {
-        background: linear-gradient(135deg, #2F2820 0%, #231E18 100%);
-        border-color: rgba(200, 150, 62, 0.3);
-    }
-
-    .person-card h4 {
-        color: var(--color-accent);
-    }
-
-    .info-display p,
-    .form-group label {
-        color: #A89A8A;
-    }
-
-    .form-group input,
-    .form-group select {
-        background: #2F2820;
-        color: #E8E0D4;
-        border-color: #3D3529;
-    }
-
-    .result-card {
-        background: #231E18;
-        color: #E8E0D4;
-    }
-
-    .result-card h4 {
-        color: var(--color-accent);
-    }
-
-    .detail-item span {
-        color: #A89A8A;
-    }
-
-    .progress-bar {
-        background: #3D3529;
-    }
-
-    .compatibility-advice {
-        background: linear-gradient(135deg, #2F2820 0%, #231E18 100%);
-    }
-
-    .compatibility-advice p {
-        color: #A89A8A;
-    }
-
-    .date-card {
-        background: #231E18;
-        color: #E8E0D4;
-    }
-
-    .date-header {
-        color: var(--color-accent);
-    }
-
-    .date-info p {
-        color: #A89A8A;
-    }
-
-    .name-card {
-        background: linear-gradient(135deg, #2F2820 0%, #231E18 100%);
-    }
-
-    .name-card h4 {
-        color: var(--color-accent);
-    }
-
-    .name-card p {
-        color: #A89A8A;
-    }
-}
+/* Dark-first: base styles use CSS variables that auto-adapt.
+   No separate dark mode block needed. */
 
 /* 반응형 */
 @media (max-width: 768px) {

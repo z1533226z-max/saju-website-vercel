@@ -428,13 +428,13 @@ class SajuTabs {
                 datasets: [{
                     label: '오행 분포',
                     data: [3, 2, 1, 2, 2],
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(212, 175, 55, 0.12)',
+                    borderColor: 'rgba(212, 175, 55, 0.8)',
                     borderWidth: 2,
-                    pointBackgroundColor: 'rgba(75, 192, 192, 1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(75, 192, 192, 1)'
+                    pointBackgroundColor: '#D4AF37',
+                    pointBorderColor: 'rgba(12, 11, 16, 0.8)',
+                    pointHoverBackgroundColor: '#F0D78C',
+                    pointHoverBorderColor: '#D4AF37'
                 }]
             },
             options: {
@@ -445,7 +445,18 @@ class SajuTabs {
                         beginAtZero: true,
                         max: 5,
                         ticks: {
-                            stepSize: 1
+                            stepSize: 1,
+                            color: 'rgba(232, 224, 212, 0.5)',
+                            backdropColor: 'transparent'
+                        },
+                        grid: {
+                            color: 'rgba(212, 175, 55, 0.08)'
+                        },
+                        angleLines: {
+                            color: 'rgba(212, 175, 55, 0.08)'
+                        },
+                        pointLabels: {
+                            color: 'rgba(232, 224, 212, 0.7)'
                         }
                     }
                 },
@@ -487,7 +498,10 @@ class SajuTabs {
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        position: 'right'
+                        position: 'right',
+                        labels: {
+                            color: 'rgba(232, 224, 212, 0.7)'
+                        }
                     }
                 }
             }
@@ -505,8 +519,8 @@ class SajuTabs {
                 datasets: [{
                     label: '운세 흐름',
                     data: [60, 65, 70, 85, 75, 80, 70, 65],
-                    borderColor: 'rgb(75, 192, 192)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: '#D4AF37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.08)',
                     tension: 0.1,
                     fill: true
                 }]

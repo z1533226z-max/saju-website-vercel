@@ -122,8 +122,8 @@ function addTestButton() {
             bottom: 20px;
             right: 20px;
             padding: 10px 20px;
-            background: #FF5722;
-            color: white;
+            background: #D4AF37;
+            color: #0C0B10;
             border: none;
             border-radius: 5px;
             cursor: pointer;

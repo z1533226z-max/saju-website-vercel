@@ -49,7 +49,7 @@
   
   /* Hero section */
   #hero-section {
-    min-height: 60vh;
+    min-height: 45vh;
   }
   
   .hero-title .brush-stroke {
@@ -145,7 +145,7 @@
   
   /* Hero section */
   #hero-section {
-    min-height: 50vh;
+    min-height: auto;
     padding: var(--spacing-xl) var(--spacing-md);
   }
   

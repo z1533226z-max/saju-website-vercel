@@ -1,19 +1,20 @@
 /**
- * Real-time Calculator Styles
+ * Real-time Calculator — 墨金 Dark Luxury
  */
 
 .realtime-indicator {
-    background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+    background: var(--color-glass-surface);
+    backdrop-filter: blur(var(--glass-blur));
     border-radius: 10px;
     padding: 1rem;
     margin-bottom: 1.5rem;
-    border: 2px solid #81C784;
+    border: 1px solid var(--color-border);
     transition: all 0.3s ease;
 }
 
 .realtime-indicator.active {
-    background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
-    border-color: #FFB74D;
+    border-color: var(--color-gold-muted);
+    background: rgba(212, 175, 55, 0.05);
 }
 
 .indicator-content {
@@ -60,7 +61,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: #ccc;
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
     border-radius: 13px;
     transition: 0.4s;
 }
@@ -71,18 +73,20 @@
     height: 18px;
     width: 18px;
     left: 4px;
-    bottom: 4px;
-    background: white;
+    bottom: 3px;
+    background: var(--color-text-muted);
     border-radius: 50%;
     transition: 0.4s;
 }
 
 .realtime-toggle input:checked + .toggle-slider-mini {
-    background: #4CAF50;
+    background: var(--color-gold);
+    border-color: var(--color-gold);
 }
 
 .realtime-toggle input:checked + .toggle-slider-mini::before {
     transform: translateX(24px);
+    background: var(--color-bg-primary);
 }
 
 /* Calculation Status */
@@ -100,15 +104,15 @@
 }
 
 .calculation-status.typing {
-    background: #E3F2FD;
-    color: #1976D2;
-    border-left: 3px solid #1976D2;
+    background: rgba(91, 156, 246, 0.08);
+    color: #5b9cf6;
+    border-left: 3px solid #5b9cf6;
 }
 
 .calculation-status.calculating {
-    background: #FFF9C4;
-    color: #F57C00;
-    border-left: 3px solid #F57C00;
+    background: rgba(212, 175, 55, 0.08);
+    color: var(--color-gold);
+    border-left: 3px solid var(--color-gold);
     animation: calculating 1s ease-in-out infinite;
 }
 
@@ -118,21 +122,21 @@
 }
 
 .calculation-status.completed {
-    background: #E8F5E9;
-    color: #2E7D32;
-    border-left: 3px solid #2E7D32;
+    background: rgba(74, 222, 128, 0.08);
+    color: var(--color-success);
+    border-left: 3px solid var(--color-success);
 }
 
 .calculation-status.error {
-    background: #FFEBEE;
-    color: #C62828;
-    border-left: 3px solid #C62828;
+    background: rgba(248, 113, 113, 0.08);
+    color: var(--color-error);
+    border-left: 3px solid var(--color-error);
 }
 
 .calculation-status.incomplete {
-    background: #F5F5F5;
-    color: #616161;
-    border-left: 3px solid #9E9E9E;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-muted);
+    border-left: 3px solid var(--color-text-muted);
 }
 
 /* Results Animation */
@@ -163,7 +167,7 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light));
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
@@ -175,8 +179,8 @@
 /* Input Field Glow Effect */
 input.realtime-active,
 select.realtime-active {
-    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    border-color: var(--color-gold);
 }
 
 /* Loading Overlay for Results */
@@ -191,11 +195,12 @@ select.realtime-active {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(12, 11, 16, 0.85);
     z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 8px;
 }
 
 .results-loading::after {
@@ -206,7 +211,7 @@ select.realtime-active {
     transform: translate(-50%, -50%);
     z-index: 11;
     font-weight: 600;
-    color: var(--color-primary);
+    color: var(--color-gold);
     font-size: 1.2rem;
 }
 
@@ -217,11 +222,11 @@ select.realtime-active {
         align-items: stretch;
         text-align: center;
     }
-    
+
     .realtime-toggle {
         margin: 0 auto;
     }
-    
+
     .calculation-status {
         text-align: center;
         justify-content: center;
@@ -232,11 +237,11 @@ select.realtime-active {
     .realtime-indicator {
         padding: 0.75rem;
     }
-    
+
     .indicator-icon {
         font-size: 1.2rem;
     }
-    
+
     .indicator-text {
         font-size: 0.9rem;
     }

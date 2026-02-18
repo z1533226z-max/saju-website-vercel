@@ -248,16 +248,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--color-bg-secondary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-accent);
+  background: var(--color-gold-muted);
   border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #b8935f;
+  background: var(--color-gold);
 }
 
 /* ===================================
@@ -356,22 +356,23 @@ body {
   min-width: 120px;
   max-width: 180px;
   padding: 1.5rem 1rem;
-  background: linear-gradient(135deg, #fff9f5 0%, #fef5ee 100%);
-  border: 2px solid var(--primary-color, var(--color-gold-text));
+  background: var(--color-warm-surface);
+  border: 1px solid var(--color-border);
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-glass);
+  transition: all 0.3s ease;
 }
 
 .pillar:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-warm-hover);
+  border-color: var(--color-gold-muted);
 }
 
 .pillar-title {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--color-text-secondary);
   margin-bottom: 0.5rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -381,17 +382,17 @@ body {
 .heavenly-stem {
   font-size: 2rem;
   font-weight: bold;
-  color: var(--primary-color, var(--color-gold-text));
+  color: var(--color-text-primary);
   margin: 0.5rem 0;
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: var(--font-heading);
 }
 
 .earthly-branch {
   font-size: 2rem;
   font-weight: bold;
-  color: var(--secondary-color, var(--color-accent));
+  color: var(--color-fire);
   margin: 0.5rem 0;
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: var(--font-heading);
 }
 
 /* 전체 화면에서 사주 테이블 레이아웃 */
@@ -441,22 +442,4 @@ body {
   }
 }
 
-/* 다크 모드 대응 */
-@media (prefers-color-scheme: dark) {
-  .pillar {
-    background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
-    border-color: var(--color-accent);
-  }
-  
-  .pillar-title {
-    color: #aaa;
-  }
-  
-  .heavenly-stem {
-    color: #e6c598;
-  }
-  
-  .earthly-branch {
-    color: var(--color-accent);
-  }
-}
+/* Dark-first: CSS variables auto-adapt. No override needed. */

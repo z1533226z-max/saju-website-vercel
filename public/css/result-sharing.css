@@ -1,5 +1,5 @@
 /**
- * Result Sharing Styles
+ * Result Sharing — 墨金 Dark Luxury
  */
 
 /* Share Button */
@@ -8,8 +8,8 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    background: linear-gradient(135deg, #667EEA, #764BA2);
-    color: white;
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-deep));
+    color: var(--color-bg-primary);
     border: none;
     border-radius: 25px;
     font-weight: 600;
@@ -20,7 +20,7 @@
 
 .btn-share-results:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
 }
 
 /* Share Panel */
@@ -30,11 +30,12 @@
     right: -400px;
     width: 400px;
     height: 100vh;
-    background: white;
-    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+    background: var(--color-bg-primary);
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
     z-index: 1000;
     transition: right 0.3s ease;
     overflow-y: auto;
+    border-left: 1px solid var(--color-border);
 }
 
 .share-panel.active {
@@ -46,19 +47,20 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem;
-    background: linear-gradient(135deg, #667EEA, #764BA2);
-    color: white;
+    background: linear-gradient(135deg, var(--color-gold-deep), var(--color-gold));
+    color: var(--color-bg-primary);
 }
 
 .share-header h3 {
     margin: 0;
     font-size: 1.2rem;
+    font-family: var(--font-heading);
 }
 
 .btn-close-share {
     background: none;
     border: none;
-    color: white;
+    color: var(--color-bg-primary);
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0;
@@ -72,7 +74,7 @@
 }
 
 .btn-close-share:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.15);
 }
 
 /* Share Options */
@@ -83,7 +85,7 @@
 .share-option {
     margin-bottom: 2rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid #E5E7EB;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .share-option:last-child {
@@ -92,7 +94,7 @@
 
 .share-option h4 {
     margin: 0 0 1rem 0;
-    color: #374151;
+    color: var(--color-gold);
     font-size: 1rem;
 }
 
@@ -106,27 +108,28 @@
 .share-url-input {
     flex: 1;
     padding: 0.75rem;
-    border: 2px solid #E5E7EB;
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     font-size: 0.9rem;
-    background: #F9FAFB;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
 }
 
 .btn-copy-url {
     padding: 0.75rem 1rem;
-    background: #667EEA;
-    color: white;
+    background: var(--color-gold);
+    color: var(--color-bg-primary);
     border: none;
     border-radius: 8px;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .btn-copy-url:hover {
-    background: #5A67D8;
+    background: var(--color-gold-light);
 }
 
 /* Share Buttons */
@@ -138,9 +141,10 @@
 .share-btn {
     flex: 1;
     padding: 0.75rem;
-    border: 1px solid #E5E7EB;
+    border: 1px solid var(--color-border);
     border-radius: 8px;
-    background: white;
+    background: var(--color-glass-surface);
+    color: var(--color-text-primary);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -152,7 +156,7 @@
 
 .share-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-glass);
 }
 
 .share-btn.kakao {
@@ -179,23 +183,24 @@
 }
 
 #qr-code {
-    border: 2px solid #E5E7EB;
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     margin-bottom: 1rem;
 }
 
 .btn-download-qr {
     padding: 0.75rem 1.5rem;
-    background: #10B981;
-    color: white;
+    background: var(--color-success);
+    color: var(--color-bg-primary);
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    font-weight: 600;
 }
 
 .btn-download-qr:hover {
-    background: #059669;
+    opacity: 0.9;
 }
 
 /* Image Export */
@@ -207,16 +212,17 @@
 .btn-export-image {
     flex: 1;
     padding: 0.75rem;
-    background: #6B7280;
-    color: white;
-    border: none;
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .btn-export-image:hover {
-    background: #4B5563;
+    border-color: var(--color-gold-muted);
+    background: var(--color-bg-secondary);
 }
 
 /* Short URL */
@@ -227,29 +233,31 @@
 
 .btn-create-short {
     padding: 0.75rem 1rem;
-    background: #8B5CF6;
-    color: white;
+    background: var(--color-gold-muted);
+    color: var(--color-text-primary);
     border: none;
     border-radius: 8px;
     cursor: pointer;
     white-space: nowrap;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .btn-create-short:hover {
-    background: #7C3AED;
+    background: var(--color-gold);
+    color: var(--color-bg-primary);
 }
 
 /* Share Footer */
 .share-footer {
     padding: 1rem 1.5rem;
-    background: #F9FAFB;
+    background: var(--color-bg-secondary);
+    border-top: 1px solid var(--color-border);
 }
 
 .share-note {
     margin: 0;
     font-size: 0.85rem;
-    color: #6B7280;
+    color: var(--color-text-muted);
 }
 
 /* Toast Notification */
@@ -258,14 +266,15 @@
     bottom: -100px;
     left: 50%;
     transform: translateX(-50%);
-    background: #374151;
-    color: white;
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-primary);
     padding: 1rem 2rem;
     border-radius: 8px;
     font-weight: 500;
     z-index: 2000;
     transition: bottom 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--color-border);
 }
 
 .share-toast.show {
@@ -278,11 +287,11 @@
         width: 100%;
         right: -100%;
     }
-    
+
     .share-buttons {
         flex-direction: column;
     }
-    
+
     .image-export-options {
         flex-direction: column;
     }
@@ -293,11 +302,11 @@
         padding-bottom: 1rem;
         margin-bottom: 1rem;
     }
-    
+
     .url-share-container {
         flex-direction: column;
     }
-    
+
     .short-url-container {
         flex-direction: column;
     }

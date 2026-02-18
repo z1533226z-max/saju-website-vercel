@@ -15,6 +15,7 @@ window.sajuForm = function() {
         loading: false,
         showResults: false,
         showExtendedFeatures: false,
+        resultTab: 'basic',
         
         // 결과 데이터
         saju: {
@@ -298,7 +299,7 @@ window.sajuForm = function() {
                         data: this.elements.map(e => e.value),
                         backgroundColor: this.elements.map(e => e.color),
                         borderWidth: 2,
-                        borderColor: '#fff'
+                        borderColor: 'rgba(12, 11, 16, 0.8)'
                     }]
                 },
                 options: {
@@ -373,14 +374,14 @@ window.sajuForm = function() {
                         ctx.moveTo(x, topY);
                         ctx.lineTo(x, bottomY);
                         ctx.lineWidth = 2;
-                        ctx.strokeStyle = 'rgba(255, 107, 107, 0.3)';
+                        ctx.strokeStyle = 'rgba(212, 175, 55, 0.4)';
                         ctx.setLineDash([5, 5]);
                         ctx.stroke();
                         ctx.restore();
-                        
+
                         // "현재" 텍스트 표시
                         ctx.save();
-                        ctx.fillStyle = '#FF6B6B';
+                        ctx.fillStyle = '#D4AF37';
                         ctx.font = 'bold 12px sans-serif';
                         ctx.textAlign = 'center';
                         ctx.fillText('현재', x, topY - 5);
@@ -396,8 +397,8 @@ window.sajuForm = function() {
                     datasets: [{
                         label: '운세 지수',
                         data: scores,
-                        borderColor: '#6B66FF',
-                        backgroundColor: 'rgba(107, 102, 255, 0.1)',
+                        borderColor: '#D4AF37',
+                        backgroundColor: 'rgba(212, 175, 55, 0.08)',
                         tension: 0.3,
                         fill: true,
                         pointRadius: function(context) {
@@ -411,12 +412,12 @@ window.sajuForm = function() {
                         pointHoverRadius: 10,
                         pointBackgroundColor: function(context) {
                             const index = context.dataIndex;
-                            if (index === currentYearIndex) return '#FF6B6B'; // 현재 년도는 빨간색
-                            if (index === maxIndex) return '#10B981'; // 최고점은 초록색
-                            if (index === minIndex) return '#F59E0B'; // 최저점은 주황색
-                            return '#6B66FF';
+                            if (index === currentYearIndex) return '#F0D78C'; // 현재 년도 - 밝은 골드
+                            if (index === maxIndex) return '#4ade80'; // 최고점 - 그린
+                            if (index === minIndex) return '#fb923c'; // 최저점 - 오렌지
+                            return '#D4AF37';
                         },
-                        pointBorderColor: '#fff',
+                        pointBorderColor: 'rgba(12, 11, 16, 0.8)',
                         pointBorderWidth: 2,
                         borderWidth: 3
                     }]
@@ -429,13 +430,14 @@ window.sajuForm = function() {
                             min: Math.floor(minScore - padding),
                             max: Math.ceil(maxScore + padding),
                             ticks: {
+                                color: 'rgba(232, 224, 212, 0.6)',
                                 stepSize: Math.ceil((maxScore - minScore + 2*padding) / 10),
                                 callback: function(value) {
                                     return value + '점';
                                 }
                             },
                             grid: {
-                                color: 'rgba(0, 0, 0, 0.05)'
+                                color: 'rgba(212, 175, 55, 0.06)'
                             }
                         },
                         x: {
@@ -443,6 +445,7 @@ window.sajuForm = function() {
                                 display: false
                             },
                             ticks: {
+                                color: 'rgba(232, 224, 212, 0.6)',
                                 maxRotation: 45,
                                 minRotation: 45
                             }
@@ -453,6 +456,7 @@ window.sajuForm = function() {
                             display: true,
                             position: 'top',
                             labels: {
+                                color: 'rgba(232, 224, 212, 0.8)',
                                 font: {
                                     size: 14,
                                     weight: 'bold'

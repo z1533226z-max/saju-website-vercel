@@ -122,11 +122,11 @@
                 
                 // 색상 설정
                 if (value >= 80) {
-                    progress.style.backgroundColor = '#ff6b9d';
+                    progress.style.backgroundColor = '#D4AF37';
                 } else if (value >= 60) {
-                    progress.style.backgroundColor = '#feca57';
+                    progress.style.backgroundColor = '#F0D78C';
                 } else {
-                    progress.style.backgroundColor = '#48dbfb';
+                    progress.style.backgroundColor = '#8B7335';
                 }
             }
         }
