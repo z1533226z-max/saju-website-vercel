@@ -99,7 +99,7 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/palm.css?v=6">
+    <link rel="stylesheet" href="/css/palm.css?v=7">
 
     <!-- Google AdSense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7479840445702290"
@@ -396,25 +396,64 @@
                 </div>
             </div>
 
-            <!-- Additional Features -->
-            <div class="additional-section">
-                <h3 class="section-title gold-text">부가 분석</h3>
+            <!-- AI Deep Analysis Section -->
+            <div class="additional-section" id="aiAnalysisSection" style="display:none;">
+                <h3 class="section-title gold-text">AI 정밀 손금 분석</h3>
+                <p class="section-subtitle" style="text-align:center; color: var(--color-text-muted); margin-bottom: 1.5rem;">Gemini AI가 분석한 상세 해석입니다</p>
                 <div class="additional-grid">
-                    <div class="additional-card" id="mountCard">
-                        <div class="additional-icon">🏔️</div>
-                        <h4>손바닥 구(丘)</h4>
-                        <p id="mountText">목성구, 토성구, 태양구, 수성구, 금성구, 달의 구 등 손바닥의 볼록한 부분이 나타내는 의미를 분석합니다.</p>
+                    <div class="additional-card" id="aiOverallCard">
+                        <div class="additional-icon">🔮</div>
+                        <h4>종합 해석</h4>
+                        <p id="aiOverallText"></p>
                     </div>
-                    <div class="additional-card" id="fingerCard">
-                        <div class="additional-icon">✋</div>
-                        <h4>손가락 비율</h4>
-                        <p id="fingerText">각 손가락의 길이와 비율이 성격과 재능에 미치는 영향을 해석합니다.</p>
+                    <div class="additional-card" id="aiPersonalityCard">
+                        <div class="additional-icon">🧠</div>
+                        <h4>성격 분석</h4>
+                        <p id="aiPersonalityText"></p>
                     </div>
-                    <div class="additional-card" id="specialCard">
-                        <div class="additional-icon">✨</div>
-                        <h4>특수 문양</h4>
-                        <p id="specialText">별, 삼각형, 사각형, 십자가, 섬 등의 특수 문양이 갖는 의미를 분석합니다.</p>
+                    <div class="additional-card" id="aiLoveCard">
+                        <div class="additional-icon">💕</div>
+                        <h4>연애운</h4>
+                        <p id="aiLoveText"></p>
                     </div>
+                    <div class="additional-card" id="aiCareerCard">
+                        <div class="additional-icon">💼</div>
+                        <h4>직업운 / 재물운</h4>
+                        <p id="aiCareerText"></p>
+                    </div>
+                    <div class="additional-card" id="aiHealthCard">
+                        <div class="additional-icon">🏥</div>
+                        <h4>건강운</h4>
+                        <p id="aiHealthText"></p>
+                    </div>
+                    <div class="additional-card" id="aiAdviceCard">
+                        <div class="additional-icon">💡</div>
+                        <h4>오늘의 조언</h4>
+                        <p id="aiAdviceText"></p>
+                    </div>
+                </div>
+                <div class="ai-remaining" id="aiRemaining" style="text-align:center; margin-top:1rem; color: var(--color-text-muted); font-size: 0.85rem;"></div>
+            </div>
+
+            <!-- AI Loading Indicator (shown during API call) -->
+            <div class="additional-section" id="aiLoadingSection" style="display:none;">
+                <div style="text-align:center; padding: 2rem;">
+                    <div class="loading-orb" style="margin: 0 auto 1rem;">
+                        <div class="orb-ring"></div>
+                        <div class="orb-ring delay-1"></div>
+                        <div class="orb-core">🤖</div>
+                    </div>
+                    <h4 style="color: var(--color-gold);">AI가 손금을 정밀 분석하고 있습니다...</h4>
+                    <p style="color: var(--color-text-muted); font-size: 0.9rem;">Gemini AI가 사진을 직접 분석하여 상세한 해석을 제공합니다</p>
+                </div>
+            </div>
+
+            <!-- AI Error (rate limit) -->
+            <div class="additional-section" id="aiErrorSection" style="display:none;">
+                <div style="text-align:center; padding: 2rem;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">⏰</div>
+                    <h4 id="aiErrorTitle" style="color: var(--color-gold);">오늘의 AI 분석 횟수를 모두 사용했습니다</h4>
+                    <p id="aiErrorText" style="color: var(--color-text-muted); font-size: 0.9rem;">내일 다시 이용해주세요. 위의 기본 분석 결과는 계속 확인하실 수 있습니다.</p>
                 </div>
             </div>
 
@@ -812,9 +851,136 @@
         showSection('results');
         await drawAnimatedOverlay(palmLines);
         animateResults();
+
+        // Gemini AI 정밀 분석 (비동기 - 기본 결과 표시 후 추가)
+        callGeminiAnalysis();
     }
 
     function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    // ===== Gemini AI Analysis =====
+    const AI_DAILY_LIMIT = 5;
+    const AI_STORAGE_KEY = 'palm_ai_usage';
+
+    function getAiUsageToday() {
+        try {
+            const data = JSON.parse(localStorage.getItem(AI_STORAGE_KEY) || '{}');
+            const today = new Date().toISOString().slice(0, 10);
+            if (data.date !== today) return 0;
+            return data.count || 0;
+        } catch { return 0; }
+    }
+
+    function incrementAiUsage() {
+        const today = new Date().toISOString().slice(0, 10);
+        const data = JSON.parse(localStorage.getItem(AI_STORAGE_KEY) || '{}');
+        if (data.date !== today) {
+            localStorage.setItem(AI_STORAGE_KEY, JSON.stringify({ date: today, count: 1 }));
+        } else {
+            data.count = (data.count || 0) + 1;
+            localStorage.setItem(AI_STORAGE_KEY, JSON.stringify(data));
+        }
+    }
+
+    async function callGeminiAnalysis() {
+        const aiAnalysisSection = document.getElementById('aiAnalysisSection');
+        const aiLoadingSection = document.getElementById('aiLoadingSection');
+        const aiErrorSection = document.getElementById('aiErrorSection');
+
+        // 클라이언트 사이드 사용량 체크
+        if (getAiUsageToday() >= AI_DAILY_LIMIT) {
+            aiLoadingSection.style.display = 'none';
+            aiAnalysisSection.style.display = 'none';
+            aiErrorSection.style.display = 'block';
+            return;
+        }
+
+        // 로딩 표시
+        aiLoadingSection.style.display = 'block';
+        aiAnalysisSection.style.display = 'none';
+        aiErrorSection.style.display = 'none';
+
+        try {
+            const response = await fetch('/api/palm/analyze', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image: currentImageData })
+            });
+
+            const data = await response.json();
+
+            if (response.status === 429) {
+                // 서버 사이드 제한
+                aiLoadingSection.style.display = 'none';
+                document.getElementById('aiErrorTitle').textContent = data.message || '오늘의 AI 분석 횟수를 모두 사용했습니다';
+                aiErrorSection.style.display = 'block';
+                return;
+            }
+
+            if (response.status === 503) {
+                aiLoadingSection.style.display = 'none';
+                document.getElementById('aiErrorTitle').textContent = '분석 요청이 많습니다';
+                document.getElementById('aiErrorText').textContent = data.message || '잠시 후 다시 시도해주세요.';
+                aiErrorSection.style.display = 'block';
+                return;
+            }
+
+            if (!response.ok) throw new Error(data.error || 'API error');
+
+            // 성공 - 사용량 증가
+            incrementAiUsage();
+
+            // 결과 표시
+            displayAiResults(data);
+
+        } catch (err) {
+            console.error('[AI] Gemini API error:', err);
+            aiLoadingSection.style.display = 'none';
+            document.getElementById('aiErrorTitle').textContent = 'AI 분석을 불러올 수 없습니다';
+            document.getElementById('aiErrorText').textContent = '네트워크 오류가 발생했습니다. 기본 분석 결과를 참고해주세요.';
+            aiErrorSection.style.display = 'block';
+        }
+    }
+
+    function displayAiResults(data) {
+        document.getElementById('aiLoadingSection').style.display = 'none';
+        document.getElementById('aiErrorSection').style.display = 'none';
+
+        // AI 결과 채우기
+        document.getElementById('aiOverallText').textContent = data.overall || '';
+        document.getElementById('aiPersonalityText').textContent = data.personality || '';
+        document.getElementById('aiLoveText').textContent = data.love || '';
+        document.getElementById('aiCareerText').textContent = data.career || '';
+        document.getElementById('aiHealthText').textContent = data.health || '';
+        document.getElementById('aiAdviceText').textContent = data.advice || '';
+
+        // 각 선별 AI 분석을 기존 카드의 상세 해설에도 반영
+        if (data.lines) {
+            const lineMap = {
+                heart_line: 'heart',
+                head_line: 'head',
+                life_line: 'life',
+                fate_line: 'fate'
+            };
+            for (const [apiKey, domKey] of Object.entries(lineMap)) {
+                const lineData = data.lines[apiKey];
+                if (lineData) {
+                    const extraEl = document.getElementById(domKey + 'ExtraContent');
+                    if (extraEl) extraEl.innerHTML = '<p style="color:var(--color-gold);font-size:0.8rem;margin-bottom:0.3rem;">AI 분석</p>' + lineData.description;
+                }
+            }
+        }
+
+        // 남은 횟수 표시
+        const remaining = data.remaining !== undefined ? data.remaining : (AI_DAILY_LIMIT - getAiUsageToday());
+        document.getElementById('aiRemaining').textContent = `오늘 남은 AI 분석 횟수: ${remaining}회 / ${AI_DAILY_LIMIT}회`;
+
+        // 표시
+        document.getElementById('aiAnalysisSection').style.display = 'block';
+
+        // 부드러운 스크롤
+        document.getElementById('aiAnalysisSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
 
     // ===== Compute Palm Lines from Landmarks =====
     function lerp(p1, p2, t) {

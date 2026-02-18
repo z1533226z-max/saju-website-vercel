@@ -20,6 +20,11 @@
       "headers": { "Cache-Control": "public, max-age=86400, s-maxage=86400" }
     },
     {
+      "src": "/api/palm/analyze",
+      "dest": "/api/palm/analyze.py",
+      "methods": ["POST", "OPTIONS"]
+    },
+    {
       "src": "/css/(.*)",
       "dest": "/public/css/$1",
       "headers": { "Cache-Control": "public, max-age=3600, s-maxage=86400" }
