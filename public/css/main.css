@@ -328,6 +328,24 @@ p {
   width: 100%;
 }
 
+/* 로또킹 네비 링크 — 코랄 강조 */
+.main-nav .lotto-nav-link {
+  color: #D36135 !important;
+  animation: lotto-nav-pulse 2.5s ease-in-out infinite;
+}
+.main-nav .lotto-nav-link:hover {
+  background: rgba(211, 97, 53, 0.15) !important;
+  border-color: rgba(211, 97, 53, 0.5) !important;
+  box-shadow: 0 0 12px rgba(211, 97, 53, 0.3);
+}
+.main-nav .lotto-nav-link::after {
+  display: none;
+}
+@keyframes lotto-nav-pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(211, 97, 53, 0); }
+  50% { box-shadow: 0 0 10px rgba(211, 97, 53, 0.2); }
+}
+
 /* ===================================
    Hero Section
    =================================== */
