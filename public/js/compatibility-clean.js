@@ -187,10 +187,14 @@
             button.addEventListener('click', () => {
                 const targetTab = button.dataset.tab;
                 
-                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-selected', 'false');
+                });
                 tabContents.forEach(content => content.classList.remove('active'));
-                
+
                 button.classList.add('active');
+                button.setAttribute('aria-selected', 'true');
                 const targetContent = document.getElementById(`tab-${targetTab}`);
                 if (targetContent) {
                     targetContent.classList.add('active');

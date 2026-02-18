@@ -94,6 +94,12 @@ textarea,
 select {
   background: none;
   border: none;
+}
+
+/* Remove outline only on non-keyboard focus (preserve :focus-visible) */
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible),
+select:focus:not(:focus-visible) {
   outline: none;
 }
 

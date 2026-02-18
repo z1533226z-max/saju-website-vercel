@@ -252,7 +252,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4a574;
+  background: var(--color-accent);
   border-radius: 6px;
 }
 
@@ -357,7 +357,7 @@ body {
   max-width: 180px;
   padding: 1.5rem 1rem;
   background: linear-gradient(135deg, #fff9f5 0%, #fef5ee 100%);
-  border: 2px solid var(--primary-color, #8b4513);
+  border: 2px solid var(--primary-color, var(--color-gold-text));
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -381,7 +381,7 @@ body {
 .heavenly-stem {
   font-size: 2rem;
   font-weight: bold;
-  color: var(--primary-color, #8b4513);
+  color: var(--primary-color, var(--color-gold-text));
   margin: 0.5rem 0;
   font-family: 'Nanum Myeongjo', serif;
 }
@@ -389,7 +389,7 @@ body {
 .earthly-branch {
   font-size: 2rem;
   font-weight: bold;
-  color: var(--secondary-color, #d4a574);
+  color: var(--secondary-color, var(--color-accent));
   margin: 0.5rem 0;
   font-family: 'Nanum Myeongjo', serif;
 }
@@ -445,7 +445,7 @@ body {
 @media (prefers-color-scheme: dark) {
   .pillar {
     background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
-    border-color: #d4a574;
+    border-color: var(--color-accent);
   }
   
   .pillar-title {
@@ -457,6 +457,6 @@ body {
   }
   
   .earthly-branch {
-    color: #d4a574;
+    color: var(--color-accent);
   }
 }

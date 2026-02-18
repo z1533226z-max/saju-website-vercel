@@ -61,7 +61,13 @@ p {
   top: 0;
   z-index: var(--z-50);
   backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(247, 244, 239, 0.95);
+}
+
+@media (prefers-color-scheme: dark) {
+  #site-header {
+    background: rgba(22, 18, 16, 0.95);
+  }
 }
 
 .header-container {
@@ -311,12 +317,12 @@ p {
 
 #hero-section {
   position: relative;
-  min-height: 70vh;
+  min-height: 75vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
+  background: linear-gradient(160deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 40%, #E8DFD0 100%);
 }
 
 .hero-background {
@@ -357,17 +363,20 @@ p {
   font-size: var(--text-5xl);
   font-weight: var(--font-bold);
   margin-bottom: var(--spacing-md);
-  background: linear-gradient(135deg, var(--color-wood) 0%, var(--color-fire) 100%);
+  background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  letter-spacing: var(--letter-spacing-wide);
 }
 
 .subtitle {
   display: block;
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   color: var(--color-text-secondary);
-  font-weight: var(--font-normal);
+  font-weight: var(--font-light);
+  letter-spacing: var(--letter-spacing-wider);
+  margin-top: var(--spacing-sm);
 }
 
 .hero-decoration {
@@ -376,14 +385,15 @@ p {
 
 /* Optimized Luopan Compass */
 .bagua-compass {
-  width: 320px;
-  height: 320px;
+  width: 240px;
+  height: 240px;
   margin: 0 auto;
   position: relative;
   animation: rotate-slow 90s linear infinite;
-  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
   will-change: transform;
   transform: translateZ(0); /* GPU acceleration */
+  opacity: 0.85;
 }
 
 /* Optimized Outer Ring */
@@ -702,24 +712,24 @@ p {
   50% { transform: translateX(100%); }
 }
 
-/* Taiji rotation with mystical effect */
+/* Taiji rotation */
 @keyframes rotate-taiji {
-  from { 
+  from {
     transform: rotate(0deg);
-    filter: brightness(1) contrast(1);
+    opacity: 1;
   }
   25% {
-    filter: brightness(1.1) contrast(1.05);
+    opacity: 0.95;
   }
   50% {
-    filter: brightness(1.2) contrast(1.1);
+    opacity: 0.9;
   }
   75% {
-    filter: brightness(1.1) contrast(1.05);
+    opacity: 0.95;
   }
-  to { 
+  to {
     transform: rotate(360deg);
-    filter: brightness(1) contrast(1);
+    opacity: 1;
   }
 }
 
@@ -729,20 +739,21 @@ p {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
-  padding: var(--button-padding-y) var(--button-padding-x);
+  padding: var(--spacing-md) var(--spacing-2xl);
   background: var(--color-accent);
   color: var(--color-text-inverse);
-  border-radius: var(--button-radius);
+  border-radius: var(--radius-full);
   font-size: var(--text-lg);
-  font-weight: var(--font-medium);
-  transition: all var(--duration-normal) var(--ease-in-out);
-  box-shadow: var(--shadow-md);
+  font-weight: var(--font-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  transition: background-color var(--duration-normal) var(--ease-in-out), transform var(--duration-normal) var(--ease-in-out), box-shadow var(--duration-normal) var(--ease-in-out);
+  box-shadow: 0 4px 16px rgba(200, 150, 62, 0.3);
 }
 
 .cta-button:hover {
   background: var(--color-accent-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(200, 150, 62, 0.4);
 }
 
 .arrow-icon {
@@ -785,4 +796,235 @@ select:focus-visible,
 input:focus-visible {
   outline: 3px solid var(--color-accent, #d4a574);
   outline-offset: 2px;
+}
+
+/* Mobile touch target minimum size */
+@media (max-width: 768px) {
+  button,
+  .tab-button,
+  .radio-card,
+  .gender-card,
+  .share-btn,
+  .submit-button,
+  a.learn-more {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .main-nav a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* ===================================
+   Web Interface Guidelines Compliance
+   =================================== */
+
+/* color-scheme declaration for dark mode */
+:root {
+  color-scheme: light dark;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-accent, #d4a574);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0 0 8px 8px;
+  z-index: 10000;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* touch-action: manipulation on interactive elements */
+button,
+a,
+input,
+select,
+textarea,
+[role="button"],
+.radio-card,
+.gender-card,
+.tab-button,
+.time-grid button,
+.learn-more-btn {
+  touch-action: manipulation;
+}
+
+/* -webkit-tap-highlight-color */
+button,
+a,
+input,
+select,
+[role="button"] {
+  -webkit-tap-highlight-color: rgba(212, 165, 116, 0.2);
+}
+
+/* text-wrap: balance on headings */
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+/* font-variant-numeric: tabular-nums for numeric displays */
+.score-value,
+.detail-score,
+.legend-value,
+.stat-value,
+.progress {
+  font-variant-numeric: tabular-nums;
+}
+
+/* scroll-margin-top for sections (sticky header height ~60px) */
+#input-section,
+#results-section,
+#additional-features,
+#additional-section {
+  scroll-margin-top: 70px;
+}
+
+/* Shinshal section styles (replacing inline styles) */
+.shinshal-heading-auspicious {
+  color: #2563eb;
+  margin-top: 1rem;
+}
+.shinshal-heading-inauspicious {
+  color: #dc2626;
+  margin-top: 1rem;
+}
+.shinshal-item.auspicious strong {
+  color: #1e40af;
+}
+.shinshal-item.inauspicious strong {
+  color: #991b1b;
+}
+.shinshal-location {
+  color: #555;
+}
+.shinshal-item p {
+  color: #333;
+}
+
+/* Yongshin section styles (replacing inline styles) */
+.yongshin-strength {
+  margin-bottom: 1rem;
+}
+.yongshin-detail {
+  color: #e0d5c0;
+}
+.useful-gods li {
+  color: #166534;
+  font-size: 1.1em;
+}
+.harmful-gods li {
+  color: #991b1b;
+  font-size: 1.1em;
+}
+
+/* Additional features button container */
+.additional-features-btn {
+  text-align: center;
+  margin-top: 2rem;
+}
+.features-hint {
+  margin-top: 0.5rem;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+/* Toggle button inside h3 (disclosure pattern) */
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+  text-align: left;
+}
+
+/* Learn-more button (replacing <a href="#">) */
+.learn-more-btn {
+  display: inline;
+  background: none;
+  border: none;
+  color: var(--color-accent, #d4a574);
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0;
+  text-decoration: none;
+}
+.learn-more-btn:hover {
+  text-decoration: underline;
+}
+
+/* Dark mode overrides for shinshal/yongshin */
+@media (prefers-color-scheme: dark) {
+  .shinshal-heading-auspicious { color: #60a5fa; }
+  .shinshal-heading-inauspicious { color: #f87171; }
+  .shinshal-item.auspicious strong { color: #93c5fd; }
+  .shinshal-item.inauspicious strong { color: #fca5a5; }
+  .shinshal-location { color: #aaa; }
+  .shinshal-item p { color: #ccc; }
+  .yongshin-detail { color: #e0d5c0; }
+  .useful-gods li { color: #4ade80; }
+  .harmful-gods li { color: #fca5a5; }
+  .features-hint { color: #9ca3af; }
+
+  /* 다크모드 히어로 그라디언트 */
+  #hero-section {
+    background: linear-gradient(160deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 40%, #2F2820 100%);
+  }
+
+  .brush-stroke {
+    background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
+
+/* ===================================
+   미세 인터랙션 애니메이션
+   =================================== */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 결과 영역 카드 stagger 등장 */
+.interpretation-card {
+  animation: fadeInUp 0.5s ease both;
+}
+.interpretation-card:nth-child(2) { animation-delay: 0.1s; }
+.interpretation-card:nth-child(3) { animation-delay: 0.2s; }
+.interpretation-card:nth-child(4) { animation-delay: 0.3s; }
+
+/* 사주 기둥 순차 등장 */
+.pillar {
+  animation: fadeInUp 0.4s ease both;
+}
+.pillar:nth-child(2) { animation-delay: 0.1s; }
+.pillar:nth-child(3) { animation-delay: 0.2s; }
+.pillar:nth-child(4) { animation-delay: 0.3s; }
+
+/* reduced motion 존중 */
+@media (prefers-reduced-motion: reduce) {
+  .interpretation-card, .pillar {
+    animation: none;
+  }
 }

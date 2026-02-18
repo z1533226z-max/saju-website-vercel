@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function initializeApp() {
     // Load configuration
-    console.log('Saju Website v' + APP_CONFIG.APP.VERSION);
+    // Version info available via APP_CONFIG.APP.VERSION
     
     // Initialize Google Analytics
     if (APP_CONFIG.FEATURES.ENABLE_ANALYTICS) {
@@ -131,9 +131,9 @@ function loadSavedFormData() {
         try {
             const data = JSON.parse(savedData);
             // Data will be loaded by Alpine.js component
-            console.log('Form data loaded from localStorage');
+            // Form data loaded from localStorage
         } catch (error) {
-            console.error('Error loading saved form data:', error);
+            // Silently ignore corrupted localStorage data
         }
     }
 }
@@ -151,76 +151,8 @@ function scrollToInput() {
     }
 }
 
-/**
- * Share via Kakao
- */
-function shareKakao() {
-    if (!window.Kakao || !Kakao.isInitialized()) {
-        alert('카카오 SDK가 초기화되지 않았습니다.');
-        return;
-    }
-    
-    Kakao.Share.sendDefault({
-        objectType: 'feed',
-        content: {
-            title: APP_CONFIG.APP.NAME + ' - 사주팔자 운세',
-            description: APP_CONFIG.APP.DESCRIPTION,
-            imageUrl: window.location.origin + '/assets/images/og-image.jpg',
-            link: {
-                mobileWebUrl: window.location.href,
-                webUrl: window.location.href,
-            },
-        },
-        buttons: [
-            {
-                title: '지금 확인하기',
-                link: {
-                    mobileWebUrl: window.location.href,
-                    webUrl: window.location.href,
-                },
-            },
-        ],
-    });
-}
-
-/**
- * Copy link to clipboard
- */
-function copyLink() {
-    const url = window.location.href;
-    
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(url).then(() => {
-            showToast('링크가 복사되었습니다!');
-        }).catch(() => {
-            fallbackCopyLink(url);
-        });
-    } else {
-        fallbackCopyLink(url);
-    }
-}
-
-/**
- * Fallback copy link method
- */
-function fallbackCopyLink(text) {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    textArea.style.position = 'fixed';
-    textArea.style.left = '-999999px';
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-    
-    try {
-        document.execCommand('copy');
-        showToast('링크가 복사되었습니다!');
-    } catch (err) {
-        showToast('링크 복사에 실패했습니다.');
-    }
-    
-    document.body.removeChild(textArea);
-}
+// shareKakao() and copyLink() are defined in index.html inline script
+// with enhanced features (Web Share API fallback, button state change)
 
 /**
  * Show toast notification
@@ -354,8 +286,6 @@ document.head.appendChild(style);
 
 // Export functions for global use
 window.scrollToInput = scrollToInput;
-window.shareKakao = shareKakao;
-window.copyLink = copyLink;
 window.showToast = showToast;
 window.formatDate = formatDate;
 window.getTimePeriodName = getTimePeriodName;

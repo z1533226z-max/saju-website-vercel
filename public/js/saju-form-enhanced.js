@@ -144,7 +144,11 @@ window.sajuForm = function() {
             }
             
             this.loading = true;
-            
+
+            // Disable submit button during API flight
+            var submitBtn = document.querySelector('.submit-button');
+            if (submitBtn) submitBtn.disabled = true;
+
             try {
                 // API 호출 데이터 준비
                 const formData = {
@@ -211,6 +215,9 @@ window.sajuForm = function() {
                 }
             } finally {
                 this.loading = false;
+                // Re-enable submit button
+                var submitBtn = document.querySelector('.submit-button');
+                if (submitBtn) submitBtn.disabled = false;
             }
         },
         

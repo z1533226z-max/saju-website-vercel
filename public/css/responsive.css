@@ -163,8 +163,8 @@
   
   /* Luopan Compass - Mobile */
   .bagua-compass {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
   }
   
   .mountain {
@@ -204,7 +204,9 @@
   
   .cta-button {
     font-size: var(--text-base);
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-xl);
+    min-height: 44px;
+    border-radius: var(--radius-full);
   }
   
   /* Section containers */
@@ -240,7 +242,8 @@
   }
   
   .time-grid button {
-    padding: var(--spacing-xs);
+    padding: var(--spacing-sm);
+    min-height: 44px;
   }
   
   .hour-name {
@@ -341,17 +344,17 @@
   .ink-wash-pattern {
     opacity: 0.3;
   }
-  
+
   .hero-background {
-    background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
+    background: linear-gradient(135deg, #161210 0%, #231E18 100%);
   }
-  
+
   .ad-container {
-    background: #2A2A2A;
-    border-color: #404040;
+    background: #231E18;
+    border-color: #3D3529;
   }
-  
+
   .ad-container::before {
-    color: #808080;
+    color: #7A6E60;
   }
 }

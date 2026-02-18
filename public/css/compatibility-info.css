@@ -1,7 +1,7 @@
 /* 궁합 정보 섹션 스타일 */
 .compatibility-info-section {
     padding: 4rem 2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
     color: white;
 }
 
@@ -97,7 +97,7 @@
     width: 100%;
     margin-top: 1rem;
     padding: 0.75rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
     color: white;
     border: none;
     border-radius: 8px;
@@ -264,8 +264,8 @@
 
 /* 기본 테마 */
 .advice-item.theme-default {
-    border-left-color: #667eea;
-    background: linear-gradient(135deg, #f0f2ff 0%, #fff 100%);
+    border-left-color: var(--color-accent);
+    background: linear-gradient(135deg, var(--color-warm-highlight) 0%, #fff 100%);
 }
 
 /* 궁합 메시지 컨테이너 스타일 개선 */
@@ -294,4 +294,62 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* 궁합 결과 인라인 스타일 대체 */
+.compat-summary-box {
+    background: #fff3e0;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.compat-persons {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.compat-person-info {
+    font-size: 0.9em;
+}
+
+.compat-heart-icon {
+    font-size: 2em;
+}
+
+.compatibility-level {
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 10px;
+    color: #d4145a;
+}
+
+.detail-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-score {
+    font-weight: bold;
+    color: #d4145a;
+}
+
+.compatibility-advice {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.compatibility-advice p {
+    line-height: 1.8;
+    margin: 0;
+}
+
+.compat-extra-details {
+    margin-top: 15px;
+    padding: 15px;
+    border-top: 1px solid #eee;
 }

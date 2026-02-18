@@ -1,44 +1,59 @@
-/* 사주 명식 개선 스타일 - 수정 버전 */
+/* 사주 명식 개선 스타일 - 리디자인 */
 .saju-table {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     margin: 2rem auto;
     max-width: 800px;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-warm-surface) 100%);
     padding: 2rem;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-warm-md);
 }
 
 .pillar {
-    background: white;
+    background: var(--color-warm-surface);
     border-radius: 12px;
     padding: 1.5rem;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-warm);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    overflow: visible; /* 변경: hidden -> visible */
-    min-height: 280px; /* 최소 높이 추가 */
+    overflow: visible;
+    min-height: 280px;
+    border: 1px solid var(--color-border-light);
 }
 
 .pillar:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-warm-hover);
 }
 
+/* 일주 - 골드 강조 (보라색 제거) */
 .day-pillar {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: var(--color-warm-surface);
+    border: 2px solid var(--color-accent);
+    box-shadow: 0 0 0 4px var(--color-warm-highlight), var(--shadow-warm-md);
 }
 
-.day-pillar .pillar-title,
+.day-pillar .pillar-title {
+    color: var(--color-accent) !important;
+    font-weight: bold;
+}
+
 .day-pillar .stem-korean,
-.day-pillar .branch-korean,
-.day-pillar .stem-element,
+.day-pillar .branch-korean {
+    color: var(--color-text-secondary) !important;
+}
+
+.day-pillar .stem-element {
+    background: var(--color-warm-highlight) !important;
+    color: var(--color-accent) !important;
+}
+
 .day-pillar .branch-animal {
-    color: white !important;
+    color: var(--color-accent) !important;
 }
 
 .pillar-title {
@@ -49,7 +64,8 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    position: relative; /* 툴팁을 위한 relative 위치 */
+    position: relative;
+    color: var(--color-text-primary);
 }
 
 .pillar-info {
@@ -58,32 +74,32 @@
     justify-content: center;
     width: 20px;
     height: 20px;
-    background: rgba(107, 102, 255, 0.2);
-    color: #6B66FF;
+    background: var(--color-warm-highlight);
+    color: var(--color-accent);
     border-radius: 50%;
     font-size: 0.75rem;
     cursor: help;
-    position: relative; /* 툴팁 기준점 */
+    position: relative;
 }
 
 .day-pillar .pillar-info {
-    background: rgba(255, 255, 255, 0.3);
-    color: white;
+    background: rgba(200, 150, 62, 0.2);
+    color: var(--color-accent);
 }
 
-/* 천간 스타일 */
+/* 천간 스타일 - 유령 폰트 수정 */
 .heavenly-stem {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #2c3e50;
+    color: var(--color-text-primary);
     margin: 0.25rem 0;
-    font-family: 'Noto Serif KR', serif;
+    font-family: var(--font-heading);
     line-height: 1.2;
 }
 
 .stem-korean {
     font-size: 0.9rem;
-    color: #7f8c8d;
+    color: var(--color-text-secondary);
     margin: 0.25rem 0;
     font-weight: 500;
     line-height: 1.3;
@@ -93,27 +109,27 @@
     display: inline-block;
     font-size: 0.85rem;
     padding: 0.25rem 0.75rem;
-    background: rgba(107, 102, 255, 0.1);
-    color: #6B66FF;
+    background: var(--color-warm-highlight);
+    color: var(--color-accent);
     border-radius: 20px;
     margin: 0.25rem 0;
     font-weight: 500;
     line-height: 1.3;
 }
 
-/* 지지 스타일 */
+/* 지지 스타일 - 유령 폰트 수정 */
 .earthly-branch {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #c0392b;
+    color: var(--color-fire);
     margin: 0.25rem 0;
-    font-family: 'Noto Serif KR', serif;
+    font-family: var(--font-heading);
     line-height: 1.2;
 }
 
 .branch-korean {
     font-size: 0.9rem;
-    color: #7f8c8d;
+    color: var(--color-text-secondary);
     margin: 0.25rem 0;
     font-weight: 500;
     line-height: 1.3;
@@ -123,27 +139,27 @@
     display: inline-block;
     font-size: 0.85rem;
     padding: 0.25rem 0.75rem;
-    background: rgba(231, 76, 60, 0.1);
-    color: #e74c3c;
+    background: rgba(194, 85, 74, 0.1);
+    color: var(--color-fire);
     border-radius: 20px;
     margin: 0.25rem 0;
     font-weight: 500;
     line-height: 1.3;
 }
 
-/* 모바일 반응형 */
+/* 모바일 반응형 - 항상 2x2 유지 */
 @media (max-width: 768px) {
     .saju-table {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
         padding: 1rem;
     }
-    
+
     .pillar {
         padding: 1rem;
         min-height: 250px;
     }
-    
+
     .heavenly-stem,
     .earthly-branch {
         font-size: 2rem;
@@ -152,7 +168,19 @@
 
 @media (max-width: 480px) {
     .saju-table {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        padding: 0.75rem;
+    }
+
+    .pillar {
+        min-height: 220px;
+        padding: 0.75rem;
+    }
+
+    .heavenly-stem,
+    .earthly-branch {
+        font-size: 1.75rem;
     }
 }
 
@@ -164,7 +192,7 @@
 .pillar-info[title]:hover::after {
     content: attr(title);
     position: absolute;
-    bottom: calc(100% + 10px); /* 위로 더 띄움 */
+    bottom: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%);
     padding: 0.75rem 1rem;
@@ -173,10 +201,10 @@
     font-size: 0.8rem;
     line-height: 1.4;
     border-radius: 8px;
-    white-space: normal; /* 줄바꿈 허용 */
-    width: 250px; /* 고정 너비 */
+    white-space: normal;
+    width: 250px;
     max-width: 250px;
-    z-index: 10000; /* z-index 높임 */
+    z-index: 10000;
     pointer-events: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
@@ -195,7 +223,6 @@
     z-index: 10001;
 }
 
-/* 첫 번째와 마지막 기둥의 툴팁 위치 조정 */
 .pillar:first-child .pillar-info[title]:hover::after {
     left: 0;
     transform: translateX(0);
@@ -207,23 +234,24 @@
     transform: translateX(0);
 }
 
-/* 한자 설명 박스 */
+/* 한자 설명 박스 - 보라색 → 골드 */
 .saju-explanation {
-    background: #f8f9fa;
-    border-left: 4px solid #6B66FF;
+    background: var(--color-warm-surface);
+    border-left: 4px solid var(--color-accent);
     padding: 1rem 1.5rem;
     margin: 2rem 0;
     border-radius: 8px;
 }
 
 .saju-explanation h4 {
-    color: #2c3e50;
+    color: var(--color-text-primary);
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
+    font-family: var(--font-heading);
 }
 
 .saju-explanation p {
-    color: #5a6c7d;
+    color: var(--color-text-secondary);
     line-height: 1.6;
     margin: 0.5rem 0;
 }
@@ -237,42 +265,42 @@
 
 .explanation-item {
     padding: 0.75rem;
-    background: white;
+    background: var(--color-bg-primary);
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-warm);
 }
 
 .explanation-item strong {
-    color: #6B66FF;
+    color: var(--color-accent);
     display: block;
     margin-bottom: 0.25rem;
 }
 
 .explanation-item span {
-    color: #5a6c7d;
+    color: var(--color-text-secondary);
     font-size: 0.9rem;
 }
 
-/* 가이드 버튼 스타일 */
+/* 가이드 버튼 - 보라색 → 골드 */
 .guide-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     margin-left: 1rem;
     padding: 0.5rem 1rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
     color: white;
     border: none;
     border-radius: 25px;
     font-size: 0.9rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(107, 102, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(200, 150, 62, 0.3);
 }
 
 .guide-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(107, 102, 255, 0.4);
+    box-shadow: 0 6px 20px rgba(200, 150, 62, 0.4);
 }
 
 .guide-btn span {
@@ -288,25 +316,27 @@
     gap: 1rem;
 }
 
-/* 연도별 운세 차트 컨테이너 수정 */
+/* 연도별 운세 차트 컨테이너 */
 #fortune-timeline-section {
     margin-top: 2rem;
     padding: 2rem;
-    background: white;
+    background: var(--color-warm-surface);
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-warm);
+    border: 1px solid var(--color-border-light);
 }
 
 #fortune-timeline-section h3 {
-    color: #2c3e50;
+    color: var(--color-text-primary);
     margin-bottom: 1.5rem;
     font-size: 1.3rem;
     text-align: center;
+    font-family: var(--font-heading);
 }
 
 .chart-container {
     position: relative;
-    height: 300px; /* 고정 높이 */
+    height: 300px;
     width: 100%;
     margin: 1.5rem 0;
 }
@@ -316,7 +346,7 @@
     height: 100%;
 }
 
-/* 운세 타임라인 년도 표시 */
+/* 운세 타임라인 년도 표시 - 보라색 → 골드 */
 .fortune-years {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -326,21 +356,21 @@
 
 .fortune-year-item {
     padding: 1rem;
-    background: #f8f9fa;
+    background: var(--color-warm-surface);
     border-radius: 8px;
     text-align: center;
-    border-left: 3px solid #6B66FF;
+    border-left: 3px solid var(--color-accent);
 }
 
 .fortune-year-item .year {
     font-weight: bold;
-    color: #2c3e50;
+    color: var(--color-text-primary);
     margin-bottom: 0.5rem;
 }
 
 .fortune-year-item .fortune-score {
     font-size: 1.2rem;
-    color: #6B66FF;
+    color: var(--color-accent);
 }
 
 @media (max-width: 768px) {
@@ -350,19 +380,21 @@
         font-size: 0.85rem;
         padding: 0.4rem 0.8rem;
     }
-    
+
     .section-title {
         flex-direction: column;
     }
-    
+
     .chart-container {
         height: 250px;
     }
-}/* 운세 타임라인 추가 스타일 */
+}
+
+/* 운세 타임라인 추가 스타일 */
 .fortune-summary {
     margin-top: 1.5rem;
     padding: 1rem;
-    background: #f8f9fa;
+    background: var(--color-warm-surface);
     border-radius: 8px;
 }
 
@@ -374,26 +406,26 @@
 
 .stat-item {
     padding: 1rem;
-    background: white;
+    background: var(--color-bg-primary);
     border-radius: 8px;
     text-align: center;
     border: 2px solid transparent;
 }
 
 .stat-item.best-year {
-    border-color: #4CAF50;
-    background: linear-gradient(135deg, rgba(76, 175, 80, 0.05) 0%, rgba(76, 175, 80, 0.1) 100%);
+    border-color: var(--color-wood);
+    background: linear-gradient(135deg, rgba(91, 140, 106, 0.05) 0%, rgba(91, 140, 106, 0.1) 100%);
 }
 
 .stat-item.caution-year {
-    border-color: #FF9800;
-    background: linear-gradient(135deg, rgba(255, 152, 0, 0.05) 0%, rgba(255, 152, 0, 0.1) 100%);
+    border-color: var(--color-accent);
+    background: linear-gradient(135deg, rgba(200, 150, 62, 0.05) 0%, rgba(200, 150, 62, 0.1) 100%);
 }
 
 .stat-label {
     display: block;
     font-size: 0.9rem;
-    color: #7f8c8d;
+    color: var(--color-text-secondary);
     margin-bottom: 0.5rem;
     font-weight: 500;
 }
@@ -401,12 +433,138 @@
 .stat-value {
     display: block;
     font-size: 1.1rem;
-    color: #2c3e50;
+    color: var(--color-text-primary);
     font-weight: bold;
 }
 
 @media (max-width: 768px) {
     .fortune-year-stats {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ===================================
+   다크모드 완성
+   =================================== */
+@media (prefers-color-scheme: dark) {
+    .saju-table {
+        background: linear-gradient(135deg, #231E18 0%, #2F2820 100%);
+        border-color: #3D3529;
+    }
+
+    .pillar {
+        background: #2F2820;
+        border-color: #3D3529;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .day-pillar {
+        background: #2F2820;
+        border-color: var(--color-accent);
+    }
+
+    .heavenly-stem {
+        color: var(--color-text-primary);
+    }
+
+    .earthly-branch {
+        color: #D4736A;
+    }
+
+    .stem-korean,
+    .branch-korean {
+        color: var(--color-text-secondary);
+    }
+
+    .pillar-info {
+        background: rgba(200, 150, 62, 0.2);
+        color: var(--color-accent);
+    }
+
+    .stem-element {
+        background: rgba(200, 150, 62, 0.15);
+        color: var(--color-accent);
+    }
+
+    .branch-animal {
+        background: rgba(212, 115, 106, 0.15);
+        color: #D4736A;
+    }
+
+    .saju-explanation {
+        background: #231E18;
+        border-left-color: var(--color-accent);
+    }
+
+    .saju-explanation h4 {
+        color: var(--color-text-primary);
+    }
+
+    .saju-explanation p {
+        color: var(--color-text-secondary);
+    }
+
+    .explanation-item {
+        background: #2F2820;
+    }
+
+    .explanation-item strong {
+        color: var(--color-accent);
+    }
+
+    .explanation-item span {
+        color: var(--color-text-secondary);
+    }
+
+    .guide-btn {
+        background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
+    }
+
+    #fortune-timeline-section {
+        background: #2F2820;
+        border-color: #3D3529;
+    }
+
+    #fortune-timeline-section h3 {
+        color: var(--color-text-primary);
+    }
+
+    .fortune-year-item {
+        background: #231E18;
+        border-left-color: var(--color-accent);
+    }
+
+    .fortune-year-item .year {
+        color: var(--color-text-primary);
+    }
+
+    .fortune-year-item .fortune-score {
+        color: var(--color-accent);
+    }
+
+    .fortune-summary {
+        background: #231E18;
+    }
+
+    .stat-item {
+        background: #2F2820;
+    }
+
+    .stat-item.best-year {
+        border-color: var(--color-wood);
+        background: linear-gradient(135deg, rgba(91, 140, 106, 0.1) 0%, rgba(91, 140, 106, 0.15) 100%);
+    }
+
+    .stat-item.caution-year {
+        border-color: var(--color-accent);
+        background: linear-gradient(135deg, rgba(200, 150, 62, 0.1) 0%, rgba(200, 150, 62, 0.15) 100%);
+    }
+
+    .stat-label {
+        color: var(--color-text-secondary);
+    }
+
+    .stat-value {
+        color: var(--color-text-primary);
     }
 }

@@ -17,7 +17,7 @@
     border-radius: 12px !important;
     padding: 1.5rem !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
-    transition: all 0.3s ease !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
     position: relative !important;
     overflow: hidden !important;
 }

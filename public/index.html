@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="무료 사주팔자 운세 서비스 - 생년월일시를 입력하면 사주 원국, 오행 균형, 격국 분석, 신살, 용신을 한눈에 확인할 수 있습니다. 궁합, 택일, 작명까지 제공하는 종합 사주명리 플랫폼입니다.">
+    <meta name="description" content="무료 사주팔자 운세 서비스 - 생년월일시를 입력하면 사주 원국, 오행 균형, 격국 분석, 십성 관계, 신살, 용신을 한눈에 확인할 수 있습니다. 궁합, 택일, 작명까지 제공하는 종합 사주명리 플랫폼. 대운 흐름과 연도별 운세까지 정확한 명리학 해석을 지금 바로 확인하세요.">
     <meta name="keywords" content="사주, 사주팔자, 운세, 사주풀이, 무료사주, 오늘의운세, 궁합, 사주명리, 오행, 격국, 신살, 용신, 택일, 작명">
     <title>무료 사주팔자 운세 | 생년월일시 사주풀이 - 사주명리</title>
     <link rel="canonical" href="https://saju-website-vercel.vercel.app/">
@@ -13,6 +13,7 @@
     <meta property="og:title" content="무료 사주팔자 운세 | 사주명리">
     <meta property="og:description" content="생년월일시로 보는 무료 사주팔자 풀이. 오행 분석, 격국, 신살, 용신, 궁합까지 정확한 사주명리 해석.">
     <meta property="og:url" content="https://saju-website-vercel.vercel.app/">
+    <meta property="og:image" content="https://saju-website-vercel.vercel.app/assets/images/og-image.jpg">
     <meta property="og:locale" content="ko_KR">
     <meta property="og:site_name" content="사주명리">
 
@@ -20,6 +21,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="무료 사주팔자 운세 | 사주명리">
     <meta name="twitter:description" content="생년월일시로 보는 무료 사주팔자 풀이. 오행 분석, 격국, 신살, 용신, 궁합까지.">
+    <meta name="twitter:image" content="https://saju-website-vercel.vercel.app/assets/images/og-image.jpg">
 
     <!-- Schema.org 구조화 데이터 -->
     <script type="application/ld+json">
@@ -104,8 +106,15 @@
     <meta name="google-adsense-account" content="ca-pub-7479840445702290">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7479840445702290"
          crossorigin="anonymous"></script>
+
+    <!-- Theme color & CDN preconnect -->
+    <meta name="theme-color" content="#F7F4EF" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#161210" media="(prefers-color-scheme: dark)">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 </head>
 <body>
+    <a href="#input-section" class="skip-link">본문으로 바로가기</a>
+
     <!-- 2.1 헤더 섹션 -->
     <header id="site-header">
         <div class="header-container">
@@ -136,6 +145,7 @@
         </div>
     </header>
 
+    <main>
     <!-- 2.2 히어로 섹션 -->
     <section id="hero-section">
         <div class="hero-background">
@@ -174,9 +184,9 @@
                 </div>
             </div>
             
-            <button class="cta-button" onclick="scrollToInput()">
+            <button class="cta-button" data-action="scrollToInput">
                 <span>지금 확인하기</span>
-                <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24">
+                <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" fill="none"/>
                 </svg>
             </button>
@@ -193,11 +203,11 @@
                 <!-- 캘린더 유형 선택 -->
                 <div class="calendar-type">
                     <label class="radio-card" :class="{ active: calendarType === 'solar' }">
-                        <input type="radio" x-model="calendarType" value="solar">
+                        <input type="radio" name="calendarType" x-model="calendarType" value="solar">
                         <span class="radio-label">양력</span>
                     </label>
                     <label class="radio-card" :class="{ active: calendarType === 'lunar' }">
-                        <input type="radio" x-model="calendarType" value="lunar">
+                        <input type="radio" name="calendarType" x-model="calendarType" value="lunar">
                         <span class="radio-label">음력</span>
                     </label>
                 </div>
@@ -205,8 +215,8 @@
                 <!-- 생년월일 입력 -->
                 <div class="date-input-group">
                     <div class="input-field">
-                        <label>출생년도</label>
-                        <select x-model="birthYear">
+                        <label for="birth-year">출생년도</label>
+                        <select id="birth-year" x-model="birthYear" autocomplete="bday-year">
                             <option value="">선택</option>
                             <template x-for="year in yearOptions">
                                 <option :value="year" x-text="year + '년'"></option>
@@ -214,8 +224,8 @@
                         </select>
                     </div>
                     <div class="input-field">
-                        <label>월</label>
-                        <select x-model="birthMonth">
+                        <label for="birth-month">월</label>
+                        <select id="birth-month" x-model="birthMonth" autocomplete="bday-month">
                             <option value="">선택</option>
                             <template x-for="month in 12">
                                 <option :value="month" x-text="month + '월'"></option>
@@ -223,8 +233,8 @@
                         </select>
                     </div>
                     <div class="input-field">
-                        <label>일</label>
-                        <select x-model="birthDay">
+                        <label for="birth-day">일</label>
+                        <select id="birth-day" x-model="birthDay" autocomplete="bday-day">
                             <option value="">선택</option>
                             <template x-for="day in 31">
                                 <option :value="day" x-text="day + '일'"></option>
@@ -234,13 +244,15 @@
                 </div>
                 
                 <!-- 출생시간 입력 -->
-                <div class="time-input-group">
-                    <label>출생시간</label>
-                    <div class="time-grid">
+                <div class="time-input-group" role="group" aria-label="출생시간">
+                    <label id="time-label">출생시간</label>
+                    <div class="time-grid" role="radiogroup" aria-labelledby="time-label">
                         <template x-for="hour in timeOptions" :key="hour.value">
                             <button type="button"
                                     :class="{ active: selectedHour === hour.value }"
-                                    @click="selectedHour = hour.value">
+                                    @click="selectedHour = hour.value"
+                                    :aria-label="hour.name + ' ' + hour.time"
+                                    :aria-pressed="selectedHour === hour.value">
                                 <span class="hour-name" x-text="hour.name"></span>
                                 <span class="hour-time" x-text="hour.time"></span>
                             </button>
@@ -251,12 +263,12 @@
                 <!-- 성별 선택 -->
                 <div class="gender-select">
                     <label class="gender-card" :class="{ active: gender === 'male' }">
-                        <input type="radio" x-model="gender" value="male">
+                        <input type="radio" name="gender" x-model="gender" value="male">
                         <span class="gender-icon">♂</span>
                         <span class="gender-label">남성</span>
                     </label>
                     <label class="gender-card" :class="{ active: gender === 'female' }">
-                        <input type="radio" x-model="gender" value="female">
+                        <input type="radio" name="gender" x-model="gender" value="female">
                         <span class="gender-icon">♀</span>
                         <span class="gender-label">여성</span>
                     </label>
@@ -272,11 +284,11 @@
     </section>
 
     <!-- 2.4 결과 표시 섹션 -->
-    <section id="results-section" x-show="showResults" x-transition>
+    <section id="results-section" x-show="showResults" x-transition aria-live="polite">
         <div class="section-container">
             <h2 class="section-title">
                 당신의 사주명식
-                <button onclick="openSajuGuide()" class="guide-btn" title="천간지지 상세 설명 보기">
+                <button class="guide-btn" data-action="openSajuGuide" title="천간지지 상세 설명 보기">
                     <span>📖 한자 의미 보기</span>
                 </button>
             </h2>
@@ -286,7 +298,7 @@
                 <div class="pillar year-pillar">
                     <div class="pillar-title">
                         년주
-                        <span class="pillar-info" title="태어난 해의 기운. 조상, 사회적 위치, 유년기(1-20세)를 나타냄">ⓘ</span>
+                        <span class="pillar-info" role="img" aria-label="태어난 해의 기운. 조상, 사회적 위치, 유년기를 나타냄" title="태어난 해의 기운. 조상, 사회적 위치, 유년기(1-20세)를 나타냄">ⓘ</span>
                     </div>
                     <div class="heavenly-stem" x-text="saju.year.heavenly"></div>
                     <div class="stem-korean" x-text="getKoreanStem(saju.year.heavenly)"></div>
@@ -298,7 +310,7 @@
                 <div class="pillar month-pillar">
                     <div class="pillar-title">
                         월주
-                        <span class="pillar-info" title="태어난 달의 기운. 부모, 직업, 청년기(20-40세)를 나타냄">ⓘ</span>
+                        <span class="pillar-info" role="img" aria-label="태어난 달의 기운. 부모, 직업, 청년기를 나타냄" title="태어난 달의 기운. 부모, 직업, 청년기(20-40세)를 나타냄">ⓘ</span>
                     </div>
                     <div class="heavenly-stem" x-text="saju.month.heavenly"></div>
                     <div class="stem-korean" x-text="getKoreanStem(saju.month.heavenly)"></div>
@@ -310,7 +322,7 @@
                 <div class="pillar day-pillar">
                     <div class="pillar-title">
                         일주
-                        <span class="pillar-info" title="나 자신. 배우자, 중년기(40-60세)를 나타냄. 가장 중요한 기둥!">⭐</span>
+                        <span class="pillar-info" role="img" aria-label="나 자신. 배우자, 중년기를 나타냄. 가장 중요한 기둥" title="나 자신. 배우자, 중년기(40-60세)를 나타냄. 가장 중요한 기둥!">⭐</span>
                     </div>
                     <div class="heavenly-stem" x-text="saju.day.heavenly"></div>
                     <div class="stem-korean" x-text="getKoreanStem(saju.day.heavenly)"></div>
@@ -322,7 +334,7 @@
                 <div class="pillar hour-pillar">
                     <div class="pillar-title">
                         시주
-                        <span class="pillar-info" title="태어난 시간의 기운. 자녀, 노년기(60세 이후)를 나타냄">ⓘ</span>
+                        <span class="pillar-info" role="img" aria-label="태어난 시간의 기운. 자녀, 노년기를 나타냄" title="태어난 시간의 기운. 자녀, 노년기(60세 이후)를 나타냄">ⓘ</span>
                     </div>
                     <div class="heavenly-stem" x-text="saju.hour.heavenly"></div>
                     <div class="stem-korean" x-text="getKoreanStem(saju.hour.heavenly)"></div>
@@ -370,7 +382,7 @@
             <div class="elements-analysis">
                 <h3>오행 분포</h3>
                 <div class="chart-container">
-                    <canvas id="elements-chart"></canvas>
+                    <canvas id="elements-chart" width="300" height="300"></canvas>
                 </div>
                 <div class="elements-legend">
                     <template x-for="element in elements">
@@ -450,7 +462,7 @@
                 <div class="interpretation-card" id="fortune-timeline-section" x-show="interpretation.fortune_timeline">
                     <h3>연도별 운세 흐름</h3>
                     <div class="chart-container">
-                        <canvas id="fortune-chart"></canvas>
+                        <canvas id="fortune-chart" width="600" height="300"></canvas>
                     </div>
                     <div class="fortune-summary" x-show="interpretation.fortune_timeline?.summary">
                         <div class="fortune-year-stats">
@@ -475,11 +487,13 @@
             
             <!-- 격국 분석 섹션 -->
             <div class="interpretation-card" x-show="pattern" x-data="{ showPattern: false }">
-                <h3 @click="showPattern = !showPattern" style="cursor: pointer;">
-                    격국(格局) 분석
-                    <span x-text="showPattern ? '▲' : '▼'" style="float: right; font-size: 0.8em;"></span>
+                <h3 class="toggle-header">
+                    <button type="button" @click="showPattern = !showPattern" :aria-expanded="showPattern" aria-controls="pattern-content" class="toggle-btn">
+                        격국(格局) 분석
+                        <span x-text="showPattern ? '▲' : '▼'" class="toggle-icon" aria-hidden="true"></span>
+                    </button>
                 </h3>
-                <div x-show="showPattern" x-transition>
+                <div id="pattern-content" x-show="showPattern" x-transition>
                     <div class="pattern-info" x-show="pattern">
                         <div class="pattern-header">
                             <span class="pattern-badge" x-text="pattern?.pattern_category"></span>
@@ -513,28 +527,30 @@
 
             <!-- 신살 분석 섹션 -->
             <div class="interpretation-card" x-show="shinshal" x-data="{ showShinshal: false }">
-                <h3 @click="showShinshal = !showShinshal" style="cursor: pointer;">
-                    신살(神煞) 분석
-                    <span x-text="showShinshal ? '▲' : '▼'" style="float: right; font-size: 0.8em;"></span>
+                <h3 class="toggle-header">
+                    <button type="button" @click="showShinshal = !showShinshal" :aria-expanded="showShinshal" aria-controls="shinshal-content" class="toggle-btn">
+                        신살(神煞) 분석
+                        <span x-text="showShinshal ? '▲' : '▼'" class="toggle-icon" aria-hidden="true"></span>
+                    </button>
                 </h3>
-                <div x-show="showShinshal" x-transition>
+                <div id="shinshal-content" x-show="showShinshal" x-transition>
                     <div x-show="shinshal?.auspicious?.length > 0">
-                        <h4 style="color: #2563eb; margin-top: 1rem;">길신 (吉神)</h4>
+                        <h4 class="shinshal-heading-auspicious">길신 (吉神)</h4>
                         <template x-for="item in (shinshal?.auspicious || [])">
                             <div class="shinshal-item auspicious">
-                                <strong x-text="item.korean_name || item.name" style="color: #1e40af;"></strong>
-                                <span class="shinshal-location" x-text="(item.location || []).map(l => ({year:'년주',month:'월주',day:'일주',hour:'시주'}[l] || l)).join(', ')" style="color: #555;"></span>
-                                <p x-text="item.influence || item.description" style="color: #333;"></p>
+                                <strong x-text="item.korean_name || item.name"></strong>
+                                <span class="shinshal-location" x-text="(item.location || []).map(l => ({year:'년주',month:'월주',day:'일주',hour:'시주'}[l] || l)).join(', ')"></span>
+                                <p x-text="item.influence || item.description"></p>
                             </div>
                         </template>
                     </div>
                     <div x-show="shinshal?.inauspicious?.length > 0">
-                        <h4 style="color: #dc2626; margin-top: 1rem;">흉신 (凶神)</h4>
+                        <h4 class="shinshal-heading-inauspicious">흉신 (凶神)</h4>
                         <template x-for="item in (shinshal?.inauspicious || [])">
                             <div class="shinshal-item inauspicious">
-                                <strong x-text="item.korean_name || item.name" style="color: #991b1b;"></strong>
-                                <span class="shinshal-location" x-text="(item.location || []).map(l => ({year:'년주',month:'월주',day:'일주',hour:'시주'}[l] || l)).join(', ')" style="color: #555;"></span>
-                                <p x-text="item.influence || item.description" style="color: #333;"></p>
+                                <strong x-text="item.korean_name || item.name"></strong>
+                                <span class="shinshal-location" x-text="(item.location || []).map(l => ({year:'년주',month:'월주',day:'일주',hour:'시주'}[l] || l)).join(', ')"></span>
+                                <p x-text="item.influence || item.description"></p>
                                 <p class="mitigation" x-show="item.mitigation" x-text="'해소법: ' + item.mitigation"></p>
                             </div>
                         </template>
@@ -544,22 +560,24 @@
 
             <!-- 용신 분석 섹션 -->
             <div class="interpretation-card" x-show="yongshin" x-data="{ showYongshin: false }">
-                <h3 @click="showYongshin = !showYongshin" style="cursor: pointer;">
-                    용신(用神) 분석
-                    <span x-text="showYongshin ? '▲' : '▼'" style="float: right; font-size: 0.8em;"></span>
+                <h3 class="toggle-header">
+                    <button type="button" @click="showYongshin = !showYongshin" :aria-expanded="showYongshin" aria-controls="yongshin-content" class="toggle-btn">
+                        용신(用神) 분석
+                        <span x-text="showYongshin ? '▲' : '▼'" class="toggle-icon" aria-hidden="true"></span>
+                    </button>
                 </h3>
-                <div x-show="showYongshin" x-transition>
+                <div id="yongshin-content" x-show="showYongshin" x-transition>
                     <div class="yongshin-info" x-show="yongshin">
-                        <div class="yongshin-strength" style="margin-bottom: 1rem;">
-                            <p style="color: #e0d5c0;"><strong>일주(日主):</strong> <span x-text="yongshin?.day_master"></span> (<span x-text="({'목':'목(木)','화':'화(火)','토':'토(土)','금':'금(金)','수':'수(水)'}[yongshin?.day_master_element] || yongshin?.day_master_element)"></span>)</p>
-                            <p style="color: #e0d5c0;"><strong>신강/신약:</strong> <span x-text="({'strong':'신강(身强)','weak':'신약(身弱)','balanced':'중화(中和)'}[yongshin?.strength] || yongshin?.strength)"></span></p>
+                        <div class="yongshin-strength">
+                            <p class="yongshin-detail"><strong>일주(日主):</strong> <span x-text="yongshin?.day_master"></span> (<span x-text="({'목':'목(木)','화':'화(火)','토':'토(土)','금':'금(金)','수':'수(水)'}[yongshin?.day_master_element] || yongshin?.day_master_element)"></span>)</p>
+                            <p class="yongshin-detail"><strong>신강/신약:</strong> <span x-text="({'strong':'신강(身强)','weak':'신약(身弱)','balanced':'중화(中和)'}[yongshin?.strength] || yongshin?.strength)"></span></p>
                         </div>
                         <div class="yongshin-gods">
                             <div class="useful-gods">
                                 <h4>용신 (用神) - 도움이 되는 기운</h4>
                                 <ul>
                                     <template x-for="god in (yongshin?.useful_gods || [])">
-                                        <li x-text="({'목':'목(木) 🌲','화':'화(火) 🔥','토':'토(土) 🏔️','금':'금(金) ⚪','수':'수(水) 💧'}[god] || god)" style="color: #166534; font-size: 1.1em;"></li>
+                                        <li x-text="({'목':'목(木) 🌲','화':'화(火) 🔥','토':'토(土) 🏔️','금':'금(金) ⚪','수':'수(水) 💧'}[god] || god)"></li>
                                     </template>
                                 </ul>
                             </div>
@@ -567,7 +585,7 @@
                                 <h4>기신 (忌神) - 주의할 기운</h4>
                                 <ul>
                                     <template x-for="god in (yongshin?.harmful_gods || [])">
-                                        <li x-text="({'목':'목(木) 🌲','화':'화(火) 🔥','토':'토(土) 🏔️','금':'금(金) ⚪','수':'수(水) 💧'}[god] || god)" style="color: #991b1b; font-size: 1.1em;"></li>
+                                        <li x-text="({'목':'목(木) 🌲','화':'화(火) 🔥','토':'토(土) 🏔️','금':'금(金) ⚪','수':'수(水) 💧'}[god] || god)"></li>
                                     </template>
                                 </ul>
                             </div>
@@ -586,14 +604,14 @@
 
             <!-- 공유 버튼 -->
             <div class="share-buttons">
-                <button class="share-btn kakao-btn" onclick="shareKakao()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#3C1E1E">
+                <button class="share-btn kakao-btn" data-action="shareKakao">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#3C1E1E" aria-hidden="true">
                         <path d="M12 3c5.514 0 10 3.476 10 7.747 0 4.272-4.486 7.748-10 7.748-.791 0-1.569-.072-2.322-.209l-2.909 1.845c-.222.141-.488.219-.762.219-.738 0-1.338-.6-1.338-1.338 0-.227.058-.448.166-.642l.97-1.743c-2.376-1.54-3.805-3.954-3.805-6.632C2 6.476 6.486 3 12 3z"/>
                     </svg>
                     <span>카카오톡 공유</span>
                 </button>
-                <button class="share-btn" onclick="copyLink()">
-                    <svg class="copy-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <button class="share-btn" data-action="copyLink">
+                    <svg class="copy-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
                     </svg>
@@ -602,11 +620,11 @@
             </div>
             
             <!-- 추가 기능 버튼 -->
-            <div class="additional-features-btn" style="text-align: center; margin-top: 2rem;">
-                <button class="btn-primary" onclick="window.additionalFeatures.showFeatures()">
+            <div class="additional-features-btn">
+                <button class="btn-primary" data-action="showFeatures">
                     🔮 더 많은 기능 보기 (궁합, 택일, 작명)
                 </button>
-                <p style="margin-top: 0.5rem; color: #6b7280; font-size: 0.9rem;">
+                <p class="features-hint">
                     💡 본인의 사주 정보가 자동으로 입력됩니다
                 </p>
             </div>
@@ -618,16 +636,16 @@
     <section id="additional-features" class="section-container" style="display: none;">
         <div class="features-tabs">
             <!-- 탭 헤더 -->
-            <div class="tab-navigation">
-                <button class="tab-button active" data-tab="compatibility">💑 궁합보기</button>
-                <button class="tab-button" data-tab="taekil">📅 택일</button>
-                <button class="tab-button" data-tab="naming">✍️ 작명</button>
+            <div class="tab-navigation" role="tablist" aria-label="추가 기능 탭">
+                <button class="tab-button active" data-tab="compatibility" role="tab" aria-selected="true" aria-controls="tab-compatibility" id="btn-tab-compatibility">💑 궁합보기</button>
+                <button class="tab-button" data-tab="taekil" role="tab" aria-selected="false" aria-controls="tab-taekil" id="btn-tab-taekil">📅 택일</button>
+                <button class="tab-button" data-tab="naming" role="tab" aria-selected="false" aria-controls="tab-naming" id="btn-tab-naming">✍️ 작명</button>
             </div>
             
             <!-- 탭 콘텐츠 -->
             <div class="tab-contents">
                 <!-- 궁합 탭 -->
-                <div class="tab-content active" id="tab-compatibility">
+                <div class="tab-content active" id="tab-compatibility" role="tabpanel" aria-labelledby="btn-tab-compatibility">
                     <h3>사주 궁합 보기</h3>
                     <div class="compatibility-form">
                         <div class="form-row">
@@ -644,19 +662,19 @@
                                 <h4>💕 상대방 정보</h4>
                                 <form id="compatibility-form">
                                     <div class="form-group">
-                                        <label>생년월일</label>
-                                        <input type="date" id="partner-date" required>
+                                        <label for="partner-date">생년월일</label>
+                                        <input type="date" id="partner-date" name="partner-date" required autocomplete="bday">
                                     </div>
                                     <div class="form-group">
-                                        <label>음력/양력</label>
-                                        <select id="partner-calendar" required>
+                                        <label for="partner-calendar">음력/양력</label>
+                                        <select id="partner-calendar" name="partner-calendar" autocomplete="off" required>
                                             <option value="solar">양력</option>
                                             <option value="lunar">음력</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>출생시간</label>
-                                        <select id="partner-time" required>
+                                        <label for="partner-time">출생시간</label>
+                                        <select id="partner-time" name="partner-time" autocomplete="off" required>
                                             <option value="">선택하세요</option>
                                             <option value="00:30">자시 (23:00-01:00)</option>
                                             <option value="02:30">축시 (01:00-03:00)</option>
@@ -677,8 +695,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>성별</label>
-                                        <select id="partner-gender" required>
+                                        <label for="partner-gender">성별</label>
+                                        <select id="partner-gender" name="partner-gender" autocomplete="sex" required>
                                             <option value="">선택</option>
                                             <option value="male">남성</option>
                                             <option value="female">여성</option>
@@ -695,72 +713,72 @@
                                 <h4>💝 궁합 결과</h4>
                                 
                                 <!-- 입력 정보 요약 -->
-                                <div style="background: #fff3e0; padding: 10px; border-radius: 8px; margin-bottom: 20px;">
-                                    <div style="display: flex; justify-content: space-around; text-align: center;">
+                                <div class="compat-summary-box">
+                                    <div class="compat-persons">
                                         <div>
                                             <strong>본인</strong><br>
-                                            <span id="person1-info" style="font-size: 0.9em;"></span>
+                                            <span id="person1-info" class="compat-person-info"></span>
                                         </div>
-                                        <div style="font-size: 2em;">💕</div>
+                                        <div class="compat-heart-icon">💕</div>
                                         <div>
                                             <strong>상대방</strong><br>
-                                            <span id="person2-info" style="font-size: 0.9em;"></span>
+                                            <span id="person2-info" class="compat-person-info"></span>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="compatibility-score">
                                     <div class="score-circle">
                                         <span class="score-value">0</span>
                                         <span class="score-label">점</span>
                                     </div>
-                                    <div class="compatibility-level" style="text-align: center; font-size: 1.2em; margin-top: 10px; color: #d4145a;"></div>
+                                    <div class="compatibility-level"></div>
                                 </div>
                                 <div class="compatibility-details">
                                     <div class="detail-item">
-                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div class="detail-item-header">
                                             <span>정신적 교감 (천간)</span>
-                                            <span id="love-score" style="font-weight: bold; color: #d4145a;">0점</span>
+                                            <span id="love-score" class="detail-score">0점</span>
                                         </div>
                                         <div class="progress-bar" id="love-progress">
                                             <div class="progress" style="width: 0%"></div>
                                         </div>
                                     </div>
                                     <div class="detail-item">
-                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div class="detail-item-header">
                                             <span>오행 조화</span>
-                                            <span id="wealth-score" style="font-weight: bold; color: #d4145a;">0점</span>
+                                            <span id="wealth-score" class="detail-score">0점</span>
                                         </div>
                                         <div class="progress-bar" id="wealth-progress">
                                             <div class="progress" style="width: 0%"></div>
                                         </div>
                                     </div>
                                     <div class="detail-item">
-                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div class="detail-item-header">
                                             <span>현실적 조화 (지지)</span>
-                                            <span id="family-score" style="font-weight: bold; color: #d4145a;">0점</span>
+                                            <span id="family-score" class="detail-score">0점</span>
                                         </div>
                                         <div class="progress-bar" id="family-progress">
                                             <div class="progress" style="width: 0%"></div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="compatibility-advice" style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
-                                    <p id="compatibility-message" style="line-height: 1.8; margin: 0;"></p>
+                                <div class="compatibility-advice">
+                                    <p id="compatibility-message"></p>
                                 </div>
-                                <div class="compatibility-details" style="margin-top: 15px; padding: 15px; border-top: 1px solid #eee;"></div>
+                                <div class="compatibility-details compat-extra-details"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 택일 탭 -->
-                <div class="tab-content" id="tab-taekil">
+                <div class="tab-content" id="tab-taekil" role="tabpanel" aria-labelledby="btn-tab-taekil">
                     <h3>길일 택일</h3>
                     <div class="taekil-form">
                         <div class="form-group">
-                            <label>택일 종류</label>
-                            <select id="taekil-type">
+                            <label for="taekil-type">택일 종류</label>
+                            <select id="taekil-type" name="taekil-type" autocomplete="off">
                                 <option value="wedding">결혼</option>
                                 <option value="moving">이사</option>
                                 <option value="business">개업</option>
@@ -768,10 +786,10 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>희망 기간</label>
-                            <input type="month" id="taekil-month">
+                            <label for="taekil-month">희망 기간</label>
+                            <input type="month" id="taekil-month" name="taekil-month" autocomplete="off">
                         </div>
-                        <button class="btn-primary" onclick="calculateTaekil()">길일 찾기</button>
+                        <button class="btn-primary" data-action="calculateTaekil">길일 찾기</button>
                         
                         <div id="taekil-result" style="display: none;">
                             <h4>추천 길일</h4>
@@ -781,21 +799,21 @@
                 </div>
                 
                 <!-- 작명 탭 -->
-                <div class="tab-content" id="tab-naming">
+                <div class="tab-content" id="tab-naming" role="tabpanel" aria-labelledby="btn-tab-naming">
                     <h3>작명 서비스</h3>
                     <div class="naming-form">
                         <div class="form-group">
-                            <label>성씨</label>
-                            <input type="text" id="surname" placeholder="예: 김">
+                            <label for="surname">성씨</label>
+                            <input type="text" id="surname" name="surname" placeholder="예: 김..." autocomplete="family-name">
                         </div>
                         <div class="form-group">
-                            <label>성별</label>
-                            <select id="naming-gender">
+                            <label for="naming-gender">성별</label>
+                            <select id="naming-gender" name="naming-gender" autocomplete="off">
                                 <option value="male">남아</option>
                                 <option value="female">여아</option>
                             </select>
                         </div>
-                        <button class="btn-primary" onclick="generateNames()">이름 추천</button>
+                        <button class="btn-primary" data-action="generateNames">이름 추천</button>
                         
                         <div id="naming-result" style="display: none;">
                             <h4>추천 이름</h4>
@@ -816,7 +834,7 @@
             <div class="info-grid">
                 <article class="info-card">
                     <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48">
+                        <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
                             <!-- 천간 아이콘 -->
                             <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2"/>
                             <text x="24" y="28" text-anchor="middle" font-size="16">甲</text>
@@ -824,12 +842,12 @@
                     </div>
                     <h3>십천간이란?</h3>
                     <p>갑을병정무기경신임계로 이루어진 하늘의 기운을 나타내는 10가지 요소입니다.</p>
-                    <a href="#" class="learn-more" onclick="showInfoModal('천간'); return false;">자세히 보기 →</a>
+                    <button type="button" class="learn-more-btn" data-action="showInfoModal" data-modal-type="천간">자세히 보기 →</button>
                 </article>
                 
                 <article class="info-card">
                     <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48">
+                        <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
                             <!-- 지지 아이콘 -->
                             <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2"/>
                             <text x="24" y="28" text-anchor="middle" font-size="16">子</text>
@@ -837,12 +855,12 @@
                     </div>
                     <h3>십이지지란?</h3>
                     <p>자축인묘진사오미신유술해로 구성된 땅의 기운을 나타내는 12가지 동물띠입니다.</p>
-                    <a href="#" class="learn-more" onclick="showInfoModal('지지'); return false;">자세히 보기 →</a>
+                    <button type="button" class="learn-more-btn" data-action="showInfoModal" data-modal-type="지지">자세히 보기 →</button>
                 </article>
                 
                 <article class="info-card">
                     <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48">
+                        <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
                             <!-- 오행 아이콘 -->
                             <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2"/>
                             <text x="24" y="28" text-anchor="middle" font-size="16">五</text>
@@ -850,17 +868,19 @@
                     </div>
                     <h3>오행의 이해</h3>
                     <p>목화토금수의 다섯 가지 기운이 서로 상생과 상극하며 운명을 형성합니다.</p>
-                    <a href="#" class="learn-more" onclick="showInfoModal('오행'); return false;">자세히 보기 →</a>
+                    <button type="button" class="learn-more-btn" data-action="showInfoModal" data-modal-type="오행">자세히 보기 →</button>
                 </article>
             </div>
         </div>
     </section>
 
+    </main>
+
     <!-- 정보 모달 -->
     <div id="info-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" style="display: none;">
-        <div class="modal-overlay" onclick="closeInfoModal()"></div>
+        <div class="modal-overlay" data-action="closeInfoModal"></div>
         <div class="modal-content">
-            <button class="modal-close" aria-label="닫기" onclick="closeInfoModal()">×</button>
+            <button class="modal-close" aria-label="닫기" data-action="closeInfoModal">×</button>
             <h2 id="modal-title"></h2>
             <div id="modal-body"></div>
         </div>
@@ -881,334 +901,8 @@
     <script src="js/compatibility-clean.js"></script>
     <script src="js/additional-features.js"></script>
     <script src="js/main.js"></script>
-    <script>
-        // sajuForm is now loaded from external file: js/saju-form-enhanced.js
-        // This provides all the enhanced features like ten_gods, major_fortune, etc.
-            // sajuForm is loaded from js/saju-form-enhanced.js
-        function scrollToInput() {
-            document.getElementById('input-section').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Share functions
-        function shareKakao() {
-            // 카카오 SDK가 없으면 기본 공유 기능 사용
-            if (window.Kakao && Kakao.isInitialized()) {
-                Kakao.Share.sendDefault({
-                    objectType: 'feed',
-                    content: {
-                        title: '사주명리 - 당신의 운명을 읽다',
-                        description: '생년월일시로 보는 정확한 사주 풀이',
-                        imageUrl: window.location.origin + '/assets/images/og-image.jpg',
-                        link: {
-                            mobileWebUrl: window.location.href,
-                            webUrl: window.location.href,
-                        },
-                    },
-                });
-            } else {
-                // 카카오 SDK가 없으면 웹 공유 API 사용
-                if (navigator.share) {
-                    navigator.share({
-                        title: '사주명리 - 당신의 운명을 읽다',
-                        text: '생년월일시로 보는 정확한 사주 풀이',
-                        url: window.location.href
-                    }).catch(err => {
-                        // 공유 취소 시 아무 동작 안함
-                    });
-                } else {
-                    // 웹 공유 API도 지원 안하면 링크 복사
-                    copyLink();
-                }
-            }
-        }
-
-        function copyLink() {
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                // 버튼 텍스트 임시 변경
-                const btn = event.currentTarget;
-                const originalHTML = btn.innerHTML;
-                
-                // 복사 완료 상태로 변경
-                btn.classList.add('copied');
-                btn.innerHTML = `
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                    <span>복사 완료!</span>
-                `;
-                
-                // 2초 후 원래 상태로 복원
-                setTimeout(() => {
-                    btn.classList.remove('copied');
-                    btn.innerHTML = originalHTML;
-                }, 2000);
-            }).catch(err => {
-                if (typeof showToast === 'function') showToast('링크 복사에 실패했습니다.', 'error');
-            });
-        }
-        
-        // 정보 모달 기능
-        function showInfoModal(type) {
-            const modal = document.getElementById('info-modal');
-            const title = document.getElementById('modal-title');
-            const body = document.getElementById('modal-body');
-            
-            const content = {
-                '천간': {
-                    title: '십천간(十天干) 완벽 이해하기',
-                    body: `
-                        <div class="modal-info">
-                            <h3>🌟 하늘의 10가지 기운</h3>
-                            <p>십천간은 동양철학에서 하늘의 기운을 10가지로 분류한 것입니다. 
-                            우리가 흔히 "갑을병정..."으로 외우는 그것이죠!</p>
-                            
-                            <div class="info-list">
-                                <h4>⚡ 양(陽)의 천간 - 홀수</h4>
-                                <ul>
-                                    <li><strong>갑(甲)</strong> - 큰 나무 🌳 : 리더십, 개척정신</li>
-                                    <li><strong>병(丙)</strong> - 태양 ☀️ : 밝고 활발함, 열정</li>
-                                    <li><strong>무(戊)</strong> - 산, 큰 땅 ⛰️ : 안정감, 포용력</li>
-                                    <li><strong>경(庚)</strong> - 쇠, 도끼 ⚔️ : 결단력, 추진력</li>
-                                    <li><strong>임(壬)</strong> - 바다, 큰 물 🌊 : 지혜, 유연함</li>
-                                </ul>
-                                
-                                <h4>☯ 음(陰)의 천간 - 짝수</h4>
-                                <ul>
-                                    <li><strong>을(乙)</strong> - 화초, 덩굴 🌿 : 유연함, 적응력</li>
-                                    <li><strong>정(丁)</strong> - 촛불, 등불 🕯️ : 섬세함, 온화함</li>
-                                    <li><strong>기(己)</strong> - 논밭, 정원 🌾 : 실용성, 생산성</li>
-                                    <li><strong>신(辛)</strong> - 보석, 장신구 💎 : 예민함, 완벽주의</li>
-                                    <li><strong>계(癸)</strong> - 이슬, 비 💧 : 상상력, 감수성</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="fun-fact">
-                                💡 <strong>재미있는 사실!</strong><br>
-                                "갑질"이라는 말이 여기서 나왔어요. 갑(甲)이 첫 번째라서 
-                                상하관계에서 위에 있는 사람을 뜻하게 된 거죠.
-                            </div>
-                        </div>
-                    `
-                },
-                '지지': {
-                    title: '십이지지(十二地支) 쉽게 배우기',
-                    body: `
-                        <div class="modal-info">
-                            <h3>🐾 12가지 동물띠의 비밀</h3>
-                            <p>십이지지는 땅의 기운을 12가지 동물로 표현한 것입니다. 
-                            여러분이 아는 띠가 바로 이것이에요!</p>
-                            
-                            <div class="info-list">
-                                <h4>🌙 시간대별 동물과 성격</h4>
-                                <ul>
-                                    <li><strong>자(子) 쥐 🐭</strong> 23-01시 : 영리하고 재치있음</li>
-                                    <li><strong>축(丑) 소 🐮</strong> 01-03시 : 성실하고 인내심 강함</li>
-                                    <li><strong>인(寅) 호랑이 🐯</strong> 03-05시 : 용맹하고 정의로움</li>
-                                    <li><strong>묘(卯) 토끼 🐰</strong> 05-07시 : 온순하고 예민함</li>
-                                    <li><strong>진(辰) 용 🐲</strong> 07-09시 : 카리스마, 리더십</li>
-                                    <li><strong>사(巳) 뱀 🐍</strong> 09-11시 : 지혜롭고 신중함</li>
-                                    <li><strong>오(午) 말 🐴</strong> 11-13시 : 활발하고 자유로움</li>
-                                    <li><strong>미(未) 양 🐑</strong> 13-15시 : 평화롭고 예술적</li>
-                                    <li><strong>신(申) 원숭이 🐵</strong> 15-17시 : 재주많고 호기심 많음</li>
-                                    <li><strong>유(酉) 닭 🐓</strong> 17-19시 : 부지런하고 정확함</li>
-                                    <li><strong>술(戌) 개 🐕</strong> 19-21시 : 충직하고 정직함</li>
-                                    <li><strong>해(亥) 돼지 🐷</strong> 21-23시 : 복이 많고 순수함</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="fun-fact">
-                                💡 <strong>알고 계셨나요?</strong><br>
-                                고양이가 12띠에 없는 이유는 쥐가 속여서 늦게 도착했다는 
-                                재미있는 설화가 있어요. 그래서 고양이가 쥐를 싫어한대요! 😸
-                            </div>
-                        </div>
-                    `
-                },
-                '오행': {
-                    title: '오행(五行) 한눈에 이해하기',
-                    body: `
-                        <div class="modal-info">
-                            <h3>🌈 우주를 구성하는 5가지 에너지</h3>
-                            <p>오행은 세상 만물을 구성하는 5가지 기본 에너지입니다. 
-                            이들은 서로 돕기도 하고 견제하기도 하면서 균형을 이뤄요!</p>
-                            
-                            <div class="info-list">
-                                <h4>🎨 5가지 원소와 특징</h4>
-                                <ul>
-                                    <li><strong>목(木) 나무 🌲</strong> - 색: 청색 | 계절: 봄 | 성격: 성장, 발전</li>
-                                    <li><strong>화(火) 불 🔥</strong> - 색: 적색 | 계절: 여름 | 성격: 열정, 확산</li>
-                                    <li><strong>토(土) 흙 🏔️</strong> - 색: 황색 | 계절: 환절기 | 성격: 중재, 안정</li>
-                                    <li><strong>금(金) 쇠 ⚪</strong> - 색: 백색 | 계절: 가을 | 성격: 결실, 수렴</li>
-                                    <li><strong>수(水) 물 💧</strong> - 색: 흑색 | 계절: 겨울 | 성격: 지혜, 유연</li>
-                                </ul>
-                                
-                                <h4>💫 상생(相生) - 서로 돕는 관계</h4>
-                                <p class="cycle-text">
-                                    🌲 나무는 🔥 불을 만들고 →<br>
-                                    🔥 불은 🏔️ 재(흙)를 만들고 →<br>
-                                    🏔️ 흙에서 ⚪ 금속이 나오고 →<br>
-                                    ⚪ 금속은 💧 물을 모으고 →<br>
-                                    💧 물은 🌲 나무를 자라게 해요
-                                </p>
-                                
-                                <h4>⚔️ 상극(相剋) - 서로 견제하는 관계</h4>
-                                <p class="cycle-text">
-                                    🌲 나무는 🏔️ 흙의 영양분을 빼앗고 →<br>
-                                    🏔️ 흙은 💧 물을 막고 →<br>
-                                    💧 물은 🔥 불을 끄고 →<br>
-                                    🔥 불은 ⚪ 금속을 녹이고 →<br>
-                                    ⚪ 금속은 🌲 나무를 자르죠
-                                </p>
-                            </div>
-                            
-                            <div class="fun-fact">
-                                💡 <strong>일상 속 오행!</strong><br>
-                                한의학, 풍수, 요리, 색채학 등 우리 생활 곳곳에 오행이 숨어있어요. 
-                                심지어 김치(빨강-火)와 밥(하양-金)의 조화도 오행이랍니다! 🍚🥬
-                            </div>
-                        </div>
-                    `
-                }
-            };
-            
-            if (content[type]) {
-                title.innerHTML = content[type].title;
-                body.innerHTML = content[type].body;
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                // 트리거 저장 및 모달 닫기 버튼에 포커스
-                _modalTrigger = document.activeElement;
-                const closeBtn = modal.querySelector('.modal-close');
-                if (closeBtn) closeBtn.focus();
-            }
-        }
-        
-        let _modalTrigger = null; // 모달 트리거 요소 저장
-        function closeInfoModal() {
-            const modal = document.getElementById('info-modal');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            // 포커스를 트리거 요소로 복원
-            if (_modalTrigger) {
-                _modalTrigger.focus();
-                _modalTrigger = null;
-            }
-        }
-        // ESC 키로 모달 닫기
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                const modal = document.getElementById('info-modal');
-                if (modal && modal.style.display !== 'none') {
-                    closeInfoModal();
-                }
-            }
-        });
-        
-        // Initialize Luopan Compass
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Logo Compass (mini version)
-            initializeCompass('.logo-mountains-24', '.logo-trigram-ring', '.logo-branches-12', true);
-            // Initialize Main Compass
-            initializeCompass('.mountains-24', '.trigram-ring', '.branches-12', false);
-        });
-        
-        function initializeCompass(mountainsSelector, trigramSelector, branchesSelector, isLogo) {
-            // 24 Mountains (24산)
-            const mountains = [
-                '壬', '子', '癸', '丑', '艮', '寅', '甲', '卯', 
-                '乙', '辰', '巽', '巳', '丙', '午', '丁', '未',
-                '坤', '申', '庚', '酉', '辛', '戌', '乾', '亥'
-            ];
-            
-            // 8 Trigrams (팔괘)
-            const trigrams = [
-                { symbol: '☰', name: '乾' },
-                { symbol: '☱', name: '兌' },
-                { symbol: '☲', name: '離' },
-                { symbol: '☳', name: '震' },
-                { symbol: '☴', name: '巽' },
-                { symbol: '☵', name: '坎' },
-                { symbol: '☶', name: '艮' },
-                { symbol: '☷', name: '坤' }
-            ];
-            
-            // 12 Earthly Branches (12지지)
-            const branches = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
-            
-            // Adjust sizes for logo vs main compass
-            const mountainRadius = isLogo ? 18 : 130;
-            const trigramRadius = isLogo ? 12 : 75;
-            const branchRadius = isLogo ? 7 : 50;
-            
-            // Populate 24 Mountains
-            const mountainsContainer = document.querySelector(mountainsSelector);
-            if (mountainsContainer) {
-                // For logo, only show key mountains (every 3rd one for simplicity)
-                const mountainsToShow = isLogo ? 
-                    mountains.filter((_, i) => i % 3 === 0) : 
-                    mountains;
-                    
-                mountainsToShow.forEach((mountain, index) => {
-                    const totalMountains = mountainsToShow.length;
-                    const angle = (index * (360 / totalMountains)) - 90;
-                    const x = Math.cos(angle * Math.PI / 180) * mountainRadius;
-                    const y = Math.sin(angle * Math.PI / 180) * mountainRadius;
-                    
-                    const element = document.createElement('div');
-                    element.className = isLogo ? 'logo-mountain' : 'mountain';
-                    element.textContent = mountain;
-                    element.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
-                    mountainsContainer.appendChild(element);
-                });
-            }
-            
-            // Populate 8 Trigrams
-            const trigramRing = document.querySelector(trigramSelector);
-            if (trigramRing) {
-                trigrams.forEach((trigram, index) => {
-                    const angle = (index * 45) - 90;
-                    const x = Math.cos(angle * Math.PI / 180) * trigramRadius;
-                    const y = Math.sin(angle * Math.PI / 180) * trigramRadius;
-                    
-                    const element = document.createElement('div');
-                    element.className = isLogo ? 'logo-trigram' : 'trigram';
-                    element.textContent = trigram.symbol;
-                    element.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
-                    trigramRing.appendChild(element);
-                });
-            }
-            
-            // Populate 12 Branches (skip for logo - too small)
-            if (!isLogo) {
-                const branchesContainer = document.querySelector(branchesSelector);
-                if (branchesContainer) {
-                    branches.forEach((branch, index) => {
-                        const angle = (index * 30) - 90;
-                        const x = Math.cos(angle * Math.PI / 180) * branchRadius;
-                        const y = Math.sin(angle * Math.PI / 180) * branchRadius;
-                        
-                        const element = document.createElement('div');
-                        element.className = 'branch';
-                        element.textContent = branch;
-                        element.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
-                        branchesContainer.appendChild(element);
-                    });
-                }
-            }
-        }
-    </script>
+    <script src="js/app-init.js"></script>
     <!-- 천간지지 가이드 모달 -->
     <div id="saju-guide-modal"></div>
-    
-    <script>
-    function openSajuGuide() {
-        // Inline guide - show info modal with combined content
-        showInfoModal('천간');
-    }
-
-    function closeSajuGuide() {
-        closeInfoModal();
-    }
-    </script>
 </body>
 </html>

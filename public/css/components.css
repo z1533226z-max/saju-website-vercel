@@ -16,6 +16,21 @@
   margin-bottom: var(--spacing-2xl);
   font-size: var(--text-3xl);
   color: var(--color-text-primary);
+  font-family: var(--font-heading);
+  letter-spacing: var(--letter-spacing-wide);
+  position: relative;
+  padding-bottom: var(--spacing-lg);
+}
+
+/* 섹션 타이틀 골드 장식선 */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--color-accent);
+  margin: var(--spacing-md) auto 0;
+  border-radius: var(--radius-full);
 }
 
 #saju-form {
@@ -39,7 +54,7 @@
   text-align: center;
   cursor: pointer;
   transition: border-color var(--duration-fast) var(--ease-in-out), transform var(--duration-fast) var(--ease-in-out), background var(--duration-fast) var(--ease-in-out);
-  background: var(--color-bg-primary);
+  background: var(--color-warm-surface);
 }
 
 .radio-card:hover {
@@ -91,17 +106,17 @@
 
 .input-field select {
   padding: var(--input-padding-y) var(--input-padding-x);
-  border: var(--input-border);
-  border-radius: var(--input-radius);
-  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-warm-surface);
   font-size: var(--text-base);
   transition: border-color var(--duration-fast) var(--ease-in-out), box-shadow var(--duration-fast) var(--ease-in-out);
 }
 
-.input-field select:focus {
+.input-field select:focus-visible {
   border-color: var(--color-accent);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(230, 182, 85, 0.1);
+  box-shadow: 0 0 0 3px var(--color-warm-highlight);
 }
 
 /* Time Input Group */
@@ -126,13 +141,14 @@
 .time-grid button {
   padding: var(--spacing-sm);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
+  background: var(--color-warm-surface);
   transition: border-color var(--duration-fast) var(--ease-in-out), background-color var(--duration-fast) var(--ease-in-out), color var(--duration-fast) var(--ease-in-out);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-xs);
+  min-height: 44px;
 }
 
 .time-grid button:hover {
@@ -144,6 +160,7 @@
   background: var(--color-accent);
   border-color: var(--color-accent);
   color: var(--color-text-inverse);
+  box-shadow: 0 2px 8px rgba(200, 150, 62, 0.3);
 }
 
 .hour-name {
@@ -173,7 +190,7 @@
   text-align: center;
   cursor: pointer;
   transition: border-color var(--duration-fast) var(--ease-in-out), transform var(--duration-fast) var(--ease-in-out), background var(--duration-fast) var(--ease-in-out);
-  background: var(--color-bg-primary);
+  background: var(--color-warm-surface);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -211,23 +228,41 @@
   font-weight: var(--font-medium);
 }
 
-/* Submit Button */
+/* Submit Button - pill 형태 + 시머 효과 */
 .submit-button {
   width: 100%;
-  padding: var(--spacing-md) var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-3xl);
   background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
   color: var(--color-text-inverse);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-full);
   font-size: var(--text-lg);
   font-weight: var(--font-semibold);
+  letter-spacing: var(--letter-spacing-wide);
   transition: transform var(--duration-normal) var(--ease-in-out), box-shadow var(--duration-normal) var(--ease-in-out), opacity var(--duration-normal) var(--ease-in-out);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 16px rgba(200, 150, 62, 0.25);
   margin-top: var(--spacing-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.submit-button:hover::after {
+  left: 100%;
 }
 
 .submit-button:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(200, 150, 62, 0.35);
 }
 
 .submit-button:active {
@@ -269,17 +304,18 @@
 }
 
 .pillar {
-  background: var(--color-bg-tertiary);
+  background: var(--color-warm-surface);
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
   text-align: center;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-warm);
   transition: transform var(--duration-normal) var(--ease-in-out), box-shadow var(--duration-normal) var(--ease-in-out);
+  border: 1px solid var(--color-border-light);
 }
 
 .pillar:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-warm-lg);
 }
 
 .pillar-title {
@@ -338,30 +374,35 @@
   display: inline-block;
   width: 18px;
   height: 18px;
-  background: var(--color-primary);
-  color: white;
+  background: var(--color-warm-highlight);
+  color: var(--color-accent);
   border-radius: 50%;
   font-size: 0.7rem;
   line-height: 18px;
   cursor: help;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform var(--duration-normal) var(--ease-in-out), background-color var(--duration-normal) var(--ease-in-out);
 }
 
 .pillar-info:hover {
   transform: scale(1.2);
-  background: var(--color-secondary);
+  background: var(--color-accent);
+  color: white;
 }
 
-/* 일주 강조 */
+/* 일주 강조 - 골드 보더 */
 .day-pillar {
-  background: linear-gradient(135deg, var(--color-bg-tertiary) 0%, #f0f4ff 100%);
-  border: 2px solid var(--color-primary);
+  background: var(--color-warm-surface);
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 0 0 4px var(--color-warm-highlight), var(--shadow-warm-md);
 }
 
 .day-pillar .pillar-title {
-  color: var(--color-primary);
+  color: var(--color-accent);
   font-weight: var(--font-bold);
 }
+
+.day-pillar .stem-korean,
+.day-pillar .branch-korean {
   color: var(--color-text-secondary);
   margin-top: 0.25rem;
   font-family: 'Noto Sans KR', sans-serif;
@@ -370,11 +411,12 @@
 
 /* Elements Analysis */
 .elements-analysis {
-  background: var(--color-bg-tertiary);
-  border-radius: var(--radius-lg);
+  background: var(--color-warm-surface);
+  border-radius: var(--radius-xl);
   padding: var(--spacing-xl);
   margin-bottom: var(--spacing-2xl);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-warm);
+  border: 1px solid var(--color-border);
 }
 
 .elements-analysis h3 {
@@ -427,28 +469,34 @@
 }
 
 .interpretation-card {
-  background: var(--color-bg-tertiary);
-  border-radius: var(--radius-lg);
+  background: var(--color-warm-surface);
+  border-radius: var(--radius-xl);
   padding: var(--spacing-xl);
-  box-shadow: var(--shadow-md);
+  padding-left: calc(var(--spacing-xl) + 3px);
+  box-shadow: var(--shadow-warm);
   transition: transform var(--duration-normal) var(--ease-in-out), box-shadow var(--duration-normal) var(--ease-in-out);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
 }
 
 .interpretation-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-warm-hover);
 }
 
 .interpretation-card h3 {
-  font-size: var(--text-lg);
+  font-size: var(--text-xl);
   margin-bottom: var(--spacing-md);
   color: var(--color-accent);
+  font-family: var(--font-heading);
 }
 
 .interpretation-card p {
   font-size: var(--text-base);
-  line-height: var(--line-height-relaxed);
+  line-height: 1.85;
   color: var(--color-text-secondary);
+  overflow-wrap: break-word;
+  word-break: keep-all;
 }
 
 /* Share Buttons */
@@ -500,17 +548,18 @@
 }
 
 .info-card {
-  background: var(--color-bg-tertiary);
-  border-radius: var(--radius-lg);
+  background: var(--color-warm-surface);
+  border-radius: var(--radius-xl);
   padding: var(--spacing-xl);
   text-align: center;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-warm);
   transition: transform var(--duration-normal) var(--ease-in-out), box-shadow var(--duration-normal) var(--ease-in-out);
+  border: 1px solid var(--color-border);
 }
 
 .info-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-warm-hover);
 }
 
 .card-icon {
@@ -556,9 +605,10 @@
 
 #site-footer {
   background: var(--color-text-primary);
-  color: var(--color-text-inverse);
-  padding: var(--spacing-xl) 0;
+  color: var(--color-bg-secondary);
+  padding: var(--spacing-2xl) 0;
   text-align: center;
+  border-top: 3px solid var(--color-accent);
 }
 
 .footer-container {
@@ -572,6 +622,8 @@
   opacity: 0.8;
   font-size: 0.9rem;
 }
+
+.footer-links a {
   transition: opacity var(--duration-fast) var(--ease-in-out);
 }
 
@@ -910,6 +962,7 @@
   width: 90%;
   max-height: 80vh;
   overflow-y: auto;
+  overscroll-behavior: contain;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   z-index: 9999;
 }
@@ -929,7 +982,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color var(--duration-normal) var(--ease-in-out), color var(--duration-normal) var(--ease-in-out);
   z-index: 10000;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
@@ -996,7 +1049,7 @@
 }
 
 .fun-fact {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
   color: white;
   padding: var(--spacing-lg);
   border-radius: var(--radius-md);
@@ -1026,6 +1079,16 @@
   }
 }
 
+/* Toggle Header (격국/신살/용신 접기) */
+.toggle-header {
+  cursor: pointer;
+}
+
+.toggle-icon {
+  float: right;
+  font-size: 0.8em;
+}
+
 /* ===================================
    Pattern / Shinshal / Yongshin Sections
    =================================== */
@@ -1038,7 +1101,7 @@
 }
 
 .pattern-badge {
-    background: var(--color-accent, #6B66FF);
+    background: var(--color-accent);
     color: white;
     padding: 0.25rem 0.75rem;
     border-radius: 12px;

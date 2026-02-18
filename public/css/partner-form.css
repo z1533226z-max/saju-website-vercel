@@ -13,8 +13,9 @@
     cursor: pointer;
 }
 
-#partner-time:focus {
-    outline: none;
+#partner-time:focus-visible {
+    outline: 3px solid #6366f1;
+    outline-offset: 2px;
     border-color: #6366f1;
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
@@ -36,8 +37,9 @@
     cursor: pointer;
 }
 
-#partner-calendar:focus {
-    outline: none;
+#partner-calendar:focus-visible {
+    outline: 3px solid #6366f1;
+    outline-offset: 2px;
     border-color: #6366f1;
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
