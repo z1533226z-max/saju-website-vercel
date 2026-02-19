@@ -831,11 +831,6 @@
         else summaryText = '잠재력이 큰 손금입니다. 자신을 믿고 도전하세요.';
         document.getElementById('summaryMessage').textContent = `[${handStr} 감지] ${summaryText}`;
 
-        // 부가 분석 (AI 기반 텍스트)
-        document.getElementById('fingerText').textContent = data.personality || '성격 분석 결과를 아래 AI 분석에서 확인하세요.';
-        document.getElementById('mountText').textContent = data.career || '직업운 분석 결과를 아래 AI 분석에서 확인하세요.';
-        document.getElementById('specialText').textContent = data.health || '건강운 분석 결과를 아래 AI 분석에서 확인하세요.';
-
         // AI 심층 분석 섹션
         document.getElementById('aiLoadingSection').style.display = 'none';
         document.getElementById('aiErrorSection').style.display = 'none';
