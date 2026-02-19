@@ -788,7 +788,6 @@
             fate_line: { dom: 'fate', name: '운명선' }
         };
 
-        const ratingToScore = { '매우 강함': 95, '강함': 88, '보통': 75, '약함': 65, '매우 약함': 55 };
         let totalScore = 0;
         let lineCount = 0;
 
@@ -796,7 +795,7 @@
             const lineData = data.lines?.[apiKey];
             if (!lineData) continue;
 
-            const score = ratingToScore[lineData.rating] || 75;
+            const score = lineData.score || 75;
             totalScore += score;
             lineCount++;
 
