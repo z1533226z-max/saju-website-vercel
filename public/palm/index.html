@@ -729,10 +729,7 @@
         }
 
         if (response.status === 503) {
-            loadingStatus.textContent = data.message || '분석 요청이 많습니다. 잠시 후 다시 시도해주세요.';
-            loadingProgress.style.width = '100%';
-            loadingProgress.style.background = '#ff4444';
-            setTimeout(() => { loadingProgress.style.background = ''; showSection('preview'); }, 3000);
+            showBusyError();
             return;
         }
 
@@ -800,6 +797,32 @@
                 <button onclick="document.getElementById('palmErrorOverlay').style.display='none'"
                     style="background:var(--color-gold,#d4af37);color:#000;border:none;border-radius:8px;padding:0.7rem 2rem;font-size:1rem;font-weight:bold;cursor:pointer;">
                     다시 촬영하기
+                </button>
+            </div>
+        `;
+        overlay.style.display = 'flex';
+    }
+
+    function showBusyError() {
+        showSection('preview');
+        let overlay = document.getElementById('palmErrorOverlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'palmErrorOverlay';
+            overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;padding:1rem;';
+            document.body.appendChild(overlay);
+        }
+        overlay.innerHTML = `
+            <div style="background:var(--color-bg-secondary,#1a1a2e);border:1px solid var(--color-gold,#d4af37);border-radius:16px;padding:2rem;max-width:400px;width:100%;text-align:center;">
+                <div style="font-size:3rem;margin-bottom:1rem;">⏳</div>
+                <h3 style="color:var(--color-gold,#d4af37);margin-bottom:0.8rem;">AI가 잠시 바빠요</h3>
+                <p style="color:var(--color-text-muted,#b8a88a);margin-bottom:1.2rem;font-size:0.9rem;line-height:1.6;">
+                    많은 분들이 손금 분석을 이용 중이에요.<br>
+                    <strong style="color:var(--color-text,#e0d5c1);">10~20초 후</strong>에 다시 시도해주세요!
+                </p>
+                <button onclick="document.getElementById('palmErrorOverlay').style.display='none'"
+                    style="background:var(--color-gold,#d4af37);color:#000;border:none;border-radius:8px;padding:0.7rem 2rem;font-size:1rem;font-weight:bold;cursor:pointer;">
+                    확인
                 </button>
             </div>
         `;

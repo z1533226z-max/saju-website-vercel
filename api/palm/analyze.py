@@ -196,7 +196,7 @@ def check_rate_limit(ip):
 
 
 def call_gemini_api(image_base64, mime_type='image/jpeg'):
-    """Call Gemini Vision API for palm analysis"""
+    """Call Gemini Vision API for palm analysis with auto-retry on 429"""
     import urllib.request
 
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key={GEMINI_API_KEY}"
@@ -219,15 +219,26 @@ def call_gemini_api(image_base64, mime_type='image/jpeg'):
         }
     }
 
-    req = urllib.request.Request(
-        url,
-        data=json.dumps(payload).encode('utf-8'),
-        headers={'Content-Type': 'application/json'},
-        method='POST'
-    )
-
-    with urllib.request.urlopen(req, timeout=25) as resp:
-        result = json.loads(resp.read().decode('utf-8'))
+    last_error = None
+    for attempt in range(3):
+        try:
+            req = urllib.request.Request(
+                url,
+                data=json.dumps(payload).encode('utf-8'),
+                headers={'Content-Type': 'application/json'},
+                method='POST'
+            )
+            with urllib.request.urlopen(req, timeout=25) as resp:
+                result = json.loads(resp.read().decode('utf-8'))
+            break
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and attempt < 2:
+                time.sleep(2 * (attempt + 1))
+                last_error = e
+                continue
+            raise
+    else:
+        raise last_error
 
     # Extract text from response
     candidates = result.get('candidates', [])
