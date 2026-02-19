@@ -773,7 +773,7 @@
     function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
     // ===== Gemini AI Analysis =====
-    const AI_DAILY_LIMIT = 5;
+    const AI_DAILY_LIMIT = 100;
     const AI_STORAGE_KEY = 'palm_ai_usage';
 
     function getAiUsageToday() {
