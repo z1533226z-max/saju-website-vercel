@@ -431,6 +431,11 @@
                         <h4>오늘의 조언</h4>
                         <p id="aiAdviceText"></p>
                     </div>
+                    <div class="additional-card" id="aiAdditionalLinesCard" style="display:none; grid-column: 1 / -1;">
+                        <div class="additional-icon">📐</div>
+                        <h4>추가 손금선 분석</h4>
+                        <div id="aiAdditionalLinesContent"></div>
+                    </div>
                     <div class="additional-card" id="aiSpecialMarksCard" style="display:none; grid-column: 1 / -1;">
                         <div class="additional-icon">✨</div>
                         <h4>특수 기호 분석</h4>
@@ -853,6 +858,27 @@
         document.getElementById('aiHealthText').textContent = data.health || '';
         document.getElementById('aiAdviceText').textContent = data.advice || '';
 
+        // 추가 손금선 분석 (결혼선, 태양선 등)
+        const addLines = data.additional_lines || [];
+        const addLinesCard = document.getElementById('aiAdditionalLinesCard');
+        const addLinesContent = document.getElementById('aiAdditionalLinesContent');
+        if (addLines.length > 0) {
+            addLinesContent.innerHTML = addLines.map(line => {
+                const s = line.score || 70;
+                const tags = (line.keywords || []).map(t => `<span class="tag">${t}</span>`).join('');
+                return `<div style="margin-bottom:1rem; padding:0.8rem; background:rgba(212,175,55,0.06); border-radius:8px; border-left:3px solid var(--color-primary);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                        <strong>${line.name}</strong> <span style="color:var(--color-primary); font-weight:bold;">${s}점</span>
+                    </div>
+                    <p style="margin:0 0 0.4rem; font-size:0.9rem;">${line.description}</p>
+                    <div>${tags}</div>
+                </div>`;
+            }).join('');
+            addLinesCard.style.display = 'block';
+        } else {
+            addLinesCard.style.display = 'none';
+        }
+
         // 특수 기호 분석
         const marks = data.special_marks || [];
         const marksCard = document.getElementById('aiSpecialMarksCard');
@@ -868,7 +894,8 @@
             }).join('');
             marksCard.style.display = 'block';
         } else {
-            marksCard.style.display = 'none';
+            marksContent.innerHTML = '<p style="color:var(--color-text-muted); font-size:0.9rem;">특수 기호가 발견되지 않았습니다.</p>';
+            marksCard.style.display = 'block';
         }
 
         const remaining = data.remaining !== undefined ? data.remaining : (AI_DAILY_LIMIT - getAiUsageToday());
