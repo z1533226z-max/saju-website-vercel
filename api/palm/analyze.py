@@ -23,7 +23,9 @@ DAILY_LIMIT = 100
 
 PALM_ANALYSIS_PROMPT = """당신은 수상학(palmistry)에 정통한 전문 손금 분석가입니다.
 
-먼저 이 사진이 손바닥 사진인지 판단하세요. 손바닥이 아니면 is_palm을 false로 설정하세요.
+먼저 이 사진이 손바닥 사진인지 판단하세요. 손바닥이 아니면 is_palm을 false로 설정하고, rejection_reason에 상황에 맞는 재치있는 한국어 메시지를 작성하세요.
+예시: "풍경 사진이 아니라 손바닥 사진이 필요해요! 😊", "발이 아니라 손을 보여주세요~ 🤚", "사진이 너무 어두워서 손금이 잘 안 보여요. 밝은 곳에서 다시 찍어주세요!"
+손바닥이 보이지만 너무 흐리거나 손금이 안 보이는 경우에도 is_palm을 false로 하고 촬영 방법을 안내하세요.
 
 ## 왼손과 오른손의 차이 (중요!)
 - 왼손(비주력손) = 선천운: 태어날 때 타고난 잠재력, 성격, 운명
@@ -322,7 +324,7 @@ class handler(BaseHTTPRequestHandler):
                 reason = result.get('rejection_reason', '손바닥 사진이 아닌 것 같습니다.')
                 self._json_response(400, {
                     'error': 'not_palm',
-                    'message': f'🤚 {reason}\n손바닥이 잘 보이는 사진을 올려주세요.',
+                    'message': reason,
                     'remaining': remaining
                 })
                 return

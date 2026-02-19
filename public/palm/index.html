@@ -737,10 +737,7 @@
         }
 
         if (data.error === 'not_palm') {
-            loadingStatus.textContent = data.message || '손바닥 사진이 아닙니다.';
-            loadingProgress.style.width = '100%';
-            loadingProgress.style.background = '#ff4444';
-            setTimeout(() => { loadingProgress.style.background = ''; showSection('preview'); }, 4000);
+            showNotPalmError(data.message || '손바닥 사진이 아닌 것 같습니다.');
             return;
         }
 
@@ -763,14 +760,78 @@
 
         } catch (err) {
             console.error("[AI] Gemini 분석 오류:", err);
-            loadingStatus.textContent = '분석 중 오류가 발생했습니다. 다시 시도해주세요.';
-            loadingProgress.style.width = '100%';
-            loadingProgress.style.background = '#ff4444';
-            setTimeout(() => { loadingProgress.style.background = ''; showSection('preview'); }, 3000);
+            showAnalysisError();
         }
     }
 
     function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    // ===== Error Handlers =====
+    function showNotPalmError(reason) {
+        showSection('preview');
+        // 재치있는 메시지 + 촬영 가이드
+        const tips = [
+            '손바닥을 활짝 펴고 카메라와 정면으로 맞춰주세요',
+            '밝은 조명 아래서 촬영하면 손금이 더 잘 보입니다',
+            '손바닥 전체가 사진에 들어오도록 가까이 찍어주세요',
+            '손가락을 자연스럽게 펴고, 손금이 선명하게 보이도록 해주세요'
+        ];
+        const tipList = tips.map(t => `<li>${t}</li>`).join('');
+
+        // 에러 오버레이 표시
+        let overlay = document.getElementById('palmErrorOverlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'palmErrorOverlay';
+            overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;padding:1rem;';
+            document.body.appendChild(overlay);
+        }
+        overlay.innerHTML = `
+            <div style="background:var(--color-bg-secondary,#1a1a2e);border:1px solid var(--color-gold,#d4af37);border-radius:16px;padding:2rem;max-width:420px;width:100%;text-align:center;">
+                <div style="font-size:3rem;margin-bottom:1rem;">🤔</div>
+                <h3 style="color:var(--color-gold,#d4af37);margin-bottom:0.8rem;font-size:1.2rem;">손바닥을 찾지 못했어요</h3>
+                <p style="color:var(--color-text,#e0d5c1);margin-bottom:1.2rem;font-size:0.95rem;line-height:1.6;">${reason}</p>
+                <div style="text-align:left;background:rgba(212,175,55,0.08);border-radius:10px;padding:1rem;margin-bottom:1.2rem;">
+                    <p style="color:var(--color-gold,#d4af37);font-weight:bold;margin-bottom:0.5rem;font-size:0.9rem;">📸 이렇게 찍어보세요!</p>
+                    <ul style="color:var(--color-text-muted,#b8a88a);font-size:0.85rem;line-height:1.8;padding-left:1.2rem;margin:0;">
+                        ${tipList}
+                    </ul>
+                </div>
+                <button onclick="document.getElementById('palmErrorOverlay').style.display='none'"
+                    style="background:var(--color-gold,#d4af37);color:#000;border:none;border-radius:8px;padding:0.7rem 2rem;font-size:1rem;font-weight:bold;cursor:pointer;">
+                    다시 촬영하기
+                </button>
+            </div>
+        `;
+        overlay.style.display = 'flex';
+    }
+
+    function showAnalysisError() {
+        showSection('preview');
+        let overlay = document.getElementById('palmErrorOverlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'palmErrorOverlay';
+            overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;padding:1rem;';
+            document.body.appendChild(overlay);
+        }
+        overlay.innerHTML = `
+            <div style="background:var(--color-bg-secondary,#1a1a2e);border:1px solid var(--color-gold,#d4af37);border-radius:16px;padding:2rem;max-width:400px;width:100%;text-align:center;">
+                <div style="font-size:3rem;margin-bottom:1rem;">😅</div>
+                <h3 style="color:var(--color-gold,#d4af37);margin-bottom:0.8rem;">분석에 실패했습니다</h3>
+                <p style="color:var(--color-text-muted,#b8a88a);margin-bottom:1.2rem;font-size:0.9rem;line-height:1.6;">
+                    일시적인 문제가 발생했어요.<br>
+                    사진이 너무 어둡거나 흐리면 인식이 어려울 수 있습니다.<br>
+                    밝은 곳에서 손바닥을 선명하게 다시 찍어보세요!
+                </p>
+                <button onclick="document.getElementById('palmErrorOverlay').style.display='none'"
+                    style="background:var(--color-gold,#d4af37);color:#000;border:none;border-radius:8px;padding:0.7rem 2rem;font-size:1rem;font-weight:bold;cursor:pointer;">
+                    다시 시도하기
+                </button>
+            </div>
+        `;
+        overlay.style.display = 'flex';
+    }
 
     // ===== Gemini AI Analysis =====
     const AI_DAILY_LIMIT = 100;
