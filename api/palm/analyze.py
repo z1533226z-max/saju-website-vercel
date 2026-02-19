@@ -137,8 +137,8 @@ def check_rate_limit(ip):
 
 
 GEMINI_MODELS = [
-    'gemini-2.0-flash',        # Primary: 15 RPM, 1500 RPD
-    'gemini-2.5-flash-lite',   # Fallback: 15 RPM, 1000 RPD
+    'gemini-2.5-flash-lite',   # Primary: 15 RPM, 1000 RPD (이미지 분석 우수)
+    'gemini-2.0-flash',        # Fallback: 15 RPM, 1500 RPD
 ]
 
 
