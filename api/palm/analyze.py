@@ -136,11 +136,15 @@ def check_rate_limit(ip):
     return True, DAILY_LIMIT - count - 1
 
 
-def call_gemini_api(image_base64, mime_type='image/jpeg'):
-    """Call Gemini Vision API for palm analysis with auto-retry on 429"""
-    import urllib.request
+GEMINI_MODELS = [
+    'gemini-2.0-flash',        # Primary: 15 RPM, 1500 RPD
+    'gemini-2.5-flash-lite',   # Fallback: 15 RPM, 1000 RPD
+]
 
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GEMINI_API_KEY}"
+
+def call_gemini_api(image_base64, mime_type='image/jpeg'):
+    """Call Gemini Vision API with model fallback on 429"""
+    import urllib.request
 
     payload = {
         "contents": [{
@@ -161,34 +165,38 @@ def call_gemini_api(image_base64, mime_type='image/jpeg'):
     }
 
     last_error = None
-    for attempt in range(3):
-        try:
-            req = urllib.request.Request(
-                url,
-                data=json.dumps(payload).encode('utf-8'),
-                headers={'Content-Type': 'application/json'},
-                method='POST'
-            )
-            with urllib.request.urlopen(req, timeout=25) as resp:
-                result = json.loads(resp.read().decode('utf-8'))
-            break
-        except urllib.error.HTTPError as e:
-            if e.code == 429 and attempt < 2:
-                time.sleep(2 * (attempt + 1))
+    for model in GEMINI_MODELS:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_API_KEY}"
+        for attempt in range(2):
+            try:
+                req = urllib.request.Request(
+                    url,
+                    data=json.dumps(payload).encode('utf-8'),
+                    headers={'Content-Type': 'application/json'},
+                    method='POST'
+                )
+                with urllib.request.urlopen(req, timeout=25) as resp:
+                    result = json.loads(resp.read().decode('utf-8'))
+                return _parse_gemini_response(result)
+            except urllib.error.HTTPError as e:
                 last_error = e
-                continue
-            raise
-    else:
-        raise last_error
+                if e.code == 429:
+                    if attempt == 0:
+                        time.sleep(2)
+                        continue
+                    break  # Try next model
+                raise
+    raise last_error
 
-    # Extract text from response
+
+def _parse_gemini_response(result):
+    """Extract and parse JSON from Gemini response"""
     candidates = result.get('candidates', [])
     if not candidates:
         feedback = result.get('promptFeedback', {})
         raise ValueError(f"No candidates: {json.dumps(feedback, ensure_ascii=False)[:200]}")
 
     parts = candidates[0].get('content', {}).get('parts', [])
-    # Use last text part (thinking models may have multiple parts)
     text = ''
     for part in reversed(parts):
         if 'text' in part:
@@ -197,7 +205,6 @@ def call_gemini_api(image_base64, mime_type='image/jpeg'):
     if not text:
         raise ValueError(f"No text in response parts: {[list(p.keys()) for p in parts]}")
 
-    # Clean markdown code blocks if present
     if text.startswith('```json'):
         text = text[7:]
     if text.startswith('```'):
