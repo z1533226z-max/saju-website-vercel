@@ -23,18 +23,22 @@ DAILY_LIMIT = 5
 
 PALM_ANALYSIS_PROMPT = """당신은 수상학(palmistry)에 정통한 전문 손금 분석가입니다.
 
+먼저 이 사진이 손바닥 사진인지 판단하세요. 손바닥이 아니면 is_palm을 false로 설정하세요.
+
 당신은 동양 수상학과 서양 수상학 모두에 대한 깊은 지식을 갖추고 있습니다.
 이 사진 속 손바닥을 직접 관찰하고, 당신의 수상학 지식을 바탕으로 자유롭게 해석해주세요.
 
 분석 방법:
-1. 사진에서 각 손금선의 물리적 특징(시작점, 끝점, 길이, 깊이, 곡률, 끊김, 갈래, 섬, 별, 십자 등)을 관찰하세요.
+1. 사진에서 각 손금선의 물리적 특징을 관찰하세요.
 2. 관찰한 특징을 당신의 수상학 지식에 비추어 자유롭게 판단하고 해석하세요.
 3. 정해진 매뉴얼이 아닌, 이 손금에서 실제로 보이는 것을 근거로 당신만의 전문적 견해를 말하세요.
-4. score는 관찰한 선의 선명도, 길이, 깊이, 흐름의 자연스러움 등을 종합적으로 판단하여 부여하세요.
+4. 특수 기호(별, 삼각형, 사각형, 십자, 섬, 갈래 등)가 보이면 반드시 special_marks에 기록하세요.
 
 다음 JSON 형식으로만 응답하세요 (마크다운 코드블록 없이 순수 JSON만):
 
 {
+  "is_palm": true 또는 false,
+  "rejection_reason": "손바닥이 아닌 경우 이유 (한국어). 손바닥이면 빈 문자열",
   "hand": "왼손" 또는 "오른손",
   "lines": {
     "heart_line": {
@@ -62,6 +66,13 @@ PALM_ANALYSIS_PROMPT = """당신은 수상학(palmistry)에 정통한 전문 손
       "keywords": ["키워드1", "키워드2", "키워드3"]
     }
   },
+  "special_marks": [
+    {
+      "type": "기호 유형 (별/삼각형/사각형/십자/섬/갈래 등)",
+      "location": "발견 위치 (예: 감정선 위, 목성구 등)",
+      "meaning": "수상학적 의미 (1-2문장, 한국어)"
+    }
+  ],
   "overall": "4개 선의 전체적 조화와 이 손금만의 특이점을 종합 (4-5문장, 한국어, 긍정적 톤)",
   "personality": "손금에서 읽히는 성격 특성 (3-4문장, 한국어)",
   "love": "연애운 해석 (2-3문장, 한국어)",
@@ -70,6 +81,7 @@ PALM_ANALYSIS_PROMPT = """당신은 수상학(palmistry)에 정통한 전문 손
   "advice": "이 손금에 맞는 조언 (1-2문장, 한국어, 격려하는 톤)"
 }
 
+special_marks: 특수 기호가 없으면 빈 배열 []. 있으면 발견한 만큼 추가.
 4개 선의 score가 모두 같으면 안 됩니다. 반드시 위 JSON 형식만 출력하세요."""
 
 
@@ -228,6 +240,16 @@ class handler(BaseHTTPRequestHandler):
 
             # Call Gemini API
             result = call_gemini_api(image_data, mime_type)
+
+            # Check if image is actually a palm
+            if not result.get('is_palm', True):
+                reason = result.get('rejection_reason', '손바닥 사진이 아닌 것 같습니다.')
+                self._json_response(400, {
+                    'error': 'not_palm',
+                    'message': f'🤚 {reason}\n손바닥이 잘 보이는 사진을 올려주세요.',
+                    'remaining': remaining
+                })
+                return
 
             # Return result with remaining count
             result['remaining'] = remaining

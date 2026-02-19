@@ -431,6 +431,11 @@
                         <h4>오늘의 조언</h4>
                         <p id="aiAdviceText"></p>
                     </div>
+                    <div class="additional-card" id="aiSpecialMarksCard" style="display:none; grid-column: 1 / -1;">
+                        <div class="additional-icon">✨</div>
+                        <h4>특수 기호 분석</h4>
+                        <div id="aiSpecialMarksContent"></div>
+                    </div>
                 </div>
                 <div class="ai-remaining" id="aiRemaining" style="text-align:center; margin-top:1rem; color: var(--color-text-muted); font-size: 0.85rem;"></div>
             </div>
@@ -726,6 +731,14 @@
             return;
         }
 
+        if (data.error === 'not_palm') {
+            loadingStatus.textContent = data.message || '손바닥 사진이 아닙니다.';
+            loadingProgress.style.width = '100%';
+            loadingProgress.style.background = '#ff4444';
+            setTimeout(() => { loadingProgress.style.background = ''; showSection('preview'); }, 4000);
+            return;
+        }
+
         if (!response.ok) throw new Error(data.error || 'API error');
 
         // Stage 3: 결과 처리
@@ -839,6 +852,24 @@
         document.getElementById('aiCareerText').textContent = data.career || '';
         document.getElementById('aiHealthText').textContent = data.health || '';
         document.getElementById('aiAdviceText').textContent = data.advice || '';
+
+        // 특수 기호 분석
+        const marks = data.special_marks || [];
+        const marksCard = document.getElementById('aiSpecialMarksCard');
+        const marksContent = document.getElementById('aiSpecialMarksContent');
+        if (marks.length > 0) {
+            const symbolMap = { '별': '☆', '삼각형': '△', '사각형': '□', '십자': '✕', '섬': '◯', '갈래': '⑃' };
+            marksContent.innerHTML = marks.map(m => {
+                const sym = symbolMap[m.type] || '✦';
+                return `<div style="margin-bottom:0.8rem; padding:0.6rem; background:rgba(212,175,55,0.08); border-radius:8px; border-left:3px solid var(--color-primary);">
+                    <strong>${sym} ${m.type}</strong> <span style="color:var(--color-text-muted);">— ${m.location}</span>
+                    <p style="margin:0.3rem 0 0; font-size:0.9rem;">${m.meaning}</p>
+                </div>`;
+            }).join('');
+            marksCard.style.display = 'block';
+        } else {
+            marksCard.style.display = 'none';
+        }
 
         const remaining = data.remaining !== undefined ? data.remaining : (AI_DAILY_LIMIT - getAiUsageToday());
         document.getElementById('aiRemaining').textContent = `오늘 남은 AI 분석 횟수: ${remaining}회 / ${AI_DAILY_LIMIT}회`;
