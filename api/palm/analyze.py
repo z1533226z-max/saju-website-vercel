@@ -180,7 +180,7 @@ def call_gemini_api(image_base64, mime_type='image/jpeg'):
                 return _parse_gemini_response(result)
             except urllib.error.HTTPError as e:
                 last_error = e
-                if e.code == 429:
+                if e.code in (429, 503):
                     if attempt == 0:
                         time.sleep(2)
                         continue
@@ -299,7 +299,7 @@ class handler(BaseHTTPRequestHandler):
 
         except urllib.error.HTTPError as e:
             error_body = e.read().decode('utf-8') if e.fp else ''
-            if e.code == 429:
+            if e.code in (429, 503):
                 self._json_response(503, {
                     'error': 'api_busy',
                     'message': '현재 분석 요청이 많습니다. 잠시 후 다시 시도해주세요.',
