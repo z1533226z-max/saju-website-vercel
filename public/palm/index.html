@@ -647,11 +647,29 @@
         if (!file.type.startsWith('image/')) { alert('이미지 파일만 업로드할 수 있습니다.'); return; }
         const reader = new FileReader();
         reader.onload = (e) => {
-            currentImageData = e.target.result;
-            previewImage.src = currentImageData;
-            previewImage.onload = () => { setupCanvas(); showSection('preview'); };
+            const img = new Image();
+            img.onload = () => {
+                currentImageData = resizeImage(img);
+                previewImage.src = currentImageData;
+                previewImage.onload = () => { setupCanvas(); showSection('preview'); };
+            };
+            img.src = e.target.result;
         };
         reader.readAsDataURL(file);
+    }
+
+    function resizeImage(img) {
+        const MAX_SIZE = 1280;
+        let w = img.naturalWidth, h = img.naturalHeight;
+        if (w > MAX_SIZE || h > MAX_SIZE) {
+            const ratio = Math.min(MAX_SIZE / w, MAX_SIZE / h);
+            w = Math.round(w * ratio);
+            h = Math.round(h * ratio);
+        }
+        const c = document.createElement('canvas');
+        c.width = w; c.height = h;
+        c.getContext('2d').drawImage(img, 0, 0, w, h);
+        return c.toDataURL('image/jpeg', 0.85);
     }
 
     function setupCanvas() {
@@ -718,7 +736,13 @@
             body: JSON.stringify({ image: currentImageData })
         });
 
-        const data = await response.json();
+        let data;
+        try { data = await response.json(); } catch { data = {}; }
+
+        if (response.status === 413) {
+            showNotPalmError('사진 용량이 너무 커요! 📸 좀 더 가까이에서 손바닥만 찍어주세요~');
+            return;
+        }
 
         if (response.status === 429) {
             loadingStatus.textContent = data.message || '오늘의 AI 분석 횟수를 모두 사용했습니다.';
@@ -757,7 +781,11 @@
 
         } catch (err) {
             console.error("[AI] Gemini 분석 오류:", err);
-            showAnalysisError();
+            if (err.message && err.message.includes('Failed to fetch')) {
+                showNotPalmError('네트워크 연결을 확인해주세요. Wi-Fi나 데이터가 꺼져있을 수 있어요! 📡');
+            } else {
+                showAnalysisError();
+            }
         }
     }
 

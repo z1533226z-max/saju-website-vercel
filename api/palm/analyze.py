@@ -184,13 +184,18 @@ def call_gemini_api(image_base64, mime_type='image/jpeg'):
     # Extract text from response
     candidates = result.get('candidates', [])
     if not candidates:
-        raise ValueError(f"No candidates in Gemini response: {json.dumps(result, ensure_ascii=False)[:200]}")
+        feedback = result.get('promptFeedback', {})
+        raise ValueError(f"No candidates: {json.dumps(feedback, ensure_ascii=False)[:200]}")
 
     parts = candidates[0].get('content', {}).get('parts', [])
-    if not parts or 'text' not in parts[0]:
-        raise ValueError("No text in Gemini response")
-
-    text = parts[0]['text'].strip()
+    # Use last text part (thinking models may have multiple parts)
+    text = ''
+    for part in reversed(parts):
+        if 'text' in part:
+            text = part['text'].strip()
+            break
+    if not text:
+        raise ValueError(f"No text in response parts: {[list(p.keys()) for p in parts]}")
 
     # Clean markdown code blocks if present
     if text.startswith('```json'):
@@ -293,8 +298,20 @@ class handler(BaseHTTPRequestHandler):
                     'message': '현재 분석 요청이 많습니다. 잠시 후 다시 시도해주세요.',
                     'remaining': remaining
                 })
+            elif e.code == 400:
+                self._json_response(400, {
+                    'error': 'not_palm',
+                    'message': '사진을 인식하지 못했어요. 😅 밝은 곳에서 손바닥을 활짝 펴고 다시 찍어주세요!',
+                    'remaining': remaining
+                })
             else:
                 self._error(500, f'AI analysis failed: {e.code}')
+        except json.JSONDecodeError:
+            self._json_response(400, {
+                'error': 'not_palm',
+                'message': 'AI가 분석 결과를 정리하지 못했어요. 😅 사진을 다시 찍어서 시도해주세요!',
+                'remaining': remaining
+            })
         except Exception as e:
             self._error(500, f'Internal error: {str(e)}')
 
