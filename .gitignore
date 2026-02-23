@@ -58,3 +58,6 @@ instance/
 tmp/
 temp/
 *.tmp
+
+# Claude Code
+.claude/
