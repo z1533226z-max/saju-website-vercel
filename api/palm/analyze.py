@@ -19,7 +19,7 @@ GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', '')
 # In-memory rate limit store (resets on cold start, but good enough for basic protection)
 # For production, use Vercel KV or similar
 _rate_limit_store = {}
-DAILY_LIMIT = 100
+DAILY_LIMIT = 5
 
 PALM_ANALYSIS_PROMPT = """당신은 30년 경력의 세계 최고 수상학 전문가입니다. 수상학에 대한 당신의 깊은 지식을 바탕으로, 이 손바닥 사진을 직접 관찰하고 자유롭게 분석하세요.
 

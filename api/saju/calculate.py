@@ -180,12 +180,12 @@ class handler(BaseHTTPRequestHandler):
                     birth_date = solar_date
                 # If conversion fails, use original date as-is
 
-            # Calculate Saju
+            # Calculate Saju (is_lunar=False because conversion already done above)
             saju = _saju_calculator.calculate_saju(
                 birth_date=birth_date,
                 birth_time=hour,
                 gender=gender,
-                is_lunar=is_lunar
+                is_lunar=False
             )
 
             # Analyze elements

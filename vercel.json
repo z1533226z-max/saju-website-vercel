@@ -8,11 +8,13 @@
     },
     {
       "src": "/api/saju/calculate",
-      "dest": "/api/saju/calculate.py"
+      "dest": "/api/saju/calculate.py",
+      "methods": ["POST", "OPTIONS"]
     },
     {
       "src": "/api/saju/compatibility",
-      "dest": "/api/saju/compatibility.py"
+      "dest": "/api/saju/compatibility.py",
+      "methods": ["POST", "OPTIONS"]
     },
     {
       "src": "/api/saju/info/(.*)",
