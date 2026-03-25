@@ -27,6 +27,14 @@
       "methods": ["POST", "OPTIONS"]
     },
     {
+      "src": "/daily/?$",
+      "dest": "/api/daily/index.py"
+    },
+    {
+      "src": "/daily/(rat|ox|tiger|rabbit|dragon|snake|horse|goat|monkey|rooster|dog|pig)/?",
+      "dest": "/api/daily/fortune.py?sign=$1"
+    },
+    {
       "src": "/css/(.*)",
       "dest": "/public/css/$1",
       "headers": { "Cache-Control": "public, max-age=3600, s-maxage=86400" }
@@ -35,6 +43,19 @@
       "src": "/js/(.*)",
       "dest": "/public/js/$1",
       "headers": { "Cache-Control": "public, max-age=3600, s-maxage=86400" }
+    },
+    {
+      "src": "/2bca540734e04bae846415300b37e465\\.txt$",
+      "dest": "/public/2bca540734e04bae846415300b37e465.txt",
+      "headers": { "Cache-Control": "public, max-age=2592000" }
+    },
+    {
+      "src": "/robots\\.txt$",
+      "dest": "/public/robots.txt"
+    },
+    {
+      "src": "/ads\\.txt$",
+      "dest": "/public/ads.txt"
     },
     {
       "src": "/index.html",

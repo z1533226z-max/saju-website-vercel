@@ -427,3 +427,34 @@
         gap: var(--spacing-sm);
     }
 }
+
+/* ===================================
+   Zodiac Links Grid (SEO)
+   =================================== */
+
+.zodiac-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.zodiac-links-grid a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    color: var(--text-secondary, #aaa);
+    transition: all 0.2s;
+}
+
+.zodiac-links-grid a:hover {
+    border-color: var(--color-gold, #D4AF37);
+    color: var(--color-gold, #D4AF37);
+    background: rgba(212, 175, 55, 0.08);
+}
