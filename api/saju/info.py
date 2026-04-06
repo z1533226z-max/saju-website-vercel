@@ -35,8 +35,11 @@ class handler(BaseHTTPRequestHandler):
                 'ten_gods': 'ten_gods_rules.json'
             }
 
-            if info_type not in info_map:
-                self.send_error(404, '요청한 정보 타입을 찾을 수 없습니다.')
+            if not info_type or info_type not in info_map:
+                self.send_response(404)
+                self.send_header('Content-Type', 'application/json')
+                self.end_headers()
+                self.wfile.write(json.dumps({"error": "요청한 정보 타입을 찾을 수 없습니다.", "available": list(info_map.keys())}, ensure_ascii=False).encode('utf-8'))
                 return
 
             # Read the data file
