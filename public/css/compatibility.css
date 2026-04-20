@@ -508,3 +508,406 @@
         flex-direction: column;
     }
 }
+
+/* ──────────────────────────────────────────
+   쌍별 궁합 페이지
+   ────────────────────────────────────────── */
+.compat-pair-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+}
+
+/* Hero */
+.pair-hero {
+    text-align: center;
+    padding: var(--spacing-3xl) 0 var(--spacing-xl);
+}
+
+.pair-hero-signs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+}
+
+.pair-sign {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.pair-emoji {
+    font-size: 4rem;
+    line-height: 1;
+}
+
+.pair-hanja {
+    font-family: var(--font-heading);
+    color: var(--color-text-tertiary);
+    font-size: var(--text-sm);
+}
+
+.pair-name {
+    font-weight: 700;
+    font-size: var(--text-lg);
+}
+
+.pair-score-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-surface);
+}
+
+.pair-score-num {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    font-weight: 900;
+    line-height: 1;
+}
+
+.pair-score-unit {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+}
+
+.pair-label {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+}
+
+.pair-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    margin-bottom: var(--spacing-sm);
+}
+
+.pair-subtitle {
+    color: var(--color-text-secondary);
+    font-size: var(--text-base);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* 관계 유형 */
+.pair-type-section {
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+}
+
+.pair-type-section h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.pair-type-badge {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: var(--text-base);
+}
+
+/* 오행 분석 */
+.pair-element-section {
+    padding: var(--spacing-xl) 0;
+}
+
+.pair-element-section h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+.element-analysis {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.element-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    min-width: 200px;
+}
+
+.element-label {
+    font-weight: 700;
+    font-size: var(--text-base);
+}
+
+.element-value {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    color: var(--color-gold);
+}
+
+.element-trait {
+    color: var(--color-text-tertiary);
+    font-size: var(--text-sm);
+    text-align: center;
+    line-height: 1.5;
+}
+
+.element-relation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.element-rel-type {
+    font-weight: 700;
+    font-size: var(--text-lg);
+    color: var(--color-gold);
+}
+
+.element-rel-desc {
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    text-align: center;
+}
+
+/* 상세 분석 섹션 */
+.pair-detail-section {
+    padding: var(--spacing-lg) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.pair-detail-section h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.pair-detail-section p {
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    font-size: var(--text-base);
+}
+
+/* 팁 */
+.pair-tip-section {
+    padding: var(--spacing-xl) 0;
+}
+
+.pair-tip-section h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+.pair-tip-box {
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    text-align: center;
+}
+
+.pair-tip-box p {
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+}
+
+/* 삼합 보너스 */
+.pair-samhap-section {
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+    border-top: 1px solid var(--color-border);
+}
+
+.pair-samhap-section h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.pair-samhap-section p {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-sm);
+}
+
+.samhap-link {
+    color: var(--color-gold);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.samhap-link:hover {
+    text-decoration: underline;
+}
+
+/* 출생 연도 */
+.pair-years-section {
+    padding: var(--spacing-xl) 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.pair-years-section h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+.years-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+}
+
+.years-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    text-align: center;
+}
+
+.years-item h3 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--spacing-sm);
+}
+
+.years-item p {
+    color: var(--color-text-tertiary);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+}
+
+/* 반대 방향 */
+.pair-reverse-section {
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+}
+
+.reverse-link {
+    color: var(--color-gold);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--text-base);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: var(--radius-lg);
+    transition: all 0.2s;
+}
+
+.reverse-link:hover {
+    background: rgba(212, 175, 55, 0.1);
+}
+
+/* 다른 궁합 그리드 */
+.pair-others-section {
+    padding: var(--spacing-xl) 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.pair-others-section h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+.pair-others-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: var(--spacing-sm);
+}
+
+.pair-mini-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: var(--spacing-sm);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+}
+
+.pair-mini-card:hover {
+    border-color: var(--color-gold);
+    transform: translateY(-2px);
+}
+
+.pair-mini-emoji {
+    font-size: 1.5rem;
+}
+
+.pair-mini-name {
+    font-size: var(--text-xs);
+    font-weight: 500;
+}
+
+.pair-mini-score {
+    font-weight: 700;
+    font-size: var(--text-sm);
+}
+
+/* 모바일 반응형 */
+@media (max-width: 640px) {
+    .pair-hero-signs {
+        gap: var(--spacing-md);
+    }
+
+    .pair-emoji {
+        font-size: 3rem;
+    }
+
+    .pair-score-circle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .pair-score-num {
+        font-size: var(--text-2xl);
+    }
+
+    .pair-title {
+        font-size: var(--text-2xl);
+    }
+
+    .element-analysis {
+        flex-direction: column;
+    }
+
+    .element-item {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .years-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pair-others-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
