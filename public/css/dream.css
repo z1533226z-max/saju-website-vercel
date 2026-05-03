@@ -1,0 +1,252 @@
+/* Dream Interpretation Pages CSS */
+
+.dream-hero {
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+    background: linear-gradient(135deg, rgba(15,10,25,0.95), rgba(25,15,45,0.95));
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+
+.dream-hero .hero-badge {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: rgba(212,175,55,0.15);
+    border: 1px solid rgba(212,175,55,0.3);
+    border-radius: 20px;
+    color: var(--color-gold);
+    font-size: var(--text-sm);
+    margin-bottom: 1rem;
+}
+
+.dream-hero .hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: 0.75rem;
+}
+
+.dream-hero .hero-subtitle {
+    color: var(--color-text-secondary);
+    font-size: var(--text-base);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.dream-section {
+    padding: 2.5rem 1.5rem;
+}
+
+.dream-section .section-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Meaning cards */
+.dream-meanings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.dream-meaning-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,175,55,0.15);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: border-color 0.3s;
+}
+
+.dream-meaning-card:hover {
+    border-color: rgba(212,175,55,0.4);
+}
+
+.dream-meaning-card h3 {
+    color: var(--color-gold);
+    font-size: var(--text-base);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.dream-meaning-card p {
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+}
+
+/* Lucky numbers */
+.dream-lucky {
+    background: rgba(212,175,55,0.05);
+}
+
+.dream-lucky-card {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 12px;
+}
+
+.dream-lucky-card p {
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+}
+
+.dream-lucky-numbers {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.lucky-ball {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #D4AF37, #B8860B);
+    color: #1a1a2e;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px rgba(212,175,55,0.3);
+}
+
+.dream-lucky-tip {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+}
+
+.dream-lucky-tip a {
+    color: var(--color-gold);
+    text-decoration: underline;
+}
+
+/* FAQ */
+.dream-faq-list {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.dream-faq-item {
+    border-bottom: 1px solid rgba(212,175,55,0.1);
+    padding: 1.25rem 0;
+}
+
+.dream-faq-q {
+    color: var(--color-gold);
+    font-size: var(--text-base);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.dream-faq-q::before {
+    content: "Q. ";
+}
+
+.dream-faq-a {
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    padding-left: 0.5rem;
+}
+
+/* Related dreams */
+.dream-related-grid {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.dream-related-link {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    background: rgba(212,175,55,0.1);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 20px;
+    color: var(--color-gold);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    transition: all 0.3s;
+}
+
+.dream-related-link:hover {
+    background: rgba(212,175,55,0.2);
+    border-color: rgba(212,175,55,0.4);
+}
+
+/* Hub page */
+.dream-hub-category {
+    padding: 2rem 1.5rem;
+}
+
+.dream-hub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0.75rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.dream-hub-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,175,55,0.15);
+    border-radius: 8px;
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    transition: all 0.3s;
+}
+
+.dream-hub-link:hover {
+    background: rgba(212,175,55,0.1);
+    border-color: rgba(212,175,55,0.3);
+    color: var(--color-gold);
+}
+
+.dream-all-links {
+    text-align: center;
+}
+
+.dream-all-links a {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: rgba(212,175,55,0.1);
+    border: 1px solid rgba(212,175,55,0.3);
+    border-radius: 8px;
+    color: var(--color-gold);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.dream-all-links a:hover {
+    background: rgba(212,175,55,0.2);
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+    .dream-meanings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dream-hub-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .lucky-ball {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
