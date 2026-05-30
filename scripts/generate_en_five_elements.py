@@ -325,7 +325,7 @@ def gen_element_page(e):
                     <span class="gold-text">Saju Astrology</span>
                 </h1>
             </a>
-            <nav class="nav-links"><a href="/en/zodiac/">Zodiac</a><a href="/en/five-elements/" class="active">Five Elements</a><a href="/compatibility/">Compatibility</a><a href="/palm/">Palm Reading</a><a href="/">Korean Ver.</a></nav>
+            <nav class="nav-links"><a href="/en/zodiac/">Zodiac</a><a href="/en/five-elements/" class="active">Five Elements</a><a href="/en/compatibility/">Compatibility</a><a href="/palm/">Palm Reading</a><a href="/">Korean Ver.</a></nav>
         </nav>
     </header>
 
@@ -449,7 +449,7 @@ def gen_element_page(e):
             <div class="footer-links">
                 <a href="/en/zodiac/">Zodiac 2026</a>
                 <a href="/en/five-elements/">Five Elements</a>
-                <a href="/compatibility/">Compatibility</a>
+                <a href="/en/compatibility/">Compatibility</a>
                 <a href="/palm/">Palm Reading</a>
                 <a href="/">Korean Version</a>
             </div>
@@ -646,7 +646,7 @@ def gen_index_page():
                     <span class="gold-text">Saju Astrology</span>
                 </h1>
             </a>
-            <nav class="nav-links"><a href="/en/zodiac/">Zodiac</a><a href="/en/five-elements/" class="active">Five Elements</a><a href="/compatibility/">Compatibility</a><a href="/palm/">Palm Reading</a><a href="/">Korean Ver.</a></nav>
+            <nav class="nav-links"><a href="/en/zodiac/">Zodiac</a><a href="/en/five-elements/" class="active">Five Elements</a><a href="/en/compatibility/">Compatibility</a><a href="/palm/">Palm Reading</a><a href="/">Korean Ver.</a></nav>
         </nav>
     </header>
 
@@ -713,7 +713,7 @@ def gen_index_page():
             <div class="footer-links">
                 <a href="/en/zodiac/">Zodiac 2026</a>
                 <a href="/en/five-elements/">Five Elements</a>
-                <a href="/compatibility/">Compatibility</a>
+                <a href="/en/compatibility/">Compatibility</a>
                 <a href="/palm/">Palm Reading</a>
                 <a href="/">Korean Version</a>
             </div>

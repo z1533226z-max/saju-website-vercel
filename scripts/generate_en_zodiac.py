@@ -352,7 +352,7 @@ def gen_animal_page(a):
                     <span class="gold-text">Saju Astrology</span>
                 </h1>
             </a>
-            <nav class="nav-links"><a href="/en/zodiac/" class="active">Zodiac</a><a href="/compatibility/">Compatibility</a><a href="/dream/">Dreams</a><a href="/palm/">Palm Reading</a><a href="/">Korean Ver.</a></nav>
+            <nav class="nav-links"><a href="/en/zodiac/" class="active">Zodiac</a><a href="/en/compatibility/">Compatibility</a><a href="/dream/">Dreams</a><a href="/palm/">Palm Reading</a><a href="/">Korean Ver.</a></nav>
         </nav>
     </header>
 
@@ -451,7 +451,7 @@ def gen_animal_page(a):
 
         <!-- Compatibility Link -->
         <section class="related-links-section" style="display:flex;gap:var(--spacing-md);margin-bottom:var(--spacing-xl);flex-wrap:wrap;">
-            <a href="/compatibility/{a['slug']}/" style="flex:1;min-width:200px;display:flex;align-items:center;justify-content:center;gap:var(--spacing-xs);padding:var(--spacing-md) var(--spacing-lg);background:var(--color-glass-surface);border:1px solid var(--color-glass-border);border-radius:var(--radius-xl);text-decoration:none;color:var(--color-gold);font-size:var(--text-sm);font-weight:var(--font-medium);transition:all var(--duration-normal);">Check {a['name']} Compatibility</a>
+            <a href="/en/compatibility/{a['slug']}/" style="flex:1;min-width:200px;display:flex;align-items:center;justify-content:center;gap:var(--spacing-xs);padding:var(--spacing-md) var(--spacing-lg);background:var(--color-glass-surface);border:1px solid var(--color-glass-border);border-radius:var(--radius-xl);text-decoration:none;color:var(--color-gold);font-size:var(--text-sm);font-weight:var(--font-medium);transition:all var(--duration-normal);">Check {a['name']} Compatibility</a>
         </section>
 
         <!-- Other Zodiac Links -->
@@ -475,7 +475,7 @@ def gen_animal_page(a):
         <div class="container">
             <div class="footer-links">
                 <a href="/en/zodiac/">Zodiac 2026</a>
-                <a href="/compatibility/">Compatibility</a>
+                <a href="/en/compatibility/">Compatibility</a>
                 <a href="/dream/">Dream Dictionary</a>
                 <a href="/palm/">Palm Reading</a>
                 <a href="/">Korean Version</a>
@@ -652,7 +652,7 @@ def gen_index_page():
                     <span class="gold-text">Saju Astrology</span>
                 </h1>
             </a>
-            <nav class="nav-links"><a href="/en/zodiac/" class="active">Zodiac</a><a href="/compatibility/">Compatibility</a><a href="/dream/">Dreams</a><a href="/palm/">Palm Reading</a><a href="/" class="lang-switch">Korean Ver.</a></nav>
+            <nav class="nav-links"><a href="/en/zodiac/" class="active">Zodiac</a><a href="/en/compatibility/">Compatibility</a><a href="/dream/">Dreams</a><a href="/palm/">Palm Reading</a><a href="/" class="lang-switch">Korean Ver.</a></nav>
         </nav>
     </header>
 
@@ -686,7 +686,7 @@ def gen_index_page():
         <div class="container">
             <div class="footer-links">
                 <a href="/en/zodiac/">Zodiac 2026</a>
-                <a href="/compatibility/">Compatibility</a>
+                <a href="/en/compatibility/">Compatibility</a>
                 <a href="/dream/">Dream Dictionary</a>
                 <a href="/palm/">Palm Reading</a>
                 <a href="/">Korean Version</a>
