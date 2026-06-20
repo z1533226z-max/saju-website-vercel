@@ -64,6 +64,25 @@
     }
 }
     </script>
+    <style>
+    .hub-faq-list{max-width:760px;margin:2rem auto 0;}
+    .hub-faq-item{border-bottom:1px solid rgba(212,175,55,0.15);padding:1.25rem 0;}
+    .hub-faq-q{color:var(--color-gold);font-size:var(--text-base);margin-bottom:0.5rem;font-weight:600;}
+    .hub-faq-q::before{content:"Q. ";}
+    .hub-faq-a{color:var(--color-text-secondary);font-size:var(--text-sm);line-height:1.7;padding-left:0.5rem;}
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context":"https://schema.org","@type":"FAQPage",
+        "mainEntity":[
+            {"@type":"Question","name":"사주(四柱)란 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"사주는 태어난 연·월·일·시를 네 개의 기둥으로 세워 사람의 타고난 기질과 운의 흐름을 풀이하는 동양 명리학입니다. 각 기둥이 천간과 지지로 이루어져 모두 여덟 글자라 '사주팔자(四柱八字)'라고도 합니다."}},
+            {"@type":"Question","name":"사주와 서양 별자리(점성술)는 어떻게 다른가요?","acceptedAnswer":{"@type":"Answer","text":"사주는 태어난 시각의 음양오행 기운을 분석하는 동양 명리학이고, 점성술은 행성과 별자리의 위치를 보는 서양 체계입니다. 사주는 태어난 시(時)까지 따져 더 세분화된 해석을 제공합니다."}},
+            {"@type":"Question","name":"사주를 보려면 무엇이 필요한가요?","acceptedAnswer":{"@type":"Answer","text":"태어난 생년월일과 태어난 시각(시·분)이 필요합니다. 시각이 정확할수록 풀이가 정밀해지며, 시각을 모르면 일주(日柱) 중심으로 약식 해석을 합니다."}},
+            {"@type":"Question","name":"음력과 양력 중 무엇으로 보나요?","acceptedAnswer":{"@type":"Answer","text":"사주는 양력을 절기 기준으로 환산해 계산합니다. 생일을 음력으로 알고 있어도 자동으로 변환되므로, 입력 시에는 알고 있는 날짜를 그대로 넣으면 됩니다."}},
+            {"@type":"Question","name":"타고난 사주는 바꿀 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"타고난 여덟 글자는 바뀌지 않지만, 명리학은 부족한 기운을 보완하는 방향(직업·방위·색·시기 선택)을 제시합니다. 사주는 정해진 운명이 아니라 더 나은 선택을 돕는 지도에 가깝습니다."}}
+        ]
+    }
+    </script>
 </head>
 <body>
     <header id="site-header">
@@ -152,6 +171,32 @@
                     <h3 class="guide-card-title">합충형파해</h3>
                     <p class="guide-card-desc">오행과 지지의 상호작용 — 상생(相生)·상극(相剋)·합(合)·충(沖)·형(刑)·파(破)·해(害) 관계를 체계...</p>
                 </a>
+            </div>
+        </section>
+
+        <section style="padding:2rem 0;">
+            <h2 class="section-title" style="text-align:center;"><span class="gold-text">사주 가이드 자주 묻는 질문</span></h2>
+            <div class="hub-faq-list">
+                <div class="hub-faq-item">
+                    <h3 class="hub-faq-q">사주(四柱)란 무엇인가요?</h3>
+                    <p class="hub-faq-a">사주는 태어난 연·월·일·시를 네 개의 기둥으로 세워 사람의 타고난 기질과 운의 흐름을 풀이하는 동양 명리학입니다. 각 기둥이 천간과 지지로 이루어져 모두 여덟 글자라 '사주팔자(四柱八字)'라고도 합니다.</p>
+                </div>
+                <div class="hub-faq-item">
+                    <h3 class="hub-faq-q">사주와 서양 별자리(점성술)는 어떻게 다른가요?</h3>
+                    <p class="hub-faq-a">사주는 태어난 시각의 음양오행 기운을 분석하는 동양 명리학이고, 점성술은 행성과 별자리의 위치를 보는 서양 체계입니다. 사주는 태어난 시(時)까지 따져 더 세분화된 해석을 제공합니다.</p>
+                </div>
+                <div class="hub-faq-item">
+                    <h3 class="hub-faq-q">사주를 보려면 무엇이 필요한가요?</h3>
+                    <p class="hub-faq-a">태어난 생년월일과 태어난 시각(시·분)이 필요합니다. 시각이 정확할수록 풀이가 정밀해지며, 시각을 모르면 일주(日柱) 중심으로 약식 해석을 합니다.</p>
+                </div>
+                <div class="hub-faq-item">
+                    <h3 class="hub-faq-q">음력과 양력 중 무엇으로 보나요?</h3>
+                    <p class="hub-faq-a">사주는 양력을 절기 기준으로 환산해 계산합니다. 생일을 음력으로 알고 있어도 자동으로 변환되므로, 입력 시에는 알고 있는 날짜를 그대로 넣으면 됩니다.</p>
+                </div>
+                <div class="hub-faq-item">
+                    <h3 class="hub-faq-q">타고난 사주는 바꿀 수 있나요?</h3>
+                    <p class="hub-faq-a">타고난 여덟 글자는 바뀌지 않지만, 명리학은 부족한 기운을 보완하는 방향(직업·방위·색·시기 선택)을 제시합니다. 사주는 정해진 운명이 아니라 더 나은 선택을 돕는 지도에 가깝습니다.</p>
+                </div>
             </div>
         </section>
 
