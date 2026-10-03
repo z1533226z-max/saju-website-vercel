@@ -112,8 +112,10 @@ class SajuCalculator:
         if is_lunar:
             birth_date = self.convert_lunar_to_solar(birth_date)
         
-        # 년주 계산
-        year_pillar = self.calculate_year_pillar(birth_date.year)
+        # 년주 계산 (입춘 이전 출생은 전년도)
+        year_pillar = self.calculate_year_pillar(
+            self.get_saju_year(birth_date.year, birth_date.month, birth_date.day)
+        )
         
         # 월주 계산
         month_pillar = self.calculate_month_pillar(
@@ -150,6 +152,17 @@ class SajuCalculator:
             }
         }
     
+    def get_saju_year(self, year: int, month: int, day: int) -> int:
+        """
+        사주 년도 (입춘 기준)
+
+        사주에서 한 해는 입춘(立春, 2월 4일경)에 시작합니다.
+        1월 및 2월 입춘 이전 출생은 전년도로 봅니다.
+        """
+        if month == 1 or (month == 2 and day < self.solar_terms[1]['day']):
+            return year - 1
+        return year
+
     def calculate_year_pillar(self, year: int) -> Dict:
         """
         년주 계산 - 60갑자 체계에 따른 천간지지 계산
@@ -198,18 +211,10 @@ class SajuCalculator:
         Returns:
             월주 정보 (천간, 지지, 오행, 절기)
         """
-        # 절기를 고려한 월 계산
+        # 절기를 고려한 월 계산 (1월 소한 전 = 자월, 소한 후~입춘 전 = 축월)
         adjusted_month = self.get_solar_term_month(month, day)
-        adjusted_year = year
-        
-        # 1월이고 소한(1월 6일) 이전이면 전년도 자월(11월)
-        if month == 1 and day < self.solar_terms[12]['day']:
-            adjusted_year = year - 1
-            # adjusted_month는 이미 get_solar_term_month에서 11로 설정됨
-        # 2월이고 입춘(2월 4일) 이전이면 전년도 축월
-        elif month == 2 and day < self.solar_terms[1]['day']:
-            adjusted_year = year - 1
-            adjusted_month = 12  # 축월
+        # 월간은 입춘 기준 년간으로 정함 (1월~입춘 전은 전년도 년간)
+        adjusted_year = self.get_saju_year(year, month, day)
         
         # 조정된 년도의 천간 계산
         year_heavenly = (adjusted_year - 4) % 10
@@ -330,38 +335,21 @@ class SajuCalculator:
             - ganji_number: 60갑자 순서 (1-60)
             - day_master: 일간 설명
         """
-        # 만세력 기준일 설정
-        # 1900년 1월 1일 = 기축일 (己丑日) - 실제 만세력 확인값
-        # 이는 여러 만세력 자료와 대조하여 검증된 값입니다
+        # 만세력 기준일: 1900년 1월 1일 = 갑술일 (甲戌日)
+        # 교차 검증: 1949-10-01 甲子, 2000-01-01 戊午, 2026-10-03 庚戌
         base_date = datetime(1900, 1, 1)
         
-        # 기준일로부터의 일수 계산
-        days_diff = (birth_date - base_date).days
+        # 기준일로부터의 일수 (시각은 무시, 1900년 이전은 음수)
+        day_only = datetime(birth_date.year, birth_date.month, birth_date.day)
+        days_diff = (day_only - base_date).days
         
-        # 음수 처리 (1900년 이전 날짜)
-        if days_diff < 0:
-            # 1900년 이전은 역산
-            days_diff = abs(days_diff)
-            # 60갑자를 거꾸로 계산
-            heavenly_offset = (-days_diff) % 10
-            earthly_offset = (-days_diff) % 12
-        else:
-            heavenly_offset = days_diff
-            earthly_offset = days_diff
+        # 1900년 1월 1일 = 갑술일 (천간: 갑=0, 지지: 술=10)
+        base_heavenly = 0   # 갑 (甲)
+        base_earthly = 10   # 술 (戌)
         
-        # 1900년 1월 1일 = 기축일 (천간: 기=5, 지지: 축=1)
-        base_heavenly = 5  # 기 (己)
-        base_earthly = 1   # 축 (丑)
-        
-        # 60갑자 순환 계산
-        heavenly_index = (base_heavenly + heavenly_offset) % 10
-        earthly_index = (base_earthly + earthly_offset) % 12
-        
-        # 음수 인덱스 보정
-        if heavenly_index < 0:
-            heavenly_index += 10
-        if earthly_index < 0:
-            earthly_index += 12
+        # 60갑자 순환 계산 (Python의 %는 음수에도 0 이상을 반환)
+        heavenly_index = (base_heavenly + days_diff) % 10
+        earthly_index = (base_earthly + days_diff) % 12
         
         # 60갑자 번호 계산 (1-60)
         ganji_number = self.calculate_ganji_number(heavenly_index, earthly_index)
