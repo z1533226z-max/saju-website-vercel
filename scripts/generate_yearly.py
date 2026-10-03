@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""2026년 띠별 연간 운세 페이지 생성 스크립트"""
+"""2026년 띠별 연간 운세 페이지 생성 스크립트
+
+주의(2026-10-03): public/yearly/* 13개 페이지에는 이후 수작업으로 2027 정미년 미리보기 섹션
+(<!-- Y2027_PREVIEW_V1 --> 마커), 띠별 FAQ, 표준화된 nav/footer가 추가되었습니다.
+이 스크립트를 다시 실행하면 해당 내용이 모두 덮어써지므로, 현재는 HTML 파일이 원본입니다.
+"""
 import os
 
 BASE = os.path.join(os.path.dirname(__file__), '..', 'public')
