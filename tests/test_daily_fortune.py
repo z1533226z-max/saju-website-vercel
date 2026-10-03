@@ -179,3 +179,4 @@ def test_detail_page_matches_index_scores(index_mod, fortune_mod):
     f = df.generate_fortune("rabbit", NOW)
     assert "경술(庚戌)" in html and "육합" in html
     assert f"{f['overall']}<small>점</small>" in html
+    assert "오늘 일진과 육합(六合) 관계, 총운" in html

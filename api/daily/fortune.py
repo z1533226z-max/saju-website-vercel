@@ -38,7 +38,7 @@ def render_html(sign, now=None):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{z['name']} 오늘의 운세 ({date_str}, {ilji_day}) - 오늘 일진과 {rel['label']}, 총운 {f['overall']}점, 재물운 {f['money']}점, 연애운 {f['love']}점, 건강운 {f['health']}점. {f['overall_msg']}">
+    <meta name="description" content="{z['name']} 오늘의 운세 ({date_str}, {ilji_day}) - 오늘 일진과 {rel['label']} 관계, 총운 {f['overall']}점, 재물운 {f['money']}점, 연애운 {f['love']}점, 건강운 {f['health']}점. {f['overall_msg']}">
     <meta name="keywords" content="{z['name']}운세, {z['name']}오늘의운세, 오늘운세, 띠별운세, {z['name']}, 무료운세">
     <title>{z['name']} 오늘의 운세 ({date_str}) | 사주명리</title>
     <link rel="canonical" href="https://saju.gon.ai.kr/daily/{sign}/">
