@@ -109,6 +109,42 @@ def test_fortune_is_deterministic_per_day():
     assert df.generate_fortune("tiger", NOW) == df.generate_fortune("tiger", NOW)
 
 
+# ── 전체 운세 지수: 일진 ↔ 월주 ─────────────────────────────────
+def test_month_pillar_uses_solar_term_month():
+    assert df.get_month_pillar(NOW)["hanja"] == "丁酉"                        # 한로(10/8) 전
+    assert df.get_month_pillar(NOW + timedelta(days=5))["hanja"] == "戊戌"    # 10/8 한로 후
+
+
+@pytest.mark.parametrize("day_el, month_el, key", [
+    ("금", "금", "wang"), ("수", "금", "sang"), ("화", "토", "hyu"),
+    ("목", "토", "su"), ("목", "금", "sa"), ("토", "목", "sa"), ("화", "수", "sa"),
+])
+def test_season_strength(day_el, month_el, key):
+    assert df.season_strength(day_el, month_el) == key
+
+
+def test_day_energy_today_is_explained():
+    e = df.day_energy(NOW)   # 庚 in 酉월 = 왕, 戌↔酉 = 해
+    assert (e["strength"], e["relation"]) == ("wang", "hae")
+    assert e["score"] == df.DAY_ENERGY_BASE + 10 - 5 == 73
+    for part in ("정유(丁酉)월", "기본 68", "왕(旺) +10", "해(害) −5"):
+        assert part in e["reason"], part
+
+
+def test_day_energy_varies_and_matches_its_reason_over_a_year():
+    scores = []
+    for d in range(365):
+        e = df.day_energy(NOW + timedelta(days=d))
+        expected = (df.DAY_ENERGY_BASE + df.SEASON_STRENGTH[e["strength"]][1]
+                    + df.MONTH_RELATION_POINTS[e["relation"]])
+        assert e["score"] == expected
+        assert 40 <= e["score"] <= 95
+        scores.append(e["score"])
+    assert max(scores) - min(scores) >= 30
+    assert len(set(scores)) >= 15
+    assert sum(1 for a, b in zip(scores, scores[1:]) if a != b) > 300
+
+
 # ── 렌더링 ──────────────────────────────────────────────────────
 class _Parser(HTMLParser):
     def __init__(self):
@@ -129,6 +165,9 @@ def test_index_renders_ilji_relations_and_links(index_mod):
     for href in ("/yearly/", "/dream/", "/compatibility/", "/palm/"):
         assert href in p.hrefs, href
     assert "{f[" not in html and "{z[" not in html
+    e = df.day_energy(NOW)
+    assert f"{e['score']}<small>/100</small>" in html and e["reason"] in html
+    assert "12띠 총운 평균" not in html
 
 
 def test_detail_page_matches_index_scores(index_mod, fortune_mod):

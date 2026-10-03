@@ -7,6 +7,9 @@
   (육합·삼합·충·형·해·파·원진, 없으면 평)가 총운 점수 범위를 정하고,
   그 범위 안에서만 날짜별 시드로 변동한다.
 
+- 전체 운세 지수(day_energy): 오늘 일진과 이번 달 월주의 관계
+  (일간 왕상휴수 + 일지·월지 합충)로만 정한다. 12띠 평균이 아니다.
+
 /daily/ (api/daily/index.py) 와 /daily/<띠>/ (api/daily/fortune.py) 가
 같은 함수를 써서 목록과 상세 페이지 점수가 항상 일치한다.
 """
@@ -171,11 +174,12 @@ def get_day_seed(now=None):
     return now.year * 10000 + now.month * 100 + now.day
 
 
-def get_day_ilji(now=None):
-    """오늘(KST)의 일진. 예: 2026-10-03 → 경술(庚戌), 일간 오행 금."""
-    now = _to_kst(now)
-    p = _calc.calculate_day_pillar(datetime(now.year, now.month, now.day))
-    branch_index = next(i for i, b in enumerate(_calc.earthly_branches) if b["name_ko"] == p["earthly"])
+_BRANCH_INDEX = {b["name_ko"]: i for i, b in enumerate(_calc.earthly_branches)}
+
+
+def _pillar_info(p):
+    """SajuCalculator 의 기둥(일주·월주) dict → 화면 표기용 dict."""
+    branch_index = _BRANCH_INDEX[p["earthly"]]
     return {
         "name_ko": p["heavenly"] + p["earthly"],
         "hanja": p["heavenly_hanja"] + p["earthly_hanja"],
@@ -183,8 +187,21 @@ def get_day_ilji(now=None):
         "stem_ko": p["heavenly"], "stem_hanja": p["heavenly_hanja"],
         "branch_ko": p["earthly"], "branch_hanja": p["earthly_hanja"],
         "branch_index": branch_index,
-        "element": p["element"],
+        "element": p["element"],                                         # 천간 오행
+        "branch_element": _calc.earthly_branches[branch_index]["element"],  # 지지 오행
     }
+
+
+def get_day_ilji(now=None):
+    """오늘(KST)의 일진. 예: 2026-10-03 → 경술(庚戌), 일간 오행 금."""
+    now = _to_kst(now)
+    return _pillar_info(_calc.calculate_day_pillar(datetime(now.year, now.month, now.day)))
+
+
+def get_month_pillar(now=None):
+    """오늘(KST)이 속한 절기월의 월주. 예: 2026-10-03 → 정유(丁酉), 월지 오행 금."""
+    now = _to_kst(now)
+    return _pillar_info(_calc.calculate_month_pillar(now.year, now.month, now.day))
 
 
 def branch_relation(mine, day):
@@ -223,6 +240,64 @@ def branch_relation(mine, day):
         "also": found[1:],
         "also_labels": [RELATIONS[k]["label"] for k in found[1:]],
     }
+
+
+# ── 전체 운세 지수: 오늘 일진이 이번 달 월주와 얼마나 맞물리는가 ──────────────
+# ① 일간 오행이 월령(월지 오행)에서 받는 힘: 왕상휴수사(旺相休囚死)
+_GENERATES = {"목": "화", "화": "토", "토": "금", "금": "수", "수": "목"}   # 상생
+_CONTROLS = {"목": "토", "토": "수", "수": "화", "화": "금", "금": "목"}    # 상극
+SEASON_STRENGTH = {   # key: (표기, 점수)
+    "wang": ("왕(旺)", 10),   # 달과 같은 오행
+    "sang": ("상(相)", 6),    # 달이 일간을 생함
+    "hyu":  ("휴(休)", 0),    # 일간이 달을 생함
+    "su":   ("수(囚)", -4),   # 일간이 달을 극함
+    "sa":   ("사(死)", -8),   # 달이 일간을 극함
+}
+# ② 일지 ↔ 월지 관계 (일지가 월지를 충하면 택일에서 꺼리는 월파일)
+MONTH_RELATION_POINTS = {"yukhap": 14, "samhap": 10, "pyeong": 0, "pa": -5, "hae": -5,
+                         "wonjin": -7, "hyeong": -8, "chung": -15}
+DAY_ENERGY_BASE = 68
+DAY_ENERGY_TIERS = [(85, "기운이 잘 맞물리는 날"), (72, "흐름이 순한 날"),
+                    (60, "무난한 날"), (0, "신중하게 움직일 날")]
+
+
+def season_strength(day_element, month_element):
+    """일간 오행이 월령 오행 속에서 왕·상·휴·수·사 중 무엇인지."""
+    if day_element == month_element:
+        return "wang"
+    if _GENERATES[month_element] == day_element:
+        return "sang"
+    if _GENERATES[day_element] == month_element:
+        return "hyu"
+    if _CONTROLS[day_element] == month_element:
+        return "su"
+    return "sa"
+
+
+def _signed(n):
+    return f"+{n}" if n > 0 else (f"−{-n}" if n < 0 else "±0")
+
+
+def day_energy(now=None):
+    """오늘의 전체 운세 지수 = 기본 68 + ① 일간 왕상휴수 + ② 일지·월지 관계.
+
+    12띠 점수와 무관하게 오늘 일진과 이번 달 월주만으로 정해지므로
+    날마다 실제로 달라지고, 화면에 근거(reason)를 그대로 보여 줄 수 있다.
+    """
+    now = _to_kst(now)
+    day = get_day_ilji(now)
+    month = get_month_pillar(now)
+    s_key = season_strength(day["element"], month["branch_element"])
+    s_label, s_pts = SEASON_STRENGTH[s_key]
+    rel = branch_relation(month["branch_index"], day["branch_index"])
+    r_pts = MONTH_RELATION_POINTS[rel["key"]]
+    r_label = rel["label"] + ("·월파" if rel["key"] == "chung" else "")
+    score = DAY_ENERGY_BASE + s_pts + r_pts
+    desc = next(text for floor, text in DAY_ENERGY_TIERS if score >= floor)
+    reason = (f"절기상 이번 달 {month['display']}월 기준: 기본 {DAY_ENERGY_BASE}"
+              f" · 일간 {day['stem_hanja']}({day['element']}) {s_label} {_signed(s_pts)}"
+              f" · 일지 {day['branch_hanja']}↔월지 {month['branch_hanja']} {r_label} {_signed(r_pts)}")
+    return {"score": score, "desc": desc, "reason": reason, "strength": s_key, "relation": rel["key"]}
 
 
 def _pick_message(category, score, rng):

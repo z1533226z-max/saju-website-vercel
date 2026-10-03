@@ -9,7 +9,7 @@ _parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _parent_dir not in sys.path:
     sys.path.insert(0, _parent_dir)
 
-from _core.daily_fortune import KST, ZODIAC_ORDER, generate_fortune, get_day_ilji  # noqa: E402
+from _core.daily_fortune import KST, ZODIAC_ORDER, day_energy, generate_fortune, get_day_ilji  # noqa: E402
 
 # 일간(日干) 오행별 오늘의 기운 (표기, 이모지, 설명, 조언)
 ELEMENT_INFO = {
@@ -34,12 +34,11 @@ def render_index_html(now=None):
     for key in ZODIAC_ORDER:
         fortunes[key] = generate_fortune(key, now)
 
-    # Today's energy: 오늘 일진(日辰)의 일간 오행 + 12띠 총운 평균
+    # Today's energy: 오늘 일진(日辰)의 일간 오행 + 일진·월주 관계로 정한 전체 운세 지수
     ilji = get_day_ilji(now)
     ilji_day = f"{ilji['display']}일"
     el_label, el_emoji, el_desc, advice = ELEMENT_INFO[ilji["element"]]
-    day_energy = round(sum(f["overall"] for f in fortunes.values()) / len(fortunes))
-    energy_desc = "매우 좋은 날!" if day_energy >= 80 else ("괜찮은 하루" if day_energy >= 65 else "평온한 하루")
+    energy = day_energy(now)
 
     # Build zodiac summary cards HTML
     zodiac_cards = []
@@ -393,8 +392,8 @@ def render_index_html(now=None):
                 <div class="energy-card">
                     <div class="energy-emoji">☯</div>
                     <h3>전체 운세 지수</h3>
-                    <p class="energy-score">{day_energy}<small>/100</small></p>
-                    <p class="energy-desc">{energy_desc} · 12띠 총운 평균</p>
+                    <p class="energy-score">{energy['score']}<small>/100</small></p>
+                    <p class="energy-desc">{energy['desc']}<br><small>{energy['reason']}</small></p>
                 </div>
                 <div class="energy-card">
                     <div class="energy-emoji">📅</div>
