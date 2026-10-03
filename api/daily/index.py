@@ -1,145 +1,26 @@
 """SSR daily fortune index page - pre-renders all 12 zodiac summaries for search engines."""
 from http.server import BaseHTTPRequestHandler
-from datetime import datetime, timezone, timedelta
+from datetime import datetime
+import os
+import sys
 
-KST = timezone(timedelta(hours=9))
+# api/ 를 import 경로에 추가 (api/saju/calculate.py 와 동일한 방식)
+_parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if _parent_dir not in sys.path:
+    sys.path.insert(0, _parent_dir)
 
-ZODIAC_DATA = {
-    "rat":     {"name": "쥐띠",     "emoji": "🐀", "hanja": "子", "element": "수(水)", "branch": 0},
-    "ox":      {"name": "소띠",     "emoji": "🐂", "hanja": "丑", "element": "토(土)", "branch": 1},
-    "tiger":   {"name": "호랑이띠", "emoji": "🐅", "hanja": "寅", "element": "목(木)", "branch": 2},
-    "rabbit":  {"name": "토끼띠",   "emoji": "🐇", "hanja": "卯", "element": "목(木)", "branch": 3},
-    "dragon":  {"name": "용띠",     "emoji": "🐉", "hanja": "辰", "element": "토(土)", "branch": 4},
-    "snake":   {"name": "뱀띠",     "emoji": "🐍", "hanja": "巳", "element": "화(火)", "branch": 5},
-    "horse":   {"name": "말띠",     "emoji": "🐴", "hanja": "午", "element": "화(火)", "branch": 6},
-    "goat":    {"name": "양띠",     "emoji": "🐑", "hanja": "未", "element": "토(土)", "branch": 7},
-    "monkey":  {"name": "원숭이띠", "emoji": "🐒", "hanja": "申", "element": "금(金)", "branch": 8},
-    "rooster": {"name": "닭띠",     "emoji": "🐓", "hanja": "酉", "element": "금(金)", "branch": 9},
-    "dog":     {"name": "개띠",     "emoji": "🐕", "hanja": "戌", "element": "토(土)", "branch": 10},
-    "pig":     {"name": "돼지띠",   "emoji": "🐷", "hanja": "亥", "element": "수(水)", "branch": 11},
+from _core.daily_fortune import (  # noqa: E402
+    KST, ZODIAC_ORDER, cache_control_until_midnight, day_energy, generate_fortune, get_day_ilji,
+)
+
+# 일간(日干) 오행별 오늘의 기운 (표기, 이모지, 설명, 조언)
+ELEMENT_INFO = {
+    "목": ("목(木)", "🌿", "성장과 발전의 에너지", "새로운 시도에 열린 마음을 가지세요"),
+    "화": ("화(火)", "🔥", "열정과 활력의 에너지", "작은 성공을 축하하며 기운을 얻으세요"),
+    "토": ("토(土)", "⛰️", "안정과 조화의 에너지", "마음의 여유를 갖고 하루를 보내세요"),
+    "금": ("금(金)", "⚔️", "결단과 정리의 에너지", "미뤄 둔 일을 정리하고 매듭을 지어 보세요"),
+    "수": ("수(水)", "💧", "지혜와 유연함의 에너지", "자기 자신에게 투자하는 날로 만드세요"),
 }
-
-FORTUNE_MESSAGES = {
-    "overall": [
-        "모든 일이 순조롭게 풀리는 날입니다. 적극적으로 행동하세요.",
-        "차분하게 준비하면 좋은 결과를 얻을 수 있는 날입니다.",
-        "예상치 못한 기회가 찾아올 수 있습니다. 열린 마음을 가지세요.",
-        "인내심이 필요한 날입니다. 서두르지 마세요.",
-        "주변 사람들과의 소통이 행운을 가져다줍니다.",
-        "자기 자신에게 집중하면 좋은 하루가 됩니다.",
-        "새로운 시작에 좋은 날입니다. 미루던 일을 시작해보세요.",
-        "감사하는 마음이 더 큰 행복을 가져다줍니다.",
-        "작은 변화가 큰 결과를 만들어내는 날입니다.",
-        "직감을 믿고 행동하면 좋은 결과를 얻을 수 있습니다.",
-        "배움과 성장의 기회가 있는 날입니다. 새로운 것을 배워보세요.",
-        "조용히 내면을 돌아보는 시간이 필요한 날입니다.",
-    ],
-    "money": [
-        "재물운이 좋습니다. 투자나 저축에 좋은 시기입니다.",
-        "지출을 줄이고 절약하는 것이 좋은 날입니다.",
-        "뜻밖의 수입이 있을 수 있습니다.",
-        "금전적인 결정은 신중하게 내리세요.",
-        "소비보다는 저축에 집중하면 좋겠습니다.",
-        "사업적 기회가 올 수 있으니 준비하세요.",
-        "과감한 투자보다는 안정적인 운용이 좋습니다.",
-        "동업이나 협력에서 재물이 올 수 있습니다.",
-        "부수입의 기회가 생길 수 있습니다.",
-        "금전 거래는 서류를 꼼꼼히 확인하세요.",
-        "절약의 습관이 큰 부를 가져다줍니다.",
-        "기다리면 더 좋은 조건이 올 수 있습니다.",
-    ],
-    "love": [
-        "로맨틱한 만남의 기회가 있습니다.",
-        "상대방에게 진심을 표현하면 좋은 반응을 얻을 수 있습니다.",
-        "가족과의 시간을 가지면 마음이 편안해집니다.",
-        "갈등이 있다면 대화로 풀어보세요.",
-        "새로운 인연이 다가올 수 있는 날입니다.",
-        "기존 관계가 더욱 깊어지는 날입니다.",
-        "사소한 배려가 큰 감동을 줍니다.",
-        "혼자만의 시간도 중요합니다. 자기 자신을 사랑하세요.",
-        "오래된 친구와의 연락이 기쁨을 가져다줍니다.",
-        "솔직한 마음이 좋은 관계를 만듭니다.",
-        "상대방의 말에 귀 기울이면 관계가 좋아집니다.",
-        "만남의 자리에서 좋은 인연을 만날 수 있습니다.",
-    ],
-    "health": [
-        "활력이 넘치는 날입니다. 운동을 시작해보세요.",
-        "충분한 수면이 건강의 기본입니다. 일찍 잠자리에 드세요.",
-        "스트레스 관리에 신경 쓰세요. 명상이 도움이 됩니다.",
-        "가벼운 산책이 기분 전환에 좋은 날입니다.",
-        "수분 섭취를 충분히 하세요.",
-        "무리한 운동보다는 스트레칭으로 몸을 풀어주세요.",
-        "균형 잡힌 식사가 중요한 날입니다.",
-        "자연 속에서 시간을 보내면 에너지가 충전됩니다.",
-        "정기 건강검진을 미루지 마세요.",
-        "눈과 허리에 주의하세요. 자세를 바로 하세요.",
-        "따뜻한 차 한 잔이 마음과 몸을 녹여줍니다.",
-        "일과 휴식의 균형을 잘 맞추세요.",
-    ],
-}
-
-LUCKY_COLORS = ["빨강", "주황", "노랑", "초록", "파랑", "남색", "보라", "분홍", "하늘색", "금색", "은색", "갈색"]
-LUCKY_DIRECTIONS = ["동쪽", "서쪽", "남쪽", "북쪽", "동남쪽", "동북쪽", "서남쪽", "서북쪽"]
-
-
-def seeded_random(seed):
-    s = seed
-    def next_val():
-        nonlocal s
-        s = int(float(s) * 1103515245.0 + 12345.0) & 0x7FFFFFFF
-        return s / 0x7FFFFFFF
-    return next_val
-
-
-def get_day_seed(now=None):
-    if now is None:
-        now = datetime.now(KST)
-    return now.year * 10000 + now.month * 100 + now.day
-
-
-def generate_fortune(zodiac_key, now=None):
-    zodiac = ZODIAC_DATA[zodiac_key]
-    day_seed = get_day_seed(now)
-    seed = day_seed * 13 + zodiac["branch"] * 7919
-    rng = seeded_random(seed)
-
-    overall = int(rng() * 40 + 55)
-    money = int(rng() * 40 + 50)
-    love = int(rng() * 40 + 50)
-    health = int(rng() * 40 + 55)
-
-    overall_msg = FORTUNE_MESSAGES["overall"][int(rng() * len(FORTUNE_MESSAGES["overall"]))]
-    money_msg = FORTUNE_MESSAGES["money"][int(rng() * len(FORTUNE_MESSAGES["money"]))]
-    love_msg = FORTUNE_MESSAGES["love"][int(rng() * len(FORTUNE_MESSAGES["love"]))]
-    health_msg = FORTUNE_MESSAGES["health"][int(rng() * len(FORTUNE_MESSAGES["health"]))]
-
-    ln1 = int(rng() * 45) + 1
-    ln2 = int(rng() * 45) + 1
-    lucky_color = LUCKY_COLORS[int(rng() * len(LUCKY_COLORS))]
-    lucky_dir = LUCKY_DIRECTIONS[int(rng() * len(LUCKY_DIRECTIONS))]
-    lucky_time = f"{int(rng() * 12 + 1)}시"
-    star = min(5, max(1, round(overall / 20)))
-
-    def grade(s):
-        if s >= 90: return "대길", "grade-best"
-        if s >= 80: return "길", "grade-good"
-        if s >= 70: return "소길", "grade-ok"
-        if s >= 60: return "평", "grade-normal"
-        return "주의", "grade-caution"
-
-    g_text, g_class = grade(overall)
-    stars = "★" * star + "☆" * (5 - star)
-
-    return {
-        "zodiac": zodiac, "overall": overall, "money": money, "love": love, "health": health,
-        "overall_msg": overall_msg, "money_msg": money_msg, "love_msg": love_msg, "health_msg": health_msg,
-        "lucky_number": f"{min(ln1, ln2)}, {max(ln1, ln2)}",
-        "lucky_color": lucky_color, "lucky_dir": lucky_dir, "lucky_time": lucky_time,
-        "stars": stars, "grade_text": g_text, "grade_class": g_class,
-    }
-
-ZODIAC_ORDER = ["rat", "ox", "tiger", "rabbit", "dragon", "snake",
-                "horse", "goat", "monkey", "rooster", "dog", "pig"]
 
 
 def render_index_html(now=None):
@@ -155,30 +36,19 @@ def render_index_html(now=None):
     for key in ZODIAC_ORDER:
         fortunes[key] = generate_fortune(key, now)
 
-    # Today's energy (same logic as client JS)
-    day_seed = get_day_seed(now)
-    rng = seeded_random(day_seed * 31)
-    day_elements = ["목(木)", "화(火)", "토(土)", "금(金)", "수(水)"]
-    day_emojis = ["🌿", "🔥", "⛰️", "⚔️", "💧"]
-    day_descs = ["성장과 발전의 에너지", "열정과 활력의 에너지", "안정과 조화의 에너지",
-                 "결단과 정리의 에너지", "지혜와 유연함의 에너지"]
-    main_element = int(rng() * 5)
-    day_energy = int(rng() * 40 + 60)
-    energy_desc = "매우 좋은 날!" if day_energy >= 80 else ("괜찮은 하루" if day_energy >= 65 else "평온한 하루")
-    advices = [
-        "새로운 시도에 열린 마음을 가지세요",
-        "주변 사람들에게 감사를 표현하세요",
-        "자기 자신에게 투자하는 날로 만드세요",
-        "작은 성공을 축하하며 기운을 얻으세요",
-        "마음의 여유를 갖고 하루를 보내세요",
-    ]
-    advice = advices[int(rng() * 5)]
+    # Today's energy: 오늘 일진(日辰)의 일간 오행 + 일진·월주 관계로 정한 전체 운세 지수
+    ilji = get_day_ilji(now)
+    ilji_day = f"{ilji['display']}일"
+    el_label, el_emoji, el_desc, advice = ELEMENT_INFO[ilji["element"]]
+    energy = day_energy(now)
 
     # Build zodiac summary cards HTML
     zodiac_cards = []
     for key in ZODIAC_ORDER:
         f = fortunes[key]
         z = f["zodiac"]
+        rel = f["relation"]
+        also = f" · {'·'.join(rel['also_labels'])} 함께" if rel["also_labels"] else ""
         zodiac_cards.append(f"""
             <a href="/daily/{key}/" class="zodiac-summary-card">
                 <div class="zsc-header">
@@ -208,7 +78,11 @@ def render_index_html(now=None):
                         <span class="zsc-val">{f['health']}</span>
                     </div>
                 </div>
-                <p class="zsc-msg">{f['overall_msg']}</p>
+                <div class="zsc-rel">
+                    <span class="zsc-rel-chip tone-{rel['tone']}">{rel['label']}</span>
+                    <span class="zsc-rel-basis">{z['hanja']} ↔ {ilji['branch_hanja']}(오늘 일지){also}</span>
+                </div>
+                <p class="zsc-msg">{rel['explain']}</p>
                 <span class="zsc-link">자세히 보기 →</span>
             </a>""")
 
@@ -224,7 +98,7 @@ def render_index_html(now=None):
             "name": "오늘 {z['name']} 운세는?",
             "acceptedAnswer": {{
                 "@type": "Answer",
-                "text": "총운 {f['overall']}점 ({f['grade_text']}). {f['overall_msg']}"
+                "text": "총운 {f['overall']}점 ({f['grade_text']}). 오늘 일진 {ilji_day}과 {z['name']}의 관계는 {f['relation']['label']}입니다. {f['relation']['explain']}"
             }}
         }}""")
     faq_schema = ", ".join(faq_items)
@@ -234,7 +108,7 @@ def render_index_html(now=None):
     best_name = best_f["zodiac"]["name"]
 
     # Description with today's best
-    meta_desc = f"오늘의 운세 ({date_str} {day_of_week}요일) - 오늘 가장 운이 좋은 띠: {best_name} (총운 {best_f['overall']}점). 12간지 띠별 총운, 재물운, 연애운, 건강운을 무료로 확인하세요."
+    meta_desc = f"오늘의 운세 ({date_str} {day_of_week}요일, {ilji_day}) - 오늘 가장 운이 좋은 띠: {best_name} (총운 {best_f['overall']}점, {best_f['relation']['label']}). 12간지 띠별 총운·재물운·연애운·건강운과 오늘 일진 풀이를 무료로 확인하세요."
 
     return f"""<!DOCTYPE html>
 <html lang="ko">
@@ -400,6 +274,45 @@ def render_index_html(now=None):
         font-size: 0.8rem;
         color: var(--color-gold);
     }}
+    .zsc-rel {{ display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.4rem; }}
+    .zsc-rel-chip {{
+        display: inline-block;
+        padding: 0.1rem 0.5rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }}
+    .zsc-rel-chip.tone-good {{ background: rgba(74,222,128,0.15); color: #4ADE80; }}
+    .zsc-rel-chip.tone-neutral {{ background: rgba(163,163,163,0.15); color: #C8C8C8; }}
+    .zsc-rel-chip.tone-caution {{ background: rgba(248,113,113,0.15); color: #F87171; }}
+    .zsc-rel-basis {{ font-size: 0.75rem; color: rgba(255,255,255,0.5); }}
+    .score-basis {{
+        text-align: center;
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.45);
+        line-height: 1.5;
+        margin: 0 auto 0.5rem;
+        max-width: 640px;
+    }}
+    .daily-more-links {{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 0.6rem;
+        margin-top: 1rem;
+    }}
+    .daily-more-links a {{
+        display: block;
+        padding: 0.8rem 1rem;
+        border-radius: 10px;
+        text-align: center;
+        text-decoration: none;
+        color: inherit;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(212,175,55,0.2);
+        transition: border-color 0.2s;
+    }}
+    .daily-more-links a:hover {{ border-color: var(--color-gold); color: var(--color-gold); }}
     .ranking-section {{
         margin-top: 1.5rem;
     }}
@@ -461,7 +374,7 @@ def render_index_html(now=None):
     <!-- Hero -->
     <section class="daily-hero">
         <div class="container">
-            <div class="hero-badge">{date_str} {day_of_week}요일</div>
+            <div class="hero-badge">{date_str} {day_of_week}요일 · {ilji_day}</div>
             <h1 class="hero-title"><span class="gold-text">오늘의 운세</span></h1>
             <p class="hero-subtitle">매일 새롭게 업데이트되는 띠별 운세입니다.<br>자신의 띠를 선택하여 오늘의 운세를 확인하세요.</p>
         </div>
@@ -473,16 +386,16 @@ def render_index_html(now=None):
             <h2 class="section-title"><span class="gold-text">오늘의 기운</span></h2>
             <div class="energy-cards">
                 <div class="energy-card main">
-                    <div class="energy-emoji">{day_emojis[main_element]}</div>
+                    <div class="energy-emoji">{el_emoji}</div>
                     <h3>오늘의 주 기운</h3>
-                    <p class="energy-element">{day_elements[main_element]}</p>
-                    <p class="energy-desc">{day_descs[main_element]}</p>
+                    <p class="energy-element">{el_label}</p>
+                    <p class="energy-desc">{el_desc}<br>오늘 일진 {ilji_day} · 일간 {ilji['stem_ko']}({ilji['stem_hanja']}) 기준</p>
                 </div>
                 <div class="energy-card">
                     <div class="energy-emoji">☯</div>
                     <h3>전체 운세 지수</h3>
-                    <p class="energy-score">{day_energy}<small>/100</small></p>
-                    <p class="energy-desc">{energy_desc}</p>
+                    <p class="energy-score">{energy['score']}<small>/100</small></p>
+                    <p class="energy-desc">{energy['desc']}<br><small>{energy['reason']}</small></p>
                 </div>
                 <div class="energy-card">
                     <div class="energy-emoji">📅</div>
@@ -498,12 +411,13 @@ def render_index_html(now=None):
         <div class="container">
             <h2 class="section-title"><span class="gold-text">오늘의 운세 랭킹</span></h2>
             <p style="text-align:center;color:rgba(255,255,255,0.5);margin-bottom:0.5rem;">{date_str} 기준 띠별 총운 순위</p>
+            <p class="score-basis">산정 기준: 오늘 일지 {ilji['branch_ko']}({ilji['branch_hanja']}) ↔ 각 띠의 지지 관계(육합·삼합·충·형·해·파·원진). 관계가 총운 점수 범위를 정하고, 그 안에서 날마다 달라집니다.</p>
             <div class="ranking-list">
                 {"".join(f'''
                 <a href="/daily/{key}/" class="ranking-item">
                     <span class="ranking-rank {'gold' if i==0 else 'silver' if i==1 else 'bronze' if i==2 else ''}">{i+1}</span>
                     <span style="font-size:1.3rem">{f["zodiac"]["emoji"]}</span>
-                    <span class="ranking-info"><span class="ranking-name">{f["zodiac"]["name"]}</span></span>
+                    <span class="ranking-info"><span class="ranking-name">{f["zodiac"]["name"]}</span> <span class="zsc-rel-chip tone-{f['relation']['tone']}">{f['relation']['label']}</span></span>
                     <span class="ranking-score">{f["overall"]}점</span>
                     <span class="zsc-grade {f['grade_class']}" style="margin-left:0.3rem">{f["grade_text"]}</span>
                 </a>''' for i, (key, f) in enumerate(ranked))}
@@ -518,6 +432,19 @@ def render_index_html(now=None):
             <div class="zodiac-summary-grid">
                 {zodiac_cards_html}
             </div>
+        </div>
+    </section>
+
+    <!-- Related content (internal links) -->
+    <section class="daily-section">
+        <div class="container">
+            <h2 class="section-title"><span class="gold-text">함께 보면 좋은 운세</span></h2>
+            <nav class="daily-more-links" aria-label="관련 운세">
+                <a href="/yearly/">🎍 2027 신년운세</a>
+                <a href="/dream/">🌙 인기 꿈해몽</a>
+                <a href="/compatibility/">💞 띠별 궁합</a>
+                <a href="/palm/">✋ 손금 보기</a>
+            </nav>
         </div>
     </section>
 
@@ -584,10 +511,6 @@ class handler(BaseHTTPRequestHandler):
 
         self.send_response(200)
         self.send_header("Content-Type", "text/html; charset=utf-8")
-        # Cache until end of day KST
-        now = datetime.now(KST)
-        tomorrow = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
-        seconds_left = int((tomorrow - now).total_seconds())
-        self.send_header("Cache-Control", f"public, s-maxage={seconds_left}, max-age=300, stale-while-revalidate=60")
+        self.send_header("Cache-Control", cache_control_until_midnight())
         self.end_headers()
         self.wfile.write(body)
