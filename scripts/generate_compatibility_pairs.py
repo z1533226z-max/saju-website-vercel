@@ -1,11 +1,24 @@
 #!/usr/bin/env python3
 """
+!!! 경고: 재실행 금지 (2026-10 기준) — 실행하면 운영 중인 페이지를 덮어씁니다 !!!
+  - public/compatibility/<띠>/<띠>/ 132장을 통째로 새로 씁니다. 이후 붙인 구글·빙 전용
+    noindex(scripts/restore_naver_indexing.py), 공통 내비/푸터(standardize_nav_footer.py) 등
+    나중에 고친 내용이 모두 사라집니다.
+  - public/sitemap.xml 에 132개 쌍별 URL을 다시 넣습니다. 이 URL들은 구글·빙에서 제외
+    (noindex) 중이므로 sitemap.xml 이 아니라 public/sitemap-naver.xml 에만 있어야 합니다.
+  - 아래 템플릿은 구글·빙 전용 noindex(googlebot/bingbot)를 씁니다
+    (네이버는 색인 유지, 일반 robots noindex 금지).
+  - 꼭 다시 돌려야 하면 결과 diff 를 git 으로 전부 검토하고 위 항목을 되살린 뒤 커밋하세요.
+    실행: python scripts/generate_compatibility_pairs.py --force
+    (--force 없이 실행하면 아무것도 쓰지 않고 종료합니다.)
+
 띠별 궁합 쌍별 페이지 생성기
 - 144개 페이지: /compatibility/{sign1}/{sign2}/
 - 각 페이지는 sign1의 관점에서 sign2와의 궁합 분석
 - FAQPage + Article schema 포함
 """
 import os
+import sys
 import json
 from datetime import date
 
@@ -418,7 +431,8 @@ def generate_pair_page(sign1_id, sign2_id):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="googlebot" content="noindex, follow">
+    <meta name="bingbot" content="noindex, follow">
     <meta name="description" content="{desc[:160]}">
     <meta name="keywords" content="{s1['ko']} {s2['ko']} 궁합, {s1['ko']}{s2['ko']}궁합, {s1['ko']}궁합, {s2['ko']}궁합, 띠별궁합, 12간지궁합, 2026년궁합">
     <title>{title}</title>
@@ -646,6 +660,10 @@ def update_hub_pages():
 
 
 def main():
+    if "--force" not in sys.argv[1:]:
+        print(__doc__.split("\n\n")[0])
+        print("\n중단: --force 없이 실행되어 아무 파일도 쓰지 않았습니다.")
+        return 1
     print("=== 띠별 궁합 쌍별 페이지 생성 시작 ===\n")
 
     # 1. 144개 쌍별 페이지 생성 (12 x 12 - 12 동띠 = 132 + 12 동띠 = 144)
@@ -675,4 +693,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

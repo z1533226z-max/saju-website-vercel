@@ -1,11 +1,26 @@
 #!/usr/bin/env python3
 """
+!!! 경고: 재실행 금지 (2026-10 기준) — 실행하면 운영 중인 페이지를 덮어씁니다 !!!
+  - public/zodiac/<띠>/2026-01~12/ 144장과 public/daily/<띠>/ 12장을 통째로 새로 씁니다.
+    이후 붙인 구글·빙 전용 noindex(scripts/restore_naver_indexing.py), 01~09월의 일반
+    robots noindex, 월별 심화 본문(enrich_monthly_zodiac.py), 공통 내비/푸터
+    (standardize_nav_footer.py) 등 나중에 고친 내용이 모두 사라집니다.
+  - public/sitemap.xml 도 예전 목록으로 통째로 덮어써서, 구글에서 빼 둔 월별 URL이
+    다시 들어가고 꿈해몽·신년운세 등 이후 추가된 URL은 빠집니다.
+  - 아래 월별 템플릿은 구글·빙 전용 noindex(googlebot/bingbot)를 씁니다
+    (네이버는 색인 유지, 일반 robots noindex 금지). 다만 지금 01~09월 페이지는 일반 robots
+    noindex 상태라, 재실행하면 그 달들도 네이버 색인이 다시 열립니다.
+  - 꼭 다시 돌려야 하면 결과 diff 를 git 으로 전부 검토하고 위 항목을 되살린 뒤 커밋하세요.
+    실행: python scripts/generate_daily_and_monthly.py --force
+    (--force 없이 실행하면 아무것도 쓰지 않고 종료합니다.)
+
 사주 사이트 대량 SEO 페이지 생성기
 - 12개 daily/{animal}/index.html (개별 띠 오늘의 운세)
 - 144개 zodiac/{animal}/2026-{MM}/index.html (월별 운세)
 총 156개 신규 페이지 생성
 """
 import os
+import sys
 import hashlib
 from datetime import date
 
@@ -460,7 +475,8 @@ def generate_monthly_page(z, month):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="googlebot" content="noindex, follow">
+    <meta name="bingbot" content="noindex, follow">
     <meta name="description" content="{desc}">
     <meta name="keywords" content="{keywords}">
     <title>{title}</title>
@@ -628,6 +644,10 @@ def generate_sitemap():
 # Main
 # ══════════════════════════════════════════
 def main():
+    if "--force" not in sys.argv[1:]:
+        print(__doc__.split("\n\n")[0])
+        print("\n중단: --force 없이 실행되어 아무 파일도 쓰지 않았습니다.")
+        return 1
     created = 0
 
     print("=== Generating daily/{animal}/ pages ===")
@@ -664,4 +684,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
