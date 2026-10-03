@@ -1,6 +1,6 @@
 """SSR daily fortune index page - pre-renders all 12 zodiac summaries for search engines."""
 from http.server import BaseHTTPRequestHandler
-from datetime import datetime, timedelta
+from datetime import datetime
 import os
 import sys
 
@@ -9,7 +9,9 @@ _parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _parent_dir not in sys.path:
     sys.path.insert(0, _parent_dir)
 
-from _core.daily_fortune import KST, ZODIAC_ORDER, day_energy, generate_fortune, get_day_ilji  # noqa: E402
+from _core.daily_fortune import (  # noqa: E402
+    KST, ZODIAC_ORDER, cache_control_until_midnight, day_energy, generate_fortune, get_day_ilji,
+)
 
 # 일간(日干) 오행별 오늘의 기운 (표기, 이모지, 설명, 조언)
 ELEMENT_INFO = {
@@ -509,10 +511,6 @@ class handler(BaseHTTPRequestHandler):
 
         self.send_response(200)
         self.send_header("Content-Type", "text/html; charset=utf-8")
-        # Cache until end of day KST
-        now = datetime.now(KST)
-        tomorrow = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
-        seconds_left = int((tomorrow - now).total_seconds())
-        self.send_header("Cache-Control", f"public, s-maxage={seconds_left}, max-age=300, stale-while-revalidate=60")
+        self.send_header("Cache-Control", cache_control_until_midnight())
         self.end_headers()
         self.wfile.write(body)

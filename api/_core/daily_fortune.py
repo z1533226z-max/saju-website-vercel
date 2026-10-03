@@ -169,6 +169,14 @@ def _to_kst(now=None):
     return now
 
 
+def cache_control_until_midnight(now=None):
+    """CDN 캐시를 KST 자정까지만 (날짜가 바뀌면 새 일진으로 다시 렌더)."""
+    now = _to_kst(now)
+    tomorrow = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
+    seconds_left = int((tomorrow - now).total_seconds())
+    return f"public, s-maxage={seconds_left}, max-age=300, stale-while-revalidate=60"
+
+
 def get_day_seed(now=None):
     now = _to_kst(now)
     return now.year * 10000 + now.month * 100 + now.day

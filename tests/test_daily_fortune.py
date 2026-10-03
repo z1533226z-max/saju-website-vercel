@@ -109,6 +109,13 @@ def test_fortune_is_deterministic_per_day():
     assert df.generate_fortune("tiger", NOW) == df.generate_fortune("tiger", NOW)
 
 
+def test_cache_control_expires_at_kst_midnight():
+    from datetime import timezone
+    utc_2300_kst = datetime(2026, 10, 3, 14, 0, tzinfo=timezone.utc)   # KST 23:00
+    assert df.cache_control_until_midnight(utc_2300_kst) == \
+        "public, s-maxage=3600, max-age=300, stale-while-revalidate=60"
+
+
 # ── 전체 운세 지수: 일진 ↔ 월주 ─────────────────────────────────
 def test_month_pillar_uses_solar_term_month():
     assert df.get_month_pillar(NOW)["hanja"] == "丁酉"                        # 한로(10/8) 전
