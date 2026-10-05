@@ -142,6 +142,14 @@ def test_dream_targets_are_deep_indexable_pages():
         assert len(text) >= 1500, (href, len(text))
 
 
+def test_birth_year_upper_bound_is_current_year_in_js(index_mod):
+    for html in (index_mod.render_index_html(NOW), read_public("daily/index.html")):
+        assert 'id="birth-year"' in html
+        assert "2025" not in html                          # 하드코딩된 상한 제거
+        assert "BIRTH_YEAR_MAX = new Date().getFullYear()" in html
+        assert "year > BIRTH_YEAR_MAX" in html
+
+
 def test_every_internal_link_on_ssr_pages_resolves(index_mod, fortune_mod):
     pages = {"/daily/": index_mod.render_index_html(NOW)}
     pages.update({f"/daily/{s}/": fortune_mod.render_html(s, NOW) for s in SIGNS})

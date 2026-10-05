@@ -433,7 +433,7 @@ def render_index_html(now=None):
             <h2 class="section-title"><span class="gold-text">내 띠 찾기</span></h2>
             <div class="birth-year-check" style="text-align:center;">
                 <label>태어난 해로 찾기:</label>
-                <input type="number" id="birth-year" placeholder="예: 1990" min="1920" max="2025">
+                <input type="number" id="birth-year" placeholder="예: 1990" min="1920">
                 <button onclick="findZodiacByYear()">확인</button>
             </div>
         </div>
@@ -461,11 +461,16 @@ def render_index_html(now=None):
     </footer>
 
     <script>
+    // 출생연도 상한 = 올해 (방문자 기기 기준으로 계산, 해가 바뀌어도 코드 수정 불필요)
+    var BIRTH_YEAR_MAX = new Date().getFullYear();
+    var birthYearInput = document.getElementById('birth-year');
+    if (birthYearInput) birthYearInput.max = BIRTH_YEAR_MAX;
+
     function findZodiacByYear() {{
         var yearInput = document.getElementById('birth-year');
         var year = parseInt(yearInput.value);
-        if (!year || year < 1920 || year > 2025) {{
-            alert('1920~2025 사이의 출생연도를 입력해주세요.');
+        if (!year || year < 1920 || year > BIRTH_YEAR_MAX) {{
+            alert('1920~' + BIRTH_YEAR_MAX + ' 사이의 출생연도를 입력해주세요.');
             return;
         }}
         var zodiacKeys = ['monkey','rooster','dog','pig','rat','ox','tiger','rabbit','dragon','snake','horse','goat'];
