@@ -105,6 +105,28 @@ window.sajuForm = function() {
             const info = this.earthlyBranchInfo[branch];
             return info ? `${info.symbol} ${info.animal}띠` : '';
         },
+
+        // 결과 아래 '함께 보면 좋은 운세' 링크: 년주 지지 = 띠, 일주 천간 = 일간
+        branchZodiacKeys: {
+            '자': 'rat', '축': 'ox', '인': 'tiger', '묘': 'rabbit', '진': 'dragon', '사': 'snake',
+            '오': 'horse', '미': 'goat', '신': 'monkey', '유': 'rooster', '술': 'dog', '해': 'pig'
+        },
+
+        get zodiacKey() {
+            return this.branchZodiacKeys[this.saju?.year?.earthly] || '';
+        },
+
+        get zodiacName() {
+            const info = this.earthlyBranchInfo[this.saju?.year?.earthly];
+            return info ? `${info.animal}띠` : '';
+        },
+
+        get dayStemLabel() {
+            const stem = this.saju?.day?.heavenly;
+            if (!this.heavenlyStemInfo[stem]) return '';
+            const hanja = this.saju?.day?.heavenly_hanja;
+            return hanja ? `${stem}(${hanja})` : stem;
+        },
         
         // 년도 옵션 생성
         get yearOptions() {

@@ -124,7 +124,15 @@
     <link rel="stylesheet" href="css/realtime-calculator.css?v=20260218h">
     <link rel="stylesheet" href="css/result-sharing.css?v=20260218h">
     <link rel="stylesheet" href="css/print.css?v=20260218h" media="print">
-    
+    <style>
+    /* RESULT_NEXT_LINKS_V1: 사주 결과 아래 '함께 보면 좋은 운세' 링크 */
+    .result-next-links { margin: 2rem 0 1rem; padding: 1.25rem; border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; background: rgba(255,255,255,0.02); }
+    .result-next-title { font-size: 1.05rem; margin: 0 0 0.8rem; color: var(--color-gold, #D4AF37); text-align: center; }
+    .result-next-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.6rem; }
+    .result-next-grid a { display: block; padding: 0.8rem 1rem; border-radius: 10px; text-align: center; text-decoration: none; color: inherit; background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.2); transition: border-color 0.2s, color 0.2s; }
+    .result-next-grid a:hover, .result-next-grid a:focus-visible { border-color: var(--color-gold, #D4AF37); color: var(--color-gold, #D4AF37); }
+    </style>
+
     <!-- Alpine.js for reactivity -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js"></script>
 
@@ -704,6 +712,17 @@
             </div><!-- end .interpretation (fortune) -->
             </div><!-- end 운세 흐름 tab -->
 
+            <!-- RESULT_NEXT_LINKS_V1: 결과 아래 내 띠·일간 링크 -->
+            <nav class="result-next-links" x-show="zodiacKey" aria-label="내 사주와 함께 보면 좋은 운세">
+                <h3 class="result-next-title">내 사주와 함께 보면 좋은 운세</h3>
+                <div class="result-next-grid">
+                    <a href="/yearly/" :href="'/yearly/' + zodiacKey + '/#y2027'">🎍 내 띠(<span x-text="zodiacName"></span>) 2027 신년운세</a>
+                    <a href="/daily/" :href="'/daily/' + zodiacKey + '/'">☀️ 오늘의 <span x-text="zodiacName"></span> 운세</a>
+                    <a href="/guide/day-master/" x-show="dayStemLabel">📖 내 일간 <span x-text="dayStemLabel"></span> 성격 알아보기</a>
+                </div>
+            </nav>
+            <!-- /RESULT_NEXT_LINKS_V1 -->
+
             <!-- 공유 버튼 -->
             <div class="share-buttons">
                 <button class="share-btn kakao-btn" data-action="shareKakao">
@@ -944,7 +963,7 @@
                     </div>
                     <h3>십천간이란?</h3>
                     <p>갑을병정무기경신임계로 이루어진 하늘의 기운을 나타내는 10가지 요소입니다.</p>
-                    <button type="button" class="learn-more-btn" data-action="showInfoModal" data-modal-type="천간">자세히 보기 →</button>
+                    <a class="learn-more-btn" href="/guide/heavenly-stems/">십천간 자세히 보기 →</a>
                 </article>
                 
                 <article class="info-card">
@@ -957,7 +976,7 @@
                     </div>
                     <h3>십이지지란?</h3>
                     <p>자축인묘진사오미신유술해로 구성된 땅의 기운을 나타내는 12가지 동물띠입니다.</p>
-                    <button type="button" class="learn-more-btn" data-action="showInfoModal" data-modal-type="지지">자세히 보기 →</button>
+                    <a class="learn-more-btn" href="/guide/earthly-branches/">십이지지 자세히 보기 →</a>
                 </article>
                 
                 <article class="info-card">
@@ -970,7 +989,7 @@
                     </div>
                     <h3>오행의 이해</h3>
                     <p>목화토금수의 다섯 가지 기운이 서로 상생과 상극하며 운명을 형성합니다.</p>
-                    <button type="button" class="learn-more-btn" data-action="showInfoModal" data-modal-type="오행">자세히 보기 →</button>
+                    <a class="learn-more-btn" href="/guide/five-elements/">오행 자세히 보기 →</a>
                 </article>
             </div>
         </div>
@@ -1000,7 +1019,7 @@
     <!-- JavaScript (v=20260218b — cache-bust) -->
     <script src="js/config.js?v=20260218h"></script>
     <script src="js/api.js?v=20260218h"></script>
-    <script src="js/saju-form-enhanced.js?v=20260218h"></script>
+    <script src="js/saju-form-enhanced.js?v=20261005a"></script>
     <script src="js/compatibility-clean.js?v=20260218h"></script>
     <script src="js/additional-features.js?v=20260218h"></script>
     <script src="js/main.js?v=20260218h"></script>
