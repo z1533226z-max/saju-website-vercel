@@ -1,4 +1,5 @@
 """개인정보처리방침 페이지 · 전 페이지 푸터 링크 · 사이트맵 테스트."""
+import logging
 import os
 import re
 import xml.etree.ElementTree as ET
@@ -6,7 +7,7 @@ import xml.etree.ElementTree as ET
 import pytest
 
 from site_helpers import (
-    ADSENSE_SCRIPT_RE, GA4_RE, GENERIC_NOINDEX_RE, MANUAL_AD_SLOT_RE, PUBLIC,
+    ADSENSE_SCRIPT_RE, GA4_RE, GENERIC_NOINDEX_RE, MANUAL_AD_SLOT_RE, PUBLIC, ROOT,
     last_footer, load_module, parse, public_html_files, read_public, resolve_internal_href,
 )
 
@@ -21,6 +22,11 @@ STANDARD_NAV = ('<nav class="nav-links"><a href="/">사주풀이</a><a href="/zo
 @pytest.fixture(scope="module")
 def privacy_html():
     return read_public("privacy/index.html")
+
+
+@pytest.fixture(scope="module")
+def footer_script():
+    return load_module(os.path.join("scripts", "add_privacy_footer_link.py"), "privacy_footer_script")
 
 
 # ── /privacy/ 페이지 ──────────────────────────────────────────────
@@ -45,6 +51,7 @@ def test_privacy_page_discloses_what_the_code_does(privacy_html):
         "Gemini API",
         "Google LLC",
         "저장하지 않습니다",                                           # 입력값·사진 비저장
+        "서버 로그",                                                   # 계산 오류 시 입력 날짜가 로그에 남음
         "IP 주소",                                                    # 손금 이용 횟수 제한(메모리)
         "localStorage",
         "Vercel",
@@ -68,10 +75,22 @@ def test_privacy_page_internal_links_resolve(privacy_html):
 def test_saju_and_palm_handlers_do_not_persist_inputs():
     """방침 문구('서버에 저장하지 않습니다')의 근거: 핸들러에 파일 쓰기·DB 저장이 없다."""
     for rel in ("api/saju/calculate.py", "api/saju/compatibility.py", "api/palm/analyze.py"):
-        with open(os.path.join(os.path.dirname(PUBLIC), rel), encoding="utf-8") as f:
+        with open(os.path.join(ROOT, rel), encoding="utf-8") as f:
             src = f.read()
         assert not re.search(r"open\([^)]*['\"][wa]b?['\"]", src), rel
         assert "sqlalchemy" not in src and "database" not in src.lower(), rel
+
+
+def test_lunar_conversion_error_log_contains_input_date(caplog):
+    """방침 2항('오류 시 입력 날짜가 서버 로그에 남을 수 있음')의 근거.
+
+    음력 변환이 실패하면 입력 날짜가 'saju' 로거로 기록되고, 서버리스 함수의 stdout/stderr 는
+    Vercel 로그로 간다. 로그에서 날짜를 빼면 이 테스트와 방침 문구를 함께 고칠 것.
+    """
+    from _core.lunar_converter_improved import ImprovedLunarConverter
+    with caplog.at_level(logging.WARNING, logger="saju"):
+        ImprovedLunarConverter().lunar_to_solar(1990, 1, 30)      # 1990년 음력 1월은 29일까지
+    assert "1990-01-30" in caplog.text
 
 
 # ── 전 페이지 푸터 링크 ────────────────────────────────────────────
@@ -85,17 +104,16 @@ def test_every_public_page_footer_links_privacy():
     assert not missing, missing[:10]
 
 
-def test_privacy_footer_script_is_idempotent():
-    script = load_module(os.path.join("scripts", "add_privacy_footer_link.py"), "privacy_footer_script")
+def test_privacy_footer_script_is_idempotent(footer_script):
     for rel in ("index.html", "yearly/rat/index.html", "en/index.html", "guide/index.html",
                 "palm/index.html", "privacy/index.html"):
         html = read_public(rel)
-        new_html, status = script.add_privacy_link(html, rel)
+        new_html, status = footer_script.add_privacy_link(html, rel)
         assert status == "already" and new_html == html, rel
 
 
-def test_privacy_footer_script_handles_each_footer_shape():
-    script = load_module(os.path.join("scripts", "add_privacy_footer_link.py"), "privacy_footer_script2")
+def test_privacy_footer_script_handles_each_footer_shape(footer_script):
+    script = footer_script
     ko = ('<footer class="site-footer">\r\n            <div class="footer-links">\r\n'
           '                <a href="/">사주풀이</a>\r\n            </div>\r\n    </footer>')
     out, status = script.add_privacy_link(ko, "zodiac/rat/index.html")
@@ -142,7 +160,7 @@ def test_sitemap_excludes_additional_features_fragment(sitemap_locs):
 
 def test_additional_features_gets_noindex_header_only_there():
     import json
-    with open(os.path.join(os.path.dirname(PUBLIC), "vercel.json"), encoding="utf-8") as f:
+    with open(os.path.join(ROOT, "vercel.json"), encoding="utf-8") as f:
         routes = json.load(f)["routes"]
     robots_routes = [r for r in routes if any(k.lower() == "x-robots-tag" for k in r.get("headers", {}))]
     assert len(robots_routes) == 1
