@@ -1,6 +1,7 @@
 """SSR daily fortune page - pre-renders zodiac fortune for search engines."""
 from http.server import BaseHTTPRequestHandler
 from datetime import datetime
+from urllib.parse import parse_qs, urlparse
 import os
 import sys
 
@@ -230,29 +231,34 @@ def render_html(sign, now=None):
 </html>"""
 
 
+def _sign_from_path(path):
+    """띠 키 추출: vercel.json 이 /daily/rat/ 을 /api/daily/fortune.py?sign=rat 로 넘긴다."""
+    if "?" not in path:
+        return None
+    sign = parse_qs(urlparse(path).query).get("sign", [None])[0]
+    return sign if sign in ZODIAC_DATA else None
+
+
 class handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        # Extract sign from path: /daily/rat/ or /api/daily/fortune?sign=rat
-        sign = None
+    def _respond(self, include_body):
+        sign = _sign_from_path(self.path)
+        if sign is None:
+            status, body, cache_control = 404, "Not Found".encode("utf-8"), None
+        else:
+            status, body, cache_control = 200, render_html(sign).encode("utf-8"), cache_control_until_midnight()
 
-        # Check query param
-        if "?" in self.path:
-            from urllib.parse import urlparse, parse_qs
-            qs = parse_qs(urlparse(self.path).query)
-            sign = qs.get("sign", [None])[0]
-
-        if not sign or sign not in ZODIAC_DATA:
-            self.send_response(404)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
-            self.end_headers()
-            self.wfile.write("Not Found".encode("utf-8"))
-            return
-
-        html = render_html(sign)
-        body = html.encode("utf-8")
-
-        self.send_response(200)
+        self.send_response(status)
         self.send_header("Content-Type", "text/html; charset=utf-8")
-        self.send_header("Cache-Control", cache_control_until_midnight())
+        self.send_header("Content-Length", str(len(body)))
+        if cache_control:
+            self.send_header("Cache-Control", cache_control)
         self.end_headers()
-        self.wfile.write(body)
+        if include_body:
+            self.wfile.write(body)
+
+    def do_GET(self):
+        self._respond(include_body=True)
+
+    def do_HEAD(self):
+        """GET 과 같은 상태·헤더, 본문 없음 (HEAD 요청이 501 로 끝나지 않도록)."""
+        self._respond(include_body=False)

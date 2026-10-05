@@ -479,12 +479,20 @@ def render_index_html(now=None):
 
 
 class handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        html = render_index_html()
-        body = html.encode("utf-8")
+    def _respond(self, include_body):
+        body = render_index_html().encode("utf-8")
 
         self.send_response(200)
         self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", cache_control_until_midnight())
         self.end_headers()
-        self.wfile.write(body)
+        if include_body:
+            self.wfile.write(body)
+
+    def do_GET(self):
+        self._respond(include_body=True)
+
+    def do_HEAD(self):
+        """GET 과 같은 상태·헤더, 본문 없음 (HEAD 요청이 501 로 끝나지 않도록)."""
+        self._respond(include_body=False)
