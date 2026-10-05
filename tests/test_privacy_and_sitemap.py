@@ -133,3 +133,31 @@ def sitemap_locs():
 def test_sitemap_lists_privacy_once(sitemap_locs):
     assert sitemap_locs.count(f"{SITE}/privacy/") == 1
     assert len(sitemap_locs) == len(set(sitemap_locs))
+
+
+# ── /additional-features.html (홈 화면 조각) ──────────────────────
+def test_sitemap_excludes_additional_features_fragment(sitemap_locs):
+    assert not [loc for loc in sitemap_locs if "additional-features" in loc]
+
+
+def test_additional_features_gets_noindex_header_only_there():
+    import json
+    with open(os.path.join(os.path.dirname(PUBLIC), "vercel.json"), encoding="utf-8") as f:
+        routes = json.load(f)["routes"]
+    robots_routes = [r for r in routes if any(k.lower() == "x-robots-tag" for k in r.get("headers", {}))]
+    assert len(robots_routes) == 1
+    route = robots_routes[0]
+    assert route["headers"]["X-Robots-Tag"] == "noindex"
+    assert route["dest"] == "/public/additional-features.html"
+    assert os.path.isfile(os.path.join(PUBLIC, "additional-features.html"))
+    rx = re.compile(route["src"])
+    assert rx.fullmatch("/additional-features.html")
+    for other in ("/", "/daily/", "/privacy/", "/index.html", "/x/additional-features.html"):
+        assert not rx.fullmatch(other), other
+    srcs = [r["src"] for r in routes]
+    assert srcs.index(route["src"]) < srcs.index("/(.*)")    # 정적 파일 catch-all 보다 먼저
+
+
+def test_no_page_links_to_additional_features_fragment():
+    for rel in public_html_files():
+        assert 'href="/additional-features.html"' not in read_public(rel), rel

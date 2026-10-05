@@ -63,6 +63,11 @@
       "headers": { "Cache-Control": "public, max-age=0, s-maxage=60, must-revalidate" }
     },
     {
+      "src": "^/additional-features\\.html$",
+      "dest": "/public/additional-features.html",
+      "headers": { "X-Robots-Tag": "noindex" }
+    },
+    {
       "src": "/(.*)",
       "dest": "/public/$1"
     }
