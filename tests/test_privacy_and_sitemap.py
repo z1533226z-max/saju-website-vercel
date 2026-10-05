@@ -158,22 +158,16 @@ def test_sitemap_excludes_additional_features_fragment(sitemap_locs):
     assert not [loc for loc in sitemap_locs if "additional-features" in loc]
 
 
-def test_additional_features_gets_noindex_header_only_there():
-    import json
+def test_vercel_json_has_no_x_robots_tag():
+    """vercel.json 에 X-Robots-Tag 헤더가 하나도 없어야 한다.
+
+    색인 가능한 URL 에 일반 noindex(메타·X-Robots-Tag)를 새로 붙이지 않는다는 규칙
+    (사주 사이트 -92% 유입 사고 재발 방지). additional-features.html 조각은 사이트맵에서만 뺐다.
+    이 조각을 색인에서 빼거나 지우려면 마스터의 명시적 승인이 먼저다.
+    """
     with open(os.path.join(ROOT, "vercel.json"), encoding="utf-8") as f:
-        routes = json.load(f)["routes"]
-    robots_routes = [r for r in routes if any(k.lower() == "x-robots-tag" for k in r.get("headers", {}))]
-    assert len(robots_routes) == 1
-    route = robots_routes[0]
-    assert route["headers"]["X-Robots-Tag"] == "noindex"
-    assert route["dest"] == "/public/additional-features.html"
-    assert os.path.isfile(os.path.join(PUBLIC, "additional-features.html"))
-    rx = re.compile(route["src"])
-    assert rx.fullmatch("/additional-features.html")
-    for other in ("/", "/daily/", "/privacy/", "/index.html", "/x/additional-features.html"):
-        assert not rx.fullmatch(other), other
-    srcs = [r["src"] for r in routes]
-    assert srcs.index(route["src"]) < srcs.index("/(.*)")    # 정적 파일 catch-all 보다 먼저
+        raw = f.read()
+    assert "x-robots-tag" not in raw.lower()                 # routes·headers 어느 형식이든, 대소문자 무관
 
 
 def test_no_page_links_to_additional_features_fragment():
