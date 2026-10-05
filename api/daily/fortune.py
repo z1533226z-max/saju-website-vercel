@@ -10,6 +10,9 @@ if _parent_dir not in sys.path:
     sys.path.insert(0, _parent_dir)
 
 from _core.daily_fortune import KST, ZODIAC_DATA, cache_control_until_midnight, generate_fortune  # noqa: E402
+from _core.site_layout import (  # noqa: E402
+    RELATED_LINKS_CSS, footer_links_html, nav_links_html, related_links_html,
+)
 
 
 def render_html(sign, now=None):
@@ -90,12 +93,7 @@ def render_html(sign, now=None):
                     <span class="gold-text">사주명리</span>
                 </h1>
             </a>
-            <nav class="nav-links">
-                <a href="/">사주풀이</a>
-                <a href="/zodiac/">띠별 운세</a>
-                <a href="/daily/" class="active">오늘의 운세</a>
-                <a href="/palm/">손금 분석</a>
-            </nav>
+            {nav_links_html("/daily/")}
         </nav>
     </header>
 
@@ -167,6 +165,8 @@ def render_html(sign, now=None):
                 </div>
             </div>
 
+            {related_links_html(sign, z['name'], now)}
+
             <h2 class="section-title" style="margin-top:2rem;"><span class="gold-text">다른 띠 운세 보기</span></h2>
             <div class="zodiac-nav-grid">
                 {other_signs}
@@ -187,11 +187,7 @@ def render_html(sign, now=None):
 
     <footer class="site-footer">
         <div class="container">
-            <div class="footer-links">
-                <a href="/">사주풀이</a>
-                <a href="/zodiac/">띠별 운세</a>
-                <a href="/daily/">오늘의 운세</a>
-            </div>
+            {footer_links_html()}
             <p class="footer-copy">&copy; 2026 사주명리. 전통 명리학 기반 운세 서비스.</p>
             <p class="footer-disclaimer">본 서비스의 운세 결과는 전통 명리학에 기반한 참고용 정보이며, 중요한 결정은 전문가와 상담하시기 바랍니다.</p>
         </div>
@@ -227,6 +223,7 @@ def render_html(sign, now=None):
         color: var(--color-gold, #D4AF37);
         font-weight: 600;
     }}
+    {RELATED_LINKS_CSS}
     </style>
 
 </body>
