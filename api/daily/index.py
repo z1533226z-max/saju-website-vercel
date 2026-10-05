@@ -12,6 +12,7 @@ if _parent_dir not in sys.path:
 from _core.daily_fortune import (  # noqa: E402
     KST, ZODIAC_ORDER, cache_control_until_midnight, day_energy, generate_fortune, get_day_ilji,
 )
+from _core.site_layout import RELATED_LINKS_CSS, footer_links_html, nav_links_html  # noqa: E402
 
 # 일간(日干) 오행별 오늘의 기운 (표기, 이모지, 설명, 조언)
 ELEMENT_INFO = {
@@ -295,24 +296,7 @@ def render_index_html(now=None):
         margin: 0 auto 0.5rem;
         max-width: 640px;
     }}
-    .daily-more-links {{
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 0.6rem;
-        margin-top: 1rem;
-    }}
-    .daily-more-links a {{
-        display: block;
-        padding: 0.8rem 1rem;
-        border-radius: 10px;
-        text-align: center;
-        text-decoration: none;
-        color: inherit;
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(212,175,55,0.2);
-        transition: border-color 0.2s;
-    }}
-    .daily-more-links a:hover {{ border-color: var(--color-gold); color: var(--color-gold); }}
+    {RELATED_LINKS_CSS}
     .ranking-section {{
         margin-top: 1.5rem;
     }}
@@ -362,12 +346,7 @@ def render_index_html(now=None):
                     <span class="gold-text">사주명리</span>
                 </h1>
             </a>
-            <nav class="nav-links">
-                <a href="/">사주풀이</a>
-                <a href="/zodiac/">띠별 운세</a>
-                <a href="/daily/" class="active">오늘의 운세</a>
-                <a href="/palm/">손금 분석</a>
-            </nav>
+            {nav_links_html("/daily/")}
         </nav>
     </header>
 
@@ -454,7 +433,7 @@ def render_index_html(now=None):
             <h2 class="section-title"><span class="gold-text">내 띠 찾기</span></h2>
             <div class="birth-year-check" style="text-align:center;">
                 <label>태어난 해로 찾기:</label>
-                <input type="number" id="birth-year" placeholder="예: 1990" min="1920" max="2025">
+                <input type="number" id="birth-year" placeholder="예: 1990" min="1920">
                 <button onclick="findZodiacByYear()">확인</button>
             </div>
         </div>
@@ -475,23 +454,23 @@ def render_index_html(now=None):
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
-            <div class="footer-links">
-                <a href="/">사주풀이</a>
-                <a href="/zodiac/">띠별 운세</a>
-                <a href="/daily/">오늘의 운세</a>
-                <a href="/palm/">손금 분석</a>
-            </div>
+            {footer_links_html()}
             <p class="footer-copy">&copy; 2026 사주명리. 전통 명리학 기반 운세 서비스.</p>
             <p class="footer-disclaimer">본 서비스의 운세 결과는 전통 명리학에 기반한 참고용 정보이며, 중요한 결정은 전문가와 상담하시기 바랍니다.</p>
         </div>
     </footer>
 
     <script>
+    // 출생연도 상한 = 올해 (방문자 기기 기준으로 계산, 해가 바뀌어도 코드 수정 불필요)
+    var BIRTH_YEAR_MAX = new Date().getFullYear();
+    var birthYearInput = document.getElementById('birth-year');
+    if (birthYearInput) birthYearInput.max = BIRTH_YEAR_MAX;
+
     function findZodiacByYear() {{
         var yearInput = document.getElementById('birth-year');
         var year = parseInt(yearInput.value);
-        if (!year || year < 1920 || year > 2025) {{
-            alert('1920~2025 사이의 출생연도를 입력해주세요.');
+        if (!year || year < 1920 || year > BIRTH_YEAR_MAX) {{
+            alert('1920~' + BIRTH_YEAR_MAX + ' 사이의 출생연도를 입력해주세요.');
             return;
         }}
         var zodiacKeys = ['monkey','rooster','dog','pig','rat','ox','tiger','rabbit','dragon','snake','horse','goat'];
@@ -505,12 +484,20 @@ def render_index_html(now=None):
 
 
 class handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        html = render_index_html()
-        body = html.encode("utf-8")
+    def _respond(self, include_body):
+        body = render_index_html().encode("utf-8")
 
         self.send_response(200)
         self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", cache_control_until_midnight())
         self.end_headers()
-        self.wfile.write(body)
+        if include_body:
+            self.wfile.write(body)
+
+    def do_GET(self):
+        self._respond(include_body=True)
+
+    def do_HEAD(self):
+        """GET 과 같은 상태·헤더, 본문 없음 (HEAD 요청이 501 로 끝나지 않도록)."""
+        self._respond(include_body=False)
