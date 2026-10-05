@@ -35,13 +35,14 @@ def _related_block(html):
 
 
 # ── 표준 내비·푸터 (정적 페이지와 같은 마크업) ──────────────────────
-def test_layout_matches_standardize_script():
+def test_standardize_script_uses_same_layout_definitions():
+    """정적 페이지 표준화 스크립트도 site_layout.py 를 그대로 써야 한다 (정의 한 곳)."""
     script = load_module(os.path.join("scripts", "standardize_nav_footer.py"), "std_for_layout")
-    assert list(sl.NAV_ITEMS) == script.NAV_ORDER
-    assert list(sl.FOOTER_ITEMS) == script.NAV_ORDER + script.FOOTER_EXTRA
     for section in ("/daily/", "/zodiac/", None):
-        assert sl.nav_links_html(section) == script.build_nav_html(section)
-    assert sl.footer_links_html() == script.build_footer_html()
+        assert script.build_nav_html(section) == sl.nav_links_html(section)
+    assert script.build_footer_html() == sl.footer_links_html()
+    assert script.detect_section("daily/rat/index.html") == "/daily/"
+    assert script.detect_section("privacy/index.html") is None
 
 
 def test_ssr_nav_and_footer_equal_static_pages(index_mod, fortune_mod):

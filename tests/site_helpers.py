@@ -2,6 +2,7 @@
 import importlib.util
 import os
 import re
+from functools import lru_cache
 from html.parser import HTMLParser
 from urllib.parse import urlsplit
 
@@ -54,6 +55,12 @@ def parse(html):
     return p
 
 
+@lru_cache(maxsize=None)
+def _ids_in_file(path):
+    with open(path, encoding="utf-8") as f:
+        return frozenset(parse(f.read()).ids)
+
+
 def public_file_for(path):
     """URL 경로 → public/ 아래 파일 경로 (없으면 None)."""
     rel = path.lstrip("/")
@@ -76,11 +83,8 @@ def resolve_internal_href(href, page_ids=()):
     target = public_file_for(parts.path)
     if target is None:
         return False, f"missing file for {parts.path}"
-    if parts.fragment:
-        with open(target, encoding="utf-8") as f:
-            ids = parse(f.read()).ids
-        if parts.fragment not in ids:
-            return False, f"missing id #{parts.fragment} in {parts.path}"
+    if parts.fragment and parts.fragment not in _ids_in_file(target):
+        return False, f"missing id #{parts.fragment} in {parts.path}"
     return True, "file"
 
 

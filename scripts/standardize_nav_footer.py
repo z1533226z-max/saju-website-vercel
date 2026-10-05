@@ -1,42 +1,32 @@
 #!/usr/bin/env python3
 """
 Standardize nav-links and footer-links across all sub-pages.
-Adds /yearly/, /palm/, /dream/, /compatibility/ links where missing.
 Preserves 'active' class based on page's section.
-Skips the main index.html (different nav structure).
+Skips the main index.html (different nav structure) and /en/ (English nav).
+
+내비·푸터 정의는 SSR(/daily/)과 같은 api/_core/site_layout.py 한 곳에서 가져온다.
 """
+import importlib.util
 import os
 import re
 import glob
 
 PUBLIC = os.path.join(os.path.dirname(__file__), '..', 'public')
 
-# Section detection: path prefix -> (href, label)
-SECTIONS = [
-    ('/zodiac/', '띠별 운세'),
-    ('/daily/', '오늘의 운세'),
-    ('/yearly/', '2026년 운세'),
-    ('/compatibility/', '궁합'),
-    ('/dream/', '꿈해몽'),
-    ('/palm/', '손금 분석'),
-    ('/guide/', '사주 가이드'),
-]
 
-NAV_ORDER = [
-    ('/', '사주풀이'),
-    ('/zodiac/', '띠별 운세'),
-    ('/daily/', '오늘의 운세'),
-    ('/yearly/', '2026년 운세'),
-    ('/compatibility/', '궁합'),
-    ('/dream/', '꿈해몽'),
-    ('/palm/', '손금 분석'),
-    ('/guide/', '사주 가이드'),
-]
+def _load_site_layout():
+    # _core 패키지 초기화(사주 계산기 로딩) 없이 파일 하나만 로드
+    path = os.path.join(os.path.dirname(__file__), '..', 'api', '_core', 'site_layout.py')
+    spec = importlib.util.spec_from_file_location('site_layout', path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
-# 푸터에만 붙는 링크 (scripts/add_privacy_footer_link.py 로 넣은 것과 같은 모양)
-FOOTER_EXTRA = [
-    ('/privacy/', '개인정보처리방침'),
-]
+
+site_layout = _load_site_layout()
+
+# Section detection: path prefixes of the nav (except home)
+SECTION_PREFIXES = [href for href, _label in site_layout.NAV_ITEMS if href != '/']
 
 
 def detect_section(rel_path):
@@ -45,7 +35,7 @@ def detect_section(rel_path):
     어느 섹션에도 속하지 않는 페이지(예: /privacy/)는 None → 활성 링크 없음.
     """
     rel_path = '/' + rel_path.replace('\\', '/')
-    for href, label in SECTIONS:
+    for href in SECTION_PREFIXES:
         if rel_path.startswith(href):
             return href
     return None
@@ -53,24 +43,15 @@ def detect_section(rel_path):
 
 def build_nav_html(active_href):
     """Build standardized nav-links HTML."""
-    links = []
-    for href, label in NAV_ORDER:
-        if href == active_href:
-            links.append(f'<a href="{href}" class="active">{label}</a>')
-        else:
-            links.append(f'<a href="{href}">{label}</a>')
-    return '<nav class="nav-links">' + ''.join(links) + '</nav>'
+    return site_layout.nav_links_html(active_href)
 
 
 def build_footer_html():
-    """Build standardized footer-links HTML (no active class).
+    """Build standardized footer-links HTML (no active class, 개인정보처리방침 포함).
 
     앞쪽 들여쓰기는 원래 줄의 것을 그대로 쓴다 (재실행해도 공백이 늘지 않도록).
     """
-    links = []
-    for href, label in NAV_ORDER + FOOTER_EXTRA:
-        links.append(f'\n                <a href="{href}">{label}</a>')
-    return '<div class="footer-links">' + ''.join(links) + '\n            </div>'
+    return site_layout.footer_links_html()
 
 
 # Regex patterns

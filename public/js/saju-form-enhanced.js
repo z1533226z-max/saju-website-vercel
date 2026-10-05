@@ -48,20 +48,20 @@ window.sajuForm = function() {
             '계': { korean: '계', meaning: '샘물', element: '수(-)', color: '#87CEEB' }
         },
         
-        // 지지 한글 및 설명
+        // 지지 한글 및 설명 (key: /yearly/<key>/, /daily/<key>/ 경로용 띠 키)
         earthlyBranchInfo: {
-            '자': { korean: '자', animal: '쥐', time: '23-01시', element: '수', symbol: '🐭' },
-            '축': { korean: '축', animal: '소', time: '01-03시', element: '토', symbol: '🐮' },
-            '인': { korean: '인', animal: '호랑이', time: '03-05시', element: '목', symbol: '🐯' },
-            '묘': { korean: '묘', animal: '토끼', time: '05-07시', element: '목', symbol: '🐰' },
-            '진': { korean: '진', animal: '용', time: '07-09시', element: '토', symbol: '🐲' },
-            '사': { korean: '사', animal: '뱀', time: '09-11시', element: '화', symbol: '🐍' },
-            '오': { korean: '오', animal: '말', time: '11-13시', element: '화', symbol: '🐴' },
-            '미': { korean: '미', animal: '양', time: '13-15시', element: '토', symbol: '🐑' },
-            '신': { korean: '신', animal: '원숭이', time: '15-17시', element: '금', symbol: '🐵' },
-            '유': { korean: '유', animal: '닭', time: '17-19시', element: '금', symbol: '🐓' },
-            '술': { korean: '술', animal: '개', time: '19-21시', element: '토', symbol: '🐕' },
-            '해': { korean: '해', animal: '돼지', time: '21-23시', element: '수', symbol: '🐷' }
+            '자': { korean: '자', animal: '쥐', time: '23-01시', element: '수', symbol: '🐭', key: 'rat' },
+            '축': { korean: '축', animal: '소', time: '01-03시', element: '토', symbol: '🐮', key: 'ox' },
+            '인': { korean: '인', animal: '호랑이', time: '03-05시', element: '목', symbol: '🐯', key: 'tiger' },
+            '묘': { korean: '묘', animal: '토끼', time: '05-07시', element: '목', symbol: '🐰', key: 'rabbit' },
+            '진': { korean: '진', animal: '용', time: '07-09시', element: '토', symbol: '🐲', key: 'dragon' },
+            '사': { korean: '사', animal: '뱀', time: '09-11시', element: '화', symbol: '🐍', key: 'snake' },
+            '오': { korean: '오', animal: '말', time: '11-13시', element: '화', symbol: '🐴', key: 'horse' },
+            '미': { korean: '미', animal: '양', time: '13-15시', element: '토', symbol: '🐑', key: 'goat' },
+            '신': { korean: '신', animal: '원숭이', time: '15-17시', element: '금', symbol: '🐵', key: 'monkey' },
+            '유': { korean: '유', animal: '닭', time: '17-19시', element: '금', symbol: '🐓', key: 'rooster' },
+            '술': { korean: '술', animal: '개', time: '19-21시', element: '토', symbol: '🐕', key: 'dog' },
+            '해': { korean: '해', animal: '돼지', time: '21-23시', element: '수', symbol: '🐷', key: 'pig' }
         },
         
         // 개선된 한글 변환 함수들
@@ -107,13 +107,8 @@ window.sajuForm = function() {
         },
 
         // 결과 아래 '함께 보면 좋은 운세' 링크: 년주 지지 = 띠, 일주 천간 = 일간
-        branchZodiacKeys: {
-            '자': 'rat', '축': 'ox', '인': 'tiger', '묘': 'rabbit', '진': 'dragon', '사': 'snake',
-            '오': 'horse', '미': 'goat', '신': 'monkey', '유': 'rooster', '술': 'dog', '해': 'pig'
-        },
-
         get zodiacKey() {
-            return this.branchZodiacKeys[this.saju?.year?.earthly] || '';
+            return this.earthlyBranchInfo[this.saju?.year?.earthly]?.key || '';
         },
 
         get zodiacName() {

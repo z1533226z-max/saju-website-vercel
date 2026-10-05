@@ -2,9 +2,10 @@
 """
 SSR 페이지(/daily/, /daily/<띠>/) 공용 레이아웃 조각: 상단 내비 · 푸터 · '함께 보면 좋은 운세'.
 
-- 내비(.nav-links)·푸터(.footer-links)는 정적 페이지와 같은 마크업이다.
-  정적 페이지 쪽은 scripts/standardize_nav_footer.py · scripts/add_privacy_footer_link.py 가
-  만든 것이고, tests/test_site_layout.py 가 public/ 실제 페이지와 비교한다.
+- 내비(.nav-links)·푸터(.footer-links) 정의는 여기 한 곳뿐이다. 정적 페이지는
+  scripts/standardize_nav_footer.py 가 이 파일을 그대로 불러 같은 마크업을 쓰고,
+  tests/test_daily_layout.py 가 public/ 실제 페이지와 비교한다.
+  (그래서 이 모듈은 _core 의 다른 모듈을 import 하지 않는다 — 스크립트가 파일 경로로 로드)
 - public/ 은 서버리스 함수 번들에 들어간다는 보장이 없어 런타임에 파일을 읽지 않는다.
   링크 대상(월별 운세 목록, 2027 섹션 id, 꿈해몽 페이지)은 아래 상수로 두고,
   테스트가 public/ 실제 파일·robots 메타와 대조한다.
@@ -13,7 +14,7 @@ from datetime import timedelta, timezone
 
 KST = timezone(timedelta(hours=9))
 
-# 정적 페이지 표준 내비 순서 (scripts/standardize_nav_footer.py 의 NAV_ORDER 와 같아야 함)
+# 표준 내비 순서 (정적 페이지·SSR 공통)
 NAV_ITEMS = (
     ("/", "사주풀이"),
     ("/zodiac/", "띠별 운세"),
@@ -83,17 +84,6 @@ RELATED_LINKS_CSS = """.daily-more-links {
     .daily-more-links a:hover { border-color: var(--color-gold); color: var(--color-gold); }"""
 
 
-def _kst_date(now):
-    return now.astimezone(KST) if now.tzinfo is not None else now
-
-
-def monthly_page_href(sign, now):
-    """이번 달(KST) 월별 운세 경로. 링크할 수 있는 달이 아니면 None."""
-    now = _kst_date(now)
-    ym = f"{now.year:04d}-{now.month:02d}"
-    return f"/zodiac/{sign}/{ym}/" if ym in MONTHLY_PAGES else None
-
-
 def dream_keys_for(sign):
     """띠와 같은 동물의 깊은 꿈해몽이 있으면 그것부터, 나머지는 대표 길몽(돼지꿈·용꿈)."""
     first = sign if sign in DREAM_PAGES else "pig"
@@ -102,17 +92,18 @@ def dream_keys_for(sign):
 
 
 def related_links(sign, zodiac_name, now):
-    """[(href, label), ...] — 최대 MAX_RELATED_LINKS 개."""
-    now = _kst_date(now)
+    """[(href, label), ...] — MAX_RELATED_LINKS 개 이하 (테스트가 확인)."""
+    if now.tzinfo is not None:
+        now = now.astimezone(KST)          # 이번 달은 KST 날짜 기준
+    ym = f"{now.year:04d}-{now.month:02d}"
     links = [(f"/yearly/{sign}/#{YEARLY_2027_ANCHOR}", f"🎍 {zodiac_name} 2027 신년운세")]
-    month_href = monthly_page_href(sign, now)
-    if month_href:
-        links.append((month_href, f"📅 {zodiac_name} {now.month}월 운세"))
+    if ym in MONTHLY_PAGES:
+        links.append((f"/zodiac/{sign}/{ym}/", f"📅 {zodiac_name} {now.month}월 운세"))
     else:
         links.append((f"/zodiac/{sign}/", f"📅 {zodiac_name} 운세 총정리"))
     links.append((f"/compatibility/{sign}/", f"💞 {zodiac_name} 궁합"))
     links.extend(DREAM_PAGES[k] for k in dream_keys_for(sign))
-    return links[:MAX_RELATED_LINKS]
+    return links
 
 
 def related_links_html(sign, zodiac_name, now):

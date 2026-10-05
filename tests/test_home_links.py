@@ -53,8 +53,8 @@ def test_result_links_block_sits_inside_alpine_results(home):
 def test_form_component_defines_link_getters(form_js):
     for getter in ("get zodiacKey()", "get zodiacName()", "get dayStemLabel()"):
         assert getter in form_js, getter
-    m = re.search(r"branchZodiacKeys:\s*\{(.*?)\}", form_js, re.S)
-    mapping = dict(re.findall(r"'(.)':\s*'([a-z]+)'", m.group(1)))
+    table = re.search(r"earthlyBranchInfo:\s*\{(.*?)\n\s*\},", form_js, re.S).group(1)
+    mapping = dict(re.findall(r"'(.)':\s*\{[^}]*\bkey:\s*'([a-z]+)'", table))
     assert list(mapping) == list("자축인묘진사오미신유술해")
     assert tuple(mapping.values()) == SIGNS
     for sign in SIGNS:                       # 계산 결과로 만들어질 수 있는 모든 링크가 열리는지
