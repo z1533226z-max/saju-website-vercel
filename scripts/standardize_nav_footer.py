@@ -33,14 +33,22 @@ NAV_ORDER = [
     ('/guide/', '사주 가이드'),
 ]
 
+# 푸터에만 붙는 링크 (scripts/add_privacy_footer_link.py 로 넣은 것과 같은 모양)
+FOOTER_EXTRA = [
+    ('/privacy/', '개인정보처리방침'),
+]
+
 
 def detect_section(rel_path):
-    """Detect which section a file belongs to based on its relative path."""
+    """Detect which section a file belongs to based on its relative path.
+
+    어느 섹션에도 속하지 않는 페이지(예: /privacy/)는 None → 활성 링크 없음.
+    """
     rel_path = '/' + rel_path.replace('\\', '/')
     for href, label in SECTIONS:
         if rel_path.startswith(href):
             return href
-    return '/'
+    return None
 
 
 def build_nav_html(active_href):
@@ -55,11 +63,14 @@ def build_nav_html(active_href):
 
 
 def build_footer_html():
-    """Build standardized footer-links HTML (no active class)."""
+    """Build standardized footer-links HTML (no active class).
+
+    앞쪽 들여쓰기는 원래 줄의 것을 그대로 쓴다 (재실행해도 공백이 늘지 않도록).
+    """
     links = []
-    for href, label in NAV_ORDER:
+    for href, label in NAV_ORDER + FOOTER_EXTRA:
         links.append(f'\n                <a href="{href}">{label}</a>')
-    return '            <div class="footer-links">' + ''.join(links) + '\n            </div>'
+    return '<div class="footer-links">' + ''.join(links) + '\n            </div>'
 
 
 # Regex patterns
@@ -105,6 +116,11 @@ def main():
 
         # Skip main index.html (different nav structure with anchors)
         if rel_path == 'index.html':
+            skipped += 1
+            continue
+
+        # Skip English pages (/en/ has its own English nav/footer)
+        if rel_path.startswith('en/'):
             skipped += 1
             continue
 
