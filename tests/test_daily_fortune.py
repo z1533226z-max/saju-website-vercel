@@ -112,8 +112,7 @@ def test_fortune_is_deterministic_per_day():
 def test_cache_control_expires_at_kst_midnight():
     from datetime import timezone
     utc_2300_kst = datetime(2026, 10, 3, 14, 0, tzinfo=timezone.utc)   # KST 23:00
-    assert df.cache_control_until_midnight(utc_2300_kst) == \
-        "public, s-maxage=3600, max-age=300, stale-while-revalidate=60"
+    assert df.cache_control_until_midnight(utc_2300_kst) == "no-store, max-age=0"
 
 
 # ── 전체 운세 지수: 일진 ↔ 월주 ─────────────────────────────────

@@ -11,6 +11,7 @@ if _parent_dir not in sys.path:
 
 from _core.daily_fortune import (  # noqa: E402
     KST, ZODIAC_ORDER, cache_control_until_midnight, day_energy, generate_fortune, get_day_ilji,
+    next_kst_midnight, to_kst,
 )
 from _core.site_layout import RELATED_LINKS_CSS, footer_links_html, nav_links_html  # noqa: E402
 
@@ -25,8 +26,8 @@ ELEMENT_INFO = {
 
 
 def render_index_html(now=None):
-    if now is None:
-        now = datetime.now(KST)
+    now = to_kst(now)
+    refresh_at = next_kst_midnight(now).isoformat()
 
     date_str = f"{now.year}년 {now.month}월 {now.day}일"
     weekdays = ["월", "화", "수", "목", "금", "토", "일"]
@@ -336,7 +337,8 @@ def render_index_html(now=None):
     }}
     </style>
 </head>
-<body>
+<body data-daily-date="{now:%Y-%m-%d}" data-daily-refresh-at="{refresh_at}">
+    <script defer src="/js/components/daily-refresh.js?v=20261022"></script>
 
     <!-- Header -->
     <header id="site-header">
@@ -485,12 +487,15 @@ def render_index_html(now=None):
 
 class handler(BaseHTTPRequestHandler):
     def _respond(self, include_body):
-        body = render_index_html().encode("utf-8")
+        now = datetime.now(KST)
+        body = render_index_html(now).encode("utf-8")
 
         self.send_response(200)
         self.send_header("Content-Type", "text/html; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
-        self.send_header("Cache-Control", cache_control_until_midnight())
+        self.send_header("Cache-Control", cache_control_until_midnight(now))
+        self.send_header("CDN-Cache-Control", "no-store")
+        self.send_header("Vercel-CDN-Cache-Control", "no-store")
         self.end_headers()
         if include_body:
             self.wfile.write(body)
