@@ -278,6 +278,14 @@
         </a>
     </section>
 
+    <!-- SAJU_TEST_ENTRY_V1: 공유형 테스트 진입 -->
+    <a href="/saju-test/" class="saju-test-entry" style="display:flex;align-items:center;gap:0.9rem;box-sizing:border-box;width:calc(100% - 2rem);max-width:760px;margin:1.5rem auto;padding:1rem 1.1rem;border-radius:14px;border:1px solid #8B7335;background:linear-gradient(135deg,rgba(212,175,55,0.12),rgba(26,25,36,0.6));color:#E8E0D4;text-decoration:none;">
+        <span style="font-size:2rem;line-height:1" aria-hidden="true">🌳</span>
+        <span><strong style="display:block;color:#F0D78C;font-size:1.05rem">나는 어떤 자연일까? 오행 캐릭터 테스트</strong>
+        <span style="font-size:0.9rem;color:#9B918A">생년월일만 넣으면 1초 · 결과 카드 저장 · 친구 초대 궁합</span></span>
+    </a>
+    <!-- /SAJU_TEST_ENTRY_V1 -->
+
     <!-- 2.3 입력 폼 섹션 -->
     <div x-data="sajuForm()">
     <section id="input-section">
@@ -718,6 +726,7 @@
                 <div class="result-next-grid">
                     <a href="/yearly/" :href="'/yearly/' + zodiacKey + '/#y2027'">🎍 내 띠(<span x-text="zodiacName"></span>) 2027 신년운세</a>
                     <a href="/daily/" :href="'/daily/' + zodiacKey + '/'">☀️ 오늘의 <span x-text="zodiacName"></span> 운세</a>
+                    <a href="/saju-test/">🌳 내 오행 캐릭터 카드 만들고 친구 궁합 보기</a>
                     <a href="/guide/day-master/" x-show="dayStemLabel">📖 내 일간 <span x-text="dayStemLabel"></span> 성격 알아보기</a>
                 </div>
             </nav>

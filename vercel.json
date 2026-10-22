@@ -27,6 +27,11 @@
       "methods": ["POST", "OPTIONS"]
     },
     {
+      "src": "/api/share/config",
+      "dest": "/api/share/config.py",
+      "methods": ["GET"]
+    },
+    {
       "src": "/daily/?$",
       "dest": "/api/daily/index.py"
     },
