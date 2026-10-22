@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://saju.gon.ai.kr/</loc>
-        <lastmod>2026-10-05</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>    <url>
@@ -129,7 +129,7 @@
         <priority>0.7</priority>
     </url>    <url>
         <loc>https://saju.gon.ai.kr/compatibility/</loc>
-        <lastmod>2026-04-13</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>    <url>
@@ -234,7 +234,7 @@
         <priority>0.7</priority>
     </url>    <url>
         <loc>https://saju.gon.ai.kr/guide/day-master/</loc>
-        <lastmod>2026-04-14</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>    <url>
@@ -990,8 +990,74 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://saju.gon.ai.kr/saju-test/</loc>
+        <lastmod>2026-10-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saju.gon.ai.kr/saju-test/gap-wood/</loc>
+        <lastmod>2026-10-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://saju.gon.ai.kr/saju-test/eul-wood/</loc>
+        <lastmod>2026-10-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://saju.gon.ai.kr/saju-test/byeong-fire/</loc>
+        <lastmod>2026-10-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://saju.gon.ai.kr/saju-test/jeong-fire/</loc>
+        <lastmod>2026-10-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://saju.gon.ai.kr/saju-test/mu-earth/</loc>
+        <lastmod>2026-10-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://saju.gon.ai.kr/saju-test/gi-earth/</loc>
+        <lastmod>2026-10-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://saju.gon.ai.kr/saju-test/gyeong-metal/</loc>
+        <lastmod>2026-10-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://saju.gon.ai.kr/saju-test/sin-metal/</loc>
+        <lastmod>2026-10-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://saju.gon.ai.kr/saju-test/im-water/</loc>
+        <lastmod>2026-10-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://saju.gon.ai.kr/saju-test/gye-water/</loc>
+        <lastmod>2026-10-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
         <loc>https://saju.gon.ai.kr/privacy/</loc>
-        <lastmod>2026-10-05</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
