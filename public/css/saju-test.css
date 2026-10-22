@@ -317,3 +317,32 @@
     .st-date-row { grid-template-columns: 1.3fr 1fr 1fr; gap: 0.4rem; }
     .st-pair-names { gap: 1.5rem; }
 }
+
+/* 복사 실패 시 링크 직접 복사 칸 */
+.st-linkbox {
+    position: fixed;
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    width: min(92vw, 28rem);
+    box-sizing: border-box;
+    z-index: 1000;
+    background: rgba(20,19,26,0.97);
+    color: var(--color-text-primary, #E8E0D4);
+    border: 1px solid var(--color-gold-muted, #8B7335);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+}
+.st-linkbox p { margin: 0 0 0.6rem; font-size: 0.9rem; }
+.st-linkbox-input {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0.6rem;
+    padding: 0.6rem;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--color-gold-muted, #8B7335);
+    background: #0f0e14;
+    color: inherit;
+}

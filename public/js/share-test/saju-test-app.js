@@ -69,7 +69,16 @@
 
     function cleanNick(s) {
         if (!s) return '';
-        return String(s).replace(/[\u0000-\u001f<>"'`&]/g, '').trim().slice(0, NICK_MAX);
+        // 짝 없는 서로게이트(깨진 이모지)는 encodeURIComponent 가 예외를 내므로 제거하고, 글자(코드 포인트) 단위로 자른다
+        var clean = String(s).replace(/[\u0000-\u001f<>"'`&]/g, '');
+        var chars = [];
+        for (var i = 0; i < clean.length; i++) {
+            var c = clean.charCodeAt(i);
+            if (c >= 0xD800 && c <= 0xDBFF && i + 1 < clean.length && (clean.charCodeAt(i + 1) & 0xFC00) === 0xDC00) {
+                chars.push(clean.charAt(i) + clean.charAt(i + 1)); i++;
+            } else if (c < 0xD800 || c > 0xDFFF) chars.push(clean.charAt(i));
+        }
+        return Array.from(chars.join('').trim()).slice(0, NICK_MAX).join('').trim();
     }
 
     function track(name, params) {
@@ -104,17 +113,46 @@
         return ok;
     }
 
-    /** Web Share API → 안 되면 링크 복사 */
+    /** 복사까지 실패했을 때: 실제 주소를 읽기 전용 입력칸으로 보여 줘 직접 복사하게 한다 */
+    function showLinkBox(url) {
+        var old = document.getElementById('st-linkbox');
+        if (old) old.parentNode.removeChild(old);
+        var input = h('input', { type: 'text', readonly: 'readonly', class: 'st-linkbox-input', 'aria-label': '복사할 링크', value: url });
+        input.value = url;
+        var box = h('div', { id: 'st-linkbox', class: 'st-linkbox', role: 'dialog', 'aria-label': '링크 직접 복사' }, [
+            h('p', { text: '자동 복사가 안 돼요. 아래 링크를 길게 눌러 복사해 보내 주세요.' }),
+            input,
+            h('button', { type: 'button', class: 'st-btn st-ghost', text: '닫기', onclick: function () { box.parentNode.removeChild(box); } })
+        ]);
+        document.body.appendChild(box);
+        input.focus();
+        input.select();
+    }
+
+    function copyFallback(payload, method) {
+        return copyText(payload.url).then(function (ok) {
+            if (ok) {
+                toast('링크를 복사했어요. 원하는 곳에 붙여 넣으세요!');
+                track('saju_test_share', { method: 'copy', target: method });
+            } else {
+                showLinkBox(payload.url);
+            }
+        });
+    }
+
+    /** Web Share API → 실패하면 링크 복사 → 그것도 안 되면 링크 직접 복사 칸 (사용자 취소는 조용히 종료) */
     function shareLink(payload, method) {
         if (navigator.share) {
-            return navigator.share(payload).then(function () {
+            var p;
+            try { p = Promise.resolve(navigator.share(payload)); } catch (e) { p = Promise.reject(e); }
+            return p.then(function () {
                 track('saju_test_share', { method: 'web_share', target: method });
-            }, function () { /* 사용자가 닫음 */ });
+            }, function (err) {
+                if (err && err.name === 'AbortError') return; // 사용자가 공유창을 닫음
+                return copyFallback(payload, method);
+            });
         }
-        return copyText(payload.url).then(function (ok) {
-            toast(ok ? '링크를 복사했어요. 원하는 곳에 붙여 넣으세요!' : '복사에 실패했어요. 주소창의 링크를 길게 눌러 복사해 주세요.');
-            if (ok) track('saju_test_share', { method: 'copy', target: method });
-        });
+        return copyFallback(payload, method);
     }
 
     // ── 링크 ──────────────────────────────────────────────────────
@@ -466,7 +504,10 @@
             shareLink({ title: "나는 '" + t.name + "' 유형", text: t.tagline + ' — 너는 어떤 자연이야?', url: typeUrl(t) }, 'result');
         } });
         var copyBtn = h('button', { type: 'button', class: 'st-btn st-ghost', text: '링크 복사', onclick: function () {
-            copyText(typeUrl(t)).then(function (ok) { toast(ok ? '결과 링크를 복사했어요!' : '복사에 실패했어요.'); if (ok) track('saju_test_share', { method: 'copy', target: 'result' }); });
+            copyText(typeUrl(t)).then(function (ok) {
+                if (ok) { toast('결과 링크를 복사했어요!'); track('saju_test_share', { method: 'copy', target: 'result' }); }
+                else showLinkBox(typeUrl(t));
+            });
         } });
         var kakao = kakaoButton('카카오톡으로 결과 보내기', function () {
             return { title: "나는 '" + t.name + "' 유형", text: t.tagline, image: SITE + OG_DIR + 'og-' + t.slug + '.jpg',
@@ -560,7 +601,13 @@
         var f = ev.target;
         var y = Number(f.year.value), m = Number(f.month.value), d = Number(f.day.value);
         var err = document.getElementById('st-error');
-        if (!Core.isValidDate(y, m, d)) { err.textContent = '생년월일을 다시 확인해 주세요.'; return; }
+        if (!Core.isValidDate(y, m, d)) {
+            err.textContent = '생년월일을 다시 확인해 주세요.';
+            // 이전 유효 결과를 새 결과로 오해하지 않도록 숨긴다
+            ['st-result', 'st-compat'].forEach(function (id) { var el = document.getElementById(id); el.hidden = true; el.textContent = ''; });
+            state.result = null;
+            return;
+        }
         err.textContent = '';
         var nick = cleanNick(f.nick.value);
         var r = Core.analyze(y, m, d);
