@@ -78,8 +78,8 @@ class handler(BaseHTTPRequestHandler):
                     return
 
                 try:
-                    birth_date = datetime.strptime(birth_date_str, '%Y-%m-%d')
-                except ValueError:
+                    year, month, day = map(int, birth_date_str.split('-'))
+                except (ValueError, TypeError):
                     _send_json(self, 400, {
                         'status': 'error',
                         'error': f'{person_key}의 birthDate 형식이 올바르지 않습니다. (YYYY-MM-DD)'
@@ -90,25 +90,34 @@ class handler(BaseHTTPRequestHandler):
                 gender = person_data.get('gender', 'neutral')
                 is_lunar = person_data.get('isLunar', False)
 
-                # Convert lunar to solar if needed
+                # Lunar month/day must be checked in the lunar calendar.
                 if is_lunar:
+                    birth_date = _lunar_converter.lunar_to_solar(
+                        year, month, day, bool(person_data.get('isLeapMonth', False)),
+                    )
+                    if birth_date is None:
+                        _send_json(self, 400, {
+                            'status': 'error', 'error': f'{person_key}의 음력 날짜가 유효하지 않습니다.'
+                        })
+                        return
+                else:
                     try:
-                        converted_date = _lunar_converter.lunar_to_solar(
-                            birth_date.year, birth_date.month, birth_date.day
-                        )
-                        if converted_date is not None:
-                            # lunar_to_solar returns datetime object
-                            birth_date = converted_date
-                    except Exception:
-                        pass  # Use original date if conversion fails
+                        birth_date = datetime(year, month, day)
+                    except ValueError:
+                        _send_json(self, 400, {
+                            'status': 'error', 'error': f'{person_key}의 양력 날짜가 유효하지 않습니다.'
+                        })
+                        return
 
                 # Calculate Saju with correct signature
                 saju_result = _saju_calculator.calculate_saju(
                     birth_date=birth_date,
                     birth_time=birth_time,
                     gender=gender,
-                    is_lunar=is_lunar
+                    is_lunar=False
                 )
+                # Retain input metadata without converting the solar date again.
+                saju_result['birth_info']['is_lunar'] = is_lunar
 
                 # Analyze elements
                 elements_result = _elements_analyzer.analyze_elements(saju_result)

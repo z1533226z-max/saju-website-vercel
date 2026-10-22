@@ -10,7 +10,7 @@ from typing import Dict, List, Optional, Tuple
 import json
 import os
 from pathlib import Path
-# from .lunar_converter import LunarConverter  # Uncomment when lunarcalendar is installed
+from .lunar_converter_improved import ImprovedLunarConverter
 
 
 class SajuCalculator:
@@ -22,7 +22,7 @@ class SajuCalculator:
         self.earthly_branches = []
         self.heavenly_stems_data = {}
         self.earthly_branches_data = {}
-        # self.lunar_converter = LunarConverter()  # Uncomment when lunarcalendar is installed
+        self.lunar_converter = ImprovedLunarConverter()
         
         # 월지지 매핑 (월 -> 지지 인덱스)
         self.month_to_earthly = {
@@ -95,7 +95,8 @@ class SajuCalculator:
             self.earthly_branches = data['earthly_branches']
     
     def calculate_saju(self, birth_date: datetime, birth_time: str, 
-                      gender: str, is_lunar: bool = False) -> Dict:
+                      gender: str, is_lunar: bool = False,
+                      is_leap_month: bool = False) -> Dict:
         """
         사주팔자 계산 메인 함수
         
@@ -104,13 +105,14 @@ class SajuCalculator:
             birth_time: 출생시간 (HH:MM)
             gender: 성별 ('male' or 'female')
             is_lunar: 음력 여부
+            is_leap_month: 음력 윤달 여부
             
         Returns:
             사주 명식 딕셔너리
         """
-        # 음력인 경우 양력으로 변환 (추후 구현)
+        # 음력인 경우 계산 전에 양력으로 한 번만 변환
         if is_lunar:
-            birth_date = self.convert_lunar_to_solar(birth_date)
+            birth_date = self.convert_lunar_to_solar(birth_date, is_leap_month)
         
         # 년주 계산 (입춘 이전 출생은 전년도)
         year_pillar = self.calculate_year_pillar(
@@ -742,19 +744,24 @@ class SajuCalculator:
                 return idx
         return 0
     
-    def convert_lunar_to_solar(self, lunar_date: datetime) -> datetime:
+    def convert_lunar_to_solar(self, lunar_date: datetime,
+                               is_leap_month: bool = False) -> datetime:
         """
         음력을 양력으로 변환
         
         Args:
             lunar_date: 음력 날짜
+            is_leap_month: 음력 윤달 여부
             
         Returns:
             양력 날짜
         """
-        # Lunar conversion will be implemented when lunarcalendar is installed
-        # For now, return the date as-is
-        return lunar_date
+        solar_date = self.lunar_converter.lunar_to_solar(
+            lunar_date.year, lunar_date.month, lunar_date.day, is_leap_month,
+        )
+        if solar_date is None:
+            raise ValueError('유효하지 않은 음력 날짜입니다.')
+        return solar_date
     
     def analyze_elements(self, pillars: Dict) -> Dict:
         """

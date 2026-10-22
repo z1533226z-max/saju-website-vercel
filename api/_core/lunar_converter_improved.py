@@ -59,15 +59,7 @@ class ImprovedLunarConverter:
                 logger.warning(f" 잘못된 일: {day}")
                 return None
             
-            # 윤달 검증
-            if is_leap_month:
-                leap_month = self.get_leap_month(year)
-                if leap_month != month:
-                    logger.warning(f" {year}년 {month}월은 윤달이 아님 (윤달: {leap_month}월)")
-                    # 윤달이 아닌 경우 일반 달로 처리
-                    is_leap_month = False
-            
-            # 실제 변환 시도
+            # Lunar validates the exact date and leap flag by round trip.
             lunar = lunarcalendar.Lunar(year, month, day, isleap=is_leap_month)
             solar = lunarcalendar.Converter.Lunar2Solar(lunar)
             return datetime(solar.year, solar.month, solar.day)
@@ -77,18 +69,6 @@ class ImprovedLunarConverter:
             logger.error(f" 음력 변환 실패: {year}-{month:02d}-{day:02d} (윤달:{is_leap_month})")
             logger.error(f" 원인: {str(e)}")
             
-            # 대체 처리: 날짜 조정 시도
-            if day == 30:
-                logger.debug(f" 29일로 재시도...")
-                try:
-                    lunar = lunarcalendar.Lunar(year, month, 29, isleap=is_leap_month)
-                    solar = lunarcalendar.Converter.Lunar2Solar(lunar)
-                    result = datetime(solar.year, solar.month, solar.day)
-                    logger.info(f" 29일로 변환 성공: {result.strftime('%Y-%m-%d')}")
-                    return result
-                except Exception:
-                    pass
-                    
             return None
     
     def solar_to_lunar(self, date: datetime) -> Dict:

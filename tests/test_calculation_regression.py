@@ -3,8 +3,7 @@
 Pillars/scores characterize the checked-in implementation, not an astronomical
 almanac certification. Solar terms currently use approximate fixed calendar
 days; midnight follows the existing civil-date (not late-zi next-day) rule.
-Known conversion defects assert the desired result with strict xfail so a
-future fix must explicitly retire the marker rather than silently change it.
+Lunar conversion cases include the formerly reported D231 defects.
 """
 from datetime import datetime, timezone
 from io import BytesIO
@@ -19,16 +18,6 @@ from daily.fortune import render_html
 from saju import calculate, compatibility
 
 
-class KnownConversionDefect(AssertionError):
-    """Only the exact observed defect qualifies as an expected failure."""
-
-
-def assert_conversion(actual, expected, known_bad):
-    if actual == known_bad:
-        raise KnownConversionDefect(f"expected {expected!r}, observed {actual!r}")
-    assert actual == expected
-
-
 def pillars(saju):
     return tuple(
         saju[key]["heavenly_hanja"] + saju[key]["earthly_hanja"]
@@ -36,7 +25,7 @@ def pillars(saju):
     )
 
 
-def post(module, payload):
+def post(module, payload, expected_status=200):
     """Run the real POST parsing/calculation/JSON path using in-memory streams."""
     raw = json.dumps(payload).encode("utf-8")
     handler = object.__new__(module.handler)
@@ -48,10 +37,10 @@ def post(module, payload):
     handler.send_header = lambda key, value: headers.update({key: value})
     handler.end_headers = lambda: None
     handler.do_POST()
-    assert statuses == [200], handler.wfile.getvalue().decode("utf-8")
+    assert statuses == [expected_status], handler.wfile.getvalue().decode("utf-8")
     assert headers["Content-Type"] == "application/json; charset=utf-8"
     response = json.loads(handler.wfile.getvalue())
-    assert response["status"] == "success"
+    assert response["status"] == ("success" if expected_status == 200 else "error")
     return response
 
 
@@ -186,21 +175,18 @@ def test_fortune_kst_midnight_fixed_results(utc_time, expected_day, expected):
     )) == expected
 
 
-@pytest.mark.xfail(strict=True, raises=KnownConversionDefect,
-                   reason="D231-1: core lunar conversion is an identity stub")
-def test_known_defect_core_lunar_conversion():
+def test_core_lunar_conversion():
     result = SajuCalculator().calculate_saju(
         datetime(2024, 1, 1), "12:00", "male", is_lunar=True,
     )
-    assert_conversion(result["birth_info"]["date"], "2024-02-10", "2024-01-01")
+    assert result["birth_info"]["date"] == "2024-02-10"
+    assert pillars(result) == ("甲辰", "丙寅", "甲辰", "庚午")
 
 
 @pytest.mark.parametrize("module,person_key", [
     (calculate, None), (compatibility, "person1"), (compatibility, "person2"),
 ])
-@pytest.mark.xfail(strict=True, raises=KnownConversionDefect,
-                   reason="D231-2: API does not forward leap-month input")
-def test_known_defect_api_leap_month(module, person_key):
+def test_api_leap_month(module, person_key):
     person = {
         "birthDate": "2023-02-01", "birthTime": "12:00", "gender": "male",
         "isLunar": True, "isLeapMonth": True,
@@ -214,12 +200,66 @@ def test_known_defect_api_leap_month(module, person_key):
         saju = post(module, payload)[person_key]["saju"]
     else:
         saju = post(module, person)["saju"]
-    assert_conversion(saju["birth_info"]["date"], "2023-03-22", "2023-02-20")
+    assert saju["birth_info"]["date"] == "2023-03-22"
+    assert pillars(saju) == ("癸卯", "乙卯", "己卯", "庚午")
 
 
-@pytest.mark.xfail(strict=True, raises=KnownConversionDefect,
-                   reason="D231-3: nonexistent lunar day 30 silently becomes day 29")
-def test_known_defect_invalid_leap_month_day_is_rejected():
+def test_invalid_leap_month_day_is_rejected():
     converter = ImprovedLunarConverter()
     assert converter.validate_lunar_date(2023, 2, 30, True) is False
-    assert_conversion(converter.lunar_to_solar(2023, 2, 30, True), None, datetime(2023, 4, 19))
+    assert converter.lunar_to_solar(2023, 2, 30, True) is None
+
+
+@pytest.mark.parametrize("date,leap", [
+    ((2023, 3, 1), True), ((2024, 2, 1), True),
+    ((2023, 1, 30), False), ((2023, 2, 30), True),
+])
+def test_converter_rejects_invalid_lunar_dates_without_correction(date, leap):
+    converter = ImprovedLunarConverter()
+    assert converter.validate_lunar_date(*date, leap) is False
+    assert converter.lunar_to_solar(*date, leap) is None
+
+
+@pytest.mark.parametrize("leap,expected", [(False, "2023-02-20"), (True, "2023-03-22")])
+def test_core_distinguishes_regular_and_leap_month(leap, expected):
+    result = SajuCalculator().calculate_saju(
+        datetime(2023, 2, 1), "12:00", "male", is_lunar=True, is_leap_month=leap,
+    )
+    assert result["birth_info"]["date"] == expected
+    assert result["birth_info"]["is_lunar"] is True
+
+
+def test_core_rejects_invalid_lunar_date():
+    with pytest.raises(ValueError, match="음력"):
+        SajuCalculator().calculate_saju(datetime(2023, 1, 30), "12:00", "male", True)
+
+
+@pytest.mark.parametrize("module,person_key", [
+    (calculate, None), (compatibility, "person1"), (compatibility, "person2"),
+])
+@pytest.mark.parametrize("date,leap,expected", [
+    ("2023-02-01", False, "2023-02-20"),
+    ("2023-02-30", False, "2023-03-21"),
+    ("2023-02-29", True, "2023-04-19"),
+    ("2023-02-30", True, None),
+    ("2023-03-01", True, None),
+    ("2024-02-01", True, None),
+    ("2023-01-30", False, None),
+])
+def test_api_lunar_calendar_validation(module, person_key, date, leap, expected):
+    person = {"birthDate": date, "isLunar": True, "isLeapMonth": leap}
+    payload = person
+    if person_key:
+        payload = {"person1": {"birthDate": "1990-05-15"},
+                   "person2": {"birthDate": "1992-08-20"}, person_key: person}
+    response = post(module, payload, expected_status=200 if expected else 400)
+    if expected:
+        saju = response[person_key]["saju"] if person_key else response["saju"]
+        assert saju["birth_info"]["date"] == expected
+    else:
+        assert "음력" in response["error"]
+
+
+def test_saju_numeric_lunar_date_is_validated_before_gregorian_date():
+    response = post(calculate, {"year": 2023, "month": 2, "day": 30, "isLunar": True})
+    assert response["saju"]["birth_info"]["date"] == "2023-03-21"

@@ -114,6 +114,7 @@ def _validate_input(data):
         'hour': hour,
         'gender': gender,
         'is_lunar': bool(is_lunar),
+        'is_leap_month': bool(data.get('isLeapMonth', False)),
     }, None
 
 
@@ -168,17 +169,20 @@ class handler(BaseHTTPRequestHandler):
             gender = validated['gender']
             is_lunar = validated['is_lunar']
 
-            # Build birth_date
-            birth_date_str = f"{year}-{month:02d}-{day:02d}"
-            birth_date = datetime.strptime(birth_date_str, '%Y-%m-%d')
-
-            # Convert lunar to solar if needed
+            # Validate lunar components before constructing a Gregorian date.
             if is_lunar:
-                solar_date = _lunar_converter.lunar_to_solar(year, month, day)
-                if solar_date is not None:
-                    # lunar_to_solar returns datetime object
-                    birth_date = solar_date
-                # If conversion fails, use original date as-is
+                birth_date = _lunar_converter.lunar_to_solar(
+                    year, month, day, validated['is_leap_month'],
+                )
+                if birth_date is None:
+                    _send_json(self, 400, {'status': 'error', 'error': '유효하지 않은 음력 날짜입니다.'})
+                    return
+            else:
+                try:
+                    birth_date = datetime(year, month, day)
+                except ValueError:
+                    _send_json(self, 400, {'status': 'error', 'error': '유효하지 않은 양력 날짜입니다.'})
+                    return
 
             # Calculate Saju (is_lunar=False because conversion already done above)
             saju = _saju_calculator.calculate_saju(
