@@ -4,6 +4,9 @@
 
     var refreshAt = Date.parse(document.body.dataset.dailyRefreshAt);
     if (!Number.isFinite(refreshAt)) return;
+    // The server just rendered this page before refreshAt, so a device clock already past it is ahead: never auto-reload
+    // (also covers browsers where sessionStorage is blocked, which would otherwise reload once per fresh page forever).
+    if (Date.now() >= refreshAt) return;
     var refreshKey = 'daily-refresh:' + refreshAt;
     var lastReloadKey = 'daily-refresh:last-reload';
     var reloading = false;
