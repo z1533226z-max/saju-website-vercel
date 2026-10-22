@@ -111,6 +111,22 @@ def test_content_signature_ignores_shared_footer_but_not_body(lastmod_script):
     assert sig(page) != sig(noindex)
 
 
+def test_content_signature_tracks_structured_data_links_and_images(lastmod_script):
+    sig = lastmod_script.content_signature
+    ld = '<script type="application/ld+json">{{"@type":"Article","headline":"{}"}}</script>'
+    page = ('<html><head><title>T</title>' + ld + '</head><body><nav><a href="/n/">홈</a></nav>'
+            '<main><a href="/old/">풀이</a><img src="old.jpg" alt="옛">본문</main>'
+            '<footer><a href="/f1/">푸터</a></footer></body></html>')
+    base = page.format("A")
+    assert sig(base) != sig(page.format("New"))                                  # JSON-LD 값
+    assert sig(base) != sig(base.replace("/old/", "/new/"))                      # 본문 링크
+    assert sig(base) != sig(base.replace("old.jpg", "new.jpg"))                  # 이미지 src
+    assert sig(base) != sig(base.replace('alt="옛"', 'alt="새"'))                 # 이미지 alt
+    assert sig(base) == sig(base.replace("/f1/", "/f2/").replace("/n/", "/m/"))  # 공통 nav/footer 링크 제외
+    reordered = base.replace('{"@type":"Article","headline":"A"}', '{ "headline": "A", "@type": "Article" }')
+    assert sig(base) == sig(reordered)                                           # JSON-LD 키 순서·공백 정규화
+
+
 @pytest.mark.parametrize("loc", [f"{SITE}/", f"{SITE}/palm/", f"{SITE}/yearly/rat/"])
 def test_sample_lastmod_matches_last_content_change(google, lastmod_script, loc):
     """전체(약 80초)는 `python scripts/update_sitemap_lastmod.py --check` 로 확인."""

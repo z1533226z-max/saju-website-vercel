@@ -6,7 +6,8 @@
 
 규칙
 - 정적 페이지(public/<경로>/index.html): git 이력에서 '본문'이 마지막으로 바뀐 커밋 날짜.
-  본문 = <title> + meta description·robots + <body> 글자(내비·푸터·스크립트·스타일 제외).
+  본문 = <title> + meta description·robots + JSON-LD(정규화) + <body> 글자·링크 href·이미지 src/alt
+  (내비·푸터·스크립트·스타일 제외).
   전 페이지 푸터 링크 추가 같은 공통 틀 변경은 날짜를 올리지 않는다.
   커밋 전 작업 중 변경이 있으면 오늘 날짜.
 - 서버 렌더 페이지(/daily/, /daily/<띠>/): 매일 내용이 바뀌어 고정 날짜가 틀리므로 lastmod 를 넣지 않는다.
@@ -15,6 +16,7 @@
   python scripts/update_sitemap_lastmod.py          # 두 사이트맵 갱신
   python scripts/update_sitemap_lastmod.py --check  # 바꿀 것이 있으면 목록 출력 후 종료코드 1
 """
+import json
 import re
 import subprocess
 import sys
@@ -38,9 +40,12 @@ class _ContentParser(HTMLParser):
         self._skip = 0
         self._in_title = False
         self._in_body = False
+        self._ld = None                                  # JSON-LD <script> 안이면 글자를 모으는 리스트
 
     def handle_starttag(self, tag, attrs):
         a = {k: (v or "") for k, v in attrs}
+        if tag == "script" and a.get("type", "").lower() == "application/ld+json":
+            self._ld = []                                # 구조화 데이터 변경도 의미 있는 변경
         if tag == "title":
             self._in_title = True
         elif tag == "meta" and a.get("name", "").lower() == "description":
@@ -52,15 +57,30 @@ class _ContentParser(HTMLParser):
             self._in_body = True
         elif tag in SKIP_TAGS:
             self._skip += 1
+        if self._in_body and not self._skip:
+            if tag == "a" and a.get("href"):
+                self.parts.append("HREF:" + a["href"])
+            elif tag == "img":
+                self.parts.append(f"IMG:{a.get('src', '')}|{a.get('alt', '')}")
 
     def handle_endtag(self, tag):
+        if tag == "script" and self._ld is not None:
+            raw = "".join(self._ld).strip()
+            self._ld = None
+            try:                                         # 키 순서·공백 차이는 무시
+                raw = json.dumps(json.loads(raw), sort_keys=True, ensure_ascii=False)
+            except ValueError:
+                pass
+            self.parts.append("LD:" + raw)
         if tag == "title":
             self._in_title = False
         elif tag in SKIP_TAGS and self._skip:
             self._skip -= 1
 
     def handle_data(self, data):
-        if self._in_title:
+        if self._ld is not None:
+            self._ld.append(data)
+        elif self._in_title:
             self.parts.append("TITLE:" + data)
         elif self._in_body and not self._skip:
             self.parts.append(data)
