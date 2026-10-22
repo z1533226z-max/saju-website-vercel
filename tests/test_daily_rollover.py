@@ -47,7 +47,7 @@ def test_preview_is_next_day_fortune_in_server_html(detail, sign):
     assert fortune["money_msg"] in html
     assert fortune["ilji"]["display"] in html
     assert 'name="robots" content="noindex,follow"' in html
-    assert f'<link rel="canonical" href="https://saju.gon.ai.kr/daily/{sign}/">' in html
+    assert f'<link rel="canonical" href="https://saju.gon.ai.kr/daily/{sign}/?day=tomorrow">' in html
     assert f'href="/daily/{sign}/?day=tomorrow" aria-current="page"' in html
     # Preview dates are not publication/modification timestamps in the future.
     schema = _schema(html)

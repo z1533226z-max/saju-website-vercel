@@ -40,6 +40,7 @@ def render_html(sign, now=None, day="today"):
     modified_at = now.replace(hour=0, minute=0, second=0, microsecond=0).isoformat()
     refresh_at = next_kst_midnight(now).isoformat()
     preview_robots = '<meta name="robots" content="noindex,follow">' if day == "tomorrow" else ""
+    canonical_suffix = "?day=tomorrow" if day == "tomorrow" else ""
     today_current = ' aria-current="page"' if day == "today" else ""
     tomorrow_current = ' aria-current="page"' if day == "tomorrow" else ""
     preview_note = "내일 날짜의 일진을 기준으로 미리 보는 운세입니다." if day == "tomorrow" else "오늘 날짜의 일진을 기준으로 보는 운세입니다."
@@ -61,7 +62,7 @@ def render_html(sign, now=None, day="today"):
     {preview_robots}
     <meta name="keywords" content="{z['name']}운세, {z['name']}오늘의운세, 오늘운세, 띠별운세, {z['name']}, 무료운세">
     <title>{z['name']} {label}의 운세 ({date_str}) | 매일 자정 갱신 - 사주명리</title>
-    <link rel="canonical" href="https://saju.gon.ai.kr/daily/{sign}/">
+    <link rel="canonical" href="https://saju.gon.ai.kr/daily/{sign}/{canonical_suffix}">
 
     <meta name="naver-site-verification" content="0e1c05903546c204ebb9e52263162fe36a32fb28" />
 
@@ -95,7 +96,7 @@ def render_html(sign, now=None, day="today"):
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/zodiac.css?v=1">
     <link rel="stylesheet" href="/css/daily.css?v=20261022">
-    <script defer src="/js/components/daily-refresh.js?v=20261022"></script>
+    <script defer src="/js/components/daily-refresh.js?v=20261022-185"></script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7479840445702290" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BNRL6FRMMM"></script>

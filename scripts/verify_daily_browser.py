@@ -159,7 +159,7 @@ def verify(output):
                         page.screenshot(path=str(output / f"dog-{day}-{width}.png"), full_page=True)
                     # Preview must retain its query at midnight and advance one date.
                     Clock.current = after
-                    page.clock.run_for(2000)
+                    page.clock.run_for(32000)
                     expect(page.locator("time")).to_have_attribute("datetime", "2026-10-24")
                     assert "day=tomorrow" in page.url
                     page.screenshot(path=str(output / f"dog-midnight-preview-{width}.png"), full_page=True)
@@ -175,7 +175,7 @@ def verify(output):
                     page.clock.pause_at(before)
                     page.goto(base + path, wait_until="networkidle")
                     Clock.current = after
-                    page.clock.run_for(2000)
+                    page.clock.run_for(32000)
                     expect(page.locator("body")).to_have_attribute("data-daily-date", expected_date)
                     Clock.current = before
                     context.close()
@@ -194,6 +194,7 @@ def verify(output):
                         page.evaluate("window.dispatchEvent(new Event('pageshow'))")
                     else:
                         page.evaluate("document.dispatchEvent(new Event('visibilitychange'))")
+                    page.clock.run_for(32000)
                     expect(page.locator("body")).to_have_attribute("data-daily-date", "2026-10-23")
                     Clock.current = before
                     context.close()

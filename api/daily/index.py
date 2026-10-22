@@ -338,7 +338,7 @@ def render_index_html(now=None):
     </style>
 </head>
 <body data-daily-date="{now:%Y-%m-%d}" data-daily-refresh-at="{refresh_at}">
-    <script defer src="/js/components/daily-refresh.js?v=20261022"></script>
+    <script defer src="/js/components/daily-refresh.js?v=20261022-185"></script>
 
     <!-- Header -->
     <header id="site-header">
