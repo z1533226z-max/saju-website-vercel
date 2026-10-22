@@ -96,6 +96,7 @@ def last_footer(html):
 def public_html_files():
     out = []
     for dirpath, _dirs, files in os.walk(PUBLIC):
+        _dirs[:] = [d for d in _dirs if d not in ("node_modules", "dist")]   # npm ci·build 산출물(gitignore)
         for name in files:
             if name.endswith(".html"):
                 out.append(os.path.relpath(os.path.join(dirpath, name), PUBLIC).replace("\\", "/"))
