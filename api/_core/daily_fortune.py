@@ -161,24 +161,31 @@ def _pick(rng, n):
     return min(n - 1, int(rng() * n))
 
 
-def _to_kst(now=None):
+def to_kst(now=None):
+    """요청 시각을 KST로 통일한다. naive 입력은 기존처럼 KST로 해석한다."""
     if now is None:
         return datetime.now(KST)
     if now.tzinfo is not None:
         return now.astimezone(KST)
-    return now
+    return now.replace(tzinfo=KST)
 
 
 def cache_control_until_midnight(now=None):
-    """CDN 캐시를 KST 자정까지만 (날짜가 바뀌면 새 일진으로 다시 렌더)."""
-    now = _to_kst(now)
-    tomorrow = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
-    seconds_left = int((tomorrow - now).total_seconds())
-    return f"public, s-maxage={seconds_left}, max-age=300, stale-while-revalidate=60"
+    """기존 호출명 유지. 자정 이후 stale HTML이 나오지 않도록 저장을 금지한다.
+
+    Vercel은 s-maxage 만료 응답도 비동기 재검증할 수 있어 TTL만으로는
+    자정 정합성을 보장하지 못한다. 오늘/내일 쿼리 간 캐시 공유도 막는다.
+    """
+    return "no-store, max-age=0"
+
+
+def next_kst_midnight(now=None):
+    now = to_kst(now)
+    return (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
 
 
 def get_day_seed(now=None):
-    now = _to_kst(now)
+    now = to_kst(now)
     return now.year * 10000 + now.month * 100 + now.day
 
 
@@ -202,13 +209,13 @@ def _pillar_info(p):
 
 def get_day_ilji(now=None):
     """오늘(KST)의 일진. 예: 2026-10-03 → 경술(庚戌), 일간 오행 금."""
-    now = _to_kst(now)
+    now = to_kst(now)
     return _pillar_info(_calc.calculate_day_pillar(datetime(now.year, now.month, now.day)))
 
 
 def get_month_pillar(now=None):
     """오늘(KST)이 속한 절기월의 월주. 예: 2026-10-03 → 정유(丁酉), 월지 오행 금."""
-    now = _to_kst(now)
+    now = to_kst(now)
     return _pillar_info(_calc.calculate_month_pillar(now.year, now.month, now.day))
 
 
@@ -292,7 +299,7 @@ def day_energy(now=None):
     12띠 점수와 무관하게 오늘 일진과 이번 달 월주만으로 정해지므로
     날마다 실제로 달라지고, 화면에 근거(reason)를 그대로 보여 줄 수 있다.
     """
-    now = _to_kst(now)
+    now = to_kst(now)
     day = get_day_ilji(now)
     month = get_month_pillar(now)
     s_key = season_strength(day["element"], month["branch_element"])
@@ -324,7 +331,7 @@ def _grade(score):
 
 
 def generate_fortune(zodiac_key, now=None):
-    now = _to_kst(now)
+    now = to_kst(now)
     zodiac = ZODIAC_DATA[zodiac_key]
     ilji = get_day_ilji(now)
     relation = branch_relation(zodiac["branch"], ilji["branch_index"])
@@ -340,7 +347,9 @@ def generate_fortune(zodiac_key, now=None):
     money, love, health = around_overall(), around_overall(), around_overall()
 
     overall_pool = FORTUNE_MESSAGES["overall"][relation["tone"]]
-    overall_msg = overall_pool[_pick(rng, len(overall_pool))]
+    # 같은 tone이 이어져도 인접 날짜의 총운 문장은 겹치지 않게 순환한다.
+    # tone별 풀이 풀은 서로 달라 관계가 바뀌는 날도 문장이 구별된다.
+    overall_msg = overall_pool[(now.toordinal() + zodiac["branch"]) % len(overall_pool)]
     money_msg = _pick_message("money", money, rng)
     love_msg = _pick_message("love", love, rng)
     health_msg = _pick_message("health", health, rng)

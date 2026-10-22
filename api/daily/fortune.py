@@ -1,6 +1,6 @@
 """SSR daily fortune page - pre-renders zodiac fortune for search engines."""
 from http.server import BaseHTTPRequestHandler
-from datetime import datetime
+from datetime import datetime, timedelta
 from urllib.parse import parse_qs, urlparse
 import os
 import sys
@@ -10,47 +10,64 @@ _parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _parent_dir not in sys.path:
     sys.path.insert(0, _parent_dir)
 
-from _core.daily_fortune import KST, ZODIAC_DATA, cache_control_until_midnight, generate_fortune  # noqa: E402
+from _core.daily_fortune import (  # noqa: E402
+    KST, ZODIAC_DATA, cache_control_until_midnight, generate_fortune,
+    next_kst_midnight, to_kst,
+)
 from _core.site_layout import (  # noqa: E402
     RELATED_LINKS_CSS, footer_links_html, nav_links_html, related_links_html,
 )
 
 
-def render_html(sign, now=None):
-    if now is None:
-        now = datetime.now(KST)
-    f = generate_fortune(sign, now)
+def render_html(sign, now=None, day="today"):
+    if day not in ("today", "tomorrow"):
+        raise ValueError("day must be today or tomorrow")
+    now = to_kst(now)
+    target = now + timedelta(days=1 if day == "tomorrow" else 0)
+    label = "내일" if day == "tomorrow" else "오늘"
+    f = generate_fortune(sign, target)
     z = f["zodiac"]
     ilji = f["ilji"]
     rel = f["relation"]
     ilji_day = f"{ilji['display']}일"
     also = f" ({'·'.join(rel['also_labels'])} 함께)" if rel["also_labels"] else ""
-    date_str = f"{now.year}년 {now.month}월 {now.day}일"
+    date_str = f"{target.year}년 {target.month}월 {target.day}일"
     weekdays = ["월", "화", "수", "목", "금", "토", "일"]
-    day_name = weekdays[now.weekday()]
+    day_name = weekdays[target.weekday()]
     date_full = f"{date_str} {day_name}요일"
-    iso_date = now.strftime("%Y-%m-%d")
+    iso_date = target.strftime("%Y-%m-%d")
+    # 오늘 공개한 미리보기를 미래에 수정한 것으로 표기하지 않는다.
+    modified_at = now.replace(hour=0, minute=0, second=0, microsecond=0).isoformat()
+    refresh_at = next_kst_midnight(now).isoformat()
+    preview_robots = '<meta name="robots" content="noindex,follow">' if day == "tomorrow" else ""
+    canonical_suffix = "?day=tomorrow" if day == "tomorrow" else ""
+    today_current = ' aria-current="page"' if day == "today" else ""
+    tomorrow_current = ' aria-current="page"' if day == "tomorrow" else ""
+    preview_note = "내일 날짜의 일진을 기준으로 미리 보는 운세입니다." if day == "tomorrow" else "오늘 날짜의 일진을 기준으로 보는 운세입니다."
+    relation_explain = rel["explain"].replace("오늘", label)
 
     # Other zodiac links
     other_signs = ""
     for key, data in ZODIAC_DATA.items():
         active = ' class="active"' if key == sign else ""
-        other_signs += f'<a href="/daily/{key}/"{active}>{data["emoji"]} {data["name"]}</a>\n'
+        suffix = "?day=tomorrow" if day == "tomorrow" else ""
+        other_signs += f'<a href="/daily/{key}/{suffix}"{active}>{data["emoji"]} {data["name"]}</a>\n'
 
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{z['name']} 오늘의 운세 ({date_str}, {ilji_day}) - 오늘 일진과 {rel['label']} 관계, 총운 {f['overall']}점, 재물운 {f['money']}점, 연애운 {f['love']}점, 건강운 {f['health']}점. {f['overall_msg']}">
+    <meta name="description" content="{z['name']} {label}의 운세 ({date_str}, {ilji_day}) - {label} 일진과 {rel['label']} 관계, 총운 {f['overall']}점, 재물운 {f['money']}점, 연애운 {f['love']}점, 건강운 {f['health']}점. 한국 시간 매일 자정 갱신. {f['overall_msg']}">
+    {preview_robots}
     <meta name="keywords" content="{z['name']}운세, {z['name']}오늘의운세, 오늘운세, 띠별운세, {z['name']}, 무료운세">
-    <title>{z['name']} 오늘의 운세 ({date_str}) | 사주명리</title>
-    <link rel="canonical" href="https://saju.gon.ai.kr/daily/{sign}/">
+    <title>{z['name']} {label}의 운세 ({date_str}) | 매일 자정 갱신 - 사주명리</title>
+    <link rel="canonical" href="https://saju.gon.ai.kr/daily/{sign}/{canonical_suffix}">
 
     <meta name="naver-site-verification" content="0e1c05903546c204ebb9e52263162fe36a32fb28" />
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="{z['name']} 오늘의 운세 - 총운 {f['overall']}점 ({f['grade_text']})">
+    <meta property="og:title" content="{z['name']} {label}의 운세 ({date_str}) - 총운 {f['overall']}점 ({f['grade_text']})">
     <meta property="og:description" content="{f['overall_msg']} 재물운 {f['money']}점, 연애운 {f['love']}점.">
     <meta property="og:url" content="https://saju.gon.ai.kr/daily/{sign}/">
     <meta property="og:locale" content="ko_KR">
@@ -62,10 +79,9 @@ def render_html(sign, now=None):
     {{
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": "{z['name']} 오늘의 운세 ({date_str})",
+        "headline": "{z['name']} {label}의 운세 ({date_str})",
         "description": "{f['overall_msg']}",
-        "datePublished": "{iso_date}",
-        "dateModified": "{iso_date}",
+        "dateModified": "{modified_at}",
         "author": {{"@type": "Organization", "name": "사주명리"}},
         "publisher": {{"@type": "Organization", "name": "사주명리", "url": "https://saju.gon.ai.kr"}},
         "mainEntityOfPage": "https://saju.gon.ai.kr/daily/{sign}/"
@@ -79,13 +95,14 @@ def render_html(sign, now=None):
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/zodiac.css?v=1">
-    <link rel="stylesheet" href="/css/daily.css?v=1">
+    <link rel="stylesheet" href="/css/daily.css?v=20261022">
+    <script defer src="/js/components/daily-refresh.js?v=20261022-185"></script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7479840445702290" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BNRL6FRMMM"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-BNRL6FRMMM');</script>
 </head>
-<body>
+<body data-daily-date="{iso_date}" data-daily-refresh-at="{refresh_at}">
 
     <header id="site-header">
         <nav class="container" style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;">
@@ -100,9 +117,14 @@ def render_html(sign, now=None):
 
     <section class="daily-hero">
         <div class="container">
-            <div class="hero-badge">{date_full}</div>
-            <h1 class="hero-title"><span class="gold-text">{z['emoji']} {z['name']} 오늘의 운세</span></h1>
+            <div class="hero-badge"><time datetime="{iso_date}">{date_full}</time></div>
+            <h1 class="hero-title"><span class="gold-text">{z['emoji']} {z['name']} {label}의 운세</span></h1>
             <p class="hero-subtitle">{z['hanja']}({z['element']}) | {date_str} {ilji_day} 기준</p>
+            <nav class="daily-day-nav" aria-label="운세 날짜 선택">
+                <a href="/daily/{sign}/"{today_current}>오늘의 운세</a>
+                <a href="/daily/{sign}/?day=tomorrow"{tomorrow_current}>내일의 운세</a>
+            </nav>
+            <p class="daily-update-note">한국 시간 매일 자정 갱신 · {preview_note}</p>
         </div>
     </section>
 
@@ -146,13 +168,13 @@ def render_html(sign, now=None):
                 </div>
 
                 <div class="result-msg-card" style="margin-bottom:1rem;">
-                    <h4>📜 오늘의 일진과 {z['name']}: {rel['label']}{also}</h4>
-                    <p>오늘은 {ilji_day}입니다. {z['name']}의 지지 {z['hanja']} ↔ 오늘 일지 {ilji['branch_hanja']}. {rel['explain']}</p>
+                    <h4>📜 {label}의 일진과 {z['name']}: {rel['label']}{also}</h4>
+                    <p>{label}은 {ilji_day}입니다. {z['name']}의 지지 {z['hanja']} ↔ {label} 일지 {ilji['branch_hanja']}. {relation_explain}</p>
                     <p style="margin-top:0.4rem;font-size:0.8rem;opacity:0.7;">총운 점수는 이 관계가 정한 범위 안에서 날마다 달라집니다.</p>
                 </div>
 
                 <div class="result-messages">
-                    <div class="result-msg-card"><h4>🔮 오늘의 총운</h4><p>{f['overall_msg']}</p></div>
+                    <div class="result-msg-card"><h4>🔮 {label}의 총운</h4><p>{f['overall_msg']}</p></div>
                     <div class="result-msg-card"><h4>💰 재물운</h4><p>{f['money_msg']}</p></div>
                     <div class="result-msg-card"><h4>💕 연애운</h4><p>{f['love_msg']}</p></div>
                     <div class="result-msg-card"><h4>💪 건강운</h4><p>{f['health_msg']}</p></div>
@@ -245,13 +267,23 @@ class handler(BaseHTTPRequestHandler):
         if sign is None:
             status, body, cache_control = 404, "Not Found".encode("utf-8"), None
         else:
-            status, body, cache_control = 200, render_html(sign).encode("utf-8"), cache_control_until_midnight()
+            days = parse_qs(urlparse(self.path).query, keep_blank_values=True).get("day", ["today"])
+            if len(days) != 1 or days[0] not in ("today", "tomorrow"):
+                status, body, cache_control = 400, b"Invalid day", "no-store, max-age=0"
+            else:
+                # HTML과 응답 정책에 같은 요청 시각을 사용한다 (자정 경계 race 방지).
+                now = datetime.now(KST)
+                status = 200
+                body = render_html(sign, now, day=days[0]).encode("utf-8")
+                cache_control = cache_control_until_midnight(now)
 
         self.send_response(status)
         self.send_header("Content-Type", "text/html; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
         if cache_control:
             self.send_header("Cache-Control", cache_control)
+            self.send_header("CDN-Cache-Control", "no-store")
+            self.send_header("Vercel-CDN-Cache-Control", "no-store")
         self.end_headers()
         if include_body:
             self.wfile.write(body)
