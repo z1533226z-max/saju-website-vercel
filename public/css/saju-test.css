@@ -1,0 +1,319 @@
+/* ──────────────────────────────────────────
+   사주 오행 캐릭터 테스트 (/saju-test/)
+   guide.css 의 墨金 톤 위에 테스트 전용 부품만 얹는다
+   ────────────────────────────────────────── */
+
+.st-logo {
+    font-family: var(--font-heading, 'Noto Serif KR', serif);
+    font-size: var(--text-xl, 1.25rem);
+    font-weight: 700;
+}
+
+.st-icon { display: block; margin: 0 auto; }
+
+.st-sub {
+    display: block;
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--color-text-secondary, #9B918A);
+    margin: 0.25rem 0 0.5rem;
+}
+
+.st-keywords {
+    color: var(--color-gold-text, #E8D48B);
+    letter-spacing: 0.02em;
+    margin: 0.75rem 0 1.25rem;
+}
+
+.st-disclaimer {
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--color-text-secondary, #9B918A);
+    margin-top: 1rem;
+}
+
+/* ── 본 화면 ─────────────────────────────── */
+.st-page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 4rem;
+}
+
+.st-hero { text-align: center; padding: 1.5rem 0 1rem; }
+.st-hero .hero-title { font-size: clamp(1.6rem, 6vw, 2.4rem); line-height: 1.3; }
+.st-hero { padding-bottom: 0; }
+.st-hero .hero-subtitle { margin-bottom: 0.5rem; }
+.st-hero-icons {
+    display: grid;
+    grid-template-columns: repeat(5, 40px);
+    justify-content: center;
+    gap: 0.5rem 0.9rem;
+    margin-bottom: 1rem;
+}
+.st-hero-icons svg { width: 40px; height: 40px; }
+
+.st-card-box {
+    background: var(--color-bg-tertiary, #1A1924);
+    border: 1px solid var(--color-glass-border, rgba(212,175,55,0.12));
+    border-radius: 16px;
+    padding: 1.5rem 1.25rem;
+    margin: 1.25rem 0;
+}
+
+.st-invite-banner {
+    border-color: var(--color-gold, #D4AF37);
+    background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(26,25,36,0.9));
+    text-align: center;
+}
+.st-invite-banner h2 { margin: 0 0 0.5rem; font-size: 1.2rem; }
+
+.st-form label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+}
+.st-date-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 0.5rem;
+}
+.st-form select,
+.st-form input[type="text"] {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.6rem 0.75rem;
+    font-size: 1rem;
+    color: var(--color-text-primary, #E8E0D4);
+    background: var(--color-bg-secondary, #13121A);
+    border: 1px solid var(--color-gold-muted, #8B7335);
+    border-radius: 10px;
+}
+.st-form .st-field { margin-bottom: 1rem; }
+.st-form .st-hint {
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--color-text-secondary, #9B918A);
+    margin-top: 0.35rem;
+}
+.st-error {
+    color: #ff8a80;
+    font-size: var(--text-sm, 0.875rem);
+    min-height: 1.2em;
+    margin: 0.25rem 0 0.5rem;
+}
+
+.st-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 100%;
+    min-height: 52px;
+    padding: 0.8rem 1rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    border-radius: 12px;
+    border: 1px solid var(--color-gold, #D4AF37);
+    background: var(--color-gold, #D4AF37);
+    color: #1a1406;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.15s, background 0.15s;
+}
+.st-btn:hover { background: var(--color-gold-light, #F0D78C); }
+.st-btn:active { transform: scale(0.98); }
+.st-btn.st-ghost {
+    background: transparent;
+    color: var(--color-gold-text, #E8D48B);
+}
+.st-btn.st-ghost:hover { background: rgba(212,175,55,0.1); }
+.st-btn.st-kakao { background: #FEE500; border-color: #FEE500; color: #191600; }
+.st-btn-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-top: 0.75rem;
+}
+.st-btn-grid .st-wide { grid-column: 1 / -1; }
+
+/* 결과 */
+.st-result-head { text-align: center; }
+.st-result-head .st-icon { width: 132px; height: 132px; }
+.st-type-label {
+    color: var(--color-text-secondary, #9B918A);
+    margin: 0.75rem 0 0.25rem;
+}
+.st-type-name {
+    font-family: var(--font-heading, 'Noto Serif KR', serif);
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+    font-weight: 900;
+    margin: 0;
+    color: var(--color-gold-light, #F0D78C);
+}
+.st-tagline { margin: 0.5rem 0 0; font-size: 1.05rem; }
+
+.st-bars { margin: 1.25rem 0 0.5rem; }
+.st-bar {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr 1.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.35rem 0;
+    font-size: 0.95rem;
+}
+.st-bar-track {
+    height: 12px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.06);
+    overflow: hidden;
+}
+.st-bar-fill { height: 100%; border-radius: 6px; }
+
+.st-facts { display: grid; gap: 0.75rem; margin-top: 1rem; }
+.st-fact {
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,175,55,0.15);
+}
+.st-fact h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1rem;
+    color: var(--color-gold-text, #E8D48B);
+}
+.st-fact p { margin: 0.2rem 0; line-height: 1.6; }
+
+.st-card-preview {
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    margin: 0.5rem auto 0;
+    border-radius: 14px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+}
+.st-card-note {
+    text-align: center;
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--color-text-secondary, #9B918A);
+    margin: 0.5rem 0 0;
+}
+
+.st-score {
+    text-align: center;
+    margin: 0.5rem 0 1rem;
+}
+.st-score-num {
+    font-family: var(--font-heading, 'Noto Serif KR', serif);
+    font-size: 3.4rem;
+    font-weight: 900;
+    color: var(--color-gold-light, #F0D78C);
+    line-height: 1;
+}
+.st-score-label { font-size: 1.15rem; font-weight: 700; margin-top: 0.35rem; }
+.st-pair-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+.st-pair-icons .st-icon { width: 84px; height: 84px; margin: 0; }
+.st-pair-icons .st-heart { font-size: 1.6rem; color: #f29bb7; }
+.st-pair-names {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary, #9B918A);
+    margin-top: 0.35rem;
+}
+
+.st-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 1.5rem;
+    transform: translateX(-50%);
+    background: rgba(20,19,26,0.95);
+    color: var(--color-text-primary, #E8E0D4);
+    border: 1px solid var(--color-gold-muted, #8B7335);
+    padding: 0.7rem 1.1rem;
+    border-radius: 999px;
+    z-index: 9999;
+    font-size: 0.95rem;
+    max-width: calc(100vw - 2rem);
+}
+
+/* 유형 목록 */
+.st-type-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.6rem;
+}
+.st-type-grid a {
+    display: block;
+    text-align: center;
+    padding: 0.9rem 0.5rem;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,175,55,0.15);
+    color: inherit;
+    text-decoration: none;
+}
+.st-type-grid a:hover { border-color: var(--color-gold, #D4AF37); }
+.st-type-grid .st-icon { width: 56px; height: 56px; }
+.st-type-grid strong { display: block; margin-top: 0.4rem; font-size: 0.95rem; }
+.st-type-grid span { font-size: 0.8rem; color: var(--color-text-secondary, #9B918A); }
+
+/* 푸터 (zodiac.css 를 불러오지 않고 필요한 것만 — zodiac.css 는 상단 메뉴를 좁은 화면에서 세로로 쪼갬) */
+.site-footer {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    border-top: 1px solid var(--color-border-light, rgba(255,255,255,0.08));
+}
+.site-footer .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1rem;
+    margin-bottom: 1rem;
+}
+.site-footer .footer-links a {
+    color: var(--color-text-secondary, #9B918A);
+    text-decoration: none;
+    font-size: var(--text-sm, 0.875rem);
+}
+.site-footer .footer-links a:hover { color: var(--color-gold, #D4AF37); }
+.footer-copy, .footer-disclaimer {
+    font-size: var(--text-xs, 0.75rem);
+    color: var(--color-text-tertiary, #5E574F);
+    margin: 0.25rem 0;
+}
+
+/* ── 유형 소개 페이지 ─────────────────────── */
+.st-type-hero { text-align: center; }
+.st-type-hero .st-icon {
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
+    margin-bottom: 0.5rem;
+}
+.st-two-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+.st-type-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.st-type-list a {
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(212,175,55,0.25);
+    color: var(--color-gold-text, #E8D48B);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+.st-type-page .related-card .st-icon { margin-bottom: 0.4rem; }
+
+@media (max-width: 420px) {
+    .st-page { padding: 1rem 0.75rem 3rem; }
+    .st-card-box { padding: 1.25rem 1rem; }
+    .st-date-row { grid-template-columns: 1.3fr 1fr 1fr; gap: 0.4rem; }
+    .st-pair-names { gap: 1.5rem; }
+}
