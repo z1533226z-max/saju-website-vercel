@@ -5,10 +5,10 @@ Improved Lunar Calendar Converter Module
 음력 변환 개선 버전 - 오류 처리 강화
 """
 
-from datetime import datetime, timedelta
-from typing import Dict, Tuple, Optional
+from datetime import datetime
+from typing import Dict, Optional
 import logging
-import lunarcalendar
+from korean_lunar_calendar import KoreanLunarCalendar
 
 logger = logging.getLogger('saju')
 
@@ -19,7 +19,7 @@ class ImprovedLunarConverter:
     def __init__(self):
         """Initialize converter"""
         self.min_year = 1900
-        self.max_year = 2100
+        self.max_year = 2050
         
         # 음력 월별 일수 (평년 기준, 윤달 제외)
         # 실제로는 매년 다르지만 대략적인 범위
@@ -59,10 +59,11 @@ class ImprovedLunarConverter:
                 logger.warning(f" 잘못된 일: {day}")
                 return None
             
-            # Lunar validates the exact date and leap flag by round trip.
-            lunar = lunarcalendar.Lunar(year, month, day, isleap=is_leap_month)
-            solar = lunarcalendar.Converter.Lunar2Solar(lunar)
-            return datetime(solar.year, solar.month, solar.day)
+            # Use a fresh calendar: failed setters retain the last successful date.
+            calendar = KoreanLunarCalendar()
+            if not calendar.setLunarDate(year, month, day, is_leap_month):
+                raise ValueError('유효하지 않은 음력 날짜입니다.')
+            return datetime(calendar.solarYear, calendar.solarMonth, calendar.solarDay)
             
         except Exception as e:
             # 상세한 오류 정보 제공
@@ -74,13 +75,16 @@ class ImprovedLunarConverter:
     def solar_to_lunar(self, date: datetime) -> Dict:
         """양력을 음력으로 변환"""
         try:
-            solar = lunarcalendar.Solar(date.year, date.month, date.day)
-            lunar = lunarcalendar.Converter.Solar2Lunar(solar)
+            if not (self.min_year <= date.year <= self.max_year):
+                raise ValueError('양력 변환 지원 범위는 1900~2050년입니다.')
+            calendar = KoreanLunarCalendar()
+            if not calendar.setSolarDate(date.year, date.month, date.day):
+                raise ValueError('유효하지 않은 양력 날짜입니다.')
             return {
-                'year': lunar.year,
-                'month': lunar.month,
-                'day': lunar.day,
-                'is_leap_month': lunar.isleap,
+                'year': calendar.lunarYear,
+                'month': calendar.lunarMonth,
+                'day': calendar.lunarDay,
+                'is_leap_month': calendar.isIntercalation,
                 'success': True
             }
         except Exception as e:
@@ -109,21 +113,15 @@ class ImprovedLunarConverter:
         
         # 실제 변환 시도로 검증
         try:
-            lunar = lunarcalendar.Lunar(year, month, day, isleap=is_leap_month)
-            lunarcalendar.Converter.Lunar2Solar(lunar)
-            return True
+            return KoreanLunarCalendar().setLunarDate(year, month, day, is_leap_month)
         except Exception:
             return False
 
     def get_leap_month(self, year: int) -> Optional[int]:
         """해당 연도의 윤달 확인"""
         for month in range(1, 13):
-            try:
-                lunar = lunarcalendar.Lunar(year, month, 1, isleap=True)
-                lunarcalendar.Converter.Lunar2Solar(lunar)
+            if self.validate_lunar_date(year, month, 1, True):
                 return month
-            except Exception:
-                continue
         return None
 
     def get_lunar_month_days(self, year: int, month: int, is_leap: bool = False) -> int:
@@ -132,12 +130,8 @@ class ImprovedLunarConverter:
         """
         # 29일과 30일 시도
         for day in [30, 29]:
-            try:
-                lunar = lunarcalendar.Lunar(year, month, day, isleap=is_leap)
-                lunarcalendar.Converter.Lunar2Solar(lunar)
+            if self.validate_lunar_date(year, month, day, is_leap):
                 return day
-            except Exception:
-                continue
         return 29  # 기본값
     
     def smart_convert(self, date_str: str, is_lunar: bool = False) -> Dict:
