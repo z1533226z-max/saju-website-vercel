@@ -123,6 +123,8 @@
     <link rel="stylesheet" href="css/enhanced-date-picker.css?v=20260218h">
     <link rel="stylesheet" href="css/realtime-calculator.css?v=20260218h">
     <link rel="stylesheet" href="css/result-sharing.css?v=20260218h">
+    <link rel="stylesheet" href="css/home.css?v=20261027b">
+    <script defer src="js/home-daily.js?v=20261027b"></script>
     <link rel="stylesheet" href="css/print.css?v=20260218h" media="print">
     <style>
     /* RESULT_NEXT_LINKS_V1: 사주 결과 아래 '함께 보면 좋은 운세' 링크 */
@@ -144,8 +146,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7479840445702290"
          crossorigin="anonymous"></script>
 
-    <!-- Theme color — 墨金 Dark Luxury -->
-    <meta name="theme-color" content="#0C0B10">
+    <meta name="theme-color" content="#f2ece1">
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
     <!-- Google Analytics -->
@@ -157,7 +158,7 @@
       gtag('config', 'G-BNRL6FRMMM');
     </script>
 </head>
-<body>
+<body class="home-page">
     <a href="#input-section" class="skip-link">본문으로 바로가기</a>
 
     <!-- 2.1 헤더 섹션 -->
@@ -184,7 +185,9 @@
                 </div>
                 <span class="site-title">사주명리</span>
             </div>
-            <nav class="main-nav">
+            <details class="home-menu">
+            <summary>메뉴 <span aria-hidden="true">＋</span></summary>
+            <nav class="main-nav" aria-label="전체 메뉴">
                 <a href="#input-section">사주풀이</a>
                 <a href="#additional-features" data-action="navToFeatures" data-tab="compatibility">궁합</a>
                 <a href="#additional-features" data-action="navToFeatures" data-tab="taekil">택일</a>
@@ -200,54 +203,47 @@
                     <span class="lotto-nav-icon">🎱</span> 로또킹 <span class="lotto-nav-arrow">→</span>
                 </a>
             </nav>
+            </details>
         </div>
     </header>
 
     <main>
-    <!-- 2.2 히어로 섹션 -->
-    <section id="hero-section">
-        <div class="hero-background">
-            <!-- 수묵화 스타일 배경 -->
-            <div class="ink-wash-pattern"></div>
-        </div>
-        
-        <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="brush-stroke">당신의 사주팔자</span>
-                <span class="subtitle">운명의 나침반을 찾아드립니다</span>
-            </h1>
-            
-            <div class="hero-decoration">
-                <!-- 전통 나침반 (Luopan) -->
-                <div class="bagua-compass">
-                    <!-- 외부 링 - 24산 -->
-                    <div class="luopan-outer">
-                        <div class="mountains-24"></div>
-                    </div>
-                    <!-- 중간 링 - 팔괘 -->
-                    <div class="luopan-middle">
-                        <div class="trigram-ring"></div>
-                    </div>
-                    <!-- 내부 링 - 12지지 -->
-                    <div class="luopan-inner">
-                        <div class="branches-12"></div>
-                    </div>
-                    <!-- 중앙 나침반 바늘 -->
-                    <div class="compass-center">
-                        <div class="compass-needle">
-                            <div class="needle-pointer"></div>
-                        </div>
-                        <div class="center-dot"></div>
-                    </div>
-                </div>
+    <section id="hero-section" aria-labelledby="home-title">
+        <div class="home-daily">
+            <div class="daily-opening">
+                <time id="home-date"></time>
+                <h1 id="home-title">오늘은,<br>어떤 하루일까요?</h1>
+                <p>가볍게 오늘의 흐름을 읽고,<br>내 사주에 담긴 이야기도 만나보세요.</p>
             </div>
-            
-            <button class="cta-button" data-action="scrollToInput">
-                <span>지금 확인하기</span>
-                <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" fill="none"/>
-                </svg>
-            </button>
+            <div class="daily-reading">
+                <fieldset id="zodiac-choices">
+                    <legend>내 띠를 골라보세요</legend>
+                    <div class="zodiac-choices">
+                        <label class="zodiac-choice"><input type="radio" name="daily-zodiac" value="rat" checked><span>쥐띠</span></label>
+                        <label class="zodiac-choice"><input type="radio" name="daily-zodiac" value="ox"><span>소띠</span></label>
+                        <label class="zodiac-choice"><input type="radio" name="daily-zodiac" value="tiger"><span>호랑이띠</span></label>
+                        <label class="zodiac-choice"><input type="radio" name="daily-zodiac" value="rabbit"><span>토끼띠</span></label>
+                        <label class="zodiac-choice"><input type="radio" name="daily-zodiac" value="dragon"><span>용띠</span></label>
+                        <label class="zodiac-choice"><input type="radio" name="daily-zodiac" value="snake"><span>뱀띠</span></label>
+                        <label class="zodiac-choice"><input type="radio" name="daily-zodiac" value="horse"><span>말띠</span></label>
+                        <label class="zodiac-choice"><input type="radio" name="daily-zodiac" value="goat"><span>양띠</span></label>
+                        <label class="zodiac-choice"><input type="radio" name="daily-zodiac" value="monkey"><span>원숭이띠</span></label>
+                        <label class="zodiac-choice"><input type="radio" name="daily-zodiac" value="rooster"><span>닭띠</span></label>
+                        <label class="zodiac-choice"><input type="radio" name="daily-zodiac" value="dog"><span>개띠</span></label>
+                        <label class="zodiac-choice"><input type="radio" name="daily-zodiac" value="pig"><span>돼지띠</span></label>
+                    </div>
+                </fieldset>
+                <article id="daily-preview" class="daily-preview" data-state="loading" aria-live="polite" aria-atomic="true" aria-busy="true">
+                    <div class="daily-preview-heading"><h2 id="daily-preview-name">쥐띠의 오늘</h2><span>운세 미리보기</span></div>
+                    <p id="daily-preview-relation" class="daily-preview-relation">오늘의 운세를 불러오고 있어요.</p>
+                    <p id="daily-preview-message"></p>
+                    <div class="daily-preview-footer"><span>총운 <strong id="daily-preview-score">—</strong></span><a id="daily-preview-link" href="/daily/rat/">오늘 운세 자세히 <span aria-hidden="true">→</span></a></div>
+                    <button id="daily-preview-retry" type="button" hidden>다시 불러오기</button>
+                </article>
+                <a id="home-saju-link" class="home-primary" href="#input-section">내 사주 보기 <span aria-hidden="true">→</span></a>
+                <p class="home-daily-note">띠별 오늘 운세에서, 나만의 사주 이야기로.</p>
+                <noscript><p>오늘 운세는 <a href="/daily/">띠별 오늘의 운세</a>에서 확인하실 수 있습니다.</p></noscript>
+            </div>
         </div>
     </section>
 
@@ -255,9 +251,23 @@
     <div x-data="sajuForm()">
     <section id="input-section">
         <div class="section-container">
-            <h2 class="section-title">생년월일시 입력</h2>
+            <div class="saju-intro">
+                <h2>당신의 사주팔자</h2>
+                <p>운명의 나침반을 찾아드립니다</p>
+                <figure class="saju-book" aria-label="사주는 태어난 해, 달, 날, 시의 네 기둥을 읽습니다. 계산 결과가 아닌 안내 그림입니다.">
+                    <figcaption><span>나의 사주</span><span>四柱八字</span></figcaption>
+                    <div class="saju-pillars" aria-hidden="true">
+                        <div><b>年</b><span>태어난 해</span></div>
+                        <div><b>月</b><span>태어난 달</span></div>
+                        <div><b>日</b><span>태어난 날</span></div>
+                        <div><b>時</b><span>태어난 시</span></div>
+                    </div>
+                    <p>네 기둥으로 읽는 나의 이야기 <span>안내 그림</span></p>
+                </figure>
+            </div>
             
             <form id="saju-form" @submit.prevent="calculateSaju">
+                <h3 class="home-form-title">생년월일시 입력</h3>
                 <!-- 캘린더 유형 선택 -->
                 <div class="calendar-type">
                     <label class="radio-card" :class="{ active: calendarType === 'solar' }">
