@@ -183,6 +183,21 @@
 .home-page #saju-form .input-field select { width: 100%; padding-left: 10px; padding-right: 24px; background-position: right 8px center; }
 .home-page #input-section .submit-button { background: var(--home-wine); color: var(--home-cream); box-shadow: none; }
 
+/* 637: 홈 하단 안내·푸터 링크의 실제 누르는 영역을 44px 이상으로 넓힙니다.
+   글자·순서·광고·홍보 원문은 그대로이고, 다른 페이지에는 적용되지 않습니다. */
+.home-page #additional-section .learn-more-btn {
+  display: inline-block;
+  padding: 10px 0;
+  margin: -10px 0;
+}
+.home-page #site-footer a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+
 @media (min-width: 900px) {
   .home-menu { flex: 1; min-width: 0; }
   .home-menu summary { display: none; }
