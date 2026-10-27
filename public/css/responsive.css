@@ -64,14 +64,11 @@
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .gender-select {
-    flex-direction: column;
-    align-items: center;
-  }
-  
   .gender-card {
-    width: 100%;
-    max-width: 300px;
+    min-width: 0;
+    padding: var(--spacing-md);
+    flex-direction: row;
+    justify-content: center;
   }
   
   /* Info grid */
@@ -209,7 +206,6 @@
   }
   
   .calendar-type {
-    flex-direction: column;
     gap: var(--spacing-sm);
   }
   
@@ -218,24 +214,15 @@
   }
   
   .input-field select {
-    font-size: var(--text-sm);
+    font-size: 1rem;
   }
   
   .time-grid {
     gap: var(--spacing-xs);
   }
   
-  .time-grid button {
-    padding: var(--spacing-sm);
-    min-height: 44px;
-  }
-  
   .hour-name {
-    font-size: var(--text-sm);
-  }
-  
-  .hour-time {
-    font-size: 10px;
+    font-size: 1rem;
   }
   
   /* Elements analysis */

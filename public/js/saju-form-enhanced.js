@@ -210,11 +210,10 @@ window.sajuForm = function() {
                     result: result
                 };
                 
-                // 차트 그리기
-                this.drawCharts();
-                
-                // 결과 표시
+                // 결과 템플릿이 생성된 뒤 캔버스를 찾습니다.
                 this.showResults = true;
+                await this.$nextTick();
+                this.drawCharts();
                 
                 // 결과 섹션으로 스크롤
                 setTimeout(() => {

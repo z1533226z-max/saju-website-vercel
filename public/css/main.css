@@ -99,6 +99,18 @@ p {
   margin: 0 auto;
 }
 
+#site-header .header-container,
+#site-header > .container {
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+#site-header .logo-area,
+#site-header .logo-link {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
 .logo-area {
   display: flex;
   align-items: center;
@@ -297,19 +309,35 @@ p {
   color: var(--color-text-primary);
 }
 
-.main-nav {
+#site-header .main-nav,
+#site-header .nav-links {
   display: flex;
-  gap: var(--spacing-xl);
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-xs) var(--spacing-md);
+  min-width: 0;
 }
 
-.main-nav a {
+#site-header .main-nav a,
+#site-header .nav-links a {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 4px 8px;
+  white-space: nowrap;
   font-size: var(--text-base);
   color: var(--color-text-secondary);
   transition: color var(--duration-normal) var(--ease-in-out);
   position: relative;
 }
 
-.main-nav a:hover {
+#site-header .main-nav a:hover,
+#site-header .nav-links a:hover,
+#site-header .nav-links a.active {
   color: var(--color-accent);
 }
 
@@ -330,7 +358,7 @@ p {
 
 /* 로또킹 네비 링크 — 강렬한 코랄 CTA */
 .main-nav .lotto-nav-link {
-  color: #fff !important;
+  color: #0C0B10 !important;
   font-weight: 700 !important;
   font-size: var(--text-sm) !important;
   padding: 6px 16px !important;
@@ -346,7 +374,7 @@ p {
   letter-spacing: 0.5px;
 }
 .main-nav .lotto-nav-link:hover {
-  color: #fff !important;
+  color: #0C0B10 !important;
   background: linear-gradient(135deg, #E8834A, #D36135) !important;
   box-shadow: 0 0 20px rgba(211, 97, 53, 0.6), 0 0 40px rgba(211, 97, 53, 0.25) !important;
   transform: scale(1.05);
@@ -458,17 +486,17 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 800;
   color: #fff;
   font-family: 'Noto Sans KR', sans-serif;
   text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
-.lb-yellow { background: linear-gradient(145deg, #FFC107, #FF9800); box-shadow: 0 2px 8px rgba(255,193,7,0.4); }
-.lb-blue { background: linear-gradient(145deg, #42A5F5, #1976D2); box-shadow: 0 2px 8px rgba(33,150,243,0.4); }
-.lb-red { background: linear-gradient(145deg, #EF5350, #C62828); box-shadow: 0 2px 8px rgba(244,67,54,0.4); }
-.lb-gray { background: linear-gradient(145deg, #9E9E9E, #616161); box-shadow: 0 2px 8px rgba(158,158,158,0.4); }
-.lb-green { background: linear-gradient(145deg, #66BB6A, #2E7D32); box-shadow: 0 2px 8px rgba(76,175,80,0.4); }
+.lb-yellow { color: #0C0B10; background: linear-gradient(145deg, #FFC107, #FF9800); box-shadow: 0 2px 8px rgba(255,193,7,0.4); }
+.lb-blue { background: #1976D2; box-shadow: 0 2px 8px rgba(33,150,243,0.4); }
+.lb-red { background: #C62828; box-shadow: 0 2px 8px rgba(244,67,54,0.4); }
+.lb-gray { background: #616161; box-shadow: 0 2px 8px rgba(158,158,158,0.4); }
+.lb-green { background: #2E7D32; box-shadow: 0 2px 8px rgba(76,175,80,0.4); }
 /* 중앙 텍스트 */
 .lotto-banner-center {
   flex: 1;
@@ -478,11 +506,11 @@ p {
   display: inline-block;
   padding: 2px 8px;
   border-radius: 4px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 1px;
-  color: #fff;
-  background: linear-gradient(135deg, #D36135, #C05430);
+  color: #0C0B10;
+  background: linear-gradient(135deg, #E8834A, #D36135);
   margin-bottom: 6px;
 }
 .lotto-banner-title {
@@ -498,7 +526,7 @@ p {
   background-clip: text;
 }
 .lotto-banner-desc {
-  font-size: 12px !important;
+  font-size: 14px !important;
   color: #9B918A !important;
   margin: 0 !important;
   line-height: 1.4;
@@ -512,10 +540,10 @@ p {
   display: inline-block;
   padding: 8px 16px;
   border-radius: 8px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
-  color: #fff;
-  background: linear-gradient(135deg, #D36135, #C05430);
+  color: #0C0B10;
+  background: linear-gradient(135deg, #E8834A, #D36135);
   box-shadow: 0 2px 12px rgba(211,97,53,0.3);
   white-space: nowrap;
   transition: all 0.2s;
@@ -1115,7 +1143,7 @@ textarea,
 .radio-card,
 .gender-card,
 .tab-button,
-.time-grid button,
+.time-option,
 .learn-more-btn {
   touch-action: manipulation;
 }
@@ -1221,6 +1249,49 @@ h1, h2, h3, h4 {
 }
 .learn-more-btn:hover {
   text-decoration: underline;
+}
+
+/* ===================================
+   Responsive Header
+   =================================== */
+
+@media (max-width: 1024px) {
+  #site-header .header-container,
+  #site-header > .container {
+    flex-direction: column;
+  }
+
+  #site-header .main-nav,
+  #site-header .nav-links {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    gap: 4px;
+  }
+
+  #site-header .main-nav a,
+  #site-header .nav-links a {
+    font-size: 14px;
+    padding: 4px;
+  }
+}
+
+@media (max-width: 640px) {
+  #site-header .main-nav,
+  #site-header .nav-links {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  #site-header .lotto-nav-link {
+    padding: 6px 8px !important;
+  }
+}
+
+@media (max-width: 359px) {
+  #site-header .main-nav,
+  #site-header .nav-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* ===================================

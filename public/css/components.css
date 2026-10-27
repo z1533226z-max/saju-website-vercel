@@ -155,7 +155,8 @@
   gap: var(--spacing-sm);
 }
 
-.time-grid button {
+.time-option {
+  position: relative;
   padding: var(--spacing-sm);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -167,15 +168,31 @@
   align-items: center;
   gap: var(--spacing-xs);
   min-height: 44px;
+  cursor: pointer;
 }
 
-.time-grid button:hover {
+.time-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+.time-option:focus-within,
+.radio-card:focus-within,
+.gender-card:focus-within {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.time-option:hover {
   border-color: var(--color-gold-muted);
   color: var(--color-text-primary);
   background: var(--color-glass-hover);
 }
 
-.time-grid button.active {
+.time-option.active {
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.08) 100%);
   border-color: var(--color-gold);
   color: var(--color-gold-light);
@@ -187,9 +204,13 @@
   font-weight: var(--font-medium);
 }
 
-.hour-time {
-  font-size: var(--text-xs);
-  opacity: 0.8;
+.hour-time,
+.time-hint {
+  font-size: var(--text-sm);
+}
+
+.time-hint {
+  color: var(--color-text-secondary);
 }
 
 /* Gender Selection */
@@ -252,7 +273,7 @@
 .submit-button {
   width: 100%;
   padding: var(--spacing-md) var(--spacing-3xl);
-  background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 50%, var(--color-gold-light) 100%);
+  background: linear-gradient(135deg, var(--color-gold-soft) 0%, var(--color-gold) 50%, var(--color-gold-light) 100%);
   color: var(--color-bg-primary);
   border-radius: var(--radius-full);
   font-family: var(--font-heading);
@@ -555,6 +576,7 @@
 }
 
 .interpretation-card {
+  min-width: 0;
   background: var(--color-glass-surface);
   backdrop-filter: blur(var(--glass-blur));
   border-radius: var(--radius-xl);
@@ -950,7 +972,8 @@
   margin-left: 1rem;
   padding: 0.5rem 1rem;
   background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
-  color: white;
+  color: var(--color-text-inverse);
+  -webkit-text-fill-color: currentColor;
   border: none;
   border-radius: 25px;
   font-size: 0.9rem;
@@ -1305,7 +1328,6 @@
 
 .footer-container p {
   margin: 0;
-  opacity: 0.8;
   font-size: 0.9rem;
 }
 

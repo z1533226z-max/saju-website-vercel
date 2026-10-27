@@ -399,7 +399,7 @@
 
 .energy-score small {
     font-size: var(--text-base);
-    color: var(--color-text-tertiary);
+    color: var(--color-text-secondary);
 }
 
 .energy-desc {

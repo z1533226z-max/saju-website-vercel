@@ -748,12 +748,17 @@
 
 .footer-links {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-md);
 }
 
 .footer-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    white-space: nowrap;
     color: var(--color-text-secondary);
     text-decoration: none;
     font-size: var(--text-sm);
@@ -766,13 +771,13 @@
 
 .footer-copy {
     font-size: var(--text-sm);
-    color: var(--color-text-tertiary);
+    color: var(--color-text-secondary);
     margin-bottom: var(--spacing-sm);
 }
 
 .footer-disclaimer {
-    font-size: var(--text-xs);
-    color: var(--color-text-tertiary);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
     max-width: 600px;
     margin: 0 auto;
 }

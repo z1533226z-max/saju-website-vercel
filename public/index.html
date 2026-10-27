@@ -104,9 +104,9 @@
     <!-- Styles (v=20260218b — cache-bust) -->
     <link rel="stylesheet" href="css/reset.css?v=20260218h">
     <link rel="stylesheet" href="css/variables.css?v=20260218h">
-    <link rel="stylesheet" href="css/main.css?v=20260218h">
-    <link rel="stylesheet" href="css/components.css?v=20260218h">
-    <link rel="stylesheet" href="css/responsive.css?v=20260218h">
+    <link rel="stylesheet" href="css/main.css?v=20261027a">
+    <link rel="stylesheet" href="css/components.css?v=20261027a">
+    <link rel="stylesheet" href="css/responsive.css?v=20261027a">
     <link rel="stylesheet" href="css/widescreen.css?v=20260218h">
     <link rel="stylesheet" href="css/enhanced-features.css?v=20260218h">
     <link rel="stylesheet" href="css/fullscreen-fix.css?v=20260218h">
@@ -116,7 +116,7 @@
     <link rel="stylesheet" href="css/share-buttons.css?v=20260218h">
     <link rel="stylesheet" href="css/compatibility-info.css?v=20260218h">
     <link rel="stylesheet" href="css/partner-form.css?v=20260218h">
-    <link rel="stylesheet" href="css/additional-features.css?v=20260218h">
+    <link rel="stylesheet" href="css/additional-features.css?v=20261027a">
     <link rel="stylesheet" href="css/tabs.css?v=20260218h">
     <link rel="stylesheet" href="css/timeline.css?v=20260218h">
     <link rel="stylesheet" href="css/saju-comparison.css?v=20260218h">
@@ -251,48 +251,13 @@
         </div>
     </section>
 
-    <!-- 로또킹 프로모션 배너 -->
-    <section id="lotto-promo-banner">
-        <a href="https://lotto.gon.ai.kr" target="_blank" rel="noopener noreferrer" class="lotto-banner">
-            <div class="lotto-banner-glow"></div>
-            <div class="lotto-banner-shine"></div>
-            <div class="lotto-banner-content">
-                <div class="lotto-banner-left">
-                    <div class="lotto-banner-balls">
-                        <span class="lotto-ball lb-yellow">7</span>
-                        <span class="lotto-ball lb-blue">14</span>
-                        <span class="lotto-ball lb-red">28</span>
-                        <span class="lotto-ball lb-gray">35</span>
-                        <span class="lotto-ball lb-green">42</span>
-                    </div>
-                </div>
-                <div class="lotto-banner-center">
-                    <span class="lotto-banner-badge">AI 분석</span>
-                    <h3 class="lotto-banner-title">이번주 로또번호, AI가 골라준다</h3>
-                    <p class="lotto-banner-desc">역대 전체 회차 데이터 기반 통계 분석 · 무료</p>
-                </div>
-                <div class="lotto-banner-right">
-                    <span class="lotto-banner-cta">로또킹 바로가기 →</span>
-                </div>
-            </div>
-        </a>
-    </section>
-
-    <!-- SAJU_TEST_ENTRY_V1: 공유형 테스트 진입 -->
-    <a href="/saju-test/" class="saju-test-entry" style="display:flex;align-items:center;gap:0.9rem;box-sizing:border-box;width:calc(100% - 2rem);max-width:760px;margin:1.5rem auto;padding:1rem 1.1rem;border-radius:14px;border:1px solid #8B7335;background:linear-gradient(135deg,rgba(212,175,55,0.12),rgba(26,25,36,0.6));color:#E8E0D4;text-decoration:none;">
-        <span style="font-size:2rem;line-height:1" aria-hidden="true">🌳</span>
-        <span><strong style="display:block;color:#F0D78C;font-size:1.05rem">나는 어떤 자연일까? 오행 캐릭터 테스트</strong>
-        <span style="font-size:0.9rem;color:#9B918A">생년월일만 넣으면 1초 · 결과 카드 저장 · 친구 초대 궁합</span></span>
-    </a>
-    <!-- /SAJU_TEST_ENTRY_V1 -->
-
     <!-- 2.3 입력 폼 섹션 -->
     <div x-data="sajuForm()">
     <section id="input-section">
         <div class="section-container">
             <h2 class="section-title">생년월일시 입력</h2>
             
-            <form id="saju-form">
+            <form id="saju-form" @submit.prevent="calculateSaju">
                 <!-- 캘린더 유형 선택 -->
                 <div class="calendar-type">
                     <label class="radio-card" :class="{ active: calendarType === 'solar' }">
@@ -339,16 +304,15 @@
                 <!-- 출생시간 입력 -->
                 <div class="time-input-group" role="group" aria-label="출생시간">
                     <label id="time-label">출생시간</label>
-                    <div class="time-grid" role="radiogroup" aria-labelledby="time-label">
+                    <p id="time-hint" class="time-hint">태어난 시간대를 선택해 주세요. 시간을 모르면 임의로 고르지 말고 먼저 확인해 주세요.</p>
+                    <div class="time-grid" role="radiogroup" aria-labelledby="time-label" aria-describedby="time-hint">
                         <template x-for="hour in timeOptions" :key="hour.value">
-                            <button type="button"
-                                    :class="{ active: selectedHour === hour.value }"
-                                    @click="selectedHour = hour.value"
-                                    :aria-label="hour.name + ' ' + hour.time"
-                                    :aria-pressed="selectedHour === hour.value">
+                            <label class="time-option" :class="{ active: selectedHour === hour.value }">
+                                <input type="radio" name="birthTime" x-model="selectedHour" :value="hour.value"
+                                       :aria-label="hour.name + ' ' + hour.time">
                                 <span class="hour-name" x-text="hour.name"></span>
                                 <span class="hour-time" x-text="hour.time"></span>
-                            </button>
+                            </label>
                         </template>
                     </div>
                 </div>
@@ -368,7 +332,7 @@
                 </div>
                 
                 <!-- 제출 버튼 -->
-                <button type="submit" class="submit-button" @click.prevent="calculateSaju">
+                <button type="submit" class="submit-button">
                     <span x-show="!loading">사주 풀이 보기</span>
                     <span x-show="loading" class="loading-spinner">분석 중...</span>
                 </button>
@@ -377,7 +341,8 @@
     </section>
 
     <!-- 2.4 결과 표시 섹션 -->
-    <section id="results-section" x-show="showResults" x-transition aria-live="polite">
+    <template x-if="showResults">
+    <section id="results-section" aria-live="polite">
         <div class="section-container">
             <h2 class="section-title">
                 당신의 사주명식
@@ -669,7 +634,8 @@
                 <div class="interpretation-card" x-show="interpretation.major_fortune">
                     <h3>대운 흐름</h3>
                     <div class="major-fortune-timeline">
-                        <div class="current-period" x-show="interpretation.major_fortune.current_period">
+                        <template x-if="interpretation.major_fortune?.current_period">
+                        <div class="current-period">
                             <h4>현재 대운</h4>
                             <p>
                                 <span x-text="interpretation.major_fortune.current_period.combined_name"></span>
@@ -678,8 +644,10 @@
                             </p>
                             <p x-text="interpretation.major_fortune.current_period.description"></p>
                         </div>
+                        </template>
 
-                        <div class="next-period" x-show="interpretation.major_fortune.next_period">
+                        <template x-if="interpretation.major_fortune?.next_period">
+                        <div class="next-period">
                             <h4>다음 대운</h4>
                             <p>
                                 <span x-text="interpretation.major_fortune.next_period.combined_name"></span>
@@ -688,6 +656,7 @@
                             </p>
                             <p x-text="interpretation.major_fortune.next_period.description"></p>
                         </div>
+                        </template>
                     </div>
                 </div>
 
@@ -760,7 +729,43 @@
             </div>
         </div>
     </section>
+    </template>
     </div><!-- End of Alpine.js component -->
+
+    <!-- 로또킹 프로모션 배너 -->
+    <section id="lotto-promo-banner">
+        <a href="https://lotto.gon.ai.kr" target="_blank" rel="noopener noreferrer" class="lotto-banner">
+            <div class="lotto-banner-glow"></div>
+            <div class="lotto-banner-shine"></div>
+            <div class="lotto-banner-content">
+                <div class="lotto-banner-left">
+                    <div class="lotto-banner-balls">
+                        <span class="lotto-ball lb-yellow">7</span>
+                        <span class="lotto-ball lb-blue">14</span>
+                        <span class="lotto-ball lb-red">28</span>
+                        <span class="lotto-ball lb-gray">35</span>
+                        <span class="lotto-ball lb-green">42</span>
+                    </div>
+                </div>
+                <div class="lotto-banner-center">
+                    <span class="lotto-banner-badge">AI 분석</span>
+                    <h3 class="lotto-banner-title">이번주 로또번호, AI가 골라준다</h3>
+                    <p class="lotto-banner-desc">역대 전체 회차 데이터 기반 통계 분석 · 무료</p>
+                </div>
+                <div class="lotto-banner-right">
+                    <span class="lotto-banner-cta">로또킹 바로가기 →</span>
+                </div>
+            </div>
+        </a>
+    </section>
+
+    <!-- SAJU_TEST_ENTRY_V1: 공유형 테스트 진입 -->
+    <a href="/saju-test/" class="saju-test-entry" style="display:flex;align-items:center;gap:0.9rem;box-sizing:border-box;width:calc(100% - 2rem);max-width:760px;margin:1.5rem auto;padding:1rem 1.1rem;border-radius:14px;border:1px solid #8B7335;background:linear-gradient(135deg,rgba(212,175,55,0.12),rgba(26,25,36,0.6));color:#E8E0D4;text-decoration:none;">
+        <span style="font-size:2rem;line-height:1" aria-hidden="true">🌳</span>
+        <span><strong style="display:block;color:#F0D78C;font-size:1.05rem">나는 어떤 자연일까? 오행 캐릭터 테스트</strong>
+        <span style="font-size:0.9rem;color:#9B918A">생년월일만 넣으면 1초 · 결과 카드 저장 · 친구 초대 궁합</span></span>
+    </a>
+    <!-- /SAJU_TEST_ENTRY_V1 -->
     
     <!-- 추가 기능 섹션 (궁합, 택일, 작명 등) -->
     <section id="additional-features" class="section-container" style="display: none;">
@@ -1028,7 +1033,7 @@
     <!-- JavaScript (v=20260218b — cache-bust) -->
     <script src="js/config.js?v=20260218h"></script>
     <script src="js/api.js?v=20260218h"></script>
-    <script src="js/saju-form-enhanced.js?v=20261005a"></script>
+    <script src="js/saju-form-enhanced.js?v=20261027a"></script>
     <script src="js/compatibility-clean.js?v=20260218h"></script>
     <script src="js/additional-features.js?v=20260218h"></script>
     <script src="js/main.js?v=20260218h"></script>

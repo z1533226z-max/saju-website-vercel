@@ -128,7 +128,7 @@
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 50%, var(--color-gold-light) 100%);
+    background: linear-gradient(135deg, var(--color-gold-soft) 0%, var(--color-gold) 50%, var(--color-gold-light) 100%);
     color: var(--color-bg-primary);
     border: none;
     padding: 0.75rem 2rem;
