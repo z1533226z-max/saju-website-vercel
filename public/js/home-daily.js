@@ -17,6 +17,17 @@
     let refreshAt = 0;
     let timer;
     let loading = false;
+    const menu = document.querySelector('.home-menu');
+    const desktop = window.matchMedia('(min-width: 900px)');
+    function syncMenu() { menu.open = desktop.matches; }
+    desktop.addEventListener('change', syncMenu);
+    syncMenu();
+
+    function syncThemeColor() {
+        document.querySelector('meta[name="theme-color"]').content = document.documentElement.dataset.theme === 'dark' ? '#21171b' : '#f2ece1';
+    }
+    new MutationObserver(syncThemeColor).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    syncThemeColor();
 
     function selectFortune() {
         const selected = choices.querySelector('input:checked');
@@ -34,6 +45,7 @@
         loading = true;
         fortunes = null;
         clearTimeout(timer);
+        preview.hidden = false;
         preview.dataset.state = 'loading';
         preview.setAttribute('aria-busy', 'true');
         relation.textContent = '오늘의 운세를 불러오고 있어요.';
@@ -86,11 +98,11 @@
         document.getElementById('input-section').scrollIntoView({ behavior: 'instant', block: 'start' });
         document.getElementById('birth-year').focus({ preventScroll: true });
     });
-    document.querySelector('.home-menu').addEventListener('click', function (event) {
-        if (event.target.closest('a')) this.open = false;
+    menu.addEventListener('click', function (event) {
+        if (!desktop.matches && event.target.closest('a')) this.open = false;
     });
-    document.querySelector('.home-menu').addEventListener('keydown', function (event) {
-        if (event.key === 'Escape') {
+    menu.addEventListener('keydown', function (event) {
+        if (!desktop.matches && event.key === 'Escape') {
             this.open = false;
             this.querySelector('summary').focus();
         }

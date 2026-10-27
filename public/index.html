@@ -123,8 +123,8 @@
     <link rel="stylesheet" href="css/enhanced-date-picker.css?v=20260218h">
     <link rel="stylesheet" href="css/realtime-calculator.css?v=20260218h">
     <link rel="stylesheet" href="css/result-sharing.css?v=20260218h">
-    <link rel="stylesheet" href="css/home.css?v=20261027b">
-    <script defer src="js/home-daily.js?v=20261027b"></script>
+    <link rel="stylesheet" href="css/home.css?v=20261027c">
+    <script defer src="js/home-daily.js?v=20261027c"></script>
     <link rel="stylesheet" href="css/print.css?v=20260218h" media="print">
     <style>
     /* RESULT_NEXT_LINKS_V1: 사주 결과 아래 '함께 보면 좋은 운세' 링크 */
@@ -185,7 +185,7 @@
                 </div>
                 <span class="site-title">사주명리</span>
             </div>
-            <details class="home-menu">
+            <details class="home-menu" open>
             <summary>메뉴 <span aria-hidden="true">＋</span></summary>
             <nav class="main-nav" aria-label="전체 메뉴">
                 <a href="#input-section">사주풀이</a>
@@ -233,7 +233,7 @@
                         <label class="zodiac-choice"><input type="radio" name="daily-zodiac" value="pig"><span>돼지띠</span></label>
                     </div>
                 </fieldset>
-                <article id="daily-preview" class="daily-preview" data-state="loading" aria-live="polite" aria-atomic="true" aria-busy="true">
+                <article id="daily-preview" class="daily-preview" data-state="idle" aria-live="polite" aria-atomic="true" aria-busy="false" hidden>
                     <div class="daily-preview-heading"><h2 id="daily-preview-name">쥐띠의 오늘</h2><span>운세 미리보기</span></div>
                     <p id="daily-preview-relation" class="daily-preview-relation">오늘의 운세를 불러오고 있어요.</p>
                     <p id="daily-preview-message"></p>

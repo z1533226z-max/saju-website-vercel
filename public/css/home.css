@@ -2,9 +2,6 @@
 .home-page {
   font-size: 16px;
   word-break: keep-all;
-}
-
-.home-page :is(#site-header, #hero-section, #input-section) {
   --color-bg-primary: #f2ece1;
   --color-bg-secondary: #fff9ed;
   --color-bg-tertiary: #f2ece1;
@@ -21,19 +18,44 @@
   --color-gold-soft: #6d303e;
   --color-gold-text: #512b32;
   --color-gold-muted: #9c6771;
+  --color-gold-dark: #6d303e;
+  --color-gold-deep: #6d303e;
+  --color-gold-glow: #6d303e18;
+  --color-primary-dark: #512b32;
+  --color-secondary: #72585b;
   --color-border: #c8b6ae;
   --color-border-light: #d8c9c0;
+  --color-border-dark: #9c6771;
+  --color-glass-border: #d8c9c0;
   --color-warm-surface: #fff9ed;
   --color-glass-surface: #fff9ed;
   --color-glass-hover: #e9dcd4;
   --color-warm-highlight: #e9dcd4;
+  --color-success: #21613b;
+  --color-warning: #6f4a0b;
+  --color-error: #a73242;
+  --color-info: #245c8c;
+  --color-wood: #21613b;
+  --color-fire: #a73242;
+  --color-earth: #6d303e;
+  --color-metal: #62564f;
+  --color-water: #245c8c;
+  --color-shinshal-auspicious: var(--color-success);
+  --color-shinshal-inauspicious: var(--color-error);
+  --color-gods-useful-text: var(--color-success);
+  --color-gods-harmful-text: var(--color-error);
+  --color-shadow: #512b321c;
+  --color-shadow-dark: #512b3233;
+  --color-shadow-gold: #6d303e14;
+  --shadow-glass: 0 8px 32px var(--color-shadow), inset 0 1px 0 var(--color-border-light);
+  --shadow-warm-hover: 0 16px 40px var(--color-shadow), 0 0 20px var(--color-shadow-gold);
   --home-wine: #6d303e;
   --home-cream: #fff9ed;
   color-scheme: light;
   color: var(--color-text-primary);
 }
 
-[data-theme="dark"] .home-page :is(#site-header, #hero-section, #input-section) {
+[data-theme="dark"] .home-page {
   --color-bg-primary: #21171b;
   --color-bg-secondary: #2d2026;
   --color-bg-tertiary: #21171b;
@@ -41,6 +63,8 @@
   --color-text-secondary: #d0b9b5;
   --color-text-tertiary: #d0b9b5;
   --color-text-muted: #d0b9b5;
+  --color-text-inverse: #21171b;
+  --color-secondary: #d0b9b5;
   --color-accent: #edb8bf;
   --color-accent-hover: #fff9ed;
   --color-primary: #edb8bf;
@@ -49,14 +73,42 @@
   --color-gold-soft: #edb8bf;
   --color-gold-text: #edb8bf;
   --color-gold-muted: #bd8a94;
+  --color-gold-dark: #edb8bf;
+  --color-gold-deep: #edb8bf;
+  --color-primary-dark: #edb8bf;
   --color-border: #83646e;
   --color-border-light: #644b53;
   --color-warm-surface: #2d2026;
   --color-glass-surface: #2d2026;
   --color-glass-hover: #49303a;
   --color-warm-highlight: #49303a;
+  --color-success: #a0dbac;
+  --color-warning: #edcc94;
+  --color-error: #f1aab3;
+  --color-info: #a8cbe7;
+  --color-wood: #a0dbac;
+  --color-fire: #f1aab3;
+  --color-earth: #edcc94;
+  --color-metal: #d0c4bf;
+  --color-water: #a8cbe7;
   color-scheme: dark;
 }
+
+/* 홍보 원문과 광고 자리는 유지하고, 고정색만 홈 팔레트에 맞춥니다. */
+.home-page .lotto-banner { background: var(--color-bg-secondary); border-color: var(--color-border); box-shadow: 0 4px 24px var(--color-shadow) !important; }
+.home-page .lotto-banner-glow { background: var(--color-warm-highlight); }
+.home-page .lotto-banner::before { background: var(--color-accent); }
+.home-page .lotto-banner-title { color: var(--color-text-primary) !important; background: none; -webkit-text-fill-color: currentColor; font-family: var(--font-heading); }
+.home-page .lotto-banner-desc { color: var(--color-text-secondary) !important; }
+.home-page :is(.lotto-ball, .lotto-banner-badge, .lotto-banner-cta) { background: var(--home-wine); color: var(--home-cream); box-shadow: none; text-shadow: none; }
+.home-page .lotto-banner:hover .lotto-banner-cta { background: var(--home-wine); box-shadow: none; }
+.home-page #site-header .lotto-nav-link { background: var(--home-wine) !important; color: var(--home-cream) !important; box-shadow: none !important; }
+.home-page .saju-test-entry { background: var(--color-bg-secondary) !important; border-color: var(--color-border) !important; color: var(--color-text-primary) !important; }
+.home-page .saju-test-entry strong { color: var(--color-text-primary) !important; }
+.home-page .saju-test-entry span span { color: var(--color-text-secondary) !important; }
+.home-page .card-icon svg text { fill: currentColor; }
+.home-page .section-title { color: var(--color-accent); background: none; -webkit-text-fill-color: currentColor; }
+.home-page .skip-link { color: var(--color-text-inverse); }
 
 .home-page::before { content: none; }
 .home-page ::selection { background: var(--color-accent); color: var(--color-bg-primary); }
@@ -73,7 +125,7 @@
 .home-menu summary::-webkit-details-marker { display: none; }
 .home-menu[open] summary span { transform: rotate(45deg); }
 .home-page #site-header .home-menu .main-nav { position: absolute; right: max(24px, calc((100vw - 1186px) / 2)); top: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(600px, calc(100vw - 40px)); gap: 8px; padding: 20px; background: var(--color-bg-secondary); border: 1px solid var(--color-border); box-shadow: 0 16px 30px #21171b20; }
-.home-page #site-header .main-nav a { color: var(--color-text-primary); min-height: 44px; font-size: 14px; }
+.home-page #site-header .main-nav a { color: var(--color-text-primary); min-width: 44px; min-height: 44px; font-size: 14px; }
 
 .home-page #hero-section { min-height: 0; padding: 0; background: var(--color-bg-primary); }
 .home-daily { width: min(1186px, calc(100% - 64px)); margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; padding: 72px 0 64px; text-align: left; }
@@ -131,6 +183,12 @@
 .home-page #saju-form .input-field select { width: 100%; padding-left: 10px; padding-right: 24px; background-position: right 8px center; }
 .home-page #input-section .submit-button { background: var(--home-wine); color: var(--home-cream); box-shadow: none; }
 
+@media (min-width: 900px) {
+  .home-menu { flex: 1; min-width: 0; }
+  .home-menu summary { display: none; }
+  .home-page #site-header .home-menu .main-nav { position: static; display: flex; flex-wrap: wrap; width: auto; padding: 0; border: 0; background: none; box-shadow: none; gap: 4px; }
+  .home-page #input-section { scroll-margin-top: 160px; }
+}
 @media (max-width: 900px) {
   .home-daily { gap: 40px; }
   .home-page #input-section > .section-container { gap: 40px; }
